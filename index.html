@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ARD Securities LLC — System Administration Progress Report 2025" />
+  <title>ARD Securities | IT Progress Report 2025</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- QR Code -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    /* ── RESET ──────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg0:          #03080F;
+      --bg1:          #060E1C;
+      --bg2:          #091628;
+      --card:         rgba(8, 18, 35, 0.85);
+      --gold:         #C9A84C;
+      --gold-lt:      #E5C46A;
+      --gold-dk:      #8A6A1A;
+      --gold-glow:    rgba(201,168,76,.28);
+      --blue:         #3B82F6;
+      --blue-lt:      #60A5FA;
+      --green:        #22C55E;
+      --amber:        #F59E0B;
+      --violet:       #8B5CF6;
+      --txt0:         #EEF2F7;
+      --txt1:         #8FA3BC;
+      --txt2:         #445568;
+      --border:       rgba(201,168,76,.18);
+      --border2:      rgba(255,255,255,.06);
+      --r:            14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg0);
+      color: var(--txt0);
+      overflow-x: hidden;
+      line-height: 1.65;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg0); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dk); border-radius: 3px; }
+
+    /* Scroll progress bar */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold-dk), var(--gold), var(--gold-lt));
+      z-index: 9999;
+      transition: width .1s linear;
+      box-shadow: 0 0 12px var(--gold-glow);
+    }
+
+    /* ── NAVIGATION ─────────────────────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      height: 68px;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(3,8,15,.82);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow .3s;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+    }
+    .nav-mark {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dk) 100%);
+      display: grid;
+      place-items: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      color: #040B15;
+      flex-shrink: 0;
+    }
+    .nav-text strong {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--txt0);
+      display: block;
+      line-height: 1;
+    }
+    .nav-text small {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: .2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--txt1);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 7px 13px;
+      border-radius: 7px;
+      letter-spacing: .2px;
+      transition: all .2s;
+    }
+    .nav-links a:hover { color: var(--txt0); background: var(--border2); }
+    .nav-links .nav-btn {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dk)) !important;
+      color: #040B15 !important;
+      font-weight: 700 !important;
+    }
+    .nav-links .nav-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 18px var(--gold-glow) !important;
+      background: var(--border2) !important;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--txt0);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+
+    /* ── HERO ────────────────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 100px 2rem 60px;
+    }
+
+    .hero-mesh {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 90% 70% at 50% -5%, rgba(201,168,76,.14) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 80% at 5%  100%, rgba(59,130,246,.07) 0%, transparent 50%),
+        radial-gradient(ellipse 55% 80% at 95%  60%, rgba(201,168,76,.07) 0%, transparent 50%);
+    }
+
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,.035) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black, transparent);
+      -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black, transparent);
+    }
+
+    /* Orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      animation: drift linear infinite;
+    }
+    .orb1 { width:500px; height:500px; top:-15%; left:-10%; background:rgba(201,168,76,.07); animation-duration:40s; }
+    .orb2 { width:400px; height:400px; bottom:-10%; right:-8%; background:rgba(59,130,246,.06); animation-duration:55s; animation-delay:-20s; }
+    .orb3 { width:300px; height:300px; top:40%;   left:60%;  background:rgba(201,168,76,.05); animation-duration:45s; animation-delay:-10s; }
+
+    @keyframes drift {
+      0%   { transform: translate(0,0) rotate(0deg); }
+      25%  { transform: translate(30px,-20px) rotate(90deg); }
+      50%  { transform: translate(-20px,30px) rotate(180deg); }
+      75%  { transform: translate(20px,20px) rotate(270deg); }
+      100% { transform: translate(0,0) rotate(360deg); }
+    }
+
+    #particles { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+    .pt {
+      position: absolute;
+      border-radius: 50%;
+      animation: ptFloat linear infinite;
+    }
+    @keyframes ptFloat {
+      0%   { transform: translateY(110vh) scale(.5); opacity:0; }
+      8%   { opacity:.5; }
+      92%  { opacity:.5; }
+      100% { transform: translateY(-60px) scale(1); opacity:0; }
+    }
+
+    .hero-inner {
+      position: relative; z-index: 1;
+      text-align: center;
+      max-width: 960px;
+    }
+
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 100px;
+      background: rgba(201,168,76,.1);
+      border: 1px solid rgba(201,168,76,.32);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold-lt);
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-bottom: 2.2rem;
+      animation: fadeUp .8s both;
+    }
+    .chip-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: blink 2.2s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.4)} }
+
+    .hero-h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.6rem, 6.5vw, 5rem);
+      font-weight: 700;
+      line-height: 1.08;
+      margin-bottom: 1.6rem;
+      animation: fadeUp .8s .18s both;
+    }
+    .hero-h1 .l1 { display:block; color: var(--txt0); }
+    .hero-h1 .l2 {
+      display: block;
+      background: linear-gradient(130deg, var(--gold-dk) 0%, var(--gold) 45%, var(--gold-lt) 75%, var(--gold) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeUp .8s .18s both, shimmer 4s linear 1s infinite;
+    }
+    @keyframes shimmer { to { background-position: 200% center; } }
+
+    .hero-sub {
+      font-size: clamp(.95rem, 2vw, 1.15rem);
+      color: var(--txt1);
+      max-width: 600px;
+      margin: 0 auto 2.8rem;
+      line-height: 1.75;
+      animation: fadeUp .8s .35s both;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp .8s .52s both;
+    }
+
+    .btn-gold {
+      padding: 13px 30px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dk));
+      color: #040B15;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: .4px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all .3s;
+    }
+    .btn-gold:hover { transform:translateY(-2px); box-shadow:0 8px 28px var(--gold-glow); }
+
+    .btn-ghost {
+      padding: 13px 30px;
+      background: transparent;
+      color: var(--txt0);
+      font-weight: 600;
+      font-size: 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all .3s;
+    }
+    .btn-ghost:hover { border-color:var(--gold); color:var(--gold); background:rgba(201,168,76,.06); }
+
+    /* Countdown */
+    .countdown {
+      display: flex;
+      gap: 1.8rem;
+      justify-content: center;
+      margin-top: 3.5rem;
+      animation: fadeUp .8s .7s both;
+    }
+    .cd-block { text-align:center; }
+    .cd-val {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+      text-shadow: 0 0 30px var(--gold-glow);
+    }
+    .cd-lbl {
+      font-size: 9.5px;
+      color: var(--txt2);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 5px;
+      display: block;
+    }
+    .cd-sep {
+      font-size: 2.2rem;
+      color: var(--gold-dk);
+      align-self: flex-start;
+      padding-top: 6px;
+      opacity: .7;
+    }
+    .cd-caption {
+      font-size: 10.5px;
+      color: var(--txt2);
+      text-align: center;
+      margin-top: .9rem;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    /* ── STATS STRIP ─────────────────────────────────────────────────────── */
+    #stats {
+      background: var(--bg1);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stats-row {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-box {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      position: relative;
+    }
+    .stat-box:not(:last-child)::after {
+      content:'';
+      position:absolute;
+      right:0; top:22%; bottom:22%;
+      width:1px;
+      background: var(--border);
+    }
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+    .stat-lbl {
+      font-size: 11px;
+      color: var(--txt2);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-top: 7px;
+      display: block;
+    }
+
+    /* ── SECTION BASE ────────────────────────────────────────────────────── */
+    section { padding: 5.5rem 2rem; }
+    .wrap { max-width: 1120px; margin: 0 auto; }
+
+    .sec-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2.8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: .8rem;
+    }
+    .sec-eyebrow::before {
+      content:'';
+      width: 22px; height: 2px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .sec-h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.18;
+      margin-bottom: 1rem;
+    }
+    .sec-p {
+      font-size: 1rem;
+      color: var(--txt1);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    /* ── CARD BASE ───────────────────────────────────────────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border2);
+      border-radius: var(--r);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 60px rgba(0,0,0,.45);
+      border-color: var(--border);
+    }
+
+    /* ── TEAM ────────────────────────────────────────────────────────────── */
+    #team { background: var(--bg1); }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .team-card {
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .team-card::before {
+      content:'';
+      position:absolute; top:0; left:0; right:0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold-dk), var(--gold), var(--gold-dk), transparent);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .team-card:hover::before,
+    .team-card.featured::before { opacity: 1; }
+    .team-card.featured { border-color: rgba(201,168,76,.28); }
+
+    .role-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .pill-ceo    { background:rgba(201,168,76,.12); color:var(--gold);    border:1px solid rgba(201,168,76,.3); }
+    .pill-cbdo   { background:rgba(59,130,246,.12); color:var(--blue-lt); border:1px solid rgba(59,130,246,.3); }
+    .pill-sys    { background:rgba(34,197,94,.12);  color:#4ADE80;         border:1px solid rgba(34,197,94,.3); }
+
+    .avatar {
+      width: 62px; height: 62px;
+      border-radius: 50%;
+      display: flex; align-items:center; justify-content:center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px; font-weight: 700;
+      border: 2px solid var(--border2);
+      margin-bottom: 1rem;
+    }
+
+    .team-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem; font-weight: 600;
+      margin-bottom: .25rem;
+    }
+    .team-title { font-size: 12.5px; color: var(--txt1); margin-bottom: 1rem; }
+    .team-desc  { font-size: 13px;   color: var(--txt2); line-height: 1.65; }
+
+    /* ── PROJECTS ────────────────────────────────────────────────────────── */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .proj-card { padding: 2rem; }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 11px; font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    .sdot { width:6px; height:6px; border-radius:50%; background:currentColor; animation:blink 2.5s infinite; }
+    .s-done   { background:rgba(34,197,94,.1);  color:#4ADE80;  border:1px solid rgba(34,197,94,.22); }
+    .s-res    { background:rgba(59,130,246,.1); color:var(--blue-lt); border:1px solid rgba(59,130,246,.22); }
+    .s-pend   { background:rgba(245,158,11,.1); color:#FBBF24;  border:1px solid rgba(245,158,11,.22); }
+
+    .proj-ico {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items:center; justify-content:center;
+      font-size: 22px; margin-bottom: 1rem;
+    }
+
+    .proj-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem; font-weight: 600;
+      margin-bottom: .5rem;
+    }
+    .proj-desc { font-size: 13.5px; color: var(--txt1); line-height: 1.65; margin-bottom: 1.5rem; }
+
+    .prog-wrap { margin-bottom: 1.5rem; }
+    .prog-head { display:flex; justify-content:space-between; margin-bottom:7px; }
+    .prog-lbl  { font-size: 12px; color: var(--txt2); font-weight:500; }
+    .prog-pct  { font-size: 12px; color: var(--gold);  font-weight:700; }
+    .prog-track { height: 4px; background:rgba(255,255,255,.06); border-radius:2px; overflow:hidden; }
+    .prog-fill {
+      height: 100%; border-radius:2px; width:0;
+      transition: width 1.6s cubic-bezier(.4,0,.2,1);
+    }
+    .pg-gold   { background: linear-gradient(90deg, var(--gold-dk), var(--gold)); }
+    .pg-blue   { background: linear-gradient(90deg, #1D4ED8, #3B82F6); }
+    .pg-amber  { background: linear-gradient(90deg, #B45309, #F59E0B); }
+
+    .tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:1rem; }
+    .tag  {
+      padding: 3px 10px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border2);
+      border-radius: 100px;
+      font-size: 11px; color: var(--txt2); font-weight:500;
+    }
+
+    /* ── ACCESS / LIVE APP ───────────────────────────────────────────────── */
+    #access { background: var(--bg1); }
+
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .access-card { padding: 2rem; }
+    .access-card.wide { grid-column: 1 / -1; }
+
+    .access-h { font-family:'Space Grotesk',sans-serif; font-size:1.1rem; font-weight:600; margin-bottom:.5rem; }
+    .access-p { font-size:13px; color:var(--txt1); line-height:1.55; margin-bottom:1.5rem; }
+
+    .qr-wrap { display:flex; flex-direction:column; align-items:center; gap:1rem; }
+    .qr-box  { padding:12px; background:#fff; border-radius:12px; display:inline-block; line-height:0; }
+
+    .qr-note { font-size:11px; color:var(--txt2); text-align:center; max-width:200px; line-height:1.5; }
+    .qr-note strong { color: var(--txt1); }
+
+    .open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dk));
+      color: #040B15;
+      font-weight: 700; font-size: 13px;
+      border-radius: 9px;
+      text-decoration: none;
+      border: none; cursor:pointer;
+      transition: all .3s;
+    }
+    .open-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px var(--gold-glow); }
+    .open-btn.copied { background: linear-gradient(135deg,#22C55E,#16A34A); }
+
+    .embed-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border2);
+      margin-bottom: 1rem;
+    }
+    .embed-wrap iframe { width:100%; height:520px; border:none; display:block; }
+    .embed-note { font-size:12px; color:var(--txt2); }
+
+    /* ── TIMELINE ────────────────────────────────────────────────────────── */
+    .tl {
+      max-width: 640px;
+      margin-top: 3rem;
+      padding-left: 2rem;
+      position: relative;
+    }
+    .tl::before {
+      content:'';
+      position:absolute; left:8px; top:0; bottom:0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold) 0%, rgba(201,168,76,.1) 100%);
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 2.8rem;
+      padding-left: 2rem;
+    }
+    .tl-dot {
+      position: absolute;
+      left: -1.85rem; top: 4px;
+      width: 19px; height: 19px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: var(--bg0);
+      display: flex; align-items:center; justify-content:center;
+    }
+    .tl-dot.lit { background: var(--gold); }
+    .tl-dot.lit::after { content:''; width:6px; height:6px; border-radius:50%; background:#040B15; }
+    .tl-date  { font-size:11px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:1.8px; margin-bottom:.5rem; }
+    .tl-title { font-family:'Space Grotesk',sans-serif; font-size:1.05rem; font-weight:600; margin-bottom:.4rem; }
+    .tl-body  { font-size:13px; color:var(--txt1); line-height:1.6; }
+
+    /* ── TECH STACK ──────────────────────────────────────────────────────── */
+    #tech { background: var(--bg1); }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .tech-item { padding: 1.5rem 1rem; text-align:center; border-radius:12px; }
+    .tech-ico  { font-size: 2rem; display:block; margin-bottom:.7rem; }
+    .tech-name { font-size:13px; font-weight:600; display:block; }
+    .tech-cat  { font-size:11px; color:var(--txt2); display:block; margin-top:2px; }
+
+    /* ── FOOTER ──────────────────────────────────────────────────────────── */
+    footer {
+      background: var(--bg1);
+      border-top: 1px solid var(--border);
+      padding: 3.5rem 2rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .footer-brand { display:flex; align-items:center; gap:12px; }
+    .footer-mark {
+      width:44px; height:44px;
+      border-radius:10px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dk));
+      display:grid; place-items:center;
+      font-family:'Space Grotesk',sans-serif;
+      font-weight:800; font-size:18px; color:#040B15;
+    }
+    .footer-co { font-family:'Space Grotesk',sans-serif; font-size:1.1rem; font-weight:700; }
+    .footer-tag { font-size:10.5px; color:var(--txt2); text-transform:uppercase; letter-spacing:1.8px; }
+    .footer-dis { font-size:12px; color:var(--txt2); max-width:500px; line-height:1.7; }
+    .footer-copy {
+      font-size:11px; color:var(--txt2);
+      border-top:1px solid var(--border2);
+      padding-top:1.5rem; width:100%;
+    }
+
+    /* ── BACK TO TOP ─────────────────────────────────────────────────────── */
+    #btt {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dk));
+      border: none;
+      cursor: pointer;
+      display: flex; align-items:center; justify-content:center;
+      color: #040B15;
+      font-size: 18px;
+      box-shadow: 0 4px 20px var(--gold-glow);
+      opacity: 0; pointer-events:none;
+      transition: opacity .3s, transform .3s;
+      z-index: 900;
+    }
+    #btt.show { opacity:1; pointer-events:auto; }
+    #btt:hover { transform: translateY(-3px); }
+
+    /* ── ANIMATIONS ──────────────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(28px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.in { opacity:1; transform:translateY(0); }
+    .d1 { transition-delay:.1s; }
+    .d2 { transition-delay:.2s; }
+    .d3 { transition-delay:.3s; }
+    .d4 { transition-delay:.4s; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display:none; }
+      .hamburger { display:flex; }
+      .nav-links.open {
+        display: flex; flex-direction:column;
+        position:fixed; top:68px; left:0; right:0;
+        background:rgba(3,8,15,.97);
+        backdrop-filter: blur(20px);
+        padding: 1rem 2rem;
+        border-bottom: 1px solid var(--border);
+        gap:0;
+      }
+      .nav-links.open li a {
+        padding:12px 0;
+        border-bottom:1px solid var(--border2);
+        border-radius:0;
+      }
+      .stats-row { grid-template-columns:1fr 1fr; }
+      .stat-box:nth-child(2)::after { display:none; }
+      .access-grid { grid-template-columns:1fr; }
+      .access-card.wide { grid-column:1; }
+      .team-grid, .proj-grid { grid-template-columns:1fr; }
+      .hero-btns { flex-direction:column; align-items:center; }
+    }
+
+    @media (max-width: 480px) {
+      section { padding:3.5rem 1rem; }
+      .countdown { gap:1rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- PROGRESS BAR -->
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-brand">
+    <div class="nav-mark">A</div>
+    <div class="nav-text">
+      <strong>ARD Securities</strong>
+      <small>IT Progress Report</small>
+    </div>
+  </a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#team">Team</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#access">Live App</a></li>
+    <li><a href="#timeline">Roadmap</a></li>
+    <li><a href="#tech">Stack</a></li>
+    <li><a href="#access" class="nav-btn">Access App →</a></li>
+  </ul>
+
+  <div class="hamburger" id="ham" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div id="particles"></div>
+
+  <div class="hero-inner">
+    <div class="hero-chip">
+      <span class="chip-dot"></span>
+      System Administration · Progress Report 2025
+    </div>
+
+    <h1 class="hero-h1">
+      <span class="l1">IT Infrastructure &amp;</span>
+      <span class="l2">Innovation Report</span>
+    </h1>
+
+    <p class="hero-sub">
+      A comprehensive overview of active IT initiatives, automation development,
+      and strategic digital transformation at ARD Securities LLC.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#projects" class="btn-gold">
+        View Projects
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#access" class="btn-ghost">
+        Access Live App
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </a>
+    </div>
+
+    <!-- Countdown -->
+    <div class="countdown">
+      <div class="cd-block"><span class="cd-val" id="cd-d">--</span><span class="cd-lbl">Days</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-val" id="cd-h">--</span><span class="cd-lbl">Hours</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-val" id="cd-m">--</span><span class="cd-lbl">Minutes</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-val" id="cd-s">--</span><span class="cd-lbl">Seconds</span></div>
+    </div>
+    <p class="cd-caption">Countdown to CEO Presentation &mdash; June 30, 2025</p>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div id="stats">
+  <div class="stats-row wrap">
+    <div class="stat-box reveal">
+      <span class="stat-num" data-to="3">0</span>
+      <span class="stat-lbl">Active Projects</span>
+    </div>
+    <div class="stat-box reveal d1">
+      <span class="stat-num" data-to="1">0</span>
+      <span class="stat-lbl">App Deployed</span>
+    </div>
+    <div class="stat-box reveal d2">
+      <span class="stat-num" data-to="2">0</span>
+      <span class="stat-lbl">Months to Final</span>
+    </div>
+    <div class="stat-box reveal d3">
+      <span class="stat-num" data-to="1">0</span>
+      <span class="stat-lbl">Audit Pending</span>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="wrap">
+    <div class="sec-eyebrow">Key Stakeholders</div>
+    <h2 class="sec-h2">Our Team</h2>
+    <p class="sec-p">This report is prepared for ARD Securities LLC executive leadership, under the strategic mentorship of the CBDO.</p>
+
+    <div class="team-grid">
+
+      <!-- CEO -->
+      <div class="card team-card reveal">
+        <div class="role-pill pill-ceo">● Chief Executive Officer</div>
+        <div class="avatar" style="background:linear-gradient(135deg,#2A1A00,#5C3A00);">
+          <span style="color:var(--gold);font-size:13px;font-weight:800;">CEO</span>
+        </div>
+        <!-- ✏️ Replace with CEO's name -->
+        <div class="team-name">Chief Executive Officer</div>
+        <div class="team-title">CEO · ARD Financial Group HQ</div>
+        <div class="team-desc">
+          This progress report is presented directly to the CEO at the upcoming
+          executive quarterly review. All initiatives are aligned with ARD's
+          digital-first strategy.
+        </div>
+      </div>
+
+      <!-- Self -->
+      <div class="card team-card featured reveal d1">
+        <div class="role-pill pill-sys">● System Administrator</div>
+        <div class="avatar" style="background:linear-gradient(135deg,#0A2D1A,#0A3D1A);">
+          <span style="color:#4ADE80;font-size:13px;font-weight:800;">SYS</span>
+        </div>
+        <!-- ✏️ Replace with your name -->
+        <div class="team-name">Report Author</div>
+        <div class="team-title">System Administrator · ARD Securities LLC</div>
+        <div class="team-desc">
+          Leading IT infrastructure, automation, and digital innovation.
+          Currently developing the AppSheet Jira integration, researching
+          stock-market API automation, and coordinating cybersecurity audits.
+        </div>
+      </div>
+
+      <!-- CBDO Mentor -->
+      <div class="card team-card reveal d2">
+        <div class="role-pill pill-cbdo">● CBDO &amp; Mentor</div>
+        <div class="avatar" style="background:linear-gradient(135deg,#0A1D3D,#0A2A5C);">
+          <span style="color:var(--blue-lt);font-size:11px;font-weight:800;">CBDO</span>
+        </div>
+        <!-- ✏️ Replace with CBDO's name -->
+        <div class="team-name">CBDO &amp; Mentor</div>
+        <div class="team-title">Chief Business Development Officer · ARD Securities LLC</div>
+        <div class="team-desc">
+          Provides strategic mentorship and business alignment for all IT
+          innovation initiatives, ensuring technical efforts serve ARD's
+          growth objectives.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-eyebrow">Active Work</div>
+    <h2 class="sec-h2">Projects &amp; Initiatives</h2>
+    <p class="sec-p">Three concurrent initiatives driving efficiency, security, and new market opportunities for ARD Securities LLC.</p>
+
+    <div class="proj-grid">
+
+      <!-- 1: AppSheet -->
+      <div class="card proj-card reveal">
+        <div class="status-pill s-done"><span class="sdot"></span> Almost Complete</div>
+        <div class="proj-ico" style="background:rgba(34,197,94,.1);">📋</div>
+        <div class="proj-name">Jira Ticket Review System</div>
+        <div class="proj-desc">
+          An AppSheet-based internal application for reviewing and managing Jira issue
+          tickets in real time. Integrated with Google Sheets and Google Drive for live
+          data sync, document management, and seamless team collaboration.
+        </div>
+        <div class="prog-wrap">
+          <div class="prog-head">
+            <span class="prog-lbl">Completion</span>
+            <span class="prog-pct">85%</span>
+          </div>
+          <div class="prog-track"><div class="prog-fill pg-gold" data-w="85"></div></div>
+        </div>
+        <div class="tags">
+          <span class="tag">AppSheet</span>
+          <span class="tag">Google Sheets</span>
+          <span class="tag">Google Drive</span>
+          <span class="tag">Jira</span>
+          <span class="tag">No-Code</span>
+        </div>
+      </div>
+
+      <!-- 2: Stock API -->
+      <div class="card proj-card reveal d1">
+        <div class="status-pill s-res"><span class="sdot"></span> In Research</div>
+        <div class="proj-ico" style="background:rgba(59,130,246,.1);">📈</div>
+        <div class="proj-name">Stock Market API Automation</div>
+        <div class="proj-desc">
+          Researching API automation for international stock-market trading.
+          Investigating PSPL (Mongolia) and US-based market APIs to build
+          automated trading options for ARD Securities investors and clients.
+        </div>
+        <div class="prog-wrap">
+          <div class="prog-head">
+            <span class="prog-lbl">Research Progress</span>
+            <span class="prog-pct">30%</span>
+          </div>
+          <div class="prog-track"><div class="prog-fill pg-blue" data-w="30"></div></div>
+        </div>
+        <div class="tags">
+          <span class="tag">API Research</span>
+          <span class="tag">Mongolia PSPL</span>
+          <span class="tag">US Markets</span>
+          <span class="tag">Auto-Trading</span>
+          <span class="tag">FinTech</span>
+        </div>
+      </div>
+
+      <!-- 3: Cyber Audit -->
+      <div class="card proj-card reveal d2">
+        <div class="status-pill s-pend"><span class="sdot"></span> Pending Response</div>
+        <div class="proj-ico" style="background:rgba(245,158,11,.1);">🔐</div>
+        <div class="proj-name">UUB Comex Cybersecurity Audit</div>
+        <div class="proj-desc">
+          Completing cybersecurity audit responses for the УУБ (UUB) Comex
+          stock-market website. Coordinating with GrapeCity (vendor/developer)
+          to address all security findings and ensure full compliance.
+        </div>
+        <div class="prog-wrap">
+          <div class="prog-head">
+            <span class="prog-lbl">Audit Response</span>
+            <span class="prog-pct">20%</span>
+          </div>
+          <div class="prog-track"><div class="prog-fill pg-amber" data-w="20"></div></div>
+        </div>
+        <div class="tags">
+          <span class="tag">Cybersecurity</span>
+          <span class="tag">GrapeCity</span>
+          <span class="tag">UUB Comex</span>
+          <span class="tag">Audit</span>
+          <span class="tag">Compliance</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LIVE APP ACCESS -->
+<section id="access">
+  <div class="wrap">
+    <div class="sec-eyebrow">Live Application</div>
+    <h2 class="sec-h2">Jira Ticket Reviewer</h2>
+    <p class="sec-p">Scan a QR code or tap a link — opens instantly on any laptop, tablet, or phone.</p>
+
+    <div class="access-grid">
+
+      <!-- App QR -->
+      <div class="card access-card reveal">
+        <div class="access-h">📱 Scan to Open App</div>
+        <div class="access-p">Point your phone camera at this code to open the live Jira Ticket Review System on any device.</div>
+        <div class="qr-wrap">
+          <div class="qr-box" id="qr-app"></div>
+          <p class="qr-note">Scan with phone camera<br><strong>Jira Ticket Reviewer</strong></p>
+          <a href="https://www.appsheet.com/start/0186f337-5c48-46f0-9e67-9ca6e2d71975"
+             target="_blank" rel="noopener" class="open-btn">Open App →</a>
+        </div>
+      </div>
+
+      <!-- Website QR -->
+      <div class="card access-card reveal d1">
+        <div class="access-h">🌐 Share This Report</div>
+        <div class="access-p">Scan to open this report on any device. Share with executives before or during the presentation.</div>
+        <div class="qr-wrap">
+          <div class="qr-box" id="qr-site"></div>
+          <p class="qr-note">Opens this website<br><strong>ARD Securities IT Report</strong></p>
+          <button onclick="copyLink(this)" class="open-btn">Copy Link</button>
+        </div>
+      </div>
+
+      <!-- Embed -->
+      <div class="card access-card wide reveal">
+        <div class="access-h">🖥️ Live Application Preview</div>
+        <div class="access-p">The Jira Ticket Review System running live — built on AppSheet, backed by Google Sheets and Google Drive.</div>
+        <div class="embed-wrap">
+          <iframe
+            src="https://www.appsheet.com/start/0186f337-5c48-46f0-9e67-9ca6e2d71975"
+            title="Jira Ticket Reviewer — ARD Securities"
+            loading="lazy"
+            allow="camera; microphone">
+          </iframe>
+        </div>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;margin-top:.75rem;">
+          <a href="https://www.appsheet.com/start/0186f337-5c48-46f0-9e67-9ca6e2d71975"
+             target="_blank" rel="noopener" class="open-btn">Open Full Screen ↗</a>
+          <span class="embed-note">Requires your ARD work-domain Google account to sign in</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="wrap">
+    <div class="sec-eyebrow">Strategic Plan</div>
+    <h2 class="sec-h2">2-Month Roadmap</h2>
+    <p class="sec-p">A structured path from today's active work to the CEO presentation — milestone by milestone.</p>
+
+    <div class="tl">
+
+      <div class="tl-item reveal">
+        <div class="tl-dot lit"></div>
+        <div class="tl-date">Now — April 2025</div>
+        <div class="tl-title">AppSheet App Launch</div>
+        <div class="tl-body">Finalizing and deploying the Jira Ticket Reviewer. End-to-end testing with the team, data-source connections, and preparing for full internal rollout.</div>
+      </div>
+
+      <div class="tl-item reveal d1">
+        <div class="tl-dot"></div>
+        <div class="tl-date">May 2025 — Week 1–2</div>
+        <div class="tl-title">Cybersecurity Audit Completion</div>
+        <div class="tl-body">Finalizing audit responses for the UUB Comex website in coordination with GrapeCity. All security findings documented with remediation plans submitted.</div>
+      </div>
+
+      <div class="tl-item reveal d2">
+        <div class="tl-dot"></div>
+        <div class="tl-date">May 2025 — Week 3–4</div>
+        <div class="tl-title">Stock Market API Research Report</div>
+        <div class="tl-body">Completing API research across PSPL and international markets. Producing a feasibility assessment for the automated trading feature roadmap.</div>
+      </div>
+
+      <div class="tl-item reveal d3">
+        <div class="tl-dot"></div>
+        <div class="tl-date">June 2025</div>
+        <div class="tl-title">CEO Presentation — Final Report</div>
+        <div class="tl-body">Executive presentation covering all completed initiatives, live demonstrations of deployed applications, and strategic recommendations for the next phase of IT innovation at ARD Securities.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="tech">
+  <div class="wrap">
+    <div class="sec-eyebrow">Tools &amp; Stack</div>
+    <h2 class="sec-h2">Technology Used</h2>
+    <p class="sec-p">The platforms, tools, and services powering ARD Securities' IT initiatives.</p>
+
+    <div class="tech-grid">
+      <div class="card tech-item reveal">    <span class="tech-ico">📱</span><span class="tech-name">AppSheet</span><span class="tech-cat">No-Code Platform</span></div>
+      <div class="card tech-item reveal d1">  <span class="tech-ico">📊</span><span class="tech-name">Google Sheets</span><span class="tech-cat">Database</span></div>
+      <div class="card tech-item reveal d2">  <span class="tech-ico">💾</span><span class="tech-name">Google Drive</span><span class="tech-cat">File Storage</span></div>
+      <div class="card tech-item reveal">    <span class="tech-ico">🎫</span><span class="tech-name">Jira</span><span class="tech-cat">Issue Tracking</span></div>
+      <div class="card tech-item reveal d1">  <span class="tech-ico">📈</span><span class="tech-name">Market APIs</span><span class="tech-cat">Financial Data</span></div>
+      <div class="card tech-item reveal d2">  <span class="tech-ico">🔐</span><span class="tech-name">Cyber Audit</span><span class="tech-cat">Security</span></div>
+      <div class="card tech-item reveal">    <span class="tech-ico">🌐</span><span class="tech-name">GrapeCity</span><span class="tech-cat">Web Dev Vendor</span></div>
+      <div class="card tech-item reveal d1">  <span class="tech-ico">⚙️</span><span class="tech-name">GitHub Pages</span><span class="tech-cat">Hosting</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-mark">A</div>
+      <div>
+        <div class="footer-co">ARD Securities LLC</div>
+        <div class="footer-tag">System Administration Report · 2025</div>
+      </div>
+    </div>
+    <p class="footer-dis">
+      This report is prepared for internal executive review at ARD Securities LLC.
+      Contents are confidential and intended for authorized personnel only.
+    </p>
+    <div class="footer-copy">
+      © 2025 ARD Securities LLC &nbsp;·&nbsp; Part of ARD Financial Group &nbsp;·&nbsp; All rights reserved
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+
+<!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
+<script>
+/* ── NAV ──────────────────────────────────────────────── */
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+document.querySelectorAll('.nav-links a').forEach(a =>
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
+);
+
+/* ── SCROLL PROGRESS + NAVBAR SOLID ──────────────────── */
+window.addEventListener('scroll', () => {
+  const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+
+  const nav = document.getElementById('nav');
+  nav.style.boxShadow = window.scrollY > 60 ? '0 4px 30px rgba(0,0,0,.6)' : 'none';
+
+  const btt = document.getElementById('btt');
+  window.scrollY > 400 ? btt.classList.add('show') : btt.classList.remove('show');
+});
+
+/* ── COUNTDOWN ────────────────────────────────────────── */
+// ✏️ Change this date to your actual presentation date
+const PRESENT_DATE = new Date('2025-06-30T09:00:00');
+
+function tick() {
+  const diff = PRESENT_DATE - new Date();
+  if (diff <= 0) {
+    ['cd-d','cd-h','cd-m','cd-s'].forEach(id => document.getElementById(id).textContent = '00');
+    return;
+  }
+  const pad = n => String(Math.floor(n)).padStart(2,'0');
+  document.getElementById('cd-d').textContent = pad(diff / 86400000);
+  document.getElementById('cd-h').textContent = pad((diff % 86400000) / 3600000);
+  document.getElementById('cd-m').textContent = pad((diff % 3600000)  / 60000);
+  document.getElementById('cd-s').textContent = pad((diff % 60000)    / 1000);
+}
+tick(); setInterval(tick, 1000);
+
+/* ── PARTICLES ────────────────────────────────────────── */
+(function spawnParticles() {
+  const c = document.getElementById('particles');
+  for (let i = 0; i < 28; i++) {
+    const el = document.createElement('div');
+    el.className = 'pt';
+    const sz   = Math.random() * 3.5 + 1;
+    const gold = Math.random() > .45;
+    const op   = Math.random() * .35 + .1;
+    el.style.cssText = `
+      width:${sz}px; height:${sz}px;
+      left:${Math.random()*100}%;
+      background:${gold ? `rgba(201,168,76,${op})` : `rgba(59,130,246,${op*.6})`};
+      animation-duration:${Math.random()*18+14}s;
+      animation-delay:-${Math.random()*22}s;
+    `;
+    c.appendChild(el);
+  }
+})();
+
+/* ── SCROLL REVEAL ────────────────────────────────────── */
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+/* ── ANIMATED COUNTERS ────────────────────────────────── */
+const cntObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, target = +el.dataset.to;
+    const start = Date.now();
+    (function step() {
+      const p = Math.min((Date.now()-start)/1400, 1);
+      el.textContent = Math.round((1-Math.pow(1-p,3))*target);
+      if (p < 1) requestAnimationFrame(step);
+    })();
+    cntObs.unobserve(el);
+  });
+}, { threshold: .5 });
+document.querySelectorAll('[data-to]').forEach(el => cntObs.observe(el));
+
+/* ── PROGRESS BARS ────────────────────────────────────── */
+const pgObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.querySelectorAll('.prog-fill').forEach(f => f.style.width = f.dataset.w + '%');
+    pgObs.unobserve(e.target);
+  });
+}, { threshold: .25 });
+document.querySelectorAll('.proj-card').forEach(el => pgObs.observe(el));
+
+/* ── QR CODES ─────────────────────────────────────────── */
+const APP_URL  = 'https://www.appsheet.com/start/0186f337-5c48-46f0-9e67-9ca6e2d71975';
+// ✏️ After you deploy, paste your GitHub Pages URL below:
+const SITE_URL = window.location.href.split('#')[0];
+
+const qrCfg = (text) => ({
+  text, width: 182, height: 182,
+  colorDark: '#03080F', colorLight: '#ffffff',
+  correctLevel: QRCode.CorrectLevel.H
+});
+
+new QRCode(document.getElementById('qr-app'),  qrCfg(APP_URL));
+new QRCode(document.getElementById('qr-site'), qrCfg(SITE_URL));
+
+/* ── COPY LINK ────────────────────────────────────────── */
+function copyLink(btn) {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = 'Copied ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2200);
+  });
+}
+</script>
+
+</body>
+</html>
