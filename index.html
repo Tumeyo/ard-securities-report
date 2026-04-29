@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ARD Securities ХХК — Системийн Администраторын Ахиц Тайлан 2026" />
+  <meta name="description" content="Ард Секюритиз ҮЦК — Системийн Администраторын Ахиц Тайлан 2026" />
   <title>ARD Securities | Тайлан 2026</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -284,6 +284,20 @@
     .team-title { font-size:12.5px; color:var(--txt1); margin-bottom:1rem; }
     .team-desc  { font-size:13px; color:var(--txt2); line-height:1.65; }
 
+    /* Presenting to banner */
+    .presenting-banner {
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(135deg, rgba(201,168,76,.08), rgba(201,168,76,.04));
+      border: 1px solid rgba(201,168,76,.28);
+      border-radius: 14px;
+      padding: 1.25rem 1.75rem;
+      margin: 2rem 0 2.5rem;
+      max-width: 560px;
+    }
+    .presenting-label { font-size:10px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:2px; display:block; margin-bottom:.35rem; }
+    .presenting-name  { font-family:'Space Grotesk',sans-serif; font-size:1.3rem; font-weight:700; color:var(--txt0); display:block; line-height:1.1; margin-bottom:.25rem; }
+    .presenting-title { font-size:12px; color:var(--txt1); display:block; }
+
     /* ── PROJECTS ── */
     .proj-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:1.5rem; margin-top:3rem; }
     .proj-card { padding:2rem; }
@@ -510,22 +524,25 @@
 <!-- TEAM -->
 <section id="team">
   <div class="wrap">
-    <div class="sec-eyebrow">Гол Оролцогчид</div>
-    <h2 class="sec-h2">Манай Баг</h2>
-    <p class="sec-p">Энэхүү тайланг ARD Securities ХХК-ийн гүйцэтгэх удирдлагад зориулан бэлтгэсэн бөгөөд ГТХД менторын стратегийн удирдлаган дор хэрэгжиж байна.</p>
+    <div class="sec-eyebrow">Тайланг Боловсруулсан</div>
+    <h2 class="sec-h2">Удирдлагад Боловсруулан Хийсэн Ажил</h2>
+    <p class="sec-p">Ард Секюритиз ҮЦК-ийн Системийн Администраторын хийж гүйцэтгэсэн ажлын тайлан. CBDO менторын удирдлаган дор боловсруулж, ГЗ-д танилцуулж байна.</p>
 
-    <div class="team-grid">
-
-      <div class="card team-card reveal">
-        <div class="role-pill pill-ceo">● Гүйцэтгэх Захирал</div>
-        <div class="avatar" style="background:linear-gradient(135deg,#2A1A00,#5C3A00);">
-          <span style="color:var(--gold);font-size:13px;font-weight:800;">ГЗ</span>
-        </div>
-        <!-- ✏️ ГЗ-ийн нэрийг оруулна уу -->
-        <div class="team-name">Гүйцэтгэх Захирал</div>
-        <div class="team-title">ГЗ · ARD Financial Group ТТ</div>
-        <div class="team-desc">Энэхүү ахиц тайлан болон Систем санаачлагуудын тоймлолыг удахгүй болох гүйцэтгэх улирлын хурлаар ГЗ-д шууд танилцуулна.</div>
+    <!-- Presenting to banner -->
+    <div class="presenting-banner reveal">
+      <div class="presenting-left">
+        <span class="presenting-label">Танилцуулж буй</span>
+        <span class="presenting-name">Х.Билгүүн</span>
+        <span class="presenting-title">Гүйцэтгэх Захирал · ARD Financial Group</span>
       </div>
+      <div class="presenting-icon">
+        <div class="avatar" style="background:linear-gradient(135deg,#2A1A00,#5C3A00);width:52px;height:52px;border:2px solid rgba(201,168,76,.4);">
+          <span style="color:var(--gold);font-size:12px;font-weight:800;">ГЗ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));max-width:760px;">
 
       <div class="card team-card featured reveal d1">
         <div class="role-pill pill-sys">● Системийн Администратор</div>
@@ -534,18 +551,17 @@
         </div>
         <!-- ✏️ Өөрийн нэрийг оруулна уу -->
         <div class="team-name">Тайлангийн Зохиогч</div>
-        <div class="team-title">Системийн Администратор · ARD Securities ХХК</div>
+        <div class="team-title">Системийн Администратор · Ард Секюритиз ҮЦК</div>
         <div class="team-desc">Систем дэд бүтэц, автоматжуулалт, дижитал инновацийг удирдаж байна. Одоогоор AppSheet Jira интеграц, хөрөнгийн зах зээлийн API судалгаа болон кибер аюулгүй байдлын аудитаар ажиллаж байна.</div>
       </div>
 
       <div class="card team-card reveal d2">
-        <div class="role-pill pill-cbdo">● ГТХД &amp; Ментор</div>
+        <div class="role-pill pill-cbdo">● CBDO &amp; Ментор</div>
         <div class="avatar" style="background:linear-gradient(135deg,#0A1D3D,#0A2A5C);">
-          <span style="color:var(--blue-lt);font-size:10px;font-weight:800;">ГТХД</span>
+          <span style="color:var(--blue-lt);font-size:11px;font-weight:800;">CBDO</span>
         </div>
-        <!-- ✏️ ГТХД-ийн нэрийг оруулна уу -->
-        <div class="team-name">ГТХД &amp; Ментор</div>
-        <div class="team-title">Гүйцэтгэх Тэлэлтийн Хөгжлийн Дарга · ARD Securities ХХК</div>
+        <div class="team-name">Б. Анужин</div>
+        <div class="team-title">CBDO · Ард Секюритиз ҮЦК</div>
         <div class="team-desc">Бүх Систем инновацийн санаачлагуудад стратегийн зөвлөгөө, менторлог хангаж, техникийн хөгжлийг бизнесийн зорилттой нийцүүлдэг.</div>
       </div>
 
@@ -558,7 +574,7 @@
   <div class="wrap">
     <div class="sec-eyebrow">Идэвхтэй Ажил</div>
     <h2 class="sec-h2">Төслүүд &amp; Санаачлагууд</h2>
-    <p class="sec-p">ARD Securities ХХК-д үр ашиг, аюулгүй байдал, шинэ зах зээлийн боломжийг бий болгож буй гурван зэрэгцээ санаачлага.</p>
+    <p class="sec-p">Ард Секюритиз ҮЦК-д үр ашиг, аюулгүй байдал, шинэ зах зээлийн боломжийг бий болгож буй гурван зэрэгцээ санаачлага.</p>
 
     <div class="proj-grid">
 
@@ -581,7 +597,7 @@
         <div class="status-pill s-res"><span class="sdot"></span> Судалгааны Шатанд</div>
         <div class="proj-ico" style="background:rgba(59,130,246,.1);">📈</div>
         <div class="proj-name">Хөрөнгийн Зах Зээлийн API Автоматжуулалт</div>
-        <div class="proj-desc">Олон улсын хөрөнгийн зах зээлийн API автоматжуулалтыг судалж байна. ARD Securities-ийн үйлчлүүлэгчдэд автомат арилжааны сонголтыг бий болгохын тулд PSPL (Монгол) болон АНУ-ын зах зээлийн API-уудыг судалж байна.</div>
+        <div class="proj-desc">Олон улсын хөрөнгийн зах зээлийн API автоматжуулалтыг судалж байна. Ард Секюритиз ҮЦК-ийн үйлчлүүлэгчдэд автомат арилжааны сонголтыг бий болгохын тулд PSPL (Монгол) болон АНУ-ын зах зээлийн API-уудыг судалж байна.</div>
         <div class="prog-wrap">
           <div class="prog-head"><span class="prog-lbl">Судалгааны Ахиц</span><span class="prog-pct">30%</span></div>
           <div class="prog-track"><div class="prog-fill pg-blue" data-w="30"></div></div>
@@ -649,7 +665,7 @@
             <div class="app-icon-big">📋</div>
             <div class="app-meta">
               <div class="app-meta-name">Jira Тасалбар Хянагч</div>
-              <div class="app-meta-sub">ARD Securities ХХК · Дотоод Систем</div>
+              <div class="app-meta-sub">Ард Секюритиз ҮЦК · Дотоод Систем</div>
               <div class="app-badges">
                 <span class="app-badge"><span style="color:#4ADE80">●</span> Идэвхтэй</span>
                 <span class="app-badge">AppSheet</span>
@@ -713,7 +729,7 @@
         <div class="tl-dot"></div>
         <div class="tl-date">2026 оны 6-р сар</div>
         <div class="tl-title">ГЗ-д Танилцуулга — Эцсийн Тайлан</div>
-        <div class="tl-body">Бүх дуусгасан санаачлагуудыг хамарсан гүйцэтгэх танилцуулга, байршуулсан аппуудын шууд демонстраци болон ARD Securities-ийн Систем инновацийн дараагийн шатны стратегийн саналууд.</div>
+        <div class="tl-body">Бүх дуусгасан санаачлагуудыг хамарсан гүйцэтгэх танилцуулга, байршуулсан аппуудын шууд демонстраци болон Ард Секюритиз ҮЦК-ийн Систем инновацийн дараагийн шатны стратегийн саналууд.</div>
       </div>
 
     </div>
@@ -725,7 +741,7 @@
   <div class="wrap">
     <div class="sec-eyebrow">Хэрэгсэл ба Технологи</div>
     <h2 class="sec-h2">Ашигласан Технологи</h2>
-    <p class="sec-p">ARD Securities-ийн Систем санаачлагуудыг хэрэгжүүлж буй платформ, хэрэгсэл болон үйлчилгээнүүд.</p>
+    <p class="sec-p">Ард Секюритиз ҮЦК-ийн Систем санаачлагуудыг хэрэгжүүлж буй платформ, хэрэгсэл болон үйлчилгээнүүд.</p>
 
     <div class="tech-grid">
       <div class="card tech-item reveal">   <span class="tech-ico">📱</span><span class="tech-name">AppSheet</span><span class="tech-cat">Код Шаардахгүй</span></div>
@@ -746,13 +762,13 @@
     <div class="footer-brand">
       <div class="footer-mark">А</div>
       <div>
-        <div class="footer-co">ARD Securities ХХК</div>
+        <div class="footer-co">Ард Секюритиз ҮЦК</div>
         <div class="footer-tag">Системийн Администраторын Тайлан · 2026</div>
       </div>
     </div>
-    <p class="footer-dis">Энэхүү тайланг ARD Securities ХХК-ийн дотоод гүйцэтгэх хяналтад зориулан бэлтгэсэн. Агуулга нь нууц бөгөөд зөвшөөрөлтэй ажилтнуудад зориулагдсан болно.</p>
+    <p class="footer-dis">Энэхүү тайланг Ард Секюритиз ҮЦК-ийн дотоод гүйцэтгэх хяналтад зориулан бэлтгэсэн. Агуулга нь нууц бөгөөд зөвшөөрөлтэй ажилтнуудад зориулагдсан болно.</p>
     <div class="footer-copy">
-      © 2026 ARD Securities ХХК &nbsp;·&nbsp; ARD Financial Group-ийн нэг хэсэг &nbsp;·&nbsp; Бүх эрх хуулиар хамгаалагдсан
+      © 2026 Ард Секюритиз ҮЦК &nbsp;·&nbsp; ARD Financial Group-ийн нэг хэсэг &nbsp;·&nbsp; Бүх эрх хуулиар хамгаалагдсан
     </div>
   </div>
 </footer>
