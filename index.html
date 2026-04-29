@@ -323,9 +323,30 @@
     .open-btn.red-btn { background:linear-gradient(135deg,var(--red),#B5201A); color:#fff; }
     .open-btn.red-btn:hover { box-shadow:0 6px 20px var(--red-glow); }
     .open-btn.copied { background:linear-gradient(135deg,#22C55E,#16A34A); color:#fff; }
-    .embed-wrap { border-radius:12px; overflow:hidden; border:1px solid var(--border2); margin-bottom:1rem; }
-    .embed-wrap iframe { width:100%; height:520px; border:none; display:block; }
     .embed-note { font-size:12px; color:var(--txt2); }
+
+    /* App preview card */
+    .app-preview-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 2rem;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border2);
+      border-radius: 14px;
+      padding: 2rem;
+    }
+    .app-preview-left { display:flex; align-items:flex-start; gap:1.2rem; }
+    .app-icon-big { font-size:3.5rem; flex-shrink:0; }
+    .app-meta-name { font-family:'Space Grotesk',sans-serif; font-size:1.2rem; font-weight:700; margin-bottom:.25rem; }
+    .app-meta-sub  { font-size:12px; color:var(--txt1); margin-bottom:.8rem; }
+    .app-badges { display:flex; flex-wrap:wrap; gap:6px; }
+    .app-badge { padding:3px 10px; background:rgba(255,255,255,.05); border:1px solid var(--border2); border-radius:100px; font-size:11px; color:var(--txt2); font-weight:500; display:flex; align-items:center; gap:5px; }
+    .app-preview-right { display:flex; flex-direction:column; gap:.75rem; }
+    .app-feature { display:flex; align-items:flex-start; gap:.75rem; font-size:13.5px; color:var(--txt1); line-height:1.4; }
+    .app-feat-ico { font-size:14px; flex-shrink:0; margin-top:1px; }
+    .app-preview-actions { grid-column:1/-1; display:flex; flex-direction:column; align-items:center; padding-top:1rem; border-top:1px solid var(--border2); }
+    @media(max-width:640px){ .app-preview-card{grid-template-columns:1fr;} }
 
     /* ── TIMELINE ── */
     .tl { max-width:640px; margin-top:3rem; padding-left:2rem; position:relative; }
@@ -460,7 +481,7 @@
       <span class="cd-sep">:</span>
       <div class="cd-block"><span class="cd-val" id="cd-s">--</span><span class="cd-lbl">Секунд</span></div>
     </div>
-    <p class="cd-caption">ГЗ-д Танилцуулах Хугацаа &mdash; 2025 оны 6-р сарын 30</p>
+    <p class="cd-caption" id="cd-caption">ГЗ-д Танилцуулах Хугацаа &mdash; 2026 оны 6-р сарын 30</p>
   </div>
 </section>
 
@@ -621,20 +642,36 @@
       </div>
 
       <div class="card access-card wide reveal">
-        <div class="access-h">🖥️ Аппын Шууд Урьдчилан Харах</div>
-        <div class="access-p">AppSheet дээр бүтээсэн, Google Sheets болон Google Drive-аар дэмжигдсэн Jira Тасалбар Хянах Систем шууд ажиллаж байна.</div>
-        <div class="embed-wrap">
-          <iframe
-            src="https://www.appsheet.com/start/0186f337-5c48-46f0-9e67-9ca6e2d71975"
-            title="Jira Тасалбар Хянагч — ARD Securities"
-            loading="lazy"
-            allow="camera; microphone">
-          </iframe>
-        </div>
-        <div style="display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;margin-top:.75rem;">
-          <a href="https://www.appsheet.com/start/0186f337-5c48-46f0-9e67-9ca6e2d71975"
-             target="_blank" rel="noopener" class="open-btn">Бүтэн Дэлгэцээр Нээх ↗</a>
-          <span class="embed-note">Нэвтрэхийн тулд ARD ажлын домэйн Google акаунт шаардлагатай</span>
+        <div class="access-h">🖥️ Аппын Урьдчилан Харах</div>
+        <div class="access-p">AppSheet дээр бүтээсэн, Google Sheets болон Google Drive-аар дэмжигдсэн Jira Тасалбар Хянах Систем. Доорх товчийг дарж шууд нээнэ үү.</div>
+        <div class="app-preview-card">
+          <div class="app-preview-left">
+            <div class="app-icon-big">📋</div>
+            <div class="app-meta">
+              <div class="app-meta-name">Jira Тасалбар Хянагч</div>
+              <div class="app-meta-sub">ARD Securities ХХК · Дотоод Систем</div>
+              <div class="app-badges">
+                <span class="app-badge"><span style="color:#4ADE80">●</span> Идэвхтэй</span>
+                <span class="app-badge">AppSheet</span>
+                <span class="app-badge">Google Sheets</span>
+                <span class="app-badge">Google Drive</span>
+              </div>
+            </div>
+          </div>
+          <div class="app-preview-right">
+            <div class="app-feature"><span class="app-feat-ico">✅</span><span>Jira тасалбаруудыг бодит цагт хянах</span></div>
+            <div class="app-feature"><span class="app-feat-ico">✅</span><span>Google Sheets-тэй шууд синк</span></div>
+            <div class="app-feature"><span class="app-feat-ico">✅</span><span>Google Drive баримт бичгийн удирдлага</span></div>
+            <div class="app-feature"><span class="app-feat-ico">✅</span><span>Утас, таблет, компьютерт нийцтэй</span></div>
+            <div class="app-feature"><span class="app-feat-ico">✅</span><span>ARD ажлын домэйн акаунтаар нэвтэрнэ</span></div>
+          </div>
+          <div class="app-preview-actions">
+            <a href="https://www.appsheet.com/start/0186f337-5c48-46f0-9e67-9ca6e2d71975"
+               target="_blank" rel="noopener" class="open-btn red-btn" style="font-size:15px;padding:14px 32px;">
+              Апп Нээх &nbsp;↗
+            </a>
+            <p style="font-size:11px;color:var(--txt2);margin-top:.75rem;text-align:center;">ARD ажлын домэйн Google акаунт шаардлагатай</p>
+          </div>
         </div>
       </div>
 
@@ -736,10 +773,39 @@ window.addEventListener('scroll', () => {
 });
 
 // Countdown — ✏️ танилцуулах огноог өөрчилнө үү
-const TARGET = new Date('2025-06-30T09:00:00');
+const TARGET = new Date('2026-06-30T09:00:00');
+function launchConfetti() {
+  const colors = ['#C9A84C','#E5C46A','#E63329','#fff','#8A6A1A'];
+  for (let i = 0; i < 120; i++) {
+    const el = document.createElement('div');
+    const size = Math.random() * 8 + 4;
+    el.style.cssText = `
+      position:fixed; z-index:9998; pointer-events:none;
+      width:${size}px; height:${size}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      border-radius:${Math.random()>.5?'50%':'2px'};
+      left:${Math.random()*100}vw; top:-10px;
+      opacity:1;
+      animation: confettiFall ${Math.random()*2.5+1.5}s ease-in ${Math.random()*1.5}s forwards;
+    `;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 5000);
+  }
+}
+const confettiStyle = document.createElement('style');
+confettiStyle.textContent = `@keyframes confettiFall { to { transform: translateY(110vh) rotate(${Math.random()*720}deg); opacity:0; } }`;
+document.head.appendChild(confettiStyle);
+
 function tick() {
   const diff = TARGET - new Date();
-  if (diff <= 0) { ['cd-d','cd-h','cd-m','cd-s'].forEach(id => document.getElementById(id).textContent='00'); return; }
+  if (diff <= 0) {
+    ['cd-d','cd-h','cd-m','cd-s'].forEach(id => document.getElementById(id).textContent='00');
+    document.getElementById('cd-caption').textContent = '🎉 ТАНИЛЦУУЛГА ЭХЭЛЛЭЭ!';
+    document.getElementById('cd-caption').style.cssText = 'color:var(--gold);font-size:14px;font-weight:700;letter-spacing:2px;';
+    document.querySelectorAll('.cd-val').forEach(el => { el.style.color='var(--red)'; el.style.textShadow='0 0 30px var(--red-glow)'; });
+    launchConfetti();
+    return;
+  }
   const pad = n => String(Math.floor(n)).padStart(2,'0');
   document.getElementById('cd-d').textContent = pad(diff/86400000);
   document.getElementById('cd-h').textContent = pad((diff%86400000)/3600000);
