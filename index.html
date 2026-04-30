@@ -284,6 +284,17 @@
     .team-title { font-size:12.5px; color:var(--txt1); margin-bottom:1rem; }
     .team-desc  { font-size:13px; color:var(--txt2); line-height:1.65; }
 
+    /* Photo avatars */
+    .photo-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%; overflow: hidden;
+      border: 2px solid var(--border2);
+      margin-bottom: 1rem; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .photo-avatar img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+    .photo-avatar .ph-init { font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:700; width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+
     /* Presenting to banner */
     .presenting-banner {
       display: flex; align-items: center; justify-content: space-between;
@@ -293,10 +304,18 @@
       padding: 1.25rem 1.75rem;
       margin: 2rem 0 2.5rem;
       max-width: 560px;
+      gap: 1.5rem;
     }
     .presenting-label { font-size:10px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:2px; display:block; margin-bottom:.35rem; }
     .presenting-name  { font-family:'Space Grotesk',sans-serif; font-size:1.3rem; font-weight:700; color:var(--txt0); display:block; line-height:1.1; margin-bottom:.25rem; }
     .presenting-title { font-size:12px; color:var(--txt1); display:block; }
+    .presenting-photo {
+      width: 78px; height: 78px; flex-shrink: 0;
+      border-radius: 50%; overflow: hidden;
+      border: 2.5px solid rgba(201,168,76,.55);
+      box-shadow: 0 0 22px rgba(201,168,76,.22);
+    }
+    .presenting-photo img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
 
     /* ── PROJECTS ── */
     .proj-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:1.5rem; margin-top:3rem; }
@@ -442,6 +461,7 @@
     <li><a href="#access">Шууд Апп</a></li>
     <li><a href="#timeline">Замнал</a></li>
     <li><a href="#tech">Технологи</a></li>
+    <li><a href="research.html" style="color:var(--gold-lt);">FIX API Судалгаа</a></li>
     <li><a href="#access" class="nav-btn">Апп Нээх →</a></li>
   </ul>
   <div class="hamburger" id="ham" onclick="toggleNav()">
@@ -535,10 +555,8 @@
         <span class="presenting-name">Х.Билгүүн</span>
         <span class="presenting-title">Гүйцэтгэх Захирал · Ард Секюритиз ҮЦК</span>
       </div>
-      <div class="presenting-icon">
-        <div class="avatar" style="background:linear-gradient(135deg,#2A1A00,#5C3A00);width:52px;height:52px;border:2px solid rgba(201,168,76,.4);">
-          <span style="color:var(--gold);font-size:12px;font-weight:800;">Гүйцэтгэх Захирал</span>
-        </div>
+      <div class="presenting-photo">
+        <img src="img/ceo.png" alt="Х.Билгүүн — Гүйцэтгэх Захирал" />
       </div>
     </div>
 
@@ -546,8 +564,11 @@
 
       <div class="card team-card featured reveal d1">
         <div class="role-pill pill-sys">● Системийн Администратор</div>
-        <div class="avatar" style="background:linear-gradient(135deg,#0A2D1A,#0A3D1A);">
-          <span style="color:#4ADE80;font-size:11px;font-weight:800;">SysAdmin</span>
+        <!-- Replace img/sysadmin.png with actual photo -->
+        <div class="photo-avatar" style="border-color:rgba(34,197,94,.4);">
+          <div class="ph-init" style="background:linear-gradient(135deg,#0A2D1A,#0A3D1A);width:100%;height:100%;">
+            <span style="color:#4ADE80;">SA</span>
+          </div>
         </div>
         <!-- ✏️ Өөрийн нэрийг оруулна уу -->
         <div class="team-name">Тайлангийн Бэлтгэсэн</div>
@@ -557,8 +578,11 @@
 
       <div class="card team-card reveal d2">
         <div class="role-pill pill-cbdo">● CBDO &amp; Ментор</div>
-        <div class="avatar" style="background:linear-gradient(135deg,#0A1D3D,#0A2A5C);">
-          <span style="color:var(--blue-lt);font-size:11px;font-weight:800;">CBDO</span>
+        <!-- Replace img/cbdo.png with actual photo -->
+        <div class="photo-avatar" style="border-color:rgba(59,130,246,.4);">
+          <div class="ph-init" style="background:linear-gradient(135deg,#0A1D3D,#0A2A5C);width:100%;height:100%;">
+            <span style="color:var(--blue-lt);">БА</span>
+          </div>
         </div>
         <div class="team-name">Б. Анужин</div>
         <div class="team-title">Бизнес хөгжил хариуцсан захирал · Ард Секюритиз ҮЦК</div>
