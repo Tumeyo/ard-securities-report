@@ -299,7 +299,7 @@
   <div class="wrap">
     <div class="sec-eyebrow">Одоогийн Байдал</div>
     <h2 class="sec-h2">Асуудал: Гар Ажиллагааны Хязгаарлал</h2>
-    <p class="sec-p wide">Ард Секюритиз нь МХБ-ийн захиалгыг Полярис системээр дамжуулан бүрэн автоматаар шийддэг. Гэвч АНУ-ын зах зээлийн захиалга бүрийг өнөөг хүртэл оператор гараар боловсруулдаг — энэ нь өсөн нэмэгдэж буй хэрэлцэгчдийн нэрийн эрэлтийг хангах боломжгүй болгож байна.</p>
+    <p class="sec-p wide">Ард Секюритиз нь МХБ-ийн захиалгыг Polaris системээр дамжуулан бүрэн автоматаар шийддэг. Гэвч АНУ-ын зах зээлийн захиалга бүрийг өнөөг хүртэл оператор гараар боловсруулдаг — энэ нь өсөн нэмэгдэж буй хэрэглэгчдийн эрэлтийг хангах боломжгүй болгож байна.</p>
     <div class="grid3">
       <div class="card problem-card reveal">
         <div class="pc-ico">⏱️</div>
@@ -331,7 +331,8 @@
           <div class="flow-row">
             <div class="flow-node hl-blue"><span class="fn-ico">👤</span><span class="fn-name">Хэрэглэгч</span><span class="fn-sub">Захиалга өгнө</span></div>
             <div class="flow-arrow">→</div>
-            <div class="flow-node hl-gold"><span class="fn-ico">🖥️</span><span class="fn-name">Полярис</span><span class="fn-sub">Дотоод систем</span></div>
+            <div class="flow-node hl-gold"><span class="fn-ico">🖥️</span><span class="fn-name">Polaris</span><span class="fn-sub">Дотоод систем</span></div>
+
             <div class="flow-arrow">→</div>
             <div class="flow-node hl-red"><span class="fn-ico">🧑‍💼</span><span class="fn-name">Оператор</span><span class="fn-sub">Гараар дамжуулна</span></div>
             <div class="flow-arrow">→</div>
@@ -344,13 +345,13 @@
           <div class="flow-row">
             <div class="flow-node hl-blue"><span class="fn-ico">👤</span><span class="fn-name">Хэрэглэгч</span><span class="fn-sub">Захиалга өгнө</span></div>
             <div class="flow-arrow">→</div>
-            <div class="flow-node hl-gold"><span class="fn-ico">🖥️</span><span class="fn-name">Полярис</span><span class="fn-sub">Автомат шалгалт</span></div>
+            <div class="flow-node hl-gold"><span class="fn-ico">🖥️</span><span class="fn-name">Polaris</span><span class="fn-sub">Захиалга боловсруулна</span></div>
             <div class="flow-arrow">→</div>
-            <div class="flow-node hl-green"><span class="fn-ico">⚡</span><span class="fn-name">API</span><span class="fn-sub">Шууд холболт</span></div>
+            <div class="flow-node hl-green"><span class="fn-ico">⚙️</span><span class="fn-name">Интеграцийн Давхарга</span><span class="fn-sub">Автомат дамжуулалт</span></div>
             <div class="flow-arrow">→</div>
             <div class="flow-node hl-green"><span class="fn-ico">🇺🇸</span><span class="fn-name">PSPL</span><span class="fn-sub">Шуурхай биелэлт</span></div>
           </div>
-          <div class="flow-caption" style="color:var(--green-lt);">Секундын дотор · Алдаагүй · Хязгааргүй</div>
+          <div class="flow-caption" style="color:var(--green-lt);">Хурдан · Найдвартай · Өргөтгөх боломжтой</div>
         </div>
       </div>
     </div>
@@ -362,27 +363,27 @@
   <div class="wrap">
     <div class="sec-eyebrow">Шийдэл</div>
     <h2 class="sec-h2">Юу Хийх Гэж Байна вэ?</h2>
-    <p class="sec-p wide">Ард Секюритиз нь өөрийн Полярис системийг АНУ-ын брокер PSPL-тэй шууд API холболтоор нийлүүлнэ. Хэрэглэгч захиалга өгмөгц систем автоматаар шалгаж, дамжуулж, биелэлтийн мэдэгдлийг буцааж өгнө — оператор шаардлагагүй.</p>
+    <p class="sec-p wide">Ард Секюритиз нь өөрийн Polaris системд интеграцийн давхарга нэмж, АНУ-ын хамтрагч брокер PSPL-ийн дамжуулан АНУ-ын хөрөнгийн зах зээлд нэвтрэх автоматжуулсан чадварыг бий болгоно. Хэрэглэгч захиалга өгмөгц систем автоматаар боловсруулж, PSPL-ээр дамжуулан биелүүлнэ — оператор шаардлагагүй болно.</p>
     <div class="grid3" style="margin-bottom:2.5rem;">
       <div class="card reveal">
-        <div style="font-size:2rem;margin-bottom:1rem;">🔌</div>
-        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:.6rem;">FIX API — Дэлхийн Стандарт</div>
-        <div style="font-size:13.5px;color:var(--txt1);line-height:1.72;">NYSE, NASDAQ, дэлхийн бүх томоохон биржийн ашигладаг захиалга дамжуулах нийтлэг холболтын арга. МХБ-д одоо ч ажилладаг — PSPL-д мөн адил аргаар холбогдоно.</div>
+        <div style="font-size:2rem;margin-bottom:1rem;">⚙️</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:.6rem;">Интеграцийн Давхарга — Автоматжуулалтын Гол Хэсэг</div>
+        <div style="font-size:13.5px;color:var(--txt1);line-height:1.72;">Дотоод Polaris системийг PSPL-тэй холбох интеграцийн давхарга нь захиалгыг автоматаар шалгаж, дамжуулж, биелэлтийн дохио буцааж өгнө. Операторын гарын оролцоог бүрэн арилгаж, үйл ажиллагааг 24/7 хэвийн байлгана.</div>
       </div>
       <div class="card reveal d1">
         <div style="font-size:2rem;margin-bottom:1rem;">🖥️</div>
-        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:.6rem;">Полярис — CASPO-ийн Хийх Ажил</div>
-        <div style="font-size:13.5px;color:var(--txt1);line-height:1.72;">Полярис системийг хийсэн CASPO компани АНУ-ын зах зээлтэй холбох шинэ модуль нэмнэ. Ард Секюритиз шаардлагыг тодорхойлж, CASPO хэрэгжүүлнэ.</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:.6rem;">Polaris — Одоо Байгаа Системийн Өргөтгөл</div>
+        <div style="font-size:13.5px;color:var(--txt1);line-height:1.72;">Polaris системийг хөгжүүлсэн CASPO компани олон улсын захиалгын шинэ модуль нэмнэ. Дотоод системийг дахин бичихгүй — зөвхөн АНУ-ын зах зээлд зориулсан шинэ чадвар нэмнэ. Ард Секюритиз бизнесийн шаардлагыг тодорхойлж, CASPO хэрэгжүүлнэ.</div>
       </div>
       <div class="card reveal d2">
         <div style="font-size:2rem;margin-bottom:1rem;">💱</div>
         <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:.6rem;">Валютын Автомат Хөрвүүлэлт</div>
-        <div style="font-size:13.5px;color:var(--txt1);line-height:1.72;">Хэрэглэгч төгрөгөөр данстай, арилжаа доллараар явагддаг. Систем MNT↔USD хөрвүүлэлт болон зардлын тооцоолол автоматаар хийнэ.</div>
+        <div style="font-size:13.5px;color:var(--txt1);line-height:1.72;">Хэрэглэгч төгрөгөөр данстай, арилжаа доллараар явагддаг. Систем MNT↔USD хөрвүүлэлт болон зардлын тооцоолол автоматаар хийнэ. Хэрэглэгч нэмэлт алхамгүйгээр дансаа удирдана.</div>
       </div>
     </div>
     <div class="callout callout-blue">
       <span class="callout-ico">💡</span>
-      <div class="callout-txt"><strong>Энгийнээр тайлбарлавал:</strong> Яг л онлайн банкны шилжүүлэг шиг — хэрэглэгч дарна, систем автоматаар хийнэ. Полярис систем МХБ-д ийм байдлаар ажилладаг бөгөөд одоо тэрхүү чадварыг АНУ-ын зах зээлд өргөтгөх юм.</div>
+      <div class="callout-txt"><strong>Энгийнээр тайлбарлавал:</strong> Хэрэглэгч захиалга өгнө → Polaris-ийн интеграцийн давхарга автоматаар боловсруулна → PSPL АНУ-ын биржид биелүүлнэ → биелэлт хэрэглэгчид мэдэгдэнэ. Polaris систем МХБ-д ийм байдлаар аль хэдийн ажилладаг бөгөөд одоо тэрхүү чадварыг АНУ-ын зах зээлд өргөтгөх юм.</div>
     </div>
   </div>
 </section>
@@ -392,7 +393,7 @@
   <div class="wrap">
     <div class="sec-eyebrow">Шилэгдсэн Брокер</div>
     <h2 class="sec-h2">PSPL — Pacific Square Partners</h2>
-    <p class="sec-p wide">АНУ-д суурьтай Pacific Square Partners (PSPL) нь Ард Секюритизийн АНУ-ын зах зээлийн гол гүйцэтгэгч (prime broker) болохоор сонгогдсон. PSPL нь Монголын зах зээлтэй ажиллах туршлагатай, sub-account загварыг санал болгодог.</p>
+    <p class="sec-p wide">АНУ-д суурьтай Pacific Square Partners (PSPL) нь Ард Секюритизийн АНУ-ын зах зээлийн хамтрагч брокер болохоор сонгогдсон. PSPL нь Монголын зах зээлийн онцлогийг ойлгодог, хэрэглэгч бүрийн дансыг тусад нь удирдах хялбар загвартай, мөн дотоод харилцагчтай байдгаараа бусад сонголтоос давуу.</p>
     <div class="grid2" style="margin-bottom:2rem;">
       <div class="card reveal">
         <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;">PSPL ямар үүрэг гүйцэтгэх вэ</div>
@@ -405,8 +406,8 @@
         </ul>
       </div>
       <div class="card reveal d1">
-        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;">Sub-account загвар — Яагаад давуу вэ</div>
-        <div style="font-size:13.5px;color:var(--txt1);line-height:1.72;margin-bottom:1rem;">PSPL-д нэг ерөнхий данс нээж, дотор нь хэрэглэгч бүрт тусдаа дэд данс гаргана. Ард Секюритиз нь клиентийн мэдээллийг PSPL-д нэг бүрчлэн бүртгэлгүйгээр удирдах боломжтой болдог тул хэрэглэгчийн тоо өсөхөд асуудалгүй.</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;">Хэрэглэгчийн Данс — Яагаад Энэ Загвар Тохиромжтой Вэ</div>
+        <div style="font-size:13.5px;color:var(--txt1);line-height:1.72;margin-bottom:1rem;">PSPL-д Ард Секюритизийн нэрийн дор нэг ерөнхий данс нээж, дотор нь хэрэглэгч бүрт тусдаа дэд данс гаргана. Хэрэглэгч нэмэх тусам PSPL-тэй шинэ гэрээ хийх шаардлагагүй — дотоод удирдлагаар хялбар өргөтгөх загвар. Энэ нь бизнесийн өргөжилтийг саатуулахгүйгээр дэмжинэ.</div>
         <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:1rem;">
           <div style="font-size:12px;color:var(--gold);font-weight:700;margin-bottom:.5rem;">ЗАГВАРЫН ЖИШЭЭ</div>
           <div style="font-size:13px;color:var(--txt1);">
@@ -494,7 +495,7 @@
     </div>
     <div class="callout callout-green" style="margin-top:1.5rem;">
       <span class="callout-ico">✅</span>
-      <div class="callout-txt"><strong>Дүгнэлт:</strong> PSPL нь Монголын зах зээлийн онцлогийг ойлгодог, sub-account загвараар хэрэгцээнд нийцсэн, дотоод харилцагчтай байдаг тул шилдэг сонголт болж байна. Хоёрдахь нөөц сонголт болгон Saxo Bank-ийг авч үзэж болно.</div>
+      <div class="callout-txt"><strong>Дүгнэлт:</strong> PSPL нь Монголын зах зээлийн нөхцөлийг ойлгодог, хэрэглэгчийн дансыг тусад нь удирдах боломж олгодог, тулгалтын дотоод харилцагчтай байдаг — практик хэрэгцээнд хамгийн нийцтэй сонголт. Капиталын шаардлага хамгийн боломжтой бөгөөд нөхцөл тохиролцооны дагуу. Нөөц сонголт болгон Saxo Bank-ийг авч үзэж болно.</div>
     </div>
   </div>
 </section>
@@ -539,7 +540,7 @@
     </div>
     <div class="callout callout-gold">
       <span class="callout-ico">💰</span>
-      <div class="callout-txt"><strong>Нийт эхлэлтийн хөрөнгө оруулалт: ~$18,000–33,000</strong> — Монголын аливаа ҮЦК-ийн хувьд маш бага хөрөнгө оруулалтаар өрсөлдөөний томоохон давуу байдал олж авах боломж. PSPL-ийн арилжааны шимтгэл нь зах зээлийн ханш дагана.</div>
+      <div class="callout-txt"><strong>Нийт эхлэлтийн хөрөнгө оруулалт: ~$18,000–33,000</strong> — Энэ тооцоо урьдчилсан бөгөөд PSPL болон CASPO-тэй хэлэлцсэний дараа нарийвчлагдана. Монголын аливаа ҮЦК-ийн хувьд харьцангуй бага хөрөнгө оруулалтаар өрсөлдөөний давуу байдал олж авах боломж. PSPL-ийн арилжааны шимтгэл нь зах зээлийн ханш дагана.</div>
     </div>
   </div>
 </section>
@@ -564,7 +565,7 @@
       <div class="card benefit-card reveal d2">
         <div class="bc-ico">⚡</div>
         <div class="bc-title">Захиалгын Хурд ба Найдвартай Байдал</div>
-        <div class="bc-body">Гар ажиллагаанаас хэдэн минутаас секундад шилжинэ. АНУ-ын зах зээлийн нээлт, хаалтын цагт давхцсан олон захиалгыг нэгэн зэрэг шийднэ. Алдааны тоо эрс багасна.</div>
+        <div class="bc-body">Гар ажиллагаанаас автоматаар шилжсэнээр захиалгын хугацаа эрс богиссоно. АНУ-ын зах зээлийн нээлт, хаалтын цагт давхцсан олон захиалгыг нэгэн зэрэг шийднэ. Хүний алдааны эрсдэл мэдэгдэхүйц буурна.</div>
       </div>
       <div class="card benefit-card reveal d3">
         <div class="bc-ico">🌐</div>
@@ -580,30 +581,34 @@
   <div class="wrap">
     <div class="sec-eyebrow">Зохицуулалт & Эрсдэл</div>
     <h2 class="sec-h2">Зохицуулалт ба Эрсдэлийн Тойм</h2>
-    <p class="sec-p wide">Олон улсын зах зээлд нэвтрэх нь зохицуулалтын зөвшөөрөл, техникийн болон санхүүгийн эрсдэлтэй холбоотой. Эдгээр нь урьдчилан тооцож, шийдвэрлэх боломжтой эрсдэлүүд.</p>
+    <p class="sec-p wide">Олон улсын зах зээлд нэвтрэх нь зохицуулалт, интеграцийн нарийн ажил, болон санхүүгийн тооцооллын шаардлагатай. Эдгээр нь мэргэжлийн хяналтаар удирдах боломжтой бизнесийн эрсдэлүүд бөгөөд урьдчилсан бэлтгэлээр хамгийн боломжит түвшинд барьж болно.</p>
     <div class="risk-row">
       <div class="risk-card reveal" style="border-top:3px solid var(--amber);">
-        <div class="rc-level" style="color:var(--amber);"><span class="rc-dot" style="background:var(--amber);"></span>Зохицуулалтын Эрсдэл</div>
+        <div class="rc-level" style="color:var(--amber);"><span class="rc-dot" style="background:var(--amber);"></span>Зохицуулалтын Хариуцлага</div>
         <div class="rc-title">СЗХ-ийн Зөвшөөрөл</div>
-        <div class="rc-body">Санхүүгийн Зохицуулалтын Хороо (СЗХ)-оос олон улсын арилжааны зөвшөөрөл авах шаардлагатай. Энэ нь урт процесс байж болно.</div>
-        <div class="rc-mit"><strong>Шийдэл:</strong> Процессийг эрт эхлүүлж, хуулийн зөвлөхтэй хамтарч ажиллах. Зэрэгцээ PSPL-тэй техникийн ажлыг урагшлуулна.</div>
+        <div class="rc-body">Санхүүгийн Зохицуулалтын Хороо (СЗХ)-оос олон улсын арилжааны зөвшөөрөл авах шаардлагатай. Энэ нь хугацаа шаардах процесс бөгөөд эрт эхэлсэн тусам ашигтай. АНУ-ын зохицуулалтыг PSPL өөрсдөө хариуцна.</div>
+        <div class="rc-mit"><strong>Хандлага:</strong> Процессийг энэ оны дотор эхлүүлж, хуулийн зөвлөхтэй хамтарч ажиллана. Зэрэгцээ PSPL-тэй хэлэлцэгчийн ажлыг урагшлуулна.</div>
       </div>
       <div class="risk-card reveal d1" style="border-top:3px solid var(--blue);">
-        <div class="rc-level" style="color:var(--blue-lt);"><span class="rc-dot" style="background:var(--blue);"></span>Техникийн Эрсдэл</div>
-        <div class="rc-title">Холболт ба Интеграцийн Хугацаа</div>
-        <div class="rc-body">PSPL-тэй техникийн тохиргоо хугацаа авч болно. Улаанбаатар — АНУ-ын серверийн хоорондох өгөгдлийн дамжуулалт байна.</div>
-        <div class="rc-mit"><strong>Шийдэл:</strong> Жижиглэн худалдааны хэрэглэгчдэд дамжуулалтын хугацаа тийм ч чухал биш. Сайн туршилт, нөөцлөлт хийнэ.</div>
+        <div class="rc-level" style="color:var(--blue-lt);"><span class="rc-dot" style="background:var(--blue);"></span>Интеграцийн Нарийн Ажил</div>
+        <div class="rc-title">Хэрэгжилтийн Хугацаа ба Найдвартай Байдал</div>
+        <div class="rc-body">PSPL-тэй системийн холболт нь нарийн тохиргоо, бүрэн туршилт шаардах процесс. Эхний нэвтрэлтийн өмнө хяналттай туршилт хийхгүйгээр амьд орчинд нэвтрэх нь эрсдэлтэй. Системийн тасралтгүй ажиллагааг хангах нөөцлөлт шаардлагатай.</div>
+        <div class="rc-mit"><strong>Хандлага:</strong> Хяналттай beta нэвтрэлт явуулаад, дараа нь бүх хэрэглэгчдэд нэвтрүүлнэ. Системийн ажиллагааны тасралтгүй хяналтын механизм тогтооно.</div>
       </div>
       <div class="risk-card reveal d2" style="border-top:3px solid var(--gold);">
-        <div class="rc-level" style="color:var(--gold);"><span class="rc-dot" style="background:var(--gold);"></span>Санхүүгийн Эрсдэл</div>
-        <div class="rc-title">Валютын Ханшийн Хэлбэлзэл</div>
-        <div class="rc-body">Захиалга MNT-ээр орж, USD-ээр биелдэг тул ханшийн зөрүү үүсэж болно. Тооцооны хугацаа дахь ханшийн өөрчлөлт.</div>
-        <div class="rc-mit"><strong>Шийдэл:</strong> Захиалгын үед бодит ханш тогтоох механизм, дансны нийлбэр шалгалтын дүрэм тодорхойлно.</div>
+        <div class="rc-level" style="color:var(--gold);"><span class="rc-dot" style="background:var(--gold);"></span>Санхүүгийн Нарийвчлал</div>
+        <div class="rc-title">Тооцооны Нарийвчлал ба Итгэлцэл</div>
+        <div class="rc-body">Захиалга MNT-ээр орж, USD-ээр биелдэг тул валютын зөрүүг нарийн тооцоолох шаардлагатай. Мөн хэрэглэгчийн дансны үлдэгдэл, биелэлтийн тайланг PSPL болон дотоод системтэй тохиролцуулах чухал — энэ нь хэрэглэгчийн итгэлийг хадгалах, аудитыг хангах гол механизм.</div>
+        <div class="rc-mit"><strong>Хандлага:</strong> Хоногийн тооцоо нийлэлтийн тогтмол процесс тогтооно. Зөрүү илэрвэл шуурхай шийдвэрлэх дотоод журам гаргана.</div>
       </div>
     </div>
-    <div class="callout callout-blue" style="margin-top:2rem;">
+    <div class="callout callout-gold" style="margin-top:2rem;">
+      <span class="callout-ico">⚠️</span>
+      <div class="callout-txt"><strong>Бизнесийн бодит байдал:</strong> Интеграцийн ажил нарийн бөгөөд хугацаа шаардана. Зардал нь эхний тооцооноос өөр байж болно. Систем ажиллаж эхэлсний дараа ч тооцооны нарийвчлал, найдвартай байдлыг тасралтгүй хянах шаардлагатай. Эдгээрийг урьдчилан бэлтгэх нь эрсдэлийн хяналтын хамгийн чухал алхам.</div>
+    </div>
+    <div class="callout callout-blue" style="margin-top:1rem;">
       <span class="callout-ico">🏛️</span>
-      <div class="callout-txt"><strong>АНУ-ын зохицуулалт:</strong> PSPL нь SEC болон FINRA-д бүртгэлтэй брокер дилер. АНУ-ын талын зохицуулалтын шаардлагыг PSPL өөрөө хариуцна — Ард Секюритиз нь зөвхөн Монголын СЗХ-ийн зөвшөөрөлд л анхаарлаа төвлөрүүлэх боломжтой.</div>
+      <div class="callout-txt"><strong>АНУ-ын зохицуулалт:</strong> PSPL нь АНУ-ын санхүүгийн зохицуулах байгууллагуудад бүртгэлтэй брокер. АНУ-ын талын зохицуулалтын бүх шаардлагыг PSPL өөрөө хариуцна — Ард Секюритиз нь зөвхөн Монголын СЗХ-ийн зөвшөөрөлд анхаарлаа төвлөрүүлэх боломжтой.</div>
     </div>
   </div>
 </section>
@@ -637,9 +642,9 @@
         <div class="tl-dot plan">⚙️</div>
         <div class="tl-body">
           <div class="tl-period">2026 Q4</div>
-          <div class="tl-title">CASPO — Полярис Өргөтгөл</div>
-          <div class="tl-desc">Техникийн тодорхойлолтыг CASPO-д хүлээлгэж өгнө. CASPO Полярис системд АНУ-ын зах зээлийн холболтын шинэ модуль хийнэ. Валютын хөрвүүлэлт, автомат шалгалт нэмнэ.</div>
-          <div class="tl-tags"><span class="tl-tag tt-blue">CASPO Хөгжүүлэлт</span><span class="tl-tag tt-gold">Полярис Өргөтгөл</span></div>
+          <div class="tl-title">CASPO — Polaris Өргөтгөл</div>
+          <div class="tl-desc">Бизнесийн шаардлагыг CASPO-д хүлээлгэж өгнө. CASPO нь Polaris системд АНУ-ын зах зээлтэй холбогдох шинэ модуль хийнэ. Валютын хөрвүүлэлт болон автомат боловсруулалт нэмнэ.</div>
+          <div class="tl-tags"><span class="tl-tag tt-blue">CASPO Хөгжүүлэлт</span><span class="tl-tag tt-gold">Polaris Өргөтгөл</span></div>
         </div>
       </div>
       <div class="tl-item reveal d3">
@@ -699,24 +704,24 @@
       <div class="step-item reveal d2">
         <div class="step-num">3</div>
         <div class="step-body">
-          <div class="step-title">CASPO-д техникийн шаардлагын хөтөлбөр хэлэлцэх</div>
-          <div class="step-desc">Полярис системд нэмэх шинэ модулийн техникийн тодорхойлолт, ажлын хэмжээ, хөгжүүлэлтийн хугацаа, зардлын тооцоог CASPO-оос авах.</div>
+          <div class="step-title">CASPO-д хөгжүүлэлтийн шаардлага хэлэлцэх</div>
+          <div class="step-desc">Polaris системд нэмэх шинэ модулийн ажлын хэмжээ, хөгжүүлэлтийн хугацаа, зардлын тооцоог CASPO-оос авах. Шаардлага нь бизнесийн зорилтод суурилна.</div>
           <div class="step-owner">Хариуцагч: <span>Системийн Администратор + CASPO</span></div>
         </div>
       </div>
       <div class="step-item reveal d3">
         <div class="step-num">4</div>
         <div class="step-body">
-          <div class="step-title">Удирдлагын зөвшөөрөл, төсвийн батламж авах</div>
-          <div class="step-desc">Энэхүү судалгааны тайланг үндэслэн Гүйцэтгэх захирал, CBDO-д илэрхийлэлт хийж, санхүүгийн болон стратегийн зөвшөөрөл авах.</div>
+          <div class="step-title">Стратегийн шийдвэр гаргах</div>
+          <div class="step-desc">Энэхүү судалгааны дүгнэлт дээр үндэслэн санхүүжилт, хэрэгжилтийг зөвшөөрөх эсэх шийдвэр гарна. Зөвшөөрлийн дараа PSPL-тэй хэлэлцэгч болон CASPO хөгжүүлэлт зэрэгцээ эхэлнэ.</div>
           <div class="step-owner">Хариуцагч: <span>Системийн Администратор → Удирдлага</span></div>
         </div>
       </div>
       <div class="step-item reveal">
         <div class="step-num">5</div>
         <div class="step-body">
-          <div class="step-title">Дотоод бэлтгэл — дансны бүтцийн шинэчлэл үнэлэх</div>
-          <div class="step-desc">АНУ-ын захиалга хянах дотоод процесс, хэрэглэгчийн дансны бүтцийн өөрчлөлт шаардлагатай эсэхийг үнэлэх. Полярис-ийн өнөөгийн архитектурт дүн шинжилгээ хийнэ.</div>
+          <div class="step-title">Дотоод бэлтгэл — үйл ажиллагааны процесс үнэлэх</div>
+          <div class="step-desc">АНУ-ын захиалга хянах дотоод процесс болон хэрэглэгчийн дансны бүтцийн өөрчлөлт шаардлагатай эсэхийг үнэлэх. Тооцоо нийлэлт болон мэдээллийн нарийвчлалыг хангах дотоод журам тогтооно.</div>
           <div class="step-owner">Хариуцагч: <span>Системийн Администратор</span></div>
         </div>
       </div>
