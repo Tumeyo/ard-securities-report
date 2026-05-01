@@ -42,7 +42,9 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg0);
+      background:
+        radial-gradient(ellipse 90% 45% at 50% -2%, rgba(201,168,76,.06) 0%, transparent 48%),
+        var(--bg0);
       color: var(--txt0);
       overflow-x: hidden;
       line-height: 1.65;
@@ -78,10 +80,14 @@
     .nav-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
     .nav-mark {
       width: 36px; height: 36px; border-radius: 8px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-dk));
-      display: grid; place-items: center;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800; font-size: 15px; color: #040B15; flex-shrink: 0;
+      background: rgba(201,168,76,.1);
+      border: 1px solid rgba(201,168,76,.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; overflow: hidden; padding: 4px;
+    }
+    .nav-logo-img {
+      width: 100%; height: 100%; object-fit: contain;
+      filter: invert(1);
     }
     .nav-text strong {
       font-family: 'Space Grotesk', sans-serif;
@@ -137,27 +143,20 @@
     }
     .orb {
       position: absolute; border-radius: 50%;
-      filter: blur(80px); pointer-events: none;
-      animation: drift linear infinite;
+      filter: blur(90px); pointer-events: none;
+      animation: drift ease-in-out infinite alternate;
     }
-    .orb1 { width:500px; height:500px; top:-15%; left:-10%; background:rgba(201,168,76,.07); animation-duration:42s; }
-    .orb2 { width:380px; height:380px; bottom:-10%; right:-8%; background:rgba(230,51,41,.05); animation-duration:55s; animation-delay:-22s; }
-    .orb3 { width:300px; height:300px; top:42%; left:62%; background:rgba(201,168,76,.05); animation-duration:47s; animation-delay:-12s; }
+    .orb1 { width:600px; height:600px; top:-20%; left:-12%; background:rgba(201,168,76,.09); animation-duration:22s; }
+    .orb2 { width:420px; height:420px; bottom:-12%; right:-8%; background:rgba(230,51,41,.06); animation-duration:28s; animation-delay:-12s; }
+    .orb3 { width:340px; height:340px; top:38%; left:58%; background:rgba(59,130,246,.06); animation-duration:18s; animation-delay:-7s; }
     @keyframes drift {
-      0%   { transform:translate(0,0) rotate(0deg); }
-      25%  { transform:translate(30px,-22px) rotate(90deg); }
-      50%  { transform:translate(-22px,30px) rotate(180deg); }
-      75%  { transform:translate(22px,22px) rotate(270deg); }
-      100% { transform:translate(0,0) rotate(360deg); }
+      0%   { transform:translate(0,0) scale(1); }
+      33%  { transform:translate(40px,-30px) scale(1.06); }
+      66%  { transform:translate(-28px,35px) scale(0.96); }
+      100% { transform:translate(22px,18px) scale(1.03); }
     }
-    #particles { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
-    .pt { position:absolute; border-radius:50%; animation:ptFloat linear infinite; }
-    @keyframes ptFloat {
-      0%   { transform:translateY(110vh) scale(.5); opacity:0; }
-      8%   { opacity:.45; }
-      92%  { opacity:.45; }
-      100% { transform:translateY(-60px) scale(1); opacity:0; }
-    }
+    #hero-canvas { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+    #particles { display:none; }
 
     .hero-inner { position:relative; z-index:1; text-align:center; max-width:960px; }
 
@@ -404,7 +403,8 @@
     footer { background:var(--bg1); border-top:1px solid var(--border); padding:3.5rem 2rem 2rem; }
     .footer-inner { max-width:1120px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:1.5rem; text-align:center; }
     .footer-brand { display:flex; align-items:center; gap:12px; }
-    .footer-mark { width:44px; height:44px; border-radius:10px; background:linear-gradient(135deg,var(--gold),var(--gold-dk)); display:grid; place-items:center; font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:18px; color:#040B15; }
+    .footer-mark { width:44px; height:44px; border-radius:10px; background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.3); display:flex; align-items:center; justify-content:center; overflow:hidden; padding:6px; }
+    .footer-mark img { width:100%; height:100%; object-fit:contain; filter:invert(1); }
     .footer-co  { font-family:'Space Grotesk',sans-serif; font-size:1.1rem; font-weight:700; }
     .footer-tag { font-size:10.5px; color:var(--txt2); text-transform:uppercase; letter-spacing:1.8px; }
     .footer-dis { font-size:12px; color:var(--txt2); max-width:500px; line-height:1.7; }
@@ -440,6 +440,19 @@
       .hero-btns { flex-direction:column; align-items:center; }
     }
     @media (max-width:480px) { section{padding:3.5rem 1rem;} .countdown{gap:1rem;} }
+
+    /* ── PAGE TRANSITION ── */
+    #page-transition {
+      position: fixed; inset: 0; z-index: 99999;
+      background: linear-gradient(105deg, transparent 0%, rgba(201,168,76,.05) 50%, transparent 100%), var(--bg0);
+      transform: translateX(-100%);
+      pointer-events: none;
+      will-change: transform;
+    }
+    @keyframes ptReveal { from{transform:translateX(0)} to{transform:translateX(100%)} }
+    @keyframes ptCover  { from{transform:translateX(-100%)} to{transform:translateX(0)} }
+    .pt-revealing { animation: ptReveal .52s cubic-bezier(0.23,1,0.32,1) forwards; }
+    .pt-covering  { animation: ptCover  .42s cubic-bezier(0.77,0,.175,1)  forwards; pointer-events:all; }
   </style>
 </head>
 <body>
@@ -449,9 +462,9 @@
 <!-- NAV -->
 <nav id="nav">
   <a href="#hero" class="nav-brand">
-    <div class="nav-mark">А</div>
+    <div class="nav-mark"><img src="img/logo.png" alt="Ард" class="nav-logo-img" /></div>
     <div class="nav-text">
-      <strong>Ард Секюритик ҮЦК </strong>
+      <strong>Ард Секюритиз ҮЦК</strong>
       <small>Систем Ахиц Тайлан</small>
     </div>
   </a>
@@ -784,7 +797,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="footer-mark">А</div>
+      <div class="footer-mark"><img src="img/logo.png" alt="Ард" /></div>
       <div>
         <div class="footer-co">Ард Секюритиз ҮЦК</div>
         <div class="footer-tag">Системийн Администраторын Тайлан · 2026</div>
@@ -798,6 +811,7 @@
 </footer>
 
 <button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" title="Дээш буцах">↑</button>
+<div id="page-transition"></div>
 
 <script>
 function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
@@ -854,15 +868,69 @@ function tick() {
 }
 tick(); setInterval(tick,1000);
 
-// Particles
+// Canvas particle network
 (function(){
-  const c = document.getElementById('particles');
-  for(let i=0;i<28;i++){
-    const el = document.createElement('div'); el.className='pt';
-    const sz=Math.random()*3.5+1, gold=Math.random()>.45, op=Math.random()*.35+.1;
-    el.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;background:${gold?`rgba(201,168,76,${op})`:`rgba(230,51,41,${op*.5})`};animation-duration:${Math.random()*18+14}s;animation-delay:-${Math.random()*22}s;`;
-    c.appendChild(el);
+  const hero = document.getElementById('hero');
+  const cv = document.createElement('canvas');
+  cv.id = 'hero-canvas';
+  hero.insertBefore(cv, hero.firstChild);
+  const ctx = cv.getContext('2d');
+  let W, H, pts = [];
+  const N = 60, D = 130;
+  function resize(){ W = cv.width = hero.offsetWidth; H = cv.height = hero.offsetHeight; }
+  function init(){
+    resize(); pts = [];
+    for(let i=0;i<N;i++) pts.push({
+      x:Math.random()*W, y:Math.random()*H,
+      vx:(Math.random()-.5)*.45, vy:(Math.random()-.5)*.45,
+      r:Math.random()*1.4+.4,
+      gold:Math.random()>.42
+    });
   }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
+        const d=Math.hypot(dx,dy);
+        if(d<D){
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x,pts[i].y);
+          ctx.lineTo(pts[j].x,pts[j].y);
+          ctx.strokeStyle=`rgba(201,168,76,${(1-d/D)*.11})`;
+          ctx.lineWidth=.6; ctx.stroke();
+        }
+      }
+    }
+    for(const p of pts){
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.gold?'rgba(201,168,76,.55)':'rgba(59,130,246,.4)';
+      ctx.fill();
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<-4) p.x=W+4; else if(p.x>W+4) p.x=-4;
+      if(p.y<-4) p.y=H+4; else if(p.y>H+4) p.y=-4;
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',()=>{resize();});
+  init(); draw();
+})();
+
+// Page transition
+(function(){
+  const pt = document.getElementById('page-transition');
+  pt.classList.add('pt-revealing');
+  pt.addEventListener('animationend', ()=>pt.classList.remove('pt-revealing'), {once:true});
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a[href]');
+    if(!a) return;
+    const href = a.getAttribute('href');
+    if(!href || href.startsWith('#') || href.startsWith('mailto:') || a.target==='_blank') return;
+    e.preventDefault();
+    pt.classList.add('pt-covering');
+    pt.addEventListener('animationend', ()=>{ window.location.href=href; }, {once:true});
+  });
 })();
 
 // Reveal

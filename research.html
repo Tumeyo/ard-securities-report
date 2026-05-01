@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FIX API Судалгаа | Ард Секюритиз ҮЦК</title>
+  <title>Олон Улсын Арилжааны Автоматжуулалт | Ард Секюритиз ҮЦК</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -22,7 +22,13 @@
       --r: 14px;
     }
     html { scroll-behavior: smooth; }
-    body { font-family:'Inter',sans-serif; background:var(--bg0); color:var(--txt0); overflow-x:hidden; line-height:1.65; }
+    body {
+      font-family:'Inter',sans-serif;
+      background:
+        radial-gradient(ellipse 90% 45% at 50% -2%, rgba(201,168,76,.06) 0%, transparent 48%),
+        var(--bg0);
+      color:var(--txt0); overflow-x:hidden; line-height:1.65;
+    }
     ::-webkit-scrollbar { width:5px; }
     ::-webkit-scrollbar-track { background:var(--bg0); }
     ::-webkit-scrollbar-thumb { background:var(--gold-dk); border-radius:3px; }
@@ -33,7 +39,8 @@
     /* NAV */
     #nav { position:fixed; inset:0 0 auto 0; z-index:1000; height:68px; padding:0 2rem; display:flex; align-items:center; justify-content:space-between; background:rgba(2,8,16,.9); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-bottom:1px solid var(--border); }
     .nav-brand { display:flex; align-items:center; gap:11px; text-decoration:none; }
-    .nav-mark { width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg,var(--gold),var(--gold-dk)); display:grid; place-items:center; font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:15px; color:#040B15; flex-shrink:0; }
+    .nav-mark { width:36px; height:36px; border-radius:8px; background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.3); display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; padding:4px; }
+    .nav-logo-img { width:100%; height:100%; object-fit:contain; filter:invert(1); }
     .nav-text strong { font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:700; color:var(--txt0); display:block; line-height:1; }
     .nav-text small { font-size:9.5px; font-weight:600; color:var(--gold); letter-spacing:1.8px; text-transform:uppercase; }
     .nav-links { display:flex; align-items:center; gap:.2rem; list-style:none; }
@@ -47,203 +54,202 @@
     #hero { min-height:88vh; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; padding:100px 2rem 60px; }
     .hero-mesh { position:absolute; inset:0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59,130,246,.1) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 0% 90%, rgba(201,168,76,.07) 0%, transparent 50%), radial-gradient(ellipse 50% 60% at 100% 60%, rgba(59,130,246,.06) 0%, transparent 50%); }
     .hero-grid-bg { position:absolute; inset:0; background-image:linear-gradient(rgba(59,130,246,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.025) 1px,transparent 1px); background-size:54px 54px; mask-image:radial-gradient(ellipse 85% 85% at 50% 50%,black,transparent); -webkit-mask-image:radial-gradient(ellipse 85% 85% at 50% 50%,black,transparent); }
-    .orb { position:absolute; border-radius:50%; filter:blur(80px); pointer-events:none; animation:drift linear infinite; }
-    .orb1 { width:500px;height:500px;top:-15%;left:-10%;background:rgba(59,130,246,.06);animation-duration:42s; }
-    .orb2 { width:380px;height:380px;bottom:-10%;right:-8%;background:rgba(201,168,76,.05);animation-duration:55s;animation-delay:-22s; }
-    @keyframes drift { 0%{transform:translate(0,0) rotate(0deg)} 50%{transform:translate(-22px,30px) rotate(180deg)} 100%{transform:translate(0,0) rotate(360deg)} }
+    .orb { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; animation:drift ease-in-out infinite alternate; }
+    .orb1 { width:600px;height:600px;top:-20%;left:-12%;background:rgba(59,130,246,.07);animation-duration:22s; }
+    .orb2 { width:420px;height:420px;bottom:-12%;right:-8%;background:rgba(201,168,76,.06);animation-duration:28s;animation-delay:-12s; }
+    @keyframes drift { 0%{transform:translate(0,0) scale(1)} 33%{transform:translate(40px,-30px) scale(1.06)} 66%{transform:translate(-28px,35px) scale(0.96)} 100%{transform:translate(22px,18px) scale(1.03)} }
+    #hero-canvas { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
     .hero-inner { position:relative; z-index:1; text-align:center; max-width:980px; }
     .hero-chip { display:inline-flex; align-items:center; gap:8px; padding:6px 18px; border-radius:100px; background:rgba(59,130,246,.1); border:1px solid rgba(59,130,246,.32); font-size:11px; font-weight:700; color:var(--blue-lt); letter-spacing:1.8px; text-transform:uppercase; margin-bottom:2.2rem; animation:fadeUp .8s both; }
     .chip-dot { width:7px;height:7px;border-radius:50%;background:var(--blue);animation:blink 2.2s infinite; }
     @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.4)} }
     .hero-h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(2.2rem,5.5vw,4.2rem); font-weight:700; line-height:1.1; margin-bottom:1.6rem; animation:fadeUp .8s .18s both; }
     .hero-h1 .l1 { display:block; color:var(--txt0); }
-    .hero-h1 .l2 { display:block; background:linear-gradient(130deg,var(--blue-dk) 0%,var(--blue) 40%,var(--blue-lt) 72%,var(--blue) 100%); background-size:200% auto; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:fadeUp .8s .18s both,shimmer 4s linear 1s infinite; }
+    .hero-h1 .l2 { display:block; background:linear-gradient(130deg,var(--gold-dk) 0%,var(--gold) 40%,var(--gold-lt) 72%,var(--gold) 100%); background-size:200% auto; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:fadeUp .8s .18s both, shimmer 4s linear 1s infinite; }
     @keyframes shimmer { to{background-position:200% center} }
-    .hero-sub { font-size:clamp(.95rem,2vw,1.1rem); color:var(--txt1); max-width:680px; margin:0 auto 2.5rem; line-height:1.8; animation:fadeUp .8s .34s both; }
-    .hero-meta { display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; animation:fadeUp .8s .5s both; }
-    .meta-item { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--txt2); }
-    .meta-dot { width:6px;height:6px;border-radius:50%;background:var(--blue); }
+    .hero-sub { font-size:clamp(.95rem,2vw,1.12rem); color:var(--txt1); max-width:680px; margin:0 auto 2.5rem; line-height:1.8; animation:fadeUp .8s .34s both; }
+    .hero-meta { display:flex; flex-wrap:wrap; gap:.8rem; justify-content:center; animation:fadeUp .8s .5s both; }
+    .meta-item { display:flex; align-items:center; gap:7px; font-size:12px; color:var(--txt2); font-weight:500; letter-spacing:.3px; }
+    .meta-dot { width:6px; height:6px; border-radius:50%; background:var(--gold); opacity:.7; }
 
-    /* SECTION BASE */
-    section { padding:5rem 2rem; }
-    .wrap { max-width:1140px; margin:0 auto; }
-    .sec-eyebrow { font-size:11px; font-weight:700; color:var(--blue-lt); text-transform:uppercase; letter-spacing:2.8px; display:flex; align-items:center; gap:10px; margin-bottom:.8rem; }
-    .sec-eyebrow.gold { color:var(--gold); }
-    .sec-eyebrow::before { content:''; width:22px; height:2px; background:currentColor; flex-shrink:0; }
-    .sec-h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.7rem,3vw,2.4rem); font-weight:700; line-height:1.18; margin-bottom:1rem; }
-    .sec-p { font-size:1rem; color:var(--txt1); max-width:640px; line-height:1.75; }
-    .sec-p.wide { max-width:860px; }
+    /* LAYOUT */
+    .wrap { max-width:1180px; margin:0 auto; padding:0 2rem; }
+    section { padding:5rem 0; }
+    section.bg-alt { background:var(--bg1); border-top:1px solid var(--border2); border-bottom:1px solid var(--border2); }
 
-    /* CARD */
-    .card { background:var(--card); border:1px solid var(--border2); border-radius:var(--r); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); transition:transform .3s,box-shadow .3s,border-color .3s; }
-    .card:hover { transform:translateY(-3px); box-shadow:0 18px 50px rgba(0,0,0,.4); border-color:var(--border); }
-    .card-pad { padding:2rem; }
+    /* SECTION HEADERS */
+    .sec-eyebrow { font-size:10.5px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold); margin-bottom:.9rem; }
+    .sec-h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.7rem,3.5vw,2.5rem); font-weight:700; line-height:1.2; margin-bottom:1.2rem; }
+    .sec-p { color:var(--txt1); font-size:1rem; max-width:680px; line-height:1.78; margin-bottom:2.5rem; }
+    .sec-p.wide { max-width:820px; }
+    .subsec { margin-top:3rem; }
+    .subsec-h3 { font-family:'Space Grotesk',sans-serif; font-size:1.15rem; font-weight:700; margin-bottom:1.5rem; display:flex; align-items:center; gap:10px; }
+    .subsec-num { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:7px; background:rgba(201,168,76,.12); border:1px solid rgba(201,168,76,.3); color:var(--gold); font-size:12px; font-weight:800; flex-shrink:0; }
 
-    /* FLOW DIAGRAM */
-    .flow-wrap { margin-top:2.5rem; }
-    .flow-row { display:flex; align-items:stretch; gap:0; flex-wrap:wrap; justify-content:center; }
-    .flow-node { background:var(--card); border:1px solid var(--border2); border-radius:12px; padding:1rem 1.4rem; text-align:center; min-width:150px; flex:1; max-width:200px; }
-    .flow-node.highlight-gold { border-color:rgba(201,168,76,.4); background:rgba(201,168,76,.06); }
-    .flow-node.highlight-blue { border-color:rgba(59,130,246,.4); background:rgba(59,130,246,.06); }
-    .flow-node.highlight-green { border-color:rgba(34,197,94,.4); background:rgba(34,197,94,.06); }
-    .flow-node.highlight-red  { border-color:rgba(230,51,41,.35); background:rgba(230,51,41,.05); }
-    .flow-node .fn-ico { font-size:1.8rem; display:block; margin-bottom:.4rem; }
-    .flow-node .fn-name { font-family:'Space Grotesk',sans-serif; font-size:.85rem; font-weight:600; display:block; line-height:1.2; }
-    .flow-node .fn-sub { font-size:10px; color:var(--txt2); display:block; margin-top:3px; }
-    .flow-arrow { display:flex; align-items:center; padding:0 .5rem; color:var(--txt2); font-size:1.4rem; flex-shrink:0; align-self:center; }
-    .flow-arrow.down { transform:rotate(90deg); }
-    .flow-label { font-size:10px; color:var(--gold); font-weight:700; letter-spacing:.8px; text-align:center; margin-top:.4rem; }
+    /* CARDS */
+    .card { background:var(--card); border:1px solid var(--border2); border-radius:var(--r); padding:1.8rem; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); transition:border-color .3s, box-shadow .3s; }
+    .card:hover { border-color:var(--border); box-shadow:0 8px 32px rgba(0,0,0,.35); }
+    .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+    .grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem; }
 
-    /* CODE BLOCK */
-    .code-block { background:#040C18; border:1px solid rgba(59,130,246,.2); border-radius:10px; padding:1.4rem 1.6rem; margin:1.2rem 0; overflow-x:auto; position:relative; }
-    .code-block pre { font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.7; color:#A8C7F0; white-space:pre-wrap; word-break:break-all; }
-    .code-block .code-label { font-size:10px; color:var(--txt2); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:.8rem; display:block; font-family:'Inter',sans-serif; }
-    .code-tag { color:#E5C46A; }
-    .code-val { color:#A8C7F0; }
-    .code-sep { color:rgba(255,255,255,.2); }
-    .code-comment { color:#3E6080; }
+    /* PROBLEM / BENEFIT CARDS */
+    .problem-card { border-left:3px solid var(--red); }
+    .problem-card .pc-ico { font-size:2rem; margin-bottom:1rem; }
+    .problem-card .pc-title { font-family:'Space Grotesk',sans-serif; font-size:1.05rem; font-weight:700; margin-bottom:.7rem; color:var(--red-lt); }
+    .problem-card .pc-body { font-size:13.5px; color:var(--txt1); line-height:1.72; }
+    .benefit-card { border-left:3px solid var(--green); }
+    .benefit-card .bc-ico { font-size:2rem; margin-bottom:1rem; }
+    .benefit-card .bc-title { font-family:'Space Grotesk',sans-serif; font-size:1.05rem; font-weight:700; margin-bottom:.7rem; color:var(--green-lt); }
+    .benefit-card .bc-body { font-size:13.5px; color:var(--txt1); line-height:1.72; }
+
+    /* FLOW DIAGRAMS */
+    .flow-wrap { background:rgba(6,14,28,.6); border:1px solid var(--border2); border-radius:var(--r); padding:1.8rem; }
+    .flow-label-top { font-size:10.5px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; color:var(--txt2); margin-bottom:1.2rem; }
+    .flow-row { display:flex; align-items:center; flex-wrap:wrap; gap:.6rem; }
+    .flow-node { background:rgba(255,255,255,.04); border:1px solid var(--border2); border-radius:10px; padding:.75rem 1.1rem; display:flex; flex-direction:column; align-items:center; text-align:center; min-width:100px; gap:4px; }
+    .flow-node .fn-ico { font-size:1.4rem; }
+    .flow-node .fn-name { font-size:12px; font-weight:700; color:var(--txt0); }
+    .flow-node .fn-sub { font-size:10px; color:var(--txt2); }
+    .flow-node.hl-red { border-color:rgba(230,51,41,.4); background:rgba(230,51,41,.06); }
+    .flow-node.hl-gold { border-color:rgba(201,168,76,.4); background:rgba(201,168,76,.06); }
+    .flow-node.hl-green { border-color:rgba(34,197,94,.4); background:rgba(34,197,94,.06); }
+    .flow-node.hl-blue { border-color:rgba(59,130,246,.4); background:rgba(59,130,246,.06); }
+    .flow-arrow { color:var(--txt2); font-size:1.1rem; font-weight:700; flex-shrink:0; }
+    .flow-caption { margin-top:1rem; font-size:12.5px; font-weight:600; }
 
     /* TABLE */
-    .tbl-wrap { overflow-x:auto; margin-top:1.5rem; }
-    table { width:100%; border-collapse:collapse; font-size:13px; }
-    thead { background:rgba(59,130,246,.08); }
-    th { padding:.75rem 1rem; text-align:left; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:1.2px; color:var(--txt1); border-bottom:1px solid var(--border2); white-space:nowrap; }
-    td { padding:.75rem 1rem; border-bottom:1px solid rgba(255,255,255,.03); vertical-align:top; }
-    tr:hover td { background:rgba(255,255,255,.02); }
-    .td-tag { font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold-lt); background:rgba(201,168,76,.08); padding:2px 7px; border-radius:4px; display:inline-block; }
-    .td-green { color:var(--green-lt); }
-    .td-blue  { color:var(--blue-lt); }
-    .td-amber { color:var(--amber); }
-    .td-red   { color:var(--red-lt); }
-    .td-gray  { color:var(--txt2); }
-
-    /* GRID LAYOUTS */
-    .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:2rem; }
-    .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:2rem; }
-    .grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; margin-top:2rem; }
-    @media(max-width:900px) { .grid2,.grid3,.grid4 { grid-template-columns:1fr; } }
-    @media(max-width:600px) { .grid2 { grid-template-columns:1fr; } }
-
-    /* INFO CARD */
-    .info-card { padding:1.5rem; }
-    .info-card .ic-label { font-size:10px; font-weight:700; color:var(--txt2); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:.6rem; }
-    .info-card .ic-title { font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; margin-bottom:.5rem; }
-    .info-card .ic-body  { font-size:13px; color:var(--txt1); line-height:1.65; }
-
-    /* TAG PILLS */
-    .tag-row { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1rem; }
-    .tag { padding:3px 10px; background:rgba(255,255,255,.04); border:1px solid var(--border2); border-radius:100px; font-size:11px; color:var(--txt2); font-weight:500; }
-    .tag-blue   { background:rgba(59,130,246,.1);  color:var(--blue-lt); border-color:rgba(59,130,246,.25); }
-    .tag-gold   { background:rgba(201,168,76,.1);  color:var(--gold-lt); border-color:rgba(201,168,76,.25); }
-    .tag-green  { background:rgba(34,197,94,.1);   color:var(--green-lt);border-color:rgba(34,197,94,.25); }
-    .tag-red    { background:rgba(230,51,41,.1);   color:var(--red-lt);  border-color:rgba(230,51,41,.25); }
-    .tag-purple { background:rgba(168,85,247,.1);  color:#C084FC;        border-color:rgba(168,85,247,.25); }
-
-    /* STATUS DOTS */
-    .sdot { display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:5px; vertical-align:middle; }
-    .s-green { background:var(--green-lt); }
-    .s-blue  { background:var(--blue-lt); }
-    .s-gold  { background:var(--gold); }
-    .s-amber { background:var(--amber); }
-
-    /* TIMELINE */
-    .tl { max-width:700px; margin-top:2.5rem; padding-left:2rem; position:relative; }
-    .tl::before { content:''; position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(to bottom,var(--blue),rgba(59,130,246,.1)); }
-    .tl-item { position:relative; margin-bottom:2.5rem; padding-left:2rem; }
-    .tl-dot { position:absolute; left:-1.85rem; top:4px; width:19px; height:19px; border-radius:50%; border:2px solid var(--blue); background:var(--bg0); display:flex; align-items:center; justify-content:center; }
-    .tl-dot.lit { background:var(--blue); }
-    .tl-dot.lit::after { content:''; width:6px; height:6px; border-radius:50%; background:#040B15; }
-    .tl-phase { font-size:10px; font-weight:700; color:var(--blue-lt); text-transform:uppercase; letter-spacing:1.8px; margin-bottom:.4rem; }
-    .tl-title { font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; margin-bottom:.4rem; }
-    .tl-body  { font-size:13px; color:var(--txt1); line-height:1.6; }
-
-    /* PHASE BADGE */
-    .phase-badge { display:inline-flex; align-items:center; gap:6px; padding:3px 12px; border-radius:100px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
-
-    /* DIVIDER */
-    .divider { height:1px; background:var(--border2); margin:3rem 0; }
+    .tbl-wrap { overflow-x:auto; border-radius:var(--r); border:1px solid var(--border2); }
+    table { width:100%; border-collapse:collapse; font-size:13.5px; }
+    thead th { background:rgba(201,168,76,.07); color:var(--gold-lt); font-size:10.5px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; padding:12px 16px; text-align:left; border-bottom:1px solid var(--border); }
+    tbody tr { border-bottom:1px solid var(--border2); transition:background .2s; }
+    tbody tr:last-child { border-bottom:none; }
+    tbody tr:hover { background:rgba(255,255,255,.025); }
+    tbody td { padding:13px 16px; color:var(--txt1); vertical-align:middle; }
+    tbody td:first-child { color:var(--txt0); font-weight:600; }
+    .tbl-winner { background:rgba(201,168,76,.04)!important; }
+    .tbl-winner td:first-child { color:var(--gold-lt); }
+    .td-green { color:var(--green-lt)!important; font-weight:600!important; }
+    .td-amber { color:var(--amber)!important; font-weight:600!important; }
+    .td-red { color:var(--red-lt)!important; font-weight:600!important; }
+    .td-blue { color:var(--blue-lt)!important; font-weight:600!important; }
+    .td-tag { display:inline-block; background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.25); color:var(--gold-lt); font-size:11px; font-weight:700; padding:2px 8px; border-radius:5px; }
 
     /* CALLOUT */
-    .callout { border-radius:10px; padding:1.2rem 1.5rem; margin:1.5rem 0; display:flex; gap:1rem; align-items:flex-start; }
-    .callout-blue   { background:rgba(59,130,246,.07); border-left:3px solid var(--blue); }
-    .callout-gold   { background:rgba(201,168,76,.07); border-left:3px solid var(--gold); }
-    .callout-green  { background:rgba(34,197,94,.07);  border-left:3px solid var(--green); }
-    .callout-amber  { background:rgba(245,158,11,.07); border-left:3px solid var(--amber); }
-    .callout-ico { font-size:1.3rem; flex-shrink:0; margin-top:1px; }
-    .callout-txt { font-size:13.5px; color:var(--txt1); line-height:1.65; }
+    .callout { display:flex; gap:1rem; padding:1.2rem 1.5rem; border-radius:var(--r); border-left:3px solid; }
+    .callout-gold { background:rgba(201,168,76,.06); border-color:var(--gold); }
+    .callout-blue  { background:rgba(59,130,246,.06); border-color:var(--blue); }
+    .callout-green { background:rgba(34,197,94,.06); border-color:var(--green); }
+    .callout-red   { background:rgba(230,51,41,.06); border-color:var(--red); }
+    .callout-ico { font-size:1.3rem; flex-shrink:0; margin-top:.1rem; }
+    .callout-txt { font-size:13.5px; color:var(--txt1); line-height:1.72; }
     .callout-txt strong { color:var(--txt0); }
 
-    /* COMPARISON WINNER */
-    .tbl-winner { background:rgba(34,197,94,.04) !important; }
-    .tbl-winner td { border-bottom-color:rgba(34,197,94,.1) !important; }
+    /* STATS */
+    .stats-row { display:grid; grid-template-columns:repeat(4,1fr); }
+    .stat-box { padding:2rem 1.5rem; text-align:center; position:relative; }
+    .stat-box::after { content:''; position:absolute; right:0; top:15%; bottom:15%; width:1px; background:var(--border2); }
+    .stat-box:last-child::after { display:none; }
+    .stat-val { font-family:'Space Grotesk',sans-serif; font-size:2.4rem; font-weight:800; color:var(--gold); line-height:1; margin-bottom:.4rem; }
+    .stat-lbl { font-size:11px; color:var(--txt2); font-weight:600; letter-spacing:1.2px; text-transform:uppercase; }
 
-    /* SECTION BG ALT */
-    .bg-alt { background:var(--bg1); }
+    /* COST */
+    .cost-card .cost-phase { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:.6rem; }
+    .cost-card .cost-title { font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; margin-bottom:.5rem; }
+    .cost-card .cost-amount { font-size:1.6rem; font-weight:800; font-family:'Space Grotesk',sans-serif; margin-bottom:.6rem; }
+    .cost-card .cost-items { list-style:none; }
+    .cost-card .cost-items li { font-size:12.5px; color:var(--txt1); padding:4px 0; border-bottom:1px solid var(--border2); display:flex; justify-content:space-between; }
+    .cost-card .cost-items li:last-child { border-bottom:none; }
+    .cost-card .cost-items li span { color:var(--txt0); font-weight:600; }
 
-    /* SUBSECTION */
-    .subsec { margin-top:3.5rem; }
-    .subsec-h3 { font-family:'Space Grotesk',sans-serif; font-size:1.2rem; font-weight:600; margin-bottom:1rem; display:flex; align-items:center; gap:.7rem; }
-    .subsec-num { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:7px; background:rgba(59,130,246,.15); border:1px solid rgba(59,130,246,.3); font-size:12px; font-weight:700; color:var(--blue-lt); flex-shrink:0; font-family:'JetBrains Mono',monospace; }
+    /* TIMELINE */
+    .timeline { display:flex; flex-direction:column; gap:0; position:relative; }
+    .timeline::before { content:''; position:absolute; left:22px; top:28px; bottom:28px; width:2px; background:linear-gradient(to bottom, var(--blue), var(--gold)); opacity:.25; }
+    .tl-item { display:flex; gap:1.5rem; padding:1.2rem 0; }
+    .tl-dot { width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.1rem; border:2px solid; position:relative; z-index:1; }
+    .tl-dot.prog   { background:rgba(201,168,76,.12); border-color:rgba(201,168,76,.4); }
+    .tl-dot.plan   { background:rgba(59,130,246,.08); border-color:rgba(59,130,246,.3); }
+    .tl-dot.future { background:rgba(255,255,255,.04); border-color:var(--border2); }
+    .tl-body { padding:.4rem 0; flex:1; }
+    .tl-period { font-size:10.5px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--txt2); margin-bottom:.3rem; }
+    .tl-title { font-family:'Space Grotesk',sans-serif; font-size:1.02rem; font-weight:700; margin-bottom:.5rem; }
+    .tl-desc { font-size:13px; color:var(--txt1); line-height:1.68; }
+    .tl-tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.7rem; }
+    .tl-tag { font-size:11px; padding:3px 10px; border-radius:5px; font-weight:600; border:1px solid; }
+    .tt-gold  { color:var(--gold);     background:rgba(201,168,76,.08); border-color:rgba(201,168,76,.25); }
+    .tt-blue  { color:var(--blue-lt);  background:rgba(59,130,246,.08); border-color:rgba(59,130,246,.25); }
+    .tt-green { color:var(--green-lt); background:rgba(34,197,94,.08);  border-color:rgba(34,197,94,.25); }
+    .tt-red   { color:var(--red-lt);   background:rgba(230,51,41,.08);  border-color:rgba(230,51,41,.25); }
 
-    /* ORDER STATE MACHINE */
-    .state-grid { display:flex; flex-wrap:wrap; gap:1rem; margin-top:1.5rem; }
-    .state-node { border-radius:10px; padding:.75rem 1.2rem; font-size:12.5px; font-weight:600; border:1px solid var(--border2); display:flex; align-items:center; gap:.5rem; }
+    /* RISK */
+    .risk-row { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
+    .risk-card { border-radius:var(--r); padding:1.5rem; border:1px solid var(--border2); }
+    .risk-card .rc-level { font-size:10px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; margin-bottom:.7rem; display:flex; align-items:center; gap:7px; }
+    .rc-dot { width:8px; height:8px; border-radius:50%; }
+    .risk-card .rc-title { font-size:.98rem; font-weight:700; margin-bottom:.6rem; }
+    .risk-card .rc-body { font-size:12.5px; color:var(--txt1); line-height:1.7; }
+    .risk-card .rc-mit { margin-top:.8rem; padding-top:.8rem; border-top:1px solid var(--border2); font-size:12px; color:var(--txt2); }
+    .risk-card .rc-mit strong { color:var(--txt1); }
 
-    /* STATS ROW */
-    .stats-row { display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--border2); border-radius:14px; overflow:hidden; margin-top:2rem; }
-    .stat-box { text-align:center; padding:1.8rem 1rem; position:relative; }
-    .stat-box:not(:last-child)::after { content:''; position:absolute; right:0; top:20%; bottom:20%; width:1px; background:var(--border2); }
-    .stat-num { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.6rem,3vw,2.4rem); font-weight:700; display:block; }
-    .stat-lbl { font-size:10.5px; color:var(--txt2); text-transform:uppercase; letter-spacing:1.2px; margin-top:5px; display:block; }
-    @media(max-width:700px) { .stats-row { grid-template-columns:1fr 1fr; } .stat-box:nth-child(2)::after { display:none; } }
+    /* NEXT STEPS */
+    .steps-list { display:flex; flex-direction:column; gap:1rem; }
+    .step-item { display:flex; gap:1.2rem; align-items:flex-start; padding:1.3rem 1.6rem; background:var(--card); border:1px solid var(--border2); border-radius:var(--r); transition:border-color .2s; }
+    .step-item:hover { border-color:var(--border); }
+    .step-num { width:34px; height:34px; border-radius:8px; background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.3); display:flex; align-items:center; justify-content:center; color:var(--gold-lt); font-weight:800; font-size:14px; flex-shrink:0; }
+    .step-body .step-title { font-weight:700; margin-bottom:.35rem; font-size:.95rem; }
+    .step-body .step-desc { font-size:13px; color:var(--txt1); line-height:1.65; }
+    .step-body .step-owner { margin-top:.5rem; font-size:11px; color:var(--txt2); font-weight:600; }
+    .step-body .step-owner span { color:var(--gold); }
 
     /* BACK TO TOP */
-    #btt { position:fixed; bottom:28px; right:28px; width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--blue-dk)); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:#fff; font-size:18px; font-weight:700; box-shadow:0 4px 20px rgba(59,130,246,.3); opacity:0; pointer-events:none; transition:opacity .3s,transform .3s; z-index:900; }
+    #btt { position:fixed; bottom:28px; right:28px; width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold-dk)); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:#040B15; font-size:18px; font-weight:700; box-shadow:0 4px 20px var(--gold-glow); opacity:0; pointer-events:none; transition:opacity .3s,transform .3s; z-index:900; }
     #btt.show { opacity:1; pointer-events:auto; }
     #btt:hover { transform:translateY(-3px); }
 
-    /* FOOTER */
-    footer { background:var(--bg1); border-top:1px solid var(--border); padding:3rem 2rem 2rem; }
-    .footer-inner { max-width:1140px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:1.2rem; text-align:center; }
-    .footer-copy { font-size:11px; color:var(--txt2); border-top:1px solid var(--border2); padding-top:1.2rem; width:100%; }
-
     /* ANIMATIONS */
-    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-    .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s ease,transform .7s ease; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .7s ease,transform .7s ease; }
     .reveal.in { opacity:1; transform:translateY(0); }
     .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s}
 
+    /* PAGE TRANSITION */
+    #page-transition { position:fixed; inset:0; z-index:99999; background:linear-gradient(105deg,transparent 0%,rgba(201,168,76,.05) 50%,transparent 100%),var(--bg0); transform:translateX(-100%); pointer-events:none; will-change:transform; }
+    @keyframes ptReveal { from{transform:translateX(0)} to{transform:translateX(100%)} }
+    @keyframes ptCover  { from{transform:translateX(-100%)} to{transform:translateX(0)} }
+    .pt-revealing { animation:ptReveal .52s cubic-bezier(0.23,1,0.32,1) forwards; }
+    .pt-covering  { animation:ptCover  .42s cubic-bezier(0.77,0,.175,1) forwards; pointer-events:all; }
+
     /* RESPONSIVE */
-    @media(max-width:768px) {
+    @media (max-width:900px) { .grid2,.grid3,.stats-row,.risk-row { grid-template-columns:1fr; } .stat-box::after{display:none;} }
+    @media (max-width:768px) {
       .nav-links { display:none; }
       .hamburger { display:flex; }
       .nav-links.open { display:flex; flex-direction:column; position:fixed; top:68px; left:0; right:0; background:rgba(2,8,16,.97); backdrop-filter:blur(20px); padding:1rem 2rem; border-bottom:1px solid var(--border); gap:0; }
       .nav-links.open li a { padding:12px 0; border-bottom:1px solid var(--border2); border-radius:0; }
-      .flow-row { flex-direction:column; align-items:center; }
-      .flow-arrow { transform:rotate(90deg) !important; }
+      .flow-row { flex-direction:column; align-items:flex-start; }
+      .flow-arrow { transform:rotate(90deg); }
     }
-    @media(max-width:480px) { section { padding:3.5rem 1rem; } }
+    @media (max-width:480px) { section{padding:3.5rem 1rem;} }
   </style>
 </head>
 <body>
-
 <div id="pbar"></div>
 
 <!-- NAV -->
 <nav id="nav">
   <a href="index.html" class="nav-brand">
-    <div class="nav-mark">А</div>
+    <div class="nav-mark"><img src="img/logo.png" alt="Ард" class="nav-logo-img" /></div>
     <div class="nav-text">
       <strong>Ард Секюритиз ҮЦК</strong>
-      <small>FIX API Судалгаа</small>
+      <small>Стратегийн Судалгаа</small>
     </div>
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#architecture">Архитектур</a></li>
-    <li><a href="#fix">FIX Протокол</a></li>
-    <li><a href="#oms">OMS/EMS</a></li>
-    <li><a href="#pspl">PSPL Интеграц</a></li>
+    <li><a href="#problem">Асуудал</a></li>
+    <li><a href="#solution">Шийдэл</a></li>
+    <li><a href="#broker">Брокер</a></li>
     <li><a href="#comparison">Харьцуулалт</a></li>
+    <li><a href="#cost">Зардал</a></li>
+    <li><a href="#impact">Үр Дүн</a></li>
     <li><a href="#roadmap">Замнал</a></li>
     <li><a href="index.html" class="nav-back">← Тайлан</a></li>
   </ul>
@@ -258,26 +264,20 @@
   <div class="hero-grid-bg"></div>
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
-
   <div class="hero-inner">
-    <div class="hero-chip">
-      <span class="chip-dot"></span>
-      Системийн Администраторын Судалгаа · 2026
-    </div>
+    <div class="hero-chip"><span class="chip-dot"></span>Стратегийн Судалгаа · 2026–2027</div>
     <h1 class="hero-h1">
-      <span class="l1">Олон Улсын Зах Зээлд Нэвтрэх</span>
-      <span class="l2">FIX API Интеграцийн Судалгаа</span>
+      <span class="l1">Олон Улсын Зах Зээлд</span>
+      <span class="l2">Автоматжуулсан Нэвтрэлт</span>
     </h1>
     <p class="hero-sub">
-      Ард Секюритиз ҮЦК-ийн олон улсын хөрөнгийн зах зээлд (АНУ) автоматжуулсан захиалга
-      дамжуулах тогтолцоо бий болгохын тулд шаардлагатай FIX протокол, OMS/EMS архитектур,
-      PSPL интеграцийн иж бүрэн техникийн шинжилгээ.
+      АНУ-ын хөрөнгийн зах зээлд захиалга дамжуулах үйл ажиллагааг гараас автоматаар шилжүүлэх — Ард Секюритиз ҮЦК-ийн 2026–2027 оны стратегийн гол зорилт.
     </p>
     <div class="hero-meta">
-      <span class="meta-item"><span class="meta-dot"></span>2026 оны 4-р сар</span>
+      <span class="meta-item"><span class="meta-dot"></span>2026 оны 5-р сар</span>
       <span class="meta-item"><span class="meta-dot"></span>Системийн Администратор</span>
-      <span class="meta-item"><span class="meta-dot"></span>2026–2027 Стратегийн Зорилт</span>
-      <span class="meta-item"><span class="meta-dot"></span>Нууц — Дотоод Хэрэглээнд</span>
+      <span class="meta-item"><span class="meta-dot"></span>Монголд анхны</span>
+      <span class="meta-item"><span class="meta-dot"></span>Дотоод — Нууц</span>
     </div>
   </div>
 </section>
@@ -286,915 +286,533 @@
 <div style="background:var(--bg1);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
   <div class="wrap">
     <div class="stats-row">
-      <div class="stat-box reveal">
-        <span class="stat-num" style="color:var(--blue-lt);">FIX 4.4</span>
-        <span class="stat-lbl">Зорилтот Протокол</span>
-      </div>
-      <div class="stat-box reveal d1">
-        <span class="stat-num" style="color:var(--gold);">PSPL</span>
-        <span class="stat-lbl">Сонгосон Брокер</span>
-      </div>
-      <div class="stat-box reveal d2">
-        <span class="stat-num" style="color:var(--green-lt);">6</span>
-        <span class="stat-lbl">Хэрэгжилтийн Шат</span>
-      </div>
-      <div class="stat-box reveal d3">
-        <span class="stat-num" style="color:var(--amber);">2027</span>
-        <span class="stat-lbl">Зорилтот Жил</span>
-      </div>
+      <div class="stat-box reveal"><div class="stat-val">$0</div><div class="stat-lbl">Одоогийн АНУ авто орлого</div></div>
+      <div class="stat-box reveal d1"><div class="stat-val">1-р</div><div class="stat-lbl">Монголд анхны компани</div></div>
+      <div class="stat-box reveal d2"><div class="stat-val">24/7</div><div class="stat-lbl">Автомат ажиллагаа</div></div>
+      <div class="stat-box reveal d3"><div class="stat-val">18м</div><div class="stat-lbl">Хэрэгжилтийн хугацаа</div></div>
     </div>
   </div>
 </div>
 
-<!-- ============================================================
-     SECTION 1: CURRENT ARCHITECTURE
-     ============================================================ -->
-<section id="architecture">
+<!-- ============================================================ PROBLEM -->
+<section id="problem">
   <div class="wrap">
-    <div class="sec-eyebrow gold">Одоогийн Байдал</div>
-    <h2 class="sec-h2">Ард Секюритиз-ийн Захиалгын Системийн Архитектур</h2>
-    <p class="sec-p wide">
-      Полярис OMS (CASPO боловсруулсан) нь Ард Секюритиз ҮЦК-ийн бүх захиалгын урсгалыг удирдана. Дотоодын МХБ-ын арилжаа FIX протоколоор аль хэдийн автоматжуулагдсан байгаа бол олон улсын (АНУ) арилжаа одоогоор оператор гараар хийж байна — энэ нь автоматжуулалтын гол цоорхой юм.
-    </p>
-
-    <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">1а</span> Одоогийн Дотоодын Захиалгын Урсгал (МХБ)</div>
-      <div class="flow-wrap">
-        <div class="flow-row reveal">
-          <div class="flow-node highlight-blue">
-            <span class="fn-ico">👤</span>
-            <span class="fn-name">Хэрэглэгч</span>
-            <span class="fn-sub">Ард App / Web</span>
-          </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node highlight-gold">
-            <span class="fn-ico">🖥️</span>
-            <span class="fn-name">Полярис OMS</span>
-            <span class="fn-sub">CASPO боловсруулсан</span>
-          </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node highlight-blue">
-            <span class="fn-ico">⚙️</span>
-            <span class="fn-name">FIX Engine</span>
-            <span class="fn-sub">Одоо ажиллаж байгаа</span>
-          </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node highlight-green">
-            <span class="fn-ico">🏛️</span>
-            <span class="fn-name">МХБ</span>
-            <span class="fn-sub">Монголын ХБ</span>
-          </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node highlight-green">
-            <span class="fn-ico">✅</span>
-            <span class="fn-name">Биелэлт</span>
-            <span class="fn-sub">Execution Report</span>
-          </div>
-        </div>
-        <p class="flow-label" style="margin-top:1rem;">✅ АВТОМАТ — FIX протоколоор бүрэн ажиллаж байна</p>
+    <div class="sec-eyebrow">Одоогийн Байдал</div>
+    <h2 class="sec-h2">Асуудал: Гар Ажиллагааны Хязгаарлал</h2>
+    <p class="sec-p wide">Ард Секюритиз нь МХБ-ийн захиалгыг Полярис системээр дамжуулан бүрэн автоматаар шийддэг. Гэвч АНУ-ын зах зээлийн захиалга бүрийг өнөөг хүртэл оператор гараар боловсруулдаг — энэ нь өсөн нэмэгдэж буй хэрэлцэгчдийн нэрийн эрэлтийг хангах боломжгүй болгож байна.</p>
+    <div class="grid3">
+      <div class="card problem-card reveal">
+        <div class="pc-ico">⏱️</div>
+        <div class="pc-title">Удаашрал ба Хугацааны Алдагдал</div>
+        <div class="pc-body">АНУ-ын зах зээл шөнийн цагт ажилладаг (Монголын 21:30–04:00). Гар оролтоор захиалга боловсруулах нь үнийн өөрчлөлтөд цаг алдуулдаг.</div>
+      </div>
+      <div class="card problem-card reveal d1">
+        <div class="pc-ico">⚠️</div>
+        <div class="pc-title">Хүний Алдааны Эрсдэл</div>
+        <div class="pc-body">Гар ажиллагаа нь буруу мэдээлэл оруулах, захиалга алдагдах зэрэг эрсдэлийг дагуулдаг. Автоматжуулалт энэ эрсдэлийг устгана.</div>
+      </div>
+      <div class="card problem-card reveal d2">
+        <div class="pc-ico">📉</div>
+        <div class="pc-title">Өсөлтийн Дээд Тал</div>
+        <div class="pc-body">Нэг оператор нэгэн зэрэг хязгаарлагдмал захиалга шийдэж чадна. Автоматжуулалт нь хэрэглэгчийн тооны дээд хязгаарыг арилгана.</div>
       </div>
     </div>
 
-    <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">1б</span> Одоогийн Олон Улсын Захиалгын Урсгал (ЦООРХОЙ)</div>
-      <div class="flow-wrap">
-        <div class="flow-row reveal">
-          <div class="flow-node highlight-blue">
-            <span class="fn-ico">👤</span>
-            <span class="fn-name">Хэрэглэгч</span>
-            <span class="fn-sub">Захиалга өгнө</span>
-          </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node highlight-gold">
-            <span class="fn-ico">🖥️</span>
-            <span class="fn-name">Полярис OMS</span>
-            <span class="fn-sub">Дотоод бүртгэл</span>
-          </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node highlight-red" style="border-color:rgba(230,51,41,.4);background:rgba(230,51,41,.08);">
-            <span class="fn-ico">👨‍💻</span>
-            <span class="fn-name">Оператор</span>
-            <span class="fn-sub">⚠️ ГАРЫН АВЛАГА</span>
-          </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node">
-            <span class="fn-ico">🇺🇸</span>
-            <span class="fn-name">PSPL / АНУ</span>
-            <span class="fn-sub">Гараар оруулна</span>
-          </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node">
-            <span class="fn-ico">📊</span>
-            <span class="fn-name">NYSE/NASDAQ</span>
-            <span class="fn-sub">Биелэлт</span>
-          </div>
-        </div>
-        <p class="flow-label" style="margin-top:1rem;color:var(--red-lt);">⚠️ ГАРААР — Оператор дамжуулж байна. Алдааны эрсдэл өндөр, хугацааны хоцролттой</p>
-      </div>
+    <div class="callout callout-gold" style="margin-top:2rem;">
+      <span class="callout-ico">🌍</span>
+      <div class="callout-txt"><strong>Монголын зах зээлийн байдал:</strong> Одоогоор Монголын жишиг ҮЦК-ууд АНУ-ын зах зээлд автоматжуулсан захиалга дамжуулдаггүй. Ард Секюритиз энэ үйл ажиллагааг эхэлсэн тохиолдолд <strong>Монголд анхны компани</strong> болох бөгөөд томоохон өрсөлдөөний давуу байдал бий болно.</div>
     </div>
 
     <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">1в</span> Зорилтот Архитектур — Бүрэн Автоматжуулалт</div>
-      <div class="flow-wrap">
-        <div class="flow-row reveal">
-          <div class="flow-node highlight-blue">
-            <span class="fn-ico">👤</span>
-            <span class="fn-name">Хэрэглэгч</span>
-            <span class="fn-sub">AAPL 100ш захиална</span>
+      <div class="subsec-h3"><span class="subsec-num">1</span> Одоогийн болон Зорилтот Захиалгын Урсгал</div>
+      <div class="grid2" style="gap:1.5rem;">
+        <div class="flow-wrap">
+          <div class="flow-label-top">⚠️ ОДООГИЙН БАЙДАЛ — Гар Ажиллагаа</div>
+          <div class="flow-row">
+            <div class="flow-node hl-blue"><span class="fn-ico">👤</span><span class="fn-name">Хэрэглэгч</span><span class="fn-sub">Захиалга өгнө</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node hl-gold"><span class="fn-ico">🖥️</span><span class="fn-name">Полярис</span><span class="fn-sub">Дотоод систем</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node hl-red"><span class="fn-ico">🧑‍💼</span><span class="fn-name">Оператор</span><span class="fn-sub">Гараар дамжуулна</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node"><span class="fn-ico">🇺🇸</span><span class="fn-name">PSPL</span><span class="fn-sub">АНУ зах зээл</span></div>
           </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node highlight-gold">
-            <span class="fn-ico">🖥️</span>
-            <span class="fn-name">Полярис OMS</span>
-            <span class="fn-sub">Pre-trade check</span>
-          </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node highlight-blue">
-            <span class="fn-ico">🔌</span>
-            <span class="fn-name">FIX Adapter</span>
-            <span class="fn-sub">ШИНЭ — CASPO хийнэ</span>
-          </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node highlight-green">
-            <span class="fn-ico">🇺🇸</span>
-            <span class="fn-name">PSPL Gateway</span>
-            <span class="fn-sub">FIX 4.4 / TLS</span>
-          </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node highlight-green">
-            <span class="fn-ico">📈</span>
-            <span class="fn-name">NYSE/NASDAQ</span>
-            <span class="fn-sub">Биелэлт буцна</span>
-          </div>
+          <div class="flow-caption" style="color:var(--red-lt);">Хугацаа удаан · Алдааны эрсдэл · Хязгаарлагдмал</div>
         </div>
-        <p class="flow-label" style="margin-top:1rem;color:var(--green-lt);">🎯 ЗОРИЛТ — Бүрэн автомат, FIX протоколоор, оператор шаардлагагүй</p>
-      </div>
-
-      <div class="callout callout-blue" style="margin-top:2rem;">
-        <span class="callout-ico">💡</span>
-        <div class="callout-txt">
-          <strong>Полярис ба CASPO:</strong> Полярис систем нь CASPO компани Ард Секюритиз-д зориулан боловсруулсан бүхэл бүтэн OMS платформ. Олон улсын FIX интеграцийг хэрэгжүүлэхийн тулд CASPO-д <strong>шинэ FIX Adapter модуль</strong> хийх техникийн тодорхойлолт боловсруулах шаардлагатай. Ард Секюритиз системийн администратор шаардлагыг нарийн тодорхойлж, CASPO хэрэгжүүлнэ.
+        <div class="flow-wrap" style="border-color:rgba(34,197,94,.25);">
+          <div class="flow-label-top">✅ ЗОРИЛТ — Бүрэн Автомат</div>
+          <div class="flow-row">
+            <div class="flow-node hl-blue"><span class="fn-ico">👤</span><span class="fn-name">Хэрэглэгч</span><span class="fn-sub">Захиалга өгнө</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node hl-gold"><span class="fn-ico">🖥️</span><span class="fn-name">Полярис</span><span class="fn-sub">Автомат шалгалт</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node hl-green"><span class="fn-ico">⚡</span><span class="fn-name">API</span><span class="fn-sub">Шууд холболт</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node hl-green"><span class="fn-ico">🇺🇸</span><span class="fn-name">PSPL</span><span class="fn-sub">Шуурхай биелэлт</span></div>
+          </div>
+          <div class="flow-caption" style="color:var(--green-lt);">Секундын дотор · Алдаагүй · Хязгааргүй</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     SECTION 2: FIX PROTOCOL DEEP DIVE
-     ============================================================ -->
-<section id="fix" class="bg-alt">
+<!-- ============================================================ SOLUTION -->
+<section id="solution" class="bg-alt">
   <div class="wrap">
-    <div class="sec-eyebrow">Үндсэн Судалгаа</div>
-    <h2 class="sec-h2">FIX Протокол — Гүнзгий Техникийн Шинжилгээ</h2>
-    <p class="sec-p wide">
-      Financial Information eXchange (FIX) протокол нь дэлхийн санхүүгийн захиалгын холбооны де факто стандарт юм. Хэрэгжилтийн өмнө энэхүү протоколын бүх давхаргыг нарийн ойлгох шаардлагатай.
-    </p>
+    <div class="sec-eyebrow">Шийдэл</div>
+    <h2 class="sec-h2">Юу Хийх Гэж Байна вэ?</h2>
+    <p class="sec-p wide">Ард Секюритиз нь өөрийн Полярис системийг АНУ-ын брокер PSPL-тэй шууд API холболтоор нийлүүлнэ. Хэрэглэгч захиалга өгмөгц систем автоматаар шалгаж, дамжуулж, биелэлтийн мэдэгдлийг буцааж өгнө — оператор шаардлагагүй.</p>
+    <div class="grid3" style="margin-bottom:2.5rem;">
+      <div class="card reveal">
+        <div style="font-size:2rem;margin-bottom:1rem;">🔌</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:.6rem;">FIX API — Дэлхийн Стандарт</div>
+        <div style="font-size:13.5px;color:var(--txt1);line-height:1.72;">NYSE, NASDAQ, дэлхийн бүх томоохон биржийн ашигладаг захиалга дамжуулах нийтлэг холболтын арга. МХБ-д одоо ч ажилладаг — PSPL-д мөн адил аргаар холбогдоно.</div>
+      </div>
+      <div class="card reveal d1">
+        <div style="font-size:2rem;margin-bottom:1rem;">🖥️</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:.6rem;">Полярис — CASPO-ийн Хийх Ажил</div>
+        <div style="font-size:13.5px;color:var(--txt1);line-height:1.72;">Полярис системийг хийсэн CASPO компани АНУ-ын зах зээлтэй холбох шинэ модуль нэмнэ. Ард Секюритиз шаардлагыг тодорхойлж, CASPO хэрэгжүүлнэ.</div>
+      </div>
+      <div class="card reveal d2">
+        <div style="font-size:2rem;margin-bottom:1rem;">💱</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:.6rem;">Валютын Автомат Хөрвүүлэлт</div>
+        <div style="font-size:13.5px;color:var(--txt1);line-height:1.72;">Хэрэглэгч төгрөгөөр данстай, арилжаа доллараар явагддаг. Систем MNT↔USD хөрвүүлэлт болон зардлын тооцоолол автоматаар хийнэ.</div>
+      </div>
+    </div>
+    <div class="callout callout-blue">
+      <span class="callout-ico">💡</span>
+      <div class="callout-txt"><strong>Энгийнээр тайлбарлавал:</strong> Яг л онлайн банкны шилжүүлэг шиг — хэрэглэгч дарна, систем автоматаар хийнэ. Полярис систем МХБ-д ийм байдлаар ажилладаг бөгөөд одоо тэрхүү чадварыг АНУ-ын зах зээлд өргөтгөх юм.</div>
+    </div>
+  </div>
+</section>
 
-    <!-- 2.1 History -->
-    <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">2.1</span> Түүх ба Тойм</div>
-      <div class="grid2">
-        <div class="card info-card reveal">
-          <div class="ic-label">Гарал үүсэл</div>
-          <div class="ic-title">1992 — FIX-ийн Эхлэл</div>
-          <div class="ic-body">1992 онд АНУ-ын <strong>Fidelity Investments</strong> ба <strong>Salomon Brothers</strong> хооронд хувийн захиалга дамжуулах протоколоор эхэлсэн. 1998 онд олон нийтэд нээлттэй болж, FIX Trading Community (fixtrading.org) удирдаж эхэлсэн.</div>
-        </div>
-        <div class="card info-card reveal d1">
-          <div class="ic-label">Өнөөдрийн байдал</div>
-          <div class="ic-title">Дэлхийн Де Факто Стандарт</div>
-          <div class="ic-body">NYSE, NASDAQ, LSE, HKEx зэрэг дэлхийн томоохон биржүүд болон Goldman Sachs, Morgan Stanley, JP Morgan зэрэг бүх томоохон брокерууд FIX ашигладаг. Өдөрт <strong>хэдэн тэрбум захиалга</strong> FIX-ээр дамждаг.</div>
-        </div>
-        <div class="card info-card reveal d2">
-          <div class="ic-label">Хэрэглээний хүрээ</div>
-          <div class="ic-title">Олон Хөрөнгийн Ангилал</div>
-          <div class="ic-body">Хувьцаа (Equities), Бонд (Fixed Income), Деривативт (Derivatives), Форекс (FX), Криптовалют зэрэгт хэрэглэгддэг. Ард Секюритиз-д <strong>US Equities (NYSE/NASDAQ)</strong> буюу хувьцааны арилжааны хэсэг хамааралтай.</div>
-        </div>
-        <div class="card info-card reveal d3">
-          <div class="ic-label">Хэн удирддаг вэ</div>
-          <div class="ic-title">FIX Trading Community</div>
-          <div class="ic-body">fixtrading.org вэбсайтад бүх техникийн баримт бичгүүд, FIX Dictionary, message specifications байдаг. Олон улсын зах зээлд ороход энэ сайтаас шаардлагатай spec-ийг татаж авах боломжтой.</div>
+<!-- ============================================================ BROKER -->
+<section id="broker">
+  <div class="wrap">
+    <div class="sec-eyebrow">Шилэгдсэн Брокер</div>
+    <h2 class="sec-h2">PSPL — Pacific Square Partners</h2>
+    <p class="sec-p wide">АНУ-д суурьтай Pacific Square Partners (PSPL) нь Ард Секюритизийн АНУ-ын зах зээлийн гол гүйцэтгэгч (prime broker) болохоор сонгогдсон. PSPL нь Монголын зах зээлтэй ажиллах туршлагатай, sub-account загварыг санал болгодог.</p>
+    <div class="grid2" style="margin-bottom:2rem;">
+      <div class="card reveal">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;">PSPL ямар үүрэг гүйцэтгэх вэ</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.75rem;">
+          <li style="display:flex;gap:.8rem;font-size:13.5px;color:var(--txt1)"><span style="color:var(--green-lt);font-size:1rem;flex-shrink:0;">✓</span>NYSE болон NASDAQ-д нэвтрэх хандалт олгоно</li>
+          <li style="display:flex;gap:.8rem;font-size:13.5px;color:var(--txt1)"><span style="color:var(--green-lt);font-size:1rem;flex-shrink:0;">✓</span>Хувьцааны хадгалалт, тооцоо нийлэлтийг хариуцна</li>
+          <li style="display:flex;gap:.8rem;font-size:13.5px;color:var(--txt1)"><span style="color:var(--green-lt);font-size:1rem;flex-shrink:0;">✓</span>АНУ-ын зохицуулалтын шаардлагыг PSPL хариуцна</li>
+          <li style="display:flex;gap:.8rem;font-size:13.5px;color:var(--txt1)"><span style="color:var(--green-lt);font-size:1rem;flex-shrink:0;">✓</span>Клиент бүрийн дансыг тус тусад нь удирдана</li>
+          <li style="display:flex;gap:.8rem;font-size:13.5px;color:var(--txt1)"><span style="color:var(--green-lt);font-size:1rem;flex-shrink:0;">✓</span>Биелэлтийн тайлан, гүйлгээний баримтыг бүрдүүлнэ</li>
+        </ul>
+      </div>
+      <div class="card reveal d1">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;">Sub-account загвар — Яагаад давуу вэ</div>
+        <div style="font-size:13.5px;color:var(--txt1);line-height:1.72;margin-bottom:1rem;">PSPL-д нэг ерөнхий данс нээж, дотор нь хэрэглэгч бүрт тусдаа дэд данс гаргана. Ард Секюритиз нь клиентийн мэдээллийг PSPL-д нэг бүрчлэн бүртгэлгүйгээр удирдах боломжтой болдог тул хэрэглэгчийн тоо өсөхөд асуудалгүй.</div>
+        <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:1rem;">
+          <div style="font-size:12px;color:var(--gold);font-weight:700;margin-bottom:.5rem;">ЗАГВАРЫН ЖИШЭЭ</div>
+          <div style="font-size:13px;color:var(--txt1);">
+            Ард Секюритиз → <strong style="color:var(--txt0);">PSPL Ерөнхий Данс</strong><br>
+            &nbsp;&nbsp;&nbsp;├── Клиент А-ийн дэд данс<br>
+            &nbsp;&nbsp;&nbsp;├── Клиент Б-ийн дэд данс<br>
+            &nbsp;&nbsp;&nbsp;└── Клиент В-ийн дэд данс
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- 2.2 Versions -->
     <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">2.2</span> FIX Хувилбарууд</div>
+      <div class="subsec-h3"><span class="subsec-num">2</span> Хамтын Ажиллагааны Алхмууд</div>
       <div class="tbl-wrap reveal">
         <table>
-          <thead><tr><th>Хувилбар</th><th>Он</th><th>Хэрэглэх байдал</th><th>Онцлог</th></tr></thead>
+          <thead><tr><th>Алхам</th><th>Үйл ажиллагаа</th><th>Хариуцагч</th><th>Хугацаа</th></tr></thead>
           <tbody>
-            <tr><td><span class="td-tag">FIX.4.0</span></td><td>1994</td><td class="td-gray">Хуучирсан</td><td>Анхны нийтийн хувилбар</td></tr>
-            <tr><td><span class="td-tag">FIX.4.2</span></td><td>1997</td><td class="td-amber">Legacy — хэрэглэгддэг</td><td>Хамгийн түгээмэл legacy; олон брокер одоо ч ашигладаг</td></tr>
-            <tr class="tbl-winner"><td><span class="td-tag">FIX.4.4</span></td><td>2003</td><td class="td-green">✅ Хамгийн өргөн — ЗОРИЛТ</td><td>Cross-asset дэмжлэг; PSPL болон ихэнх prime broker ашигладаг хувилбар</td></tr>
-            <tr><td><span class="td-tag">FIX.5.0 SP2</span></td><td>2009</td><td class="td-blue">Шинэ — хязгаарлагдмал</td><td>FIXT 1.1 session layer; OTC derivatives-д илүү хэрэглэгддэг</td></tr>
+            <tr><td><span class="td-tag">1</span></td><td>PSPL-тэй хэлэлцэх, нөхцөл тохирох</td><td>Удирдлага + Сис. Адм.</td><td>2026 Q3</td></tr>
+            <tr><td><span class="td-tag">2</span></td><td>Техникийн тодорхойлолт боловсруулах</td><td>Системийн Администратор</td><td>2026 Q3</td></tr>
+            <tr><td><span class="td-tag">3</span></td><td>CASPO-д хөгжүүлэлтийн даалгавар өгөх</td><td>Сис. Адм. + CASPO</td><td>2026 Q4</td></tr>
+            <tr><td><span class="td-tag">4</span></td><td>Туршилтын орчинд PSPL-тэй холбох</td><td>CASPO + PSPL</td><td>2027 Q1</td></tr>
+            <tr><td><span class="td-tag">5</span></td><td>Баталгаажуулалт, үйлдвэрлэлийн орчинд нэвтрэх</td><td>Бүх тал</td><td>2027 Q2</td></tr>
           </tbody>
         </table>
-      </div>
-      <div class="callout callout-gold" style="margin-top:1rem;">
-        <span class="callout-ico">🎯</span>
-        <div class="callout-txt"><strong>Зөвлөмж:</strong> PSPL-ийн FIX specification баримт авахдаа тэдний дэмждэг хувилбарыг тодруулах. Ихэнх АНУ-ын prime broker <strong>FIX 4.2 эсвэл 4.4</strong> ашигладаг. Хоёрыг дэмжих чадвартай FIX engine сонгох нь зөв.</div>
-      </div>
-    </div>
-
-    <!-- 2.3 Message Structure -->
-    <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">2.3</span> FIX Мессежийн Бүтэц — Tag-Value Pair</div>
-      <p style="color:var(--txt1);font-size:14px;margin-bottom:1.2rem;">FIX мессеж нь <code style="color:var(--gold-lt)">tag=value</code> хосуудаас бүрдэх бөгөөд хосуудыг <strong>SOH</strong> (Start of Header, ASCII 0x01) тэмдэгтээр тусгаарлана. Харагдахуйц болгохын тулд энд <code style="color:var(--txt2)">|</code> ашиглав.</p>
-
-      <div class="grid2">
-        <div>
-          <div class="code-block reveal">
-            <span class="code-label">New Order Single (MsgType = D) — AAPL 100 хувьцаа худалдан авах</span>
-            <pre><span class="code-comment">--- HEADER ---</span>
-<span class="code-tag">8</span>=<span class="code-val">FIX.4.4</span><span class="code-sep">|</span>
-<span class="code-tag">9</span>=<span class="code-val">220</span><span class="code-sep">|</span>          <span class="code-comment">BodyLength</span>
-<span class="code-tag">35</span>=<span class="code-val">D</span><span class="code-sep">|</span>           <span class="code-comment">MsgType: New Order Single</span>
-<span class="code-tag">49</span>=<span class="code-val">ARDSEC</span><span class="code-sep">|</span>       <span class="code-comment">SenderCompID: Ард Сек</span>
-<span class="code-tag">56</span>=<span class="code-val">PSPLGW</span><span class="code-sep">|</span>       <span class="code-comment">TargetCompID: PSPL Gateway</span>
-<span class="code-tag">34</span>=<span class="code-val">1452</span><span class="code-sep">|</span>         <span class="code-comment">MsgSeqNum: дарааллын дугаар</span>
-<span class="code-tag">52</span>=<span class="code-val">20260501-01:30:00.000</span><span class="code-sep">|</span> <span class="code-comment">SendingTime UTC</span>
-<span class="code-comment">--- BODY ---</span>
-<span class="code-tag">11</span>=<span class="code-val">ARD-20260501-0001</span><span class="code-sep">|</span> <span class="code-comment">ClOrdID: Ард Секийн ID</span>
-<span class="code-tag">55</span>=<span class="code-val">AAPL</span><span class="code-sep">|</span>         <span class="code-comment">Symbol</span>
-<span class="code-tag">54</span>=<span class="code-val">1</span><span class="code-sep">|</span>            <span class="code-comment">Side: 1=Buy</span>
-<span class="code-tag">38</span>=<span class="code-val">100</span><span class="code-sep">|</span>           <span class="code-comment">OrderQty: 100 хувьцаа</span>
-<span class="code-tag">40</span>=<span class="code-val">2</span><span class="code-sep">|</span>            <span class="code-comment">OrdType: 2=Limit</span>
-<span class="code-tag">44</span>=<span class="code-val">185.50</span><span class="code-sep">|</span>       <span class="code-comment">Price: $185.50 лимит үнэ</span>
-<span class="code-tag">59</span>=<span class="code-val">0</span><span class="code-sep">|</span>            <span class="code-comment">TimeInForce: 0=Day</span>
-<span class="code-tag">60</span>=<span class="code-val">20260501-01:30:00.000</span><span class="code-sep">|</span>
-<span class="code-tag">207</span>=<span class="code-val">XNAS</span><span class="code-sep">|</span>        <span class="code-comment">SecurityExchange: NASDAQ</span>
-<span class="code-comment">--- TRAILER ---</span>
-<span class="code-tag">10</span>=<span class="code-val">087</span><span class="code-sep">|</span>          <span class="code-comment">CheckSum (mod-256)</span></pre>
-          </div>
-        </div>
-        <div>
-          <div class="code-block reveal d1">
-            <span class="code-label">Execution Report (MsgType = 8) — Биелсэн хариу</span>
-            <pre><span class="code-comment">--- HEADER ---</span>
-<span class="code-tag">8</span>=<span class="code-val">FIX.4.4</span><span class="code-sep">|</span>
-<span class="code-tag">35</span>=<span class="code-val">8</span><span class="code-sep">|</span>            <span class="code-comment">MsgType: Execution Report</span>
-<span class="code-tag">49</span>=<span class="code-val">PSPLGW</span><span class="code-sep">|</span>       <span class="code-comment">Sender: PSPL</span>
-<span class="code-tag">56</span>=<span class="code-val">ARDSEC</span><span class="code-sep">|</span>       <span class="code-comment">Target: Ард Сек</span>
-<span class="code-comment">--- BODY ---</span>
-<span class="code-tag">37</span>=<span class="code-val">PSPL-98765</span><span class="code-sep">|</span>   <span class="code-comment">OrderID: PSPL-ийн дугаар</span>
-<span class="code-tag">11</span>=<span class="code-val">ARD-20260501-0001</span><span class="code-sep">|</span> <span class="code-comment">ClOrdID: буцааж таарна</span>
-<span class="code-tag">17</span>=<span class="code-val">EXEC-112233</span><span class="code-sep">|</span>  <span class="code-comment">ExecID: гүйлгээний ID</span>
-<span class="code-tag">150</span>=<span class="code-val">2</span><span class="code-sep">|</span>           <span class="code-comment">ExecType: 2=Fill (биелсэн)</span>
-<span class="code-tag">39</span>=<span class="code-val">2</span><span class="code-sep">|</span>            <span class="code-comment">OrdStatus: 2=Filled</span>
-<span class="code-tag">38</span>=<span class="code-val">100</span><span class="code-sep">|</span>           <span class="code-comment">OrderQty</span>
-<span class="code-tag">14</span>=<span class="code-val">100</span><span class="code-sep">|</span>           <span class="code-comment">CumQty: нийт биелсэн</span>
-<span class="code-tag">151</span>=<span class="code-val">0</span><span class="code-sep">|</span>            <span class="code-comment">LeavesQty: үлдэгдэл 0</span>
-<span class="code-tag">6</span>=<span class="code-val">185.48</span><span class="code-sep">|</span>       <span class="code-comment">AvgPx: дундаж биелсэн үнэ</span>
-<span class="code-tag">31</span>=<span class="code-val">185.48</span><span class="code-sep">|</span>       <span class="code-comment">LastPx: сүүлийн үнэ</span>
-<span class="code-tag">32</span>=<span class="code-val">100</span><span class="code-sep">|</span>           <span class="code-comment">LastQty: сүүлийн тоо</span>
-<span class="code-tag">10</span>=<span class="code-val">143</span><span class="code-sep">|</span></pre>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2.4 Key FIX Tags -->
-    <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">2.4</span> Захиалгад Ашиглах Гол FIX Tag-уудын Лавлах</div>
-      <div class="grid2">
-        <div>
-          <p style="font-size:12px;color:var(--txt2);margin-bottom:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;">New Order Single (35=D) — Захиалга илгээх</p>
-          <div class="tbl-wrap reveal">
-            <table>
-              <thead><tr><th>Tag</th><th>Нэр</th><th>Утга / Жишээ</th></tr></thead>
-              <tbody>
-                <tr><td><span class="td-tag">11</span></td><td>ClOrdID</td><td>ARD-20260501-0001 (дотоод ID)</td></tr>
-                <tr><td><span class="td-tag">55</span></td><td>Symbol</td><td>AAPL, TSLA, MSFT</td></tr>
-                <tr><td><span class="td-tag">54</span></td><td>Side</td><td>1=Худалдан авах, 2=Зарах</td></tr>
-                <tr><td><span class="td-tag">38</span></td><td>OrderQty</td><td>100 (хувьцааны тоо)</td></tr>
-                <tr><td><span class="td-tag">40</span></td><td>OrdType</td><td>1=Market, 2=Limit, 3=Stop</td></tr>
-                <tr><td><span class="td-tag">44</span></td><td>Price</td><td>185.50 (Limit үнэ)</td></tr>
-                <tr><td><span class="td-tag">59</span></td><td>TimeInForce</td><td>0=Day, 1=GTC, 3=IOC, 4=FOK</td></tr>
-                <tr><td><span class="td-tag">207</span></td><td>SecurityExchange</td><td>XNAS=NASDAQ, XNYS=NYSE</td></tr>
-                <tr><td><span class="td-tag">1</span></td><td>Account</td><td>Клиентийн данс</td></tr>
-                <tr><td><span class="td-tag">21</span></td><td>HandlInst</td><td>1=Automated private (авто)</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div>
-          <p style="font-size:12px;color:var(--txt2);margin-bottom:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;">Execution Report (35=8) — Биелэлтийн хариу</p>
-          <div class="tbl-wrap reveal d1">
-            <table>
-              <thead><tr><th>Tag</th><th>Нэр</th><th>Утга / Тайлбар</th></tr></thead>
-              <tbody>
-                <tr><td><span class="td-tag">37</span></td><td>OrderID</td><td>PSPL-ийн дотоод ID</td></tr>
-                <tr><td><span class="td-tag">17</span></td><td>ExecID</td><td>Давтагдашгүй гүйлгээний ID</td></tr>
-                <tr><td><span class="td-tag">150</span></td><td>ExecType</td><td>0=New, 1=PartFill, 2=Fill, 4=Canceled, 8=Rejected</td></tr>
-                <tr><td><span class="td-tag">39</span></td><td>OrdStatus</td><td>0=New, 1=PartFill, 2=Filled, 4=Canceled, 8=Rejected</td></tr>
-                <tr><td><span class="td-tag">14</span></td><td>CumQty</td><td>Нийт биелсэн тоо</td></tr>
-                <tr><td><span class="td-tag">151</span></td><td>LeavesQty</td><td>Үлдсэн тоо</td></tr>
-                <tr><td><span class="td-tag">6</span></td><td>AvgPx</td><td>Дундаж биелсэн үнэ</td></tr>
-                <tr><td><span class="td-tag">58</span></td><td>Text</td><td>Reject-ийн шалтгааны тайлбар</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2.5 Session Layer -->
-    <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">2.5</span> FIX Session Layer — Холболтын Менежмент</div>
-      <p style="color:var(--txt1);font-size:14px;margin-bottom:1.5rem;">Session layer нь TCP/IP дэх FIX холболтын найдвартай байдлыг хангадаг. Дарааллын дугаар (Sequence Number), алдагдсан мессеж сэргээх, heartbeat зэргийг удирдана.</p>
-
-      <div class="tbl-wrap reveal">
-        <table>
-          <thead><tr><th>MsgType</th><th>Нэр</th><th>Тайлбар</th><th>Хэн илгээх вэ</th></tr></thead>
-          <tbody>
-            <tr><td><span class="td-tag">A</span></td><td>Logon</td><td>Холболт тогтоох, HeartBtInt тохиролцох</td><td>Initiator (Ард Сек)</td></tr>
-            <tr><td><span class="td-tag">5</span></td><td>Logout</td><td>Холболтыг журмын дагуу дуусгах</td><td>Хоёр тал</td></tr>
-            <tr><td><span class="td-tag">0</span></td><td>Heartbeat</td><td>Холболт амьд байгааг батлах</td><td>Хоёр тал (автомат)</td></tr>
-            <tr><td><span class="td-tag">1</span></td><td>Test Request</td><td>HeartBtInt хэтэрсэн үед TestReqID-тэй Heartbeat шаардах</td><td>Хоёр тал</td></tr>
-            <tr><td><span class="td-tag">2</span></td><td>Resend Request</td><td>Алдагдсан мессежийн дарааллын дугаарыг дахин хүсэх</td><td>Хоёр тал</td></tr>
-            <tr><td><span class="td-tag">4</span></td><td>Sequence Reset</td><td>Дарааллын тоог дахин тохируулах (GapFill эсвэл Reset)</td><td>Хоёр тал</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="code-block reveal" style="margin-top:1.5rem;">
-        <span class="code-label">Session lifecycle — Ард Сек (Initiator) ↔ PSPL (Acceptor)</span>
-        <pre><span class="code-comment">1. TCP/IP холболт: Ард Сек → PSPL IP:Port (TLS шифрлэлттэй)</span>
-
-<span class="code-comment">2. LOGON (Ард Сек → PSPL)</span>
-   <span class="code-tag">35</span>=<span class="code-val">A</span> | <span class="code-tag">108</span>=<span class="code-val">30</span> (HeartBtInt=30сек) | <span class="code-tag">98</span>=<span class="code-val">0</span> (EncryptMethod=None) | <span class="code-tag">141</span>=<span class="code-val">Y</span> (ResetOnLogon)
-
-<span class="code-comment">3. LOGON хариу (PSPL → Ард Сек)</span>
-   <span class="code-tag">35</span>=<span class="code-val">A</span> | <span class="code-tag">108</span>=<span class="code-val">30</span>  ← Зөвшөөрсөн
-
-<span class="code-comment">4. Арилжаа эхэлнэ: New Order (D), Cancel (F), Cancel/Replace (G) илгээх</span>
-
-<span class="code-comment">5. Heartbeat (хоёр тал, 30 секунд тутамд)</span>
-   <span class="code-tag">35</span>=<span class="code-val">0</span>  ← "Амьд байна"
-
-<span class="code-comment">6. Хэрэв 30+ сек мессеж байхгүй → Test Request (35=1) илгээнэ</span>
-   Хариу ирсэн: ок | Хариу ирээгүй: Logout → reconnect
-
-<span class="code-comment">7. LOGOUT</span>
-   <span class="code-tag">35</span>=<span class="code-val">5</span> | <span class="code-tag">58</span>=<span class="code-val">Session ended normally</span></pre>
-      </div>
-
-      <div class="callout callout-blue" style="margin-top:1.2rem;">
-        <span class="callout-ico">⚠️</span>
-        <div class="callout-txt">
-          <strong>Дарааллын дугаар (Sequence Number) — чухал!</strong> FIX session нь хоёр талын илгээсэн болон хүлээн авсан мессежийн дарааллын дугаарыг хянана. Дугаар алдагдсан тохиолдолд Resend Request (35=2) илгээж алдагдсан мессежүүдийг сэргээдэг. FIX engine файлд sequence number-ийг хадгалдаг тул системийн сэргэлтийн дараа ч дарааллаа хадгалсан байна.
-        </div>
-      </div>
-    </div>
-
-    <!-- 2.6 FIX Engine -->
-    <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">2.6</span> FIX Engine Libraries — CASPO-д Зөвлөмж</div>
-      <div class="tbl-wrap reveal">
-        <table>
-          <thead><tr><th>Library</th><th>Хэл</th><th>Лиценз</th><th>Тохиромж</th><th>Тайлбар</th></tr></thead>
-          <tbody>
-            <tr class="tbl-winner"><td><strong>QuickFIX/J</strong></td><td>Java</td><td>Open Source</td><td class="td-green">✅ Хамгийн тохиромжтой</td><td>Battle-tested, enterprise grade; FIX 4.0–5.0 дэмжинэ; олон брокер баталгаажуулсан</td></tr>
-            <tr><td><strong>QuickFIX/n</strong></td><td>C# .NET</td><td>Open Source</td><td class="td-blue">Тохиромжтой</td><td>Полярис .NET дээр байвал нэгтгэхэд хялбар</td></tr>
-            <tr><td><strong>QuickFIX</strong></td><td>C++</td><td>Open Source</td><td class="td-amber">Дунд зэрэг</td><td>Хамгийн өндөр performance; хэрэгжүүлэхэд хэцүү</td></tr>
-            <tr><td><strong>Zeromq/custom</strong></td><td>Аль ч хэл</td><td>Varies</td><td class="td-gray">Нарийн судлах</td><td>Зарим брокер proprietary client library өгдөг — PSPL-ийн нөхцөлийг шалгах</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="callout callout-green" style="margin-top:1rem;">
-        <span class="callout-ico">💡</span>
-        <div class="callout-txt">CASPO-тэй хэлэлцэхдээ <strong>Полярис ямар технологийн stack дээр хийгдсэн</strong> болохыг тодруулах. Java бол QuickFIX/J, .NET бол QuickFIX/n. PSPL мөн өөрсдийн FIX certification process шаарддаг тул CASPO тэр процессийг дагах шаардлагатай.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     SECTION 3: OMS/EMS ARCHITECTURE
-     ============================================================ -->
-<section id="oms">
+<!-- ============================================================ COMPARISON -->
+<section id="comparison" class="bg-alt">
   <div class="wrap">
-    <div class="sec-eyebrow">Системийн Архитектур</div>
-    <h2 class="sec-h2">OMS / EMS Архитектур ба Полярисын Өргөтгөл</h2>
-    <p class="sec-p wide">Полярис нь одоогоор бүрэн OMS (Order Management System) үүрэг гүйцэтгэж байна. Олон улсын FIX интеграцийн тулд OMS-ийн доор шинэ FIX adapter давхарга болон pre-trade risk engine нэмэх шаардлагатай.</p>
-
-    <!-- 3.1 OMS vs EMS -->
-    <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">3.1</span> OMS ба EMS — Үүргийн Ялгаа</div>
-      <div class="tbl-wrap reveal">
-        <table>
-          <thead><tr><th>Чадвар</th><th>OMS (Полярис — одоо байна)</th><th>EMS давхарга (нэмэх шаардлагатай)</th></tr></thead>
-          <tbody>
-            <tr><td>Захиалгын lifecycle удирдлага</td><td class="td-green">✅ Байна</td><td>—</td></tr>
-            <tr><td>Pre-trade compliance check</td><td class="td-green">✅ Байна (дотоод)</td><td class="td-amber">⚡ Олон улсын эрсдэлийн нэмэлт дүрэм</td></tr>
-            <tr><td>FIX протоколоор захиалга илгээх</td><td class="td-green">✅ МХБ-д байна</td><td class="td-red">❌ PSPL-д байхгүй → нэмэх</td></tr>
-            <tr><td>Олон зах зээл routing</td><td class="td-red">❌ Байхгүй</td><td class="td-amber">⚡ МХБ vs PSPL шийдвэрлэх логик</td></tr>
-            <tr><td>Currency conversion (MNT↔USD)</td><td class="td-red">❌ Байхгүй</td><td class="td-amber">⚡ Шинэ модуль</td></tr>
-            <tr><td>US market hours логик</td><td class="td-red">❌ Байхгүй</td><td class="td-amber">⚡ EST/EDT timezone</td></tr>
-            <tr><td>Execution report хүлээн авах (PSPL)</td><td class="td-red">❌ Байхгүй</td><td class="td-amber">⚡ Шинэ handler</td></tr>
-            <tr><td>T+2 settlement tracking (US)</td><td class="td-red">❌ Байхгүй</td><td class="td-amber">⚡ Шинэ логик</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- 3.2 New Modules -->
-    <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">3.2</span> Полярист Нэмэгдэх Шинэ Модулиуд</div>
-      <div class="grid2">
-        <div class="card info-card reveal" style="border-color:rgba(59,130,246,.3);">
-          <div class="ic-label" style="color:var(--blue-lt);">Модуль 1</div>
-          <div class="ic-title">🔌 FIX Adapter Module</div>
-          <div class="ic-body">
-            Полярис OMS-аас ирсэн захиалгыг FIX 4.4 форматад хөрвүүлж PSPL-д илгээнэ. QuickFIX/J эсвэл QuickFIX/n ашиглан хэрэгжүүлнэ. Session management, sequence tracking, message store-г бүгдийг нь хариуцна.
-            <div class="tag-row"><span class="tag-blue">FIX 4.4</span><span class="tag-blue">QuickFIX</span><span class="tag">Session Mgmt</span></div>
-          </div>
-        </div>
-        <div class="card info-card reveal d1" style="border-color:rgba(201,168,76,.3);">
-          <div class="ic-label" style="color:var(--gold);">Модуль 2</div>
-          <div class="ic-title">🌐 Market Router</div>
-          <div class="ic-body">
-            Захиалгын хөрөнгийн тэмдэглэгээ (symbol) болон клиентийн тохиргоог харан <strong>МХБ (дотоод) эсвэл PSPL (олон улс)</strong> рүү шилжүүлэх шийдвэр гаргана. Монгол хувьцаа → МХБ, Гадаад хувьцаа → PSPL.
-            <div class="tag-row"><span class="tag-gold">Routing Logic</span><span class="tag">МХБ</span><span class="tag">PSPL</span></div>
-          </div>
-        </div>
-        <div class="card info-card reveal d2" style="border-color:rgba(34,197,94,.3);">
-          <div class="ic-label" style="color:var(--green-lt);">Модуль 3</div>
-          <div class="ic-title">💱 Currency Module</div>
-          <div class="ic-body">
-            Клиент МНТ-ээр захиалга өгч болох тул USD-рүү хөрвүүлэх боломжтой байна. Ханшийн мэдээлэл Монголбанк эсвэл PSPL-ийн зах зээлийн мэдээллээс авна. Хөрвүүлэлтийн комисс, ханшийн зөрүүгийн бүртгэл.
-            <div class="tag-row"><span class="tag-green">MNT/USD</span><span class="tag">FX Rate</span><span class="tag">Commission</span></div>
-          </div>
-        </div>
-        <div class="card info-card reveal d3" style="border-color:rgba(245,158,11,.3);">
-          <div class="ic-label" style="color:var(--amber);">Модуль 4</div>
-          <div class="ic-title">⚡ Pre-Trade Risk Engine</div>
-          <div class="ic-body">
-            Клиентийн данс дахь үлдэгдэл хангалттай эсэх, position limit хэтрэхгүй эсэх, хаалттай хувьцаа биш эсэхийг шалгана. Reject шалтгааны тайлбартайгаар хэрэглэгчид буцаана.
-            <div class="tag-row"><span class="tag-amber">Position Limit</span><span class="tag">Balance Check</span><span class="tag">Price Band</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3.3 Order State Machine -->
-    <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">3.3</span> Захиалгын Төлвийн Машин (Order State Machine)</div>
-      <p style="color:var(--txt1);font-size:14px;margin-bottom:1.2rem;">PSPL-ийн Execution Report (35=8) дахь ExecType (tag 150) болон OrdStatus (tag 39) утгаас хамааран захиалгын төлөв өөрчлөгдөнө.</p>
-      <div class="code-block reveal">
-        <span class="code-label">Order state transitions — ExecType утгаар</span>
-        <pre><span class="code-val">Хэрэглэгч захиалга өгнө</span>
-       ↓
-[<span class="code-tag">PENDING NEW</span>]  ← Полярист хадгалагдав, FIX илгээгдэж байна
-       ↓ ExecType=<span class="code-val">0</span> (New)
-[<span class="code-tag">NEW</span>]           ← PSPL хүлээн авч биржид илгээлээ
-       ↓
-  ┌────────────────────────────┐
-  ↓                            ↓
-ExecType=<span class="code-val">1</span> (PartialFill)   ExecType=<span class="code-val">8</span> (Rejected)
-[<span class="code-tag">PARTIALLY FILLED</span>]            [<span class="code-tag">REJECTED</span>] ← Text(58)-д шалтгаан байна
-  ↓ ExecType=<span class="code-val">2</span> (Fill)
-[<span class="code-tag">FILLED</span>] ✅ ← Бүрэн биелсэн, T+2 settlement эхэлнэ
-
-[NEW] → Cancel хүсэлт (35=F)
-  ↓ ExecType=<span class="code-val">6</span> (PendingCancel)
-[<span class="code-tag">PENDING CANCEL</span>]
-  ↓ ExecType=<span class="code-val">4</span> (Canceled)
-[<span class="code-tag">CANCELED</span>] ✅</pre>
-      </div>
-    </div>
-
-    <!-- 3.4 US Market Hours -->
-    <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">3.4</span> АНУ-ын Зах Зээлийн Цагийн Удирдлага</div>
-      <div class="tbl-wrap reveal">
-        <table>
-          <thead><tr><th>Цагийн бүс</th><th>АНУ EST</th><th>Монголын цаг (UTC+8)</th><th>Тайлбар</th></tr></thead>
-          <tbody>
-            <tr><td>Pre-market</td><td>04:00–09:30</td><td class="td-amber">16:00–21:30</td><td>Хязгаарлагдмал шингэн чанар</td></tr>
-            <tr class="tbl-winner"><td>Regular Session</td><td>09:30–16:00</td><td class="td-green"><strong>21:30–04:00 (дараагийн өдрийн)</strong></td><td>✅ Үндсэн арилжааны цаг — PSPL FullService</td></tr>
-            <tr><td>After-hours</td><td>16:00–20:00</td><td class="td-amber">04:00–08:00</td><td>ECN-ээр дамжна</td></tr>
-            <tr><td>Closed</td><td>Шөнө ба амралт</td><td>—</td><td>Захиалга хүлээлгийн дарааллд хадгалагдана</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="callout callout-amber" style="margin-top:1rem;">
-        <span class="callout-ico">🕐</span>
-        <div class="callout-txt"><strong>Монголын хэрэглэгчдэд:</strong> АНУ-ын зах зээл шөнийн цагт ажилладаг учраас хэрэглэгчийн апп "зах зээл хаалттай" байгааг тодорхой харуулж, захиалгыг "Next Day Open" буюу GTC (Good Till Cancel) болгон хадгалах боломж олгох нь чухал.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     SECTION 4: PSPL INTEGRATION
-     ============================================================ -->
-<section id="pspl" class="bg-alt">
-  <div class="wrap">
-    <div class="sec-eyebrow gold">Prime Broker</div>
-    <h2 class="sec-h2">PSPL (Pacific Square Partners) Интеграцийн Замнал</h2>
-    <p class="sec-p wide">PSPL бол Ард Секюритиз-ийн сонгосон АНУ-ын prime broker. АНУ-ын хувьцааны захиалгыг PSPL дамжуулан NYSE/NASDAQ-д хүргэнэ.</p>
-
-    <!-- 4.1 Model -->
-    <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">4.1</span> Данс Удирдлагын Загвар</div>
-      <div class="grid2">
-        <div class="card info-card reveal" style="border-color:rgba(201,168,76,.3);">
-          <div class="ic-label" style="color:var(--gold);">Сонгосон загвар</div>
-          <div class="ic-title">🏦 Sub-Account Model</div>
-          <div class="ic-body">
-            Ард Секюритиз PSPL дотор нэг master account-тай. Клиент бүрт дотор нь sub-account үүсгэнэ. PSPL зөвхөн <strong>Ард Секюритиз</strong>-ийг counterparty болгон харна — клиентийн мэдээлэл PSPL-д ил биш. Compliance, KYC-г Ард Сек өөрөө хариуцна.
-            <div class="tag-row"><span class="tag-gold">Master Account</span><span class="tag">Sub-Accounts</span><span class="tag-green">Privacy</span></div>
-          </div>
-        </div>
-        <div class="card info-card reveal d1">
-          <div class="ic-label">Нөгөө загвар (ашиглахгүй)</div>
-          <div class="ic-title">🔍 Disclosed Model</div>
-          <div class="ic-body">
-            Клиент бүрийн мэдээлэл PSPL-д ил харагдана. Зохицуулалт хүндэрнэ. Монгол хэрэглэгчдийн өгөгдөл гадаадад хадгалагдах асуудал гарна. Ард Секюритиз-д тохиромжгүй.
-            <div class="tag-row"><span class="tag-red">Нууцлалын асуудал</span><span class="tag">Нарийн compliance</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4.2 Technical Integration Steps -->
-    <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">4.2</span> Техникийн Интеграцийн Алхамууд</div>
-      <div class="tl">
-        <div class="tl-item reveal">
-          <div class="tl-dot lit"></div>
-          <div class="tl-phase">Алхам 1</div>
-          <div class="tl-title">PSPL-ийн FIX Specification авах</div>
-          <div class="tl-body">PSPL-аас FIX Connectivity Guide, Supported Messages список, CompID тохиргоо, IP/port мэдээллийг авна. Зөвхөн PSPL-ийн account manager-ийн дамжуулалтаар боломжтой.</div>
-        </div>
-        <div class="tl-item reveal d1">
-          <div class="tl-dot"></div>
-          <div class="tl-phase">Алхам 2</div>
-          <div class="tl-title">UAT орчин тохиргоо</div>
-          <div class="tl-body">PSPL-ийн sandbox (UAT) орчинд холболт хийнэ. Test CompID, test IP/port ашиглан CASPO-д хэрэгжүүлсэн FIX adapter-ийн анхны тестийг хийнэ. Logon/Logout, Heartbeat баталгаажуулна.</div>
-        </div>
-        <div class="tl-item reveal d2">
-          <div class="tl-dot"></div>
-          <div class="tl-phase">Алхам 3</div>
-          <div class="tl-title">FIX Message тестлэлт</div>
-          <div class="tl-body">
-            UAT дахь test scenarios:<br/>
-            • New Order (Market) → Execution Report (Fill)<br/>
-            • New Order (Limit) → New → PartialFill → Fill<br/>
-            • Order Cancel → Canceled<br/>
-            • Reject scenarios → Business Message Reject (j)<br/>
-            • Reconnect after disconnect
-          </div>
-        </div>
-        <div class="tl-item reveal d3">
-          <div class="tl-dot"></div>
-          <div class="tl-phase">Алхам 4</div>
-          <div class="tl-title">PSPL Certification</div>
-          <div class="tl-body">PSPL-ийн техникийн баг UAT-д холбогдож официал certification test хийнэ. Хэрэгжүүлэлт зөв байвал production CompID болон IP/port олгоно.</div>
-        </div>
-        <div class="tl-item reveal">
-          <div class="tl-dot"></div>
-          <div class="tl-phase">Алхам 5</div>
-          <div class="tl-title">Production — Pilot</div>
-          <div class="tl-body">Ард Секюритиз-ийн дотоод данс ашиглан жинхэнэ захиалга гүйцэтгэнэ. Бүх execution report, settlement дараалал шалгана. Зөвхөн сонгосон хэрэглэгчдэд нэвтрүүлнэ.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4.3 Technical Config -->
-    <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">4.3</span> Холболтын Техникийн Тохиргоо</div>
-      <div class="code-block reveal">
-        <span class="code-label">QuickFIX/J — PSPL FIX session тохиргооны жишээ (initiator.cfg)</span>
-        <pre><span class="code-comment">[DEFAULT]</span>
-ConnectionType=initiator
-ReconnectInterval=5
-FileStorePath=./fix-store
-FileLogPath=./fix-log
-StartTime=00:00:00
-EndTime=00:00:00          <span class="code-comment"># 24/7 холболт хэрэгтэй бол</span>
-UseDataDictionary=Y
-DataDictionary=FIX44.xml
-
-<span class="code-comment">[SESSION]</span>
-BeginString=FIX.4.4
-SenderCompID=<span class="code-val">ARDSEC</span>         <span class="code-comment"># PSPL-оос баталгаажуулсан</span>
-TargetCompID=<span class="code-val">PSPLGW</span>          <span class="code-comment"># PSPL gateway ID</span>
-SocketConnectHost=<span class="code-val">fix.pspl.com</span>  <span class="code-comment"># PSPL-аас олгосон IP/hostname</span>
-SocketConnectPort=<span class="code-val">8443</span>         <span class="code-comment"># PSPL-аас олгосон порт</span>
-HeartBtInt=30
-SocketUseSSL=Y            <span class="code-comment"># TLS 1.2+ шаардлагатай</span>
-ResetOnLogon=Y</pre>
-      </div>
-
-      <div class="callout callout-blue" style="margin-top:1.2rem;">
-        <span class="callout-ico">🔐</span>
-        <div class="callout-txt">
-          <strong>Аюулгүй байдлын шаардлагууд:</strong>
-          TLS 1.2+ шифрлэлт заавал хэрэгтэй. PSPL-ийн зарим тохиолдолд IP whitelist шаардах тул Ард Секюритиз-ийн production серверийн static IP-г PSPL-д бүртгүүлэх шаардлагатай. CompID болон нууц үг production дахь environment variable-д хадгалагдана — hard-code хийж болохгүй.
-        </div>
-      </div>
-    </div>
-
-    <!-- 4.4 Latency -->
-    <div class="subsec">
-      <div class="subsec-h3"><span class="subsec-num">4.4</span> Сүлжээний Хоцролт (Latency) — Монгол ↔ АНУ</div>
-      <div class="tbl-wrap reveal">
-        <table>
-          <thead><tr><th>Зам</th><th>Хоцролт</th><th>Тайлбар</th></tr></thead>
-          <tbody>
-            <tr><td>Улаанбаатар → АНУ (интернет)</td><td class="td-amber">180–280ms RTT</td><td>Retail trader-т хангалттай; HFT биш</td></tr>
-            <tr><td>Улаанбаатар → АНУ (dedicated line)</td><td class="td-blue">120–180ms RTT</td><td>Илүү найдвартай, өндөр зардалтай</td></tr>
-            <tr><td>АНУ co-location (ирээдүй)</td><td class="td-green">&lt;1ms</td><td>Ард Сек-ийн серверийг NYSE/NASDAQ-д ойрхон байршуулах</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="callout callout-gold" style="margin-top:1rem;">
-        <span class="callout-ico">📡</span>
-        <div class="callout-txt"><strong>Ард Секюритиз-д:</strong> 180–280ms хоцролт нь retail investor-т <strong>хангалттай</strong>. Хэрэглэгч захиалга өгөөд 1–2 секундын дотор баталгаажих нь ойлгомжтой. HFT (High Frequency Trading) хийхгүй л бол co-location шаардлагагүй.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     SECTION 5: COMPARISON
-     ============================================================ -->
-<section id="comparison">
-  <div class="wrap">
-    <div class="sec-eyebrow">Харьцуулалт</div>
-    <h2 class="sec-h2">Prime Broker / Платформын Харьцуулалт</h2>
-    <p class="sec-p">Ард Секюритиз PSPL-ийг сонгосон ч дараах хувилбаруудтай харьцуулан ойлгох нь стратегийн шийдвэр гаргахад ач холбогдолтой.</p>
-
-    <div class="tbl-wrap reveal" style="margin-top:2rem;">
+    <div class="sec-eyebrow">Судалгаа</div>
+    <h2 class="sec-h2">Бусад Компаниудтай Харьцуулалт</h2>
+    <p class="sec-p wide">Дэлхийн зах зээлд АНУ-ын хувьцааны арилжааны хандалт олгодог хэд хэдэн томоохон компани бий. Ард Секюритизт хамгийн тохиромжтой сонголт тодорхойлогдсон.</p>
+    <div class="tbl-wrap reveal">
       <table>
         <thead>
-          <tr>
-            <th>Платформ</th>
-            <th>API Төрөл</th>
-            <th>Зорилтот зах зээл</th>
-            <th>Min. капитал</th>
-            <th>Монгол туршлага</th>
-            <th>Fractional</th>
-            <th>Онцлог давуу тал</th>
-          </tr>
+          <tr><th>Компани</th><th>Монголтой туршлага</th><th>Тохиргооны хялбар байдал</th><th>Хамгийн бага капитал</th><th>Дэмжлэг</th><th>Үнэлгээ</th></tr>
         </thead>
         <tbody>
           <tr class="tbl-winner">
-            <td><strong>PSPL</strong> ⭐</td>
-            <td><span class="td-tag">FIX 4.2/4.4</span></td>
-            <td>АНУ</td>
+            <td>⭐ PSPL (Pacific Square)</td>
+            <td class="td-green">Монгол зах зээл мэднэ</td>
+            <td class="td-green">Sub-account — хялбар</td>
+            <td>Тохиролцооны дагуу</td>
+            <td class="td-green">Дотоод харилцагч байна</td>
+            <td class="td-green">✅ Шилэгдсэн</td>
+          </tr>
+          <tr>
+            <td>Interactive Brokers</td>
+            <td class="td-amber">Хязгаарлагдмал</td>
+            <td class="td-amber">Нарийн зохицуулалт</td>
+            <td>$10,000+</td>
+            <td class="td-amber">Стандарт дэмжлэг</td>
+            <td class="td-amber">Боломжтой, хүнд</td>
+          </tr>
+          <tr>
+            <td>DriveWealth</td>
+            <td class="td-red">Байхгүй</td>
+            <td class="td-green">API-д суурилсан</td>
+            <td>Тохиролцооны дагуу</td>
+            <td class="td-amber">Онлайн дэмжлэг</td>
+            <td class="td-amber">Жижиг брокерт</td>
+          </tr>
+          <tr>
+            <td>Apex Clearing</td>
+            <td class="td-red">Байхгүй</td>
+            <td class="td-red">Маш нарийн</td>
+            <td>$500,000+</td>
+            <td class="td-amber">Том хэрэглэгч</td>
+            <td class="td-red">Капитал хэт өндөр</td>
+          </tr>
+          <tr>
+            <td>Saxo Bank</td>
+            <td class="td-amber">Азийн зах зээл мэднэ</td>
             <td class="td-amber">Дунд зэрэг</td>
-            <td class="td-green">✅ Байгаа</td>
-            <td class="td-gray">Үгүй</td>
-            <td>Монголын зах зээлд туршлагатай, нутгийн compliance ойлголттой</td>
-          </tr>
-          <tr>
-            <td><strong>Interactive Brokers</strong></td>
-            <td><span class="td-tag">FIX + REST + TWS</span></td>
-            <td>Global 150+</td>
-            <td class="td-green">$0–$10K+</td>
-            <td class="td-red">❌ Үгүй</td>
-            <td class="td-green">Тийм</td>
-            <td>Best-in-class API, хамгийн дэлхий нийтийн хамрах хүрээ; retail болон institutional</td>
-          </tr>
-          <tr>
-            <td><strong>DriveWealth</strong></td>
-            <td><span class="td-tag">REST API</span></td>
-            <td>АНУ</td>
-            <td class="td-green">$0</td>
-            <td class="td-red">❌ Үгүй</td>
-            <td class="td-green">Тийм</td>
-            <td>API-first B2B fintech platform; fractional дэмждэг; FIX ашигладаггүй</td>
-          </tr>
-          <tr>
-            <td><strong>Apex Clearing</strong></td>
-            <td><span class="td-tag">FIX native</span></td>
-            <td>АНУ</td>
-            <td class="td-red">Өндөр ($1M+)</td>
-            <td class="td-red">❌ Үгүй</td>
-            <td class="td-gray">Үгүй</td>
-            <td>Institutional clearing; FIX-д маш сайн; зардал өндөр</td>
-          </tr>
-          <tr>
-            <td><strong>Saxo Bank</strong></td>
-            <td><span class="td-tag">REST OpenAPI</span></td>
-            <td>Global multi-asset</td>
-            <td class="td-amber">$2,000+</td>
-            <td class="td-red">❌ Үгүй</td>
-            <td class="td-gray">Хязгаарлагдмал</td>
-            <td>Europe/Asia-д хүчтэй; multi-asset (FX, options, ETF); REST-д суурилсан</td>
+            <td>$10,000+</td>
+            <td class="td-green">Сайн дэмжлэг</td>
+            <td class="td-amber">2-р сонголт</td>
           </tr>
         </tbody>
       </table>
     </div>
-
     <div class="callout callout-green" style="margin-top:1.5rem;">
-      <span class="callout-ico">🏆</span>
-      <div class="callout-txt">
-        <strong>Дүгнэлт — PSPL-ийн давуу тал:</strong> Монголын зах зээл дэх туршлага, одоогийн харилцааны суурь, болон дотоодын зохицуулалттай нийцэх боломж нь PSPL-ийг зөв сонголт болгодог. Гэсэн ч техникийн API баримт бичиг (FIX spec), certification процесс, болон sub-account model-ийн нарийн дүрмийг PSPL-аас албан ёсоор авах шаардлагатай. Interactive Brokers нь FIX болон REST хоёуланд дэмжлэгтэй учраас backup эсвэл ирээдүйн хувилбар болгон хянах зохистой.
+      <span class="callout-ico">✅</span>
+      <div class="callout-txt"><strong>Дүгнэлт:</strong> PSPL нь Монголын зах зээлийн онцлогийг ойлгодог, sub-account загвараар хэрэгцээнд нийцсэн, дотоод харилцагчтай байдаг тул шилдэг сонголт болж байна. Хоёрдахь нөөц сонголт болгон Saxo Bank-ийг авч үзэж болно.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ COST -->
+<section id="cost">
+  <div class="wrap">
+    <div class="sec-eyebrow">Санхүүгийн Тооцоо</div>
+    <h2 class="sec-h2">Зардал ба Хөрөнгө Оруулалт</h2>
+    <p class="sec-p wide">Хөрөнгө оруулалтын тооцоо нь хоёр үе шаттай: нэг удаагийн хэрэгжилтийн зардал ба тогтмол үйл ажиллагааны зардал. Тооцоо нь урьдчилсан бөгөөд PSPL болон CASPO-тэй хэлэлцсэний дараа тодорхой болно.</p>
+    <div class="grid3" style="margin-bottom:2rem;">
+      <div class="card cost-card reveal">
+        <div class="cost-phase" style="color:var(--blue-lt);">Нэг Удаагийн Зардал</div>
+        <div class="cost-title">Хөгжүүлэлт</div>
+        <div class="cost-amount" style="color:var(--blue-lt);">~$15,000–25,000</div>
+        <ul class="cost-items">
+          <li>CASPO API хөгжүүлэлт <span>$12,000–20,000</span></li>
+          <li>Туршилт, баталгаажуулалт <span>$2,000–3,500</span></li>
+          <li>Байршуулалт, дэд бүтэц <span>$1,000–1,500</span></li>
+        </ul>
+      </div>
+      <div class="card cost-card reveal d1">
+        <div class="cost-phase" style="color:var(--gold);">Нэг Удаагийн Зардал</div>
+        <div class="cost-title">Зохицуулалт & PSPL</div>
+        <div class="cost-amount" style="color:var(--gold);">~$3,000–8,000</div>
+        <ul class="cost-items">
+          <li>СЗХ зөвшөөрлийн процесс <span>$2,000–5,000</span></li>
+          <li>PSPL нэвтрэлтийн хураамж <span>$0–2,000</span></li>
+          <li>Хуулийн зөвлөгөө <span>$1,000</span></li>
+        </ul>
+      </div>
+      <div class="card cost-card reveal d2">
+        <div class="cost-phase" style="color:var(--green-lt);">Тогтмол (сарын)</div>
+        <div class="cost-title">Үйл Ажиллагаа</div>
+        <div class="cost-amount" style="color:var(--green-lt);">~$300–700/сар</div>
+        <ul class="cost-items">
+          <li>Серверийн зардал <span>$100–200</span></li>
+          <li>Зах зээлийн мэдээлэл <span>$100–300</span></li>
+          <li>Системийн хяналт <span>$100–200</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout callout-gold">
+      <span class="callout-ico">💰</span>
+      <div class="callout-txt"><strong>Нийт эхлэлтийн хөрөнгө оруулалт: ~$18,000–33,000</strong> — Монголын аливаа ҮЦК-ийн хувьд маш бага хөрөнгө оруулалтаар өрсөлдөөний томоохон давуу байдал олж авах боломж. PSPL-ийн арилжааны шимтгэл нь зах зээлийн ханш дагана.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ IMPACT -->
+<section id="impact" class="bg-alt">
+  <div class="wrap">
+    <div class="sec-eyebrow">Бизнесийн Үнэлгээ</div>
+    <h2 class="sec-h2">Хүлээгдэж Буй Үр Дүн</h2>
+    <p class="sec-p wide">Автоматжуулалт нь зөвхөн техникийн сайжруулалт биш — Ард Секюритизийн зах зээлийн байр суурь, орлого, хэрэглэгчийн туршлагад шууд нөлөөлөх стратегийн шийдвэр.</p>
+    <div class="grid2">
+      <div class="card benefit-card reveal">
+        <div class="bc-ico">🏆</div>
+        <div class="bc-title">Өрсөлдөөний Давуу Байдал</div>
+        <div class="bc-body">Монголд анхны АНУ-ын зах зээлийн автомат захиалгатай ҮЦК болно. Шинэ хэрэглэгч татах хамгийн хүчтэй маркетингийн давуу тал — ялангуяа залуу, технологийд дасан зохицсон хөрөнгө оруулагчдад.</div>
+      </div>
+      <div class="card benefit-card reveal d1">
+        <div class="bc-ico">📈</div>
+        <div class="bc-title">Орлогын Өсөлтийн Боломж</div>
+        <div class="bc-body">АНУ-ын зах зээлийн захиалга нэмэгдэх тусам шимтгэлийн орлого пропорциональ өснө. Оператор цаг хэмнэгдэж бусад ажилд чиглэнэ. Хэрэглэгч тооны дээд хязгаар арилна.</div>
+      </div>
+      <div class="card benefit-card reveal d2">
+        <div class="bc-ico">⚡</div>
+        <div class="bc-title">Захиалгын Хурд ба Найдвартай Байдал</div>
+        <div class="bc-body">Гар ажиллагаанаас хэдэн минутаас секундад шилжинэ. АНУ-ын зах зээлийн нээлт, хаалтын цагт давхцсан олон захиалгыг нэгэн зэрэг шийднэ. Алдааны тоо эрс багасна.</div>
+      </div>
+      <div class="card benefit-card reveal d3">
+        <div class="bc-ico">🌐</div>
+        <div class="bc-title">Хэрэглэгчийн Туршлага Сайжрана</div>
+        <div class="bc-body">Бодит цагийн захиалгын дэлгэрэнгүй мэдээлэл, биелэлтийн мэдэгдэл нэн даруй очно. Дансны хяналт, гүйлгээний түүх шуурхай харагдана. Брокерт итгэх итгэл нэмэгдэнэ.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     SECTION 6: BRIEF — REGULATION, RISK, COST
-     ============================================================ -->
-<section class="bg-alt">
+<!-- ============================================================ RISK -->
+<section id="risk">
   <div class="wrap">
-    <div class="sec-eyebrow">Тойм</div>
-    <h2 class="sec-h2">Зохицуулалт · Эрсдэл · Зардал · Дотоодын Өөрчлөлт</h2>
-    <p class="sec-p">Техникийн хэрэгжилтийн зэрэгцээ хаяж болохгүй дөрвөн чиглэл — гүнзгий биш, гэхдээ тус бүрийг анхаарна.</p>
-
-    <div class="grid2" style="margin-top:2.5rem;">
-      <div class="card info-card reveal" style="border-color:rgba(168,85,247,.3);">
-        <div class="ic-label" style="color:#C084FC;">Зохицуулалт</div>
-        <div class="ic-title">⚖️ Зохицуулалтын Орчин</div>
-        <div class="ic-body">
-          <strong>Монголд:</strong> Санхүүгийн Зохицуулах Хорооны (СЗХ / FRC) зөвшөөрөл олон улсын арилжааны үйлчилгээ нэвтрүүлэхийн өмнө шаардлагатай байх магадлалтай. Хэрэглэгчийн гадаад хөрөнгийн данс, гадаадын брокертой ажиллах, гадаад валютын хяналттай холбоотой дүрэм нарийн.<br/><br/>
-          <strong>АНУ тал:</strong> PSPL нь FINRA/SEC-д бүртгэлтэй broker-dealer тул АНУ-ын зохицуулалтыг PSPL мөрдөнө. Ард Сек шууд хариуцлага хүлээхгүй — гэхдээ PSPL-ийн шаардах AML/KYC баримт бичгийг Ард Сек хэрэглэгчдээсээ цуглуулна.
-          <div class="tag-row"><span class="tag-purple">СЗХ зөвшөөрөл</span><span class="tag">FINRA (PSPL)</span><span class="tag">AML/KYC</span></div>
-        </div>
+    <div class="sec-eyebrow">Зохицуулалт & Эрсдэл</div>
+    <h2 class="sec-h2">Зохицуулалт ба Эрсдэлийн Тойм</h2>
+    <p class="sec-p wide">Олон улсын зах зээлд нэвтрэх нь зохицуулалтын зөвшөөрөл, техникийн болон санхүүгийн эрсдэлтэй холбоотой. Эдгээр нь урьдчилан тооцож, шийдвэрлэх боломжтой эрсдэлүүд.</p>
+    <div class="risk-row">
+      <div class="risk-card reveal" style="border-top:3px solid var(--amber);">
+        <div class="rc-level" style="color:var(--amber);"><span class="rc-dot" style="background:var(--amber);"></span>Зохицуулалтын Эрсдэл</div>
+        <div class="rc-title">СЗХ-ийн Зөвшөөрөл</div>
+        <div class="rc-body">Санхүүгийн Зохицуулалтын Хороо (СЗХ)-оос олон улсын арилжааны зөвшөөрөл авах шаардлагатай. Энэ нь урт процесс байж болно.</div>
+        <div class="rc-mit"><strong>Шийдэл:</strong> Процессийг эрт эхлүүлж, хуулийн зөвлөхтэй хамтарч ажиллах. Зэрэгцээ PSPL-тэй техникийн ажлыг урагшлуулна.</div>
       </div>
-
-      <div class="card info-card reveal d1" style="border-color:rgba(230,51,41,.3);">
-        <div class="ic-label" style="color:var(--red-lt);">Эрсдэл</div>
-        <div class="ic-title">🛡️ Эрсдэлийн Удирдлага</div>
-        <div class="ic-body">
-          <strong>Технологийн эрсдэл:</strong> FIX холболт тасарсан үед захиалга алдагдах → Reconnect + Resend Request логик заавал байх. Duplicate order-с сэргийлэх.<br/><br/>
-          <strong>Санхүүгийн эрсдэл:</strong> Pre-trade risk check (balance, position limit) хангалтгүй бол over-leverage болно. MNT/USD ханшийн өөрчлөлт хэрэглэгчид хохирол учруулна.<br/><br/>
-          <strong>Settlement эрсдэл:</strong> T+2 дэх хангалтгүй USD үлдэгдэл → PSPL fail хийж болно.
-          <div class="tag-row"><span class="tag-red">Pre-trade check</span><span class="tag-red">FX risk</span><span class="tag">T+2 funding</span></div>
-        </div>
+      <div class="risk-card reveal d1" style="border-top:3px solid var(--blue);">
+        <div class="rc-level" style="color:var(--blue-lt);"><span class="rc-dot" style="background:var(--blue);"></span>Техникийн Эрсдэл</div>
+        <div class="rc-title">Холболт ба Интеграцийн Хугацаа</div>
+        <div class="rc-body">PSPL-тэй техникийн тохиргоо хугацаа авч болно. Улаанбаатар — АНУ-ын серверийн хоорондох өгөгдлийн дамжуулалт байна.</div>
+        <div class="rc-mit"><strong>Шийдэл:</strong> Жижиглэн худалдааны хэрэглэгчдэд дамжуулалтын хугацаа тийм ч чухал биш. Сайн туршилт, нөөцлөлт хийнэ.</div>
       </div>
-
-      <div class="card info-card reveal d2" style="border-color:rgba(245,158,11,.3);">
-        <div class="ic-label" style="color:var(--amber);">Зардал</div>
-        <div class="ic-title">💰 Зардлын Тойм</div>
-        <div class="ic-body">
-          <strong>PSPL комисс:</strong> Арилжаа тус бүрт commission fee (Centс per share эсвэл basis point). PSPL-аас тохиролцоно.<br/><br/>
-          <strong>Хөгжүүлэлт:</strong> CASPO-д FIX adapter болон шинэ модуль хийлгэх нэг удаагийн хөгжүүлэлтийн зардал.<br/><br/>
-          <strong>Дэд бүтэц:</strong> Dedicated server, статик IP, магадгүй VPN/dedicated line зардал.<br/><br/>
-          <strong>Market data:</strong> US symbols-ын real-time мэдээлэл PSPL-ийн market data feed-ээр эсвэл тусдаа vendor-оос авна.
-          <div class="tag-row"><span class="tag-amber">Commission/share</span><span class="tag">Dev cost</span><span class="tag">Market data</span></div>
-        </div>
+      <div class="risk-card reveal d2" style="border-top:3px solid var(--gold);">
+        <div class="rc-level" style="color:var(--gold);"><span class="rc-dot" style="background:var(--gold);"></span>Санхүүгийн Эрсдэл</div>
+        <div class="rc-title">Валютын Ханшийн Хэлбэлзэл</div>
+        <div class="rc-body">Захиалга MNT-ээр орж, USD-ээр биелдэг тул ханшийн зөрүү үүсэж болно. Тооцооны хугацаа дахь ханшийн өөрчлөлт.</div>
+        <div class="rc-mit"><strong>Шийдэл:</strong> Захиалгын үед бодит ханш тогтоох механизм, дансны нийлбэр шалгалтын дүрэм тодорхойлно.</div>
       </div>
-
-      <div class="card info-card reveal d3" style="border-color:rgba(59,130,246,.3);">
-        <div class="ic-label" style="color:var(--blue-lt);">Дотоодын Өөрчлөлт</div>
-        <div class="ic-title">🔧 CASPO / Полярисын Ажил</div>
-        <div class="ic-body">
-          CASPO-тэй ярилцах үндсэн техникийн шаардлагууд:<br/><br/>
-          1. FIX 4.4 engine (QuickFIX/J) Полярис-д нэгтгэх<br/>
-          2. International order routing логик<br/>
-          3. Currency conversion module<br/>
-          4. US market hours check<br/>
-          5. Pre-trade risk engine (international)<br/>
-          6. Execution report processor → хэрэглэгч notification<br/>
-          7. T+2 settlement tracking<br/>
-          8. Admin dashboard (PSPL session status)
-          <div class="tag-row"><span class="tag-blue">CASPO backlog</span><span class="tag">Полярис v2.0?</span></div>
-        </div>
-      </div>
+    </div>
+    <div class="callout callout-blue" style="margin-top:2rem;">
+      <span class="callout-ico">🏛️</span>
+      <div class="callout-txt"><strong>АНУ-ын зохицуулалт:</strong> PSPL нь SEC болон FINRA-д бүртгэлтэй брокер дилер. АНУ-ын талын зохицуулалтын шаардлагыг PSPL өөрөө хариуцна — Ард Секюритиз нь зөвхөн Монголын СЗХ-ийн зөвшөөрөлд л анхаарлаа төвлөрүүлэх боломжтой.</div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     SECTION 7: IMPLEMENTATION ROADMAP
-     ============================================================ -->
-<section id="roadmap">
+<!-- ============================================================ ROADMAP -->
+<section id="roadmap" class="bg-alt">
   <div class="wrap">
-    <div class="sec-eyebrow">Стратегийн Замнал</div>
-    <h2 class="sec-h2">Хэрэгжилтийн Замнал — 2026–2027</h2>
-    <p class="sec-p">Систем администраторын зүгээс удирдах шатлалт замнал. Техникийн хэрэгжилт, зохицуулалтын баримт бичиг, пилот туршилт, бүрэн нэвтрүүлэлт хамарна.</p>
-
-    <div class="tl" style="max-width:100%;margin-top:3rem;">
-
+    <div class="sec-eyebrow">Хэрэгжилтийн Замнал</div>
+    <h2 class="sec-h2">2026–2027 Төлөвлөгөө</h2>
+    <p class="sec-p wide">18 сарын хугацаанд 6 үе шаттай хэрэгжилт. Зэрэгцээ зохицуулалтын процесс явуулснаар нийт хугацааг богиносгох боломжтой.</p>
+    <div class="timeline">
       <div class="tl-item reveal">
-        <div class="tl-dot lit"></div>
-        <div class="tl-phase">Шат 1 · 2026 Q2 (Одоо)</div>
-        <div class="tl-title">Шаардлага тодруулах ба Архитектурын Дизайн</div>
+        <div class="tl-dot prog">🔍</div>
         <div class="tl-body">
-          • PSPL-ийн FIX specification, account agreement авах<br/>
-          • CASPO-тэй техникийн шаардлагын уулзалт хийх<br/>
-          • Полярист нэмэгдэх шинэ модулиудын functional specification бичих<br/>
-          • FIX engine library (QuickFIX/J эсвэл /n) сонголт батлах<br/>
-          • UAT орчны дэд бүтэц төлөвлөх (сервер, статик IP)
+          <div class="tl-period">2026 Q2–Q3 · Одоо явагдаж байна</div>
+          <div class="tl-title">Судалгаа ба Шийдвэр Гаргалт</div>
+          <div class="tl-desc">PSPL-тэй анхны хэлэлцүүлэг, нөхцөл байдлын үнэлгээ, техникийн шаардлагын тодорхойлолт, дотоод зөвшилцөл.</div>
+          <div class="tl-tags"><span class="tl-tag tt-gold">Судалгаа</span><span class="tl-tag tt-blue">Хэлэлцүүлэг</span></div>
         </div>
       </div>
-
       <div class="tl-item reveal d1">
-        <div class="tl-dot"></div>
-        <div class="tl-phase">Шат 2 · 2026 Q3</div>
-        <div class="tl-title">CASPO Хөгжүүлэлт — FIX Adapter ба Шинэ Модулиуд</div>
+        <div class="tl-dot plan">📋</div>
         <div class="tl-body">
-          • CASPO: FIX adapter module хөгжүүлэх<br/>
-          • CASPO: Market router, currency module, pre-trade risk engine хийх<br/>
-          • UAT орчинд PSPL-ийн sandbox-тай анхны холболт хийх<br/>
-          • Logon/Logout, Heartbeat тест хийх<br/>
-          • Internal QA: order scenarios тестлэх
+          <div class="tl-period">2026 Q3</div>
+          <div class="tl-title">Зохицуулалт ба Гэрээний Процесс</div>
+          <div class="tl-desc">СЗХ-д зөвшөөрлийн хүсэлт гаргах, PSPL-тэй гэрээ байгуулах, хуулийн зөвлөхтэй хамтарч ажиллах.</div>
+          <div class="tl-tags"><span class="tl-tag tt-red">СЗХ Зөвшөөрөл</span><span class="tl-tag tt-gold">PSPL Гэрээ</span></div>
         </div>
       </div>
-
       <div class="tl-item reveal d2">
-        <div class="tl-dot"></div>
-        <div class="tl-phase">Шат 3 · 2026 Q4</div>
-        <div class="tl-title">PSPL Certification ба UAT</div>
+        <div class="tl-dot plan">⚙️</div>
         <div class="tl-body">
-          • PSPL-ийн техникийн баг: certification test хийх<br/>
-          • Бүх order type, cancel, reject scenarios тестлэх<br/>
-          • Reconnect, sequence number recovery тест<br/>
-          • Production CompID болон IP авах<br/>
-          • СЗХ-д урьдчилсан зөвшөөрлийн өргөдөл гаргах (хууль зүйн зөвлөхтэй)
+          <div class="tl-period">2026 Q4</div>
+          <div class="tl-title">CASPO — Полярис Өргөтгөл</div>
+          <div class="tl-desc">Техникийн тодорхойлолтыг CASPO-д хүлээлгэж өгнө. CASPO Полярис системд АНУ-ын зах зээлийн холболтын шинэ модуль хийнэ. Валютын хөрвүүлэлт, автомат шалгалт нэмнэ.</div>
+          <div class="tl-tags"><span class="tl-tag tt-blue">CASPO Хөгжүүлэлт</span><span class="tl-tag tt-gold">Полярис Өргөтгөл</span></div>
         </div>
       </div>
-
       <div class="tl-item reveal d3">
-        <div class="tl-dot"></div>
-        <div class="tl-phase">Шат 4 · 2027 Q1</div>
-        <div class="tl-title">Зохицуулалтын Зөвшөөрөл ба Дотоод Пилот</div>
+        <div class="tl-dot plan">🧪</div>
         <div class="tl-body">
-          • СЗХ-ийн зөвшөөрөл хүлээн авах<br/>
-          • Ард Секюритиз-ийн дотоод данс ашиглан жинхэнэ захиалга гүйцэтгэх<br/>
-          • T+2 settlement бүрэн дараалал шалгах<br/>
-          • Execution report хэрэглэгчийн апп-д харагдаж байгааг баталгаажуулах<br/>
-          • Performance, latency хэмжилт хийх
+          <div class="tl-period">2027 Q1</div>
+          <div class="tl-title">Туршилтын Орчин ба Нотолгоо</div>
+          <div class="tl-desc">PSPL-ийн туршилтын орчинд системийг холбоно. Жинхэнэ мөнгөгүйгээр захиалгын урсгалыг бүрэн туршина. Алдаа илрэх, засварлах, ахин туршина.</div>
+          <div class="tl-tags"><span class="tl-tag tt-green">Туршилт</span><span class="tl-tag tt-blue">PSPL Баталгаа</span></div>
         </div>
       </div>
-
       <div class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-phase">Шат 5 · 2027 Q2</div>
-        <div class="tl-title">Beta — Сонгосон Хэрэглэгчид</div>
+        <div class="tl-dot plan">🚀</div>
         <div class="tl-body">
-          • 50–100 сонгосон хэрэглэгчид олон улсын захиалгын боломж нэвтрүүлэх<br/>
-          • Хэрэглэгчийн feedback цуглуулах<br/>
-          • Операцийн журам (SOP) бичих<br/>
-          • Support процесс, incident response procedure тогтоох
+          <div class="tl-period">2027 Q2</div>
+          <div class="tl-title">Үйлдвэрлэлийн Орчинд Нэвтрэх</div>
+          <div class="tl-desc">Хязгаарлагдмал хэрэглэгчдэд beta нэвтрэлт. Эхний долоо хоногт хянан ажиглана. Алдаагүй болсны дараа бүх хэрэглэгчдэд нэвтрүүлнэ.</div>
+          <div class="tl-tags"><span class="tl-tag tt-green">Нэвтрэлт</span><span class="tl-tag tt-gold">Beta</span></div>
         </div>
       </div>
-
       <div class="tl-item reveal d1">
-        <div class="tl-dot"></div>
-        <div class="tl-phase">Шат 6 · 2027 Q3</div>
-        <div class="tl-title">Бүрэн Нэвтрүүлэлт</div>
+        <div class="tl-dot future">📊</div>
         <div class="tl-body">
-          • Бүх хэрэглэгчдэд олон улсын захиалгын үйлчилгээ нэвтрүүлэх<br/>
-          • Маркетингийн кампанит ажил — "Ард App-аар Apple, Tesla хувьцаа авах боломжтой"<br/>
-          • 24/7 хяналтын мониторинг тогтолцоо (PSPL session, FIX connectivity)<br/>
-          • Монголд анхны автоматжуулсан олон улсын хувьцааны арилжааны тогтолцоо
+          <div class="tl-period">2027 Q3+</div>
+          <div class="tl-title">Өргөжүүлэлт ба Сайжруулалт</div>
+          <div class="tl-desc">Хэрэглэгчийн тооны өсөлтийг дагуулан хүчин чадлыг нэмэгдүүлнэ. Бусад олон улсын зах зээл (Европ, Азийн биржүүд) нэмэх судалгаа хийнэ.</div>
+          <div class="tl-tags"><span class="tl-tag tt-blue">Тэлэлт</span><span class="tl-tag tt-gold">Европ · Ази</span></div>
         </div>
       </div>
-
     </div>
+  </div>
+</section>
 
-    <div class="callout callout-gold" style="margin-top:2rem;max-width:800px;">
-      <span class="callout-ico">🚀</span>
-      <div class="callout-txt">
-        <strong>Стратегийн ач холбогдол:</strong> Энэхүү хэрэгжилт амжилтай болвол Ард Секюритиз нь <strong>Монголд хамгийн анх</strong> олон улсын хувьцааны зах зээлд бүрэн автоматжуулсан захиалга дамжуулах чадвартай ҮЦК болно. Энэ нь зах зээл дэх байр суурийг эрс өргөжүүлж, залуу хөрөнгө оруулагчдад Apple, Tesla, Microsoft зэрэг компаниудын хувьцааг Ард App-аас шууд авах боломж олгоно.
+<!-- ============================================================ NEXT STEPS -->
+<section id="nextsteps">
+  <div class="wrap">
+    <div class="sec-eyebrow">Дараагийн Алхмууд</div>
+    <h2 class="sec-h2">Яаралтай Хийх Зүйлс</h2>
+    <p class="sec-p">Судалгааны үр дүнд тулгуурлан хамгийн ойрын 90 хоногт авах шийдвэр, үйлдлүүд.</p>
+    <div class="steps-list">
+      <div class="step-item reveal">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">PSPL-тэй албан ёсны хэлэлцүүлэг эхлүүлэх</div>
+          <div class="step-desc">Дотоод зөвшилцлийн дараа PSPL-д гэрээний нөхцөл, шимтгэл, минимум капиталын шаардлагын талаар санал хүсэх. Техникийн нотолгооны жижиг туршилт хийх тохиролцоо хийх.</div>
+          <div class="step-owner">Хариуцагч: <span>Удирдлага + Системийн Администратор</span></div>
+        </div>
+      </div>
+      <div class="step-item reveal d1">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">СЗХ-д зөвшөөрлийн урьдчилсан судалгаа хийх</div>
+          <div class="step-desc">Санхүүгийн Зохицуулалтын Хороонд олон улсын арилжааны зөвшөөрлийн шаардлагыг тодруулах. Хуулийн зөвлөхтэй хамт урьдчилсан үнэлгээ хийх.</div>
+          <div class="step-owner">Хариуцагч: <span>Хуулийн хэлтэс + Системийн Администратор</span></div>
+        </div>
+      </div>
+      <div class="step-item reveal d2">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">CASPO-д техникийн шаардлагын хөтөлбөр хэлэлцэх</div>
+          <div class="step-desc">Полярис системд нэмэх шинэ модулийн техникийн тодорхойлолт, ажлын хэмжээ, хөгжүүлэлтийн хугацаа, зардлын тооцоог CASPO-оос авах.</div>
+          <div class="step-owner">Хариуцагч: <span>Системийн Администратор + CASPO</span></div>
+        </div>
+      </div>
+      <div class="step-item reveal d3">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Удирдлагын зөвшөөрөл, төсвийн батламж авах</div>
+          <div class="step-desc">Энэхүү судалгааны тайланг үндэслэн Гүйцэтгэх захирал, CBDO-д илэрхийлэлт хийж, санхүүгийн болон стратегийн зөвшөөрөл авах.</div>
+          <div class="step-owner">Хариуцагч: <span>Системийн Администратор → Удирдлага</span></div>
+        </div>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Дотоод бэлтгэл — дансны бүтцийн шинэчлэл үнэлэх</div>
+          <div class="step-desc">АНУ-ын захиалга хянах дотоод процесс, хэрэглэгчийн дансны бүтцийн өөрчлөлт шаардлагатай эсэхийг үнэлэх. Полярис-ийн өнөөгийн архитектурт дүн шинжилгээ хийнэ.</div>
+          <div class="step-owner">Хариуцагч: <span>Системийн Администратор</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div style="display:flex;align-items:center;gap:12px;">
-      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--gold-dk));display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:18px;color:#040B15;">А</div>
+<footer style="background:var(--bg1);border-top:1px solid var(--border2);padding:3rem 0;">
+  <div class="wrap">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:1rem;">
+      <div style="width:44px;height:44px;border-radius:10px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;padding:6px;overflow:hidden;"><img src="img/logo.png" alt="Ард" style="width:100%;height:100%;object-fit:contain;filter:invert(1);" /></div>
       <div>
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;">Ард Секюритиз ҮЦК</div>
-        <div style="font-size:10.5px;color:var(--txt2);text-transform:uppercase;letter-spacing:1.8px;">FIX API Судалгаа · 2026</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700;">Ард Секюритиз ҮЦК</div>
+        <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:1.8px;">Стратегийн Судалгаа · 2026</div>
       </div>
     </div>
-    <p style="font-size:12px;color:var(--txt2);max-width:540px;line-height:1.7;text-align:center;">Энэхүү судалгааны баримт бичиг нь Ард Секюритиз ҮЦК-ийн дотоод хэрэглээнд зориулагдсан. Агуулга нь нууц бөгөөд зөвшөөрөлтэй ажилтнуудад зориулагдсан болно.</p>
-    <div class="footer-copy">© 2026 Ард Секюритиз ҮЦК · Системийн Администраторын Судалгаа · <a href="index.html" style="color:var(--gold);text-decoration:none;">← Үндсэн Тайлан</a></div>
+    <p style="font-size:12px;color:var(--txt2);max-width:500px;line-height:1.7;margin-bottom:1.5rem;">Энэхүү тайланг Ард Секюритиз ҮЦК-ийн дотоод стратегийн хэлэлцүүлэгт зориулан бэлтгэсэн. Агуулга нь нууц бөгөөд зөвшөөрөлтэй ажилтнуудад зориулагдсан болно.</p>
+    <div style="font-size:11px;color:var(--txt2);border-top:1px solid var(--border2);padding-top:1.5rem;">© 2026 Ард Секюритиз ҮЦК &nbsp;·&nbsp; ARD Securities LLC</div>
   </div>
 </footer>
 
 <button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" title="Дээш буцах">↑</button>
+<div id="page-transition"></div>
 
 <script>
 function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
 document.querySelectorAll('.nav-links a').forEach(a =>
   a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
 );
-
 window.addEventListener('scroll', () => {
   const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
   document.getElementById('pbar').style.width = pct + '%';
   document.getElementById('btt').classList.toggle('show', window.scrollY > 400);
 });
 
-const revObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-}, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+// Canvas particle network
+(function(){
+  const hero = document.getElementById('hero');
+  const cv = document.createElement('canvas');
+  cv.id = 'hero-canvas';
+  hero.insertBefore(cv, hero.firstChild);
+  const ctx = cv.getContext('2d');
+  let W, H, pts = [];
+  const N = 55, D = 130;
+  function resize(){ W = cv.width = hero.offsetWidth; H = cv.height = hero.offsetHeight; }
+  function init(){
+    resize(); pts = [];
+    for(let i=0;i<N;i++) pts.push({
+      x:Math.random()*W, y:Math.random()*H,
+      vx:(Math.random()-.5)*.42, vy:(Math.random()-.5)*.42,
+      r:Math.random()*1.3+.4, gold:Math.random()>.45
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.hypot(dx,dy);
+        if(d<D){ ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.strokeStyle=`rgba(201,168,76,${(1-d/D)*.11})`; ctx.lineWidth=.6; ctx.stroke(); }
+      }
+    }
+    for(const p of pts){
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.gold?'rgba(201,168,76,.55)':'rgba(59,130,246,.4)'; ctx.fill();
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<-4) p.x=W+4; else if(p.x>W+4) p.x=-4;
+      if(p.y<-4) p.y=H+4; else if(p.y>H+4) p.y=-4;
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',()=>resize());
+  init(); draw();
+})();
+
+// Page transition
+(function(){
+  const pt = document.getElementById('page-transition');
+  pt.classList.add('pt-revealing');
+  pt.addEventListener('animationend', ()=>pt.classList.remove('pt-revealing'), {once:true});
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a[href]');
+    if(!a) return;
+    const href = a.getAttribute('href');
+    if(!href || href.startsWith('#') || href.startsWith('mailto:') || a.target==='_blank') return;
+    e.preventDefault();
+    pt.classList.add('pt-covering');
+    pt.addEventListener('animationend', ()=>{ window.location.href=href; }, {once:true});
+  });
+})();
+
+// Reveal on scroll
+const revObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 </script>
 </body>
 </html>
