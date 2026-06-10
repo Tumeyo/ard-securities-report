@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ард Секюритиз ҮЦК — Системийн Администраторын Ахиц Тайлан 2026" />
+  <meta name="description" content="Ард Секюритиз ҮЦК ХХК — систем админы ахиц тайлан 2026" />
   <title>ARD Securities | Тайлан 2026</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -408,6 +408,15 @@
     .footer-tag { font-size:10.5px; color:var(--txt2); text-transform:uppercase; letter-spacing:1.8px; }
     .footer-dis { font-size:12px; color:var(--txt2); max-width:500px; line-height:1.7; }
     .footer-copy { font-size:11px; color:var(--txt2); border-top:1px solid var(--border2); padding-top:1.5rem; width:100%; }
+    .footer-links { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; font-size:12px; }
+    .footer-links a { color:var(--gold); text-decoration:none; }
+    .footer-links a:hover { color:var(--gold-lt); }
+
+    .sec-p, .team-desc, .proj-desc, .access-p, .tl-body, .footer-dis {
+      text-align: justify;
+      text-align-last: left;
+      hyphens: auto;
+    }
 
     /* ── BACK TO TOP ── */
     #btt { position:fixed; bottom:28px; right:28px; width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold-dk)); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:#040B15; font-size:18px; font-weight:700; box-shadow:0 4px 20px var(--gold-glow); opacity:0; pointer-events:none; transition:opacity .3s,transform .3s; z-index:900; }
@@ -474,7 +483,6 @@
     <li><a href="#access">Шууд Апп</a></li>
     <li><a href="#timeline">Замнал</a></li>
     <li><a href="#tech">Технологи</a></li>
-    <li><a href="research.html" style="color:var(--gold-lt);">АНУ Зах Зээл Судалгаа</a></li>
     <li><a href="#access" class="nav-btn">Апп Нээх →</a></li>
   </ul>
   <div class="hamburger" id="ham" onclick="toggleNav()">
@@ -494,16 +502,16 @@
   <div class="hero-inner">
     <div class="hero-chip">
       <span class="chip-dot"></span>
-      Системийн Администратор · Ахиц Тайлан 2026
+      Систем Админ · Ахиц Тайлан 2026
     </div>
 
     <h1 class="hero-h1">
-      <span class="l1">Системийн Дэд Бүтэц ба</span>
+      <span class="l1">Системийн</span>
       <span class="l2">Инновацийн Тайлан</span>
     </h1>
 
     <p class="hero-sub">
-      Ард Секюритик ҮЦК-д хэрэгжиж буй идэвхтэй системийн санаачлагуудын,
+      Ард Секюритиз ҮЦК ХХК-д хэрэгжиж буй идэвхитэй системийн санаачлагуудын,
       автоматжуулалтын хөгжүүлэлт болон стратегийн дижитал
       өөрчлөлтийн иж бүрэн тоймлол.
     </p>
@@ -536,8 +544,8 @@
 <div id="stats">
   <div class="stats-row wrap">
     <div class="stat-box reveal">
-      <span class="stat-num" data-to="4">0</span>
-      <span class="stat-lbl">Идэвхтэй Төсөл</span>
+      <span class="stat-num" data-to="3">0</span>
+      <span class="stat-lbl">Идэвхитэй Ажил</span>
     </div>
     <div class="stat-box reveal d1">
       <span class="stat-num" data-to="1">0</span>
@@ -549,7 +557,7 @@
     </div>
     <div class="stat-box reveal d3">
       <span class="stat-num" data-to="2">0</span>
-      <span class="stat-lbl">Вендор Партнер</span>
+      <span class="stat-lbl">Гарын Авлага</span>
     </div>
   </div>
 </div>
@@ -559,14 +567,14 @@
   <div class="wrap">
     <div class="sec-eyebrow">Тайланг Боловсруулсан</div>
     <h2 class="sec-h2">Удирдлагад Боловсруулан Хийсэн Ажил</h2>
-    <p class="sec-p">Ард Секюритиз ҮЦК-ийн Системийн Администраторын хийж гүйцэтгэсэн ажлын тайлан. CBDO-ийн менторын удирдлаган дор боловсруулж, CEO болон CBDO-д танилцуулж байна.</p>
+    <p class="sec-p">Ард Секюритиз ҮЦК ХХК-ийн систем админы хийж гүйцэтгэсэн ажлын тайлан. CBDO-ийн менторын удирдлаган дор боловсруулж, CEO болон CBDO-д танилцуулж байна.</p>
 
     <!-- Presenting to banner -->
     <div class="presenting-banner reveal">
       <div class="presenting-left">
         <span class="presenting-label">Танилцуулж буй</span>
         <span class="presenting-name">Х.Билгүүн</span>
-        <span class="presenting-title">CEO · Ард Секюритиз ҮЦК</span>
+        <span class="presenting-title">CEO · Ард Секюритиз ҮЦК ХХК</span>
       </div>
       <div class="presenting-photo">
         <img src="img/ceo.png" alt="Х.Билгүүн — CEO" />
@@ -576,14 +584,13 @@
     <div class="team-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));max-width:760px;">
 
       <div class="card team-card featured reveal d1">
-        <div class="role-pill pill-sys">● Системийн Администратор</div>
-        <!-- Replace img/sysadmin.png with actual photo -->
+        <div class="role-pill pill-sys">● Систем Админ</div>
         <div class="photo-avatar" style="border-color:rgba(34,197,94,.4);">
-          <img src="img/Sysadmin.jpg" alt="Системийн Администратор" />
+          <img src="img/Sysadmin.jpg" alt="Систем админ" />
         </div>
         <div class="team-name">Тайлангийн Бэлтгэсэн</div>
-        <div class="team-title">Системийн Администратор · Ард Секюритиз ҮЦК</div>
-        <div class="team-desc">Систем дэд бүтэц, автоматжуулалт, дижитал инновацийг удирдаж байна. Одоогоор AppSheet Jira интеграц, хөрөнгийн зах зээлийн API судалгаа болон кибер аюулгүй байдлын аудитаар ажиллаж байна.</div>
+        <div class="team-title">Систем Админ · Ард Секюритиз ҮЦК ХХК</div>
+        <div class="team-desc">Системийн дэд бүтэц, автоматжуулалт, дижитал инновацийн ажлуудыг хариуцан ажиллаж байна. Одоогоор AppSheet Jira интеграц, Polaris гарын авлага болон кибер аюулгүй байдлын аудитын хэрэгжилт дээр төвлөрч байна.</div>
       </div>
 
       <div class="card team-card reveal d2">
@@ -594,7 +601,7 @@
           </div>
         </div>
         <div class="team-name">Б. Анужин</div>
-        <div class="team-title">CBDO · Ард Секюритиз ҮЦК</div>
+        <div class="team-title">CBDO · Ард Секюритиз ҮЦК ХХК</div>
         <div class="team-desc">Бүх Систем инновацийн санаачлагуудад стратегийн зөвлөгөө, менторлог хангаж, техникийн хөгжлийг бизнесийн зорилттой нийцүүлдэг.</div>
       </div>
 
@@ -607,15 +614,15 @@
   <div class="wrap">
     <div class="sec-eyebrow">Идэвхтэй Ажил</div>
     <h2 class="sec-h2">Төслүүд &amp; Санаачлагууд</h2>
-    <p class="sec-p">Ард Секюритиз ҮЦК-д үр ашиг, аюулгүй байдал, шинэ зах зээлийн боломжийг бий болгож буй гурван зэрэгцээ санаачлага.</p>
+    <p class="sec-p">Ард Секюритиз ҮЦК ХХК-д үр ашиг, аюулгүй байдал, өдөр тутмын ажлын ойлгомжтой байдлыг нэмэгдүүлж буй гурван гол ажил.</p>
 
     <div class="proj-grid">
 
       <div class="card proj-card reveal">
         <div class="status-pill s-done"><span class="sdot"></span> Бараг Дуусгасан</div>
         <div class="proj-ico" style="background:rgba(34,197,94,.1);">📋</div>
-        <div class="proj-name">Jira Тасалбар Хянах Систем</div>
-        <div class="proj-desc">Jira-гийн ажлын тасалбаруудыг бодит цаг хугацаанд хянах, удирдах AppSheet-д суурилсан дотоод апп. Өгөгдлийн синк болон баримт бичгийн удирдлагын тулд Google Sheets болон Google Drive-тай интегрчилагдсан.</div>
+        <div class="proj-name">Jira Хянах Систем</div>
+        <div class="proj-desc">Jira дахь ажлуудыг бодит цаг хугацаанд хянах, удирдах AppSheet-д суурилсан дотоод апп. Өгөгдлийн синк болон баримт бичгийн удирдлагын тулд Google Sheets болон Google Drive-тай интеграцчилсан.</div>
         <div class="prog-wrap">
           <div class="prog-head"><span class="prog-lbl">Гүйцэтгэл</span><span class="prog-pct">85%</span></div>
           <div class="prog-track"><div class="prog-fill pg-gold" data-w="85"></div></div>
@@ -626,29 +633,14 @@
         </div>
       </div>
 
-      <div class="card proj-card reveal d1">
-        <div class="status-pill s-res"><span class="sdot"></span> Судалгааны Шатанд</div>
-        <div class="proj-ico" style="background:rgba(59,130,246,.1);">📈</div>
-        <div class="proj-name">Хөрөнгийн Зах Зээлийн API Автоматжуулалт</div>
-        <div class="proj-desc">Олон улсын хөрөнгийн зах зээлийн API автоматжуулалтыг судалж байна. Ард Секюритиз ҮЦК-ийн үйлчлүүлэгчдэд автомат арилжааны сонголтыг бий болгохын тулд PSPL (Монгол) болон АНУ-ын зах зээлийн API-уудыг судалж байна.</div>
-        <div class="prog-wrap">
-          <div class="prog-head"><span class="prog-lbl">Судалгааны Ахиц</span><span class="prog-pct">30%</span></div>
-          <div class="prog-track"><div class="prog-fill pg-blue" data-w="30"></div></div>
-        </div>
-        <div class="tags">
-          <span class="tag">API Судалгаа</span><span class="tag">Монгол PSPL</span>
-          <span class="tag">АНУ Зах Зээл</span><span class="tag">Автомат Арилжаа</span><span class="tag">FinTech</span>
-        </div>
-      </div>
-
       <div class="card proj-card reveal d2">
-        <div class="status-pill s-res"><span class="sdot"></span> Тайлан МХБ-д Илгээгдсэн</div>
+        <div class="status-pill s-done"><span class="sdot"></span> Албан Бичгээр Илгээгдсэн</div>
         <div class="proj-ico" style="background:rgba(59,130,246,.1);">🔐</div>
         <div class="proj-name">УУБ Comex Кибер Аюулгүй Байдлын Аудит</div>
-        <div class="proj-desc">Аудитын эцсийн тайлан бэлэн болж, Монголын Хөрөнгийн Бирж (МХБ)-д илгээгдсэн. GrapeCity вендортэй хамтран бүх аюулгүй байдлын дутагдлыг арилгасан. МХБ-аас хариу бичиг ирэхийг хүлээж байна.</div>
+        <div class="proj-desc">Аудитын эцсийн тайлан бэлэн болж, CEO-ийн албан бичгийн дугаартайгаар Монголын Хөрөнгийн Бирж (МХБ)-д илгээгдсэн. GrapeCity вендортэй хамтран аюулгүй байдлын дутагдлуудыг арилгасан тул энэ ажил үндсэндээ дууссан.</div>
         <div class="prog-wrap">
-          <div class="prog-head"><span class="prog-lbl">Аудитын Хариулт</span><span class="prog-pct">85%</span></div>
-          <div class="prog-track"><div class="prog-fill pg-blue" data-w="85"></div></div>
+          <div class="prog-head"><span class="prog-lbl">Аудитын Хариулт</span><span class="prog-pct">100%</span></div>
+          <div class="prog-track"><div class="prog-fill pg-blue" data-w="100"></div></div>
         </div>
         <div class="tags">
           <span class="tag">Кибер Аюулгүй Байдал</span><span class="tag">GrapeCity</span>
@@ -659,8 +651,8 @@
       <div class="card proj-card reveal d3">
         <div class="status-pill s-res"><span class="sdot"></span> Хийгдэж Байна</div>
         <div class="proj-ico" style="background:rgba(201,168,76,.1);">📗</div>
-        <div class="proj-name">Polaris Гарын Авлага — Үнэт цаас</div>
-        <div class="proj-desc">Ард Секюритиз-ын дотоод ажилтнуудад зориулсан Polaris системийн <strong style="color:var(--gold);">Үнэт цаас</strong> цэсний гарын авлага. Системийн permission-уудыг нэг бүрчлэн шалган, ямар action ID шаардагдахыг тодорхойлж байна. Бусад цэснүүд (Deposit, BACCT, ADM) нь системийн админы ажил тул харьцуулан тусгахгүй — зөвхөн ажилтнуудад хамааралтай Үнэт цаас хэсгийг хамрана. CBDO-ийн хүсэлтээр боловсруулж байна.</div>
+        <div class="proj-name">Polaris Permission Discovery — Үнэт цаас</div>
+        <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн дотоод ажилтнуудад зориулсан Polaris системийн <strong style="color:var(--gold);">Үнэт цаас</strong> цэсний гарын авлагын discovery шат. Permission-уудыг нэг бүрчлэн шалгаж, ямар action ID шаардагдахыг тодорхойлж байна. Бусад цэснүүд нь систем админы ажилд илүү хамаарах тул ажилтнуудад хэрэгтэй Үнэт цаас хэсгийг түрүүлж боловсруулж байна.</div>
         <div class="prog-wrap">
           <div class="prog-head"><span class="prog-lbl">Permission Discovery</span><span class="prog-pct">20%</span></div>
           <div class="prog-track"><div class="prog-fill pg-gold" data-w="20"></div></div>
@@ -669,6 +661,9 @@
           <span class="tag">Polaris</span><span class="tag">Үнэт цаас</span>
           <span class="tag">Permission Discovery</span><span class="tag">Гарын Авлага</span><span class="tag">166+ Цэс</span>
         </div>
+        <a href="Polaris_Permission_Discovery.xlsx" target="_blank" rel="noopener" class="open-btn" style="margin-top:1rem;">
+          📊 &nbsp;Discovery Excel Нээх
+        </a>
       </div>
 
     </div>
@@ -679,10 +674,9 @@
 <section id="vendors" style="background:var(--bg1);">
   <div class="wrap">
     <div class="sec-eyebrow">Вендор Систем</div>
-    <h2 class="sec-h2">Жира Тасалбарын Урсгал</h2>
-    <p class="sec-p">Дотоод тасалбаруудыг байршлаас нь хамааран <strong style="color:#FBBF24;">GrapeCity</strong> (CASPO төсөл — веб/backend) болон <strong style="color:var(--blue-lt);">AFS Fintech</strong> (апп/IT хэлтэс) хоёр вендорт дамжуулна.</p>
+    <h2 class="sec-h2">Jira Урсгал</h2>
+    <p class="sec-p">Дотоод ажлуудыг байршлаас нь хамааран <strong style="color:#FBBF24;">GrapeCity</strong> (CASPO төсөл — веб/backend) болон <strong style="color:var(--blue-lt);">AFS Fintech</strong> (апп/IT хэлтэс) рүү дамжуулдаг. CASPO нь тусдаа вендор биш, GrapeCity-ийн манай талд нээсэн Jira төсөл юм.</p>
 
-    <!-- Flow visual -->
     <div style="display:flex;align-items:center;justify-content:center;gap:1.2rem;flex-wrap:wrap;margin:2.5rem 0;padding:1.5rem 2rem;background:rgba(255,255,255,.02);border:1px solid var(--border2);border-radius:14px;">
       <div style="text-align:center;">
         <div style="font-size:2rem;margin-bottom:.4rem;">👥</div>
@@ -710,54 +704,107 @@
       </div>
     </div>
 
-    <!-- Vendor detail cards -->
     <div class="proj-grid">
 
       <div class="card proj-card reveal">
         <div class="status-pill s-pend"><span class="sdot"></span> Веб &amp; Backend · CASPO</div>
         <div class="proj-ico" style="background:rgba(245,158,11,.1);">🌐</div>
         <div class="proj-name">GrapeCity</div>
-        <div class="proj-desc">Гадаад вендор компани. Polaris системийн backend болон вэб хэсгийг хариуцна. <strong style="color:#FBBF24;">CASPO</strong> нь GrapeCity-ийн манай тал руу нээсэн Жира төсөл — тасалбар бүрийг CASPO-д шивнэ. 2026-аас нийт <strong style="color:#FBBF24;">48 Жира тасалбар</strong> — систем админ 18 (4-р сар: 9, 5-р сар: 11), бусад 30.</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin:.75rem 0;font-size:12px;">
-          <div style="background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.18);border-radius:8px;padding:.6rem .8rem;">
-            <div style="color:#4ADE80;font-weight:700;font-size:1rem;">23</div>
-            <div style="color:var(--txt2);">Хаагдсан</div>
+        <div class="proj-desc">Гадаад вендор компани. Polaris системийн backend болон вэб хэсгийг хариуцна. <strong style="color:#FBBF24;">CASPO</strong> нь GrapeCity-ийн манай талд нээсэн Jira төсөл. Доорх тоонууд нь CASPO тайлангийн одоогийн snapshot бөгөөд төрөл/компонентийн задаргаа бүрэн цэвэрлэгдээгүй байна.</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.75rem 0 1rem;font-size:12px;">
+          <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.18);border-radius:8px;padding:.6rem .8rem;">
+            <div style="color:#FBBF24;font-weight:700;font-size:1rem;">67</div>
+            <div style="color:var(--txt2);">Нийт</div>
           </div>
           <div style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.18);border-radius:8px;padding:.6rem .8rem;">
-            <div style="color:var(--blue-lt);font-weight:700;font-size:1rem;">19+</div>
-            <div style="color:var(--txt2);">Нээлттэй</div>
+            <div style="color:var(--blue-lt);font-weight:700;font-size:1rem;">29</div>
+            <div style="color:var(--txt2);">Open</div>
           </div>
-          <div style="background:rgba(230,51,41,.06);border:1px solid rgba(230,51,41,.18);border-radius:8px;padding:.6rem .8rem;">
-            <div style="color:#FF5A52;font-weight:700;font-size:1rem;">31+</div>
-            <div style="color:var(--txt2);">🔴 Bug</div>
+          <div style="background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.18);border-radius:8px;padding:.6rem .8rem;">
+            <div style="color:#4ADE80;font-weight:700;font-size:1rem;">35</div>
+            <div style="color:var(--txt2);">Closed</div>
           </div>
           <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.18);border-radius:8px;padding:.6rem .8rem;">
-            <div style="color:#FBBF24;font-weight:700;font-size:1rem;">48</div>
-            <div style="color:var(--txt2);">Нийт (2026-аас)</div>
+            <div style="color:#FBBF24;font-weight:700;font-size:1rem;">19</div>
+            <div style="color:var(--txt2);">In Progress</div>
           </div>
+          <div style="background:rgba(230,51,41,.06);border:1px solid rgba(230,51,41,.18);border-radius:8px;padding:.6rem .8rem;">
+            <div style="color:#FF5A52;font-weight:700;font-size:1rem;">5</div>
+            <div style="color:var(--txt2);">Засахгүй</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:8px;padding:.6rem .8rem;">
+            <div style="color:var(--txt0);font-weight:700;font-size:1rem;">63</div>
+            <div style="color:var(--txt2);">Ангилсан</div>
+          </div>
+        </div>
+        <div style="overflow-x:auto;margin-top:1rem;">
+          <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:420px;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--border2);">
+                <th style="text-align:left;padding:.45rem;color:var(--txt2);">Төрөл</th>
+                <th style="text-align:right;padding:.45rem;color:var(--txt2);">Тоо</th>
+                <th style="text-align:right;padding:.45rem;color:var(--txt2);">Хувь</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:.4rem;color:var(--txt1);">🔴 Bug</td><td style="padding:.4rem;text-align:right;color:var(--txt0);">41</td><td style="padding:.4rem;text-align:right;color:var(--txt2);">65.08%</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">🟢 Improvement</td><td style="padding:.4rem;text-align:right;color:var(--txt0);">14</td><td style="padding:.4rem;text-align:right;color:var(--txt2);">22.22%</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">✅ Business Consulting</td><td style="padding:.4rem;text-align:right;color:var(--txt0);">5</td><td style="padding:.4rem;text-align:right;color:var(--txt2);">7.94%</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">✅ Technical Consulting</td><td style="padding:.4rem;text-align:right;color:var(--txt0);">2</td><td style="padding:.4rem;text-align:right;color:var(--txt2);">3.17%</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">🔴 Complaint</td><td style="padding:.4rem;text-align:right;color:var(--txt0);">1</td><td style="padding:.4rem;text-align:right;color:var(--txt2);">1.59%</td></tr>
+            </tbody>
+          </table>
         </div>
         <div class="tags">
           <span class="tag">Polaris Backend</span><span class="tag">CASPO Төсөл</span>
-          <span class="tag">УУБ Comex Аудит</span><span class="tag">48 Жира</span>
+          <span class="tag">Bug 41</span><span class="tag">Improvement 14</span>
         </div>
       </div>
 
       <div class="card proj-card reveal d1">
-        <div class="status-pill s-res"><span class="sdot"></span> Апп &amp; IT Хэлтэс</div>
+        <div class="status-pill s-res"><span class="sdot"></span> Надаас Үүссэн Ажлууд</div>
         <div class="proj-ico" style="background:rgba(59,130,246,.1);">📱</div>
         <div class="proj-name">AFS Fintech Solutions</div>
-        <div class="proj-desc">Ард Секюритиз-ын IT хэлтэс. Мобайл аппын хөгжүүлэлт болон IT дэд бүтцийн хариуцлагыг хүлээдэг. 4-р сард <strong style="color:var(--blue-lt);">2</strong>, 5-р сард <strong style="color:var(--blue-lt);">3</strong> — нийт <strong style="color:var(--blue-lt);">5 Жира тасалбар</strong> илгээсэн.</div>
+        <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн апп болон IT дэд бүтцийн асуудлыг хариуцдаг дотоод IT тал. Jira дээрээс авсан “Надаас үүссэн ажлууд” snapshot: нийт 13 unique issue, үүнээс Open 1, Closed 8, Approved 4.</div>
+        <div style="overflow-x:auto;margin-top:1rem;">
+          <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:500px;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--border2);">
+                <th style="text-align:left;padding:.45rem;color:var(--txt2);">Assignee</th>
+                <th style="text-align:center;padding:.45rem;color:var(--txt2);">Open</th>
+                <th style="text-align:center;padding:.45rem;color:var(--txt2);">Closed</th>
+                <th style="text-align:center;padding:.45rem;color:var(--txt2);">Approved</th>
+                <th style="text-align:center;padding:.45rem;color:var(--txt2);">T</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:.4rem;color:var(--txt1);">Бундархи.Б</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">1</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">Сэрээтэр</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">2</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">2</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">Мөнхтулга.Э</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">3</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">3</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">Ууганбаяр.Х</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">2</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt0);font-weight:700;">3</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">Энхмаа.Э</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">3</td><td style="text-align:center;color:var(--txt0);font-weight:700;">4</td></tr>
+            </tbody>
+            <tfoot>
+              <tr style="border-top:1px solid var(--border2);">
+                <td style="padding:.45rem;color:var(--txt0);font-weight:700;">Total Unique Issues</td>
+                <td style="text-align:center;color:var(--blue-lt);font-weight:800;">1</td>
+                <td style="text-align:center;color:#4ADE80;font-weight:800;">8</td>
+                <td style="text-align:center;color:#FBBF24;font-weight:800;">4</td>
+                <td style="text-align:center;color:var(--txt0);font-weight:800;">13</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
         <div class="tags">
-          <span class="tag">Мобайл Апп</span><span class="tag">IT Хэлтэс</span><span class="tag">5 Жира</span>
+          <span class="tag">AFS</span><span class="tag">13 Unique Issues</span><span class="tag">Open 1</span><span class="tag">Closed 8</span>
         </div>
       </div>
 
     </div>
 
-    <!-- Jira ticket log table -->
     <div class="card reveal" style="margin-top:2rem;padding:2rem;">
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin-bottom:.3rem;">📊 Вендорт Илгээсэн Жира Тасалбар — 4/21 ~ Одоо</div>
-      <div style="font-size:12px;color:var(--txt2);margin-bottom:1.5rem;">2026 оны 4-р сарын 21-ээс одоо хүртэл систем админаас вендор бүрт илгээсэн Жира тасалбарын бүртгэл.</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin-bottom:.3rem;">📊 Вендорт Илгээсэн Jira — 4/21 ~ Одоо</div>
+      <div style="font-size:12px;color:var(--txt2);margin-bottom:1.5rem;">2026 оны 4-р сарын 21-ээс одоо хүртэл систем админаас вендор бүрт илгээсэн Jira бүртгэл.</div>
       <div style="overflow-x:auto;">
         <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:500px;">
           <thead>
@@ -799,7 +846,7 @@
         </table>
       </div>
       <div style="font-size:11px;color:var(--txt2);margin-top:1rem;display:flex;align-items:center;gap:.5rem;">
-        <span style="color:var(--txt2);">*</span><span>GrapeCity тасалбаруудаас систем админ үүсгэсэн: 4-р сар 9, 5-р сар 11 (нийт 18). Үлдэгдэл 30 нь бусад хэрэглэгчдийн.</span>
+        <span style="color:var(--txt2);">*</span><span>GrapeCity/CASPO дээр систем админ үүсгэсэн Jira: 4-р сар 9, 5-р сар 11 (нийт 18). Үлдсэн 30 нь бусад хэрэглэгчдийн үүсгэсэн ажил.</span>
       </div>
     </div>
 
@@ -810,7 +857,7 @@
 <section id="access">
   <div class="wrap">
     <div class="sec-eyebrow">Шууд Апп</div>
-    <h2 class="sec-h2">Jira Тасалбар Хянагч</h2>
+    <h2 class="sec-h2">Jira Хянагч</h2>
     <p class="sec-p">QR кодыг уншуулах эсвэл линк дээр дарна уу. Аливаа зөөврийн компьютер, таблет, утсан дээр нэн даруй нэгдэнэ.</p>
 
     <!-- AppSheet intro -->
@@ -858,9 +905,20 @@
       <div style="font-size:3rem;flex-shrink:0;">📖</div>
       <div style="flex:1;min-width:220px;">
         <div class="access-h" style="margin-bottom:.4rem;">Гарын Авлага — AppSheet &amp; Jira Систем</div>
-        <p class="access-p" style="margin-bottom:1.2rem;">AppSheet дээр Жира тасалбар үүсгэх, хянах, дамжуулах бүрэн гарын авлага. Шинэ ажилтнуудад болон системийг ашиглаж эхлэх хүн бүрд зориулсан заавар.</p>
+        <p class="access-p" style="margin-bottom:1.2rem;">AppSheet дээр Jira үүсгэх, хянах, дамжуулах бүрэн гарын авлага. Шинэ ажилтнуудад болон системийг ашиглаж эхлэх хүн бүрд зориулсан заавар.</p>
         <a href="Гарын Авлага AppSheet Jira (Ard Securities).pdf" target="_blank" rel="noopener" class="open-btn">
           📄 &nbsp;Гарын Авлага Нээх
+        </a>
+      </div>
+    </div>
+
+    <div class="card access-card wide reveal" style="margin-top:1.5rem;padding:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+      <div style="font-size:3rem;flex-shrink:0;">📊</div>
+      <div style="flex:1;min-width:220px;">
+        <div class="access-h" style="margin-bottom:.4rem;">Polaris Permission Discovery — Үнэт цаас</div>
+        <p class="access-p" style="margin-bottom:1.2rem;">Polaris системийн гарын авлагын discovery файл. Одоогоор Үнэт цаас цэсийг ажилтнуудад зориулан шалгаж, шаардагдах permission болон action ID-уудыг тодорхойлж байна.</p>
+        <a href="Polaris_Permission_Discovery.xlsx" target="_blank" rel="noopener" class="open-btn">
+          📊 &nbsp;Excel Файл Нээх
         </a>
       </div>
     </div>
@@ -869,7 +927,7 @@
 
       <div class="card access-card reveal">
         <div class="access-h">📱 Апп Нээхийн Тулд Уншуулна уу</div>
-        <div class="access-p">Утасныхаа камераар энэ кодыг уншуулж Jira Тасалбар Хянах Системд аливаа төхөөрөмжөөс нэвтэрнэ үү.</div>
+        <div class="access-p">Утасныхаа камераар энэ кодыг уншуулж Jira хянах системд аливаа төхөөрөмжөөс нэвтэрнэ үү.</div>
         <div class="qr-wrap">
           <div class="qr-box" id="qr-app"></div>
           <p class="qr-note">Утасны камераар уншуулна уу<br><strong>Утсаар нэвтрэх</strong></p>
@@ -890,13 +948,13 @@
 
       <div class="card access-card wide reveal">
         <div class="access-h">🖥️ Аппыг Урьдчилан Харах</div>
-        <div class="access-p">AppSheet дээр бүтээсэн, Google Sheets болон Google Drive-аар дэмжигдсэн Jira Тасалбар Хянах Систем. Доорх товчийг дарж шууд нээнэ үү.</div>
+        <div class="access-p">AppSheet дээр бүтээсэн, Google Sheets болон Google Drive-аар дэмжигдсэн Jira хянах систем. Доорх товчийг дарж шууд нээнэ үү.</div>
         <div class="app-preview-card">
           <div class="app-preview-left">
             <div class="app-icon-big">📋</div>
             <div class="app-meta">
-              <div class="app-meta-name">Jira Тасалбар Хянагч</div>
-              <div class="app-meta-sub">Ард Секюритиз ҮЦК · Дотоод Систем</div>
+              <div class="app-meta-name">Jira Хянагч</div>
+              <div class="app-meta-sub">Ард Секюритиз ҮЦК ХХК · Дотоод Систем</div>
               <div class="app-badges">
                 <span class="app-badge"><span style="color:#4ADE80">●</span> Идэвхтэй</span>
                 <span class="app-badge">AppSheet</span>
@@ -906,7 +964,7 @@
             </div>
           </div>
           <div class="app-preview-right">
-            <div class="app-feature"><span class="app-feat-ico">✅</span><span>Jira тасалбаруудыг бодит цагт хянах</span></div>
+            <div class="app-feature"><span class="app-feat-ico">✅</span><span>Jira ажлуудыг бодит цагт хянах</span></div>
             <div class="app-feature"><span class="app-feat-ico">✅</span><span>Бүх асуудлууд архивлагдана</span></div>
             <div class="app-feature"><span class="app-feat-ico">✅</span><span>Утас, таблет, компьютерт нийцтэй</span></div>
             <div class="app-feature"><span class="app-feat-ico">✅</span><span>Нэг асуудал дахин дахин үүсэхгүй</span></div>
@@ -938,43 +996,36 @@
       <div class="tl-item reveal">
         <div class="tl-dot lit"></div>
         <div class="tl-date">2026 оны 4-р сарын 21</div>
-        <div class="tl-title">Ард Секюритиз-д Нэгдсэн &amp; Системийн Шинжилгээ</div>
-        <div class="tl-body">Системийн Администраторын үүрэгт ажилд орж, Polaris болон бусад дотоод системийн байдлыг шинжилсэн. AppSheet Жира систем, кибер аудит болон API судалгааны санаачлагуудыг CBDO-тэй хамтран тодорхойлсон.</div>
+        <div class="tl-title">Ард Секюритиз ҮЦК ХХК-д Нэгдсэн &amp; Системийн Шинжилгээ</div>
+        <div class="tl-body">Систем админы үүрэгт ажилд орж, Polaris болон бусад дотоод системийн байдлыг шинжилсэн. AppSheet Jira систем, кибер аудит болон Polaris гарын авлагын ажлуудыг CBDO-тэй хамтран тодорхойлсон.</div>
       </div>
 
       <div class="tl-item reveal d1">
         <div class="tl-dot lit"></div>
         <div class="tl-date">2026 оны 4–5-р сар</div>
         <div class="tl-title">AppSheet Жира Системийг Хөгжүүлж Нэвтрүүлсэн</div>
-        <div class="tl-body">Дотоод ажилчидад зориулсан Жира тасалбар хянах AppSheet аппыг хөгжүүлж байршуулсан. CASPO (веб/backend) болон AFS Fintech-д (апп/IT) тасалбар дамжуулах урсгал тогтоосон.</div>
+        <div class="tl-body">Дотоод ажилчидад зориулсан Jira хянах AppSheet аппыг хөгжүүлж байршуулсан. GrapeCity (CASPO төсөл — веб/backend) болон AFS Fintech-д (апп/IT) ажил дамжуулах урсгал тогтоосон.</div>
       </div>
 
       <div class="tl-item reveal d2">
         <div class="tl-dot lit"></div>
         <div class="tl-date">2026 оны 4–5-р сар</div>
-        <div class="tl-title">CASPO-д 43 Жира Тасалбар Илгээсэн ✓</div>
-        <div class="tl-body">Polaris системийн bug, сайжруулалт, лавлагааг хянаж CAS-797-ээс одоо хүртэл нийт 43 тасалбар илгээсэн. Хаагдсан: 23, Нээлттэй: 19, Bug: 31, Improvement: 5.</div>
+        <div class="tl-title">GrapeCity / CASPO Jira Урсгалыг Нэгтгэсэн ✓</div>
+        <div class="tl-body">Polaris системийн bug, сайжруулалт, лавлагааг GrapeCity-ийн CASPO төсөл дээр хянаж байна. Одоогийн snapshot: нийт 67, Open 29, Closed 35, Bug 41, Improvement 14.</div>
       </div>
 
       <div class="tl-item reveal d3">
         <div class="tl-dot lit"></div>
         <div class="tl-date">2026 оны 5-р сар</div>
         <div class="tl-title">Аудитын Эцсийн Тайланг МХБ-д Илгээсэн ✓</div>
-        <div class="tl-body">УУБ Comex вэбсайтын кибер аюулгүй байдлын аудитын эцсийн тайланг бэлтгэж, Монголын Хөрөнгийн Бирж (МХБ)-д хүргүүлсэн. МХБ-аас хариу бичиг ирэхийг хүлээж байна.</div>
-      </div>
-
-      <div class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-date">2026 оны 5-р сар</div>
-        <div class="tl-title">Хөрөнгийн Зах Зээлийн API Судалгааны Тайлан</div>
-        <div class="tl-body">PSPL болон олон улсын зах зээлийн API-уудын судалгааг дуусгаж байна. Автомат арилжааны функцийн хөгжүүлэлтийн замналын боломжийн үнэлгээг гаргаж байна.</div>
+        <div class="tl-body">УУБ Comex вэбсайтын кибер аюулгүй байдлын аудитын эцсийн тайланг бэлтгэж, CEO-ийн албан бичгийн дугаартайгаар Монголын Хөрөнгийн Бирж (МХБ)-д хүргүүлсэн. Үндсэн ажил дууссан.</div>
       </div>
 
       <div class="tl-item reveal d1">
         <div class="tl-dot"></div>
         <div class="tl-date">2026 оны 6-р сар</div>
         <div class="tl-title">CEO &amp; CBDO-д Танилцуулга — Эцсийн Тайлан</div>
-        <div class="tl-body">Бүх дуусгасан санаачлагуудыг хамарсан гүйцэтгэх танилцуулга, байршуулсан аппуудын шууд демонстраци болон Ард Секюритиз ҮЦК-ийн Систем инновацийн дараагийн шатны стратегийн саналууд.</div>
+        <div class="tl-body">Дууссан болон үргэлжилж буй ажлуудыг хамарсан гүйцэтгэх танилцуулга, байршуулсан аппуудын шууд демонстраци болон Ард Секюритиз ҮЦК ХХК-ийн систем инновацийн дараагийн шатны саналууд.</div>
       </div>
 
     </div>
@@ -986,14 +1037,13 @@
   <div class="wrap">
     <div class="sec-eyebrow">Хэрэгсэл ба Технологи</div>
     <h2 class="sec-h2">Ашигласан Технологи</h2>
-    <p class="sec-p">Ард Секюритиз ҮЦК-ийн Систем санаачлагуудыг хэрэгжүүлж буй платформ, хэрэгсэл болон үйлчилгээнүүд.</p>
+    <p class="sec-p">Ард Секюритиз ҮЦК ХХК-ийн систем санаачлагуудыг хэрэгжүүлж буй платформ, хэрэгсэл болон үйлчилгээнүүд.</p>
 
     <div class="tech-grid">
       <div class="card tech-item reveal">   <span class="tech-ico">📱</span><span class="tech-name">AppSheet</span><span class="tech-cat">Код Шаардахгүй</span></div>
       <div class="card tech-item reveal d1"> <span class="tech-ico">📊</span><span class="tech-name">Google Sheets</span><span class="tech-cat">Мэдээллийн Сан</span></div>
       <div class="card tech-item reveal d2"> <span class="tech-ico">💾</span><span class="tech-name">Google Drive</span><span class="tech-cat">Файл Хадгалах</span></div>
       <div class="card tech-item reveal">   <span class="tech-ico">🎫</span><span class="tech-name">Jira</span><span class="tech-cat">Асуудал Хянах</span></div>
-      <div class="card tech-item reveal d1"> <span class="tech-ico">📈</span><span class="tech-name">Market APIs</span><span class="tech-cat">Санхүүгийн Өгөгдөл</span></div>
       <div class="card tech-item reveal d2"> <span class="tech-ico">🔐</span><span class="tech-name">Кибер Аудит</span><span class="tech-cat">Аюулгүй Байдал</span></div>
       <div class="card tech-item reveal">   <span class="tech-ico">🌐</span><span class="tech-name">GrapeCity</span><span class="tech-cat">Веб Хөгжүүлэгч</span></div>
       <div class="card tech-item reveal d1"> <span class="tech-ico">⚙️</span><span class="tech-name">GitHub Pages</span><span class="tech-cat">Хостинг</span></div>
@@ -1007,18 +1057,22 @@
     <div class="footer-brand">
       <div class="footer-mark"><img src="img/logo.png" alt="Ард" style="filter:none;" /></div>
       <div>
-        <div class="footer-co">Ард Секюритиз ҮЦК</div>
-        <div class="footer-tag">Системийн Администраторын Тайлан · 2026</div>
+        <div class="footer-co">Ард Секюритиз ҮЦК ХХК</div>
+        <div class="footer-tag">Систем админы тайлан · 2026</div>
       </div>
     </div>
-    <p class="footer-dis">Энэхүү тайланг Ард Секюритиз ҮЦК-ийн дотоод гүйцэтгэх хяналтад зориулан бэлтгэсэн. Агуулга нь нууц бөгөөд зөвшөөрөлтэй ажилтнуудад зориулагдсан болно.</p>
+    <p class="footer-dis">Энэхүү тайланг Ард Секюритиз ҮЦК ХХК-ийн дотоод гүйцэтгэх хяналтад зориулан бэлтгэсэн. Агуулга нь нууц бөгөөд зөвшөөрөлтэй ажилтнуудад зориулагдсан болно.</p>
+    <div class="footer-links">
+      <a href="https://github.com/Tumeyo" target="_blank" rel="noopener">GitHub · Tumeyo</a>
+      <a href="https://github.com/Tumeyo/ard-securities-report" target="_blank" rel="noopener">Report Repository</a>
+    </div>
     <div class="footer-copy">
-      © 2026 Ард Секюритиз ҮЦК &nbsp;·&nbsp; ARD Securities LLC &nbsp;
+      © 2026 Ард Секюритиз ҮЦК ХХК &nbsp;·&nbsp; ARD Securities LLC
     </div>
   </div>
 </footer>
 
-<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" title="Дээш буцах">↑</button>
+<button id="btt" type="button" title="Дээш буцах">↑</button>
 <div id="page-transition"></div>
 
 <script>
@@ -1032,6 +1086,10 @@ window.addEventListener('scroll', () => {
   document.getElementById('pbar').style.width = pct + '%';
   document.getElementById('nav').style.boxShadow = window.scrollY > 60 ? '0 4px 30px rgba(0,0,0,.6)' : 'none';
   document.getElementById('btt').classList.toggle('show', window.scrollY > 400);
+});
+
+document.getElementById('btt').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 // Countdown — ✏️ танилцуулах огноог өөрчилнө үү
