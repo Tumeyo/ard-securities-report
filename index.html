@@ -241,7 +241,7 @@
 
     /* ── STATS ── */
     #stats { background:var(--bg1); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
-    .stats-row { max-width:1120px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); }
+    .stats-row { max-width:1120px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); }
     .stat-box { text-align:center; padding:2rem 1.5rem; position:relative; }
     .stat-box:not(:last-child)::after { content:''; position:absolute; right:0; top:22%; bottom:22%; width:1px; background:var(--border); }
     .stat-num { font-family:'Space Grotesk',sans-serif; font-size:clamp(2rem,3.5vw,2.8rem); font-weight:700; color:var(--gold); line-height:1; display:block; }
@@ -536,7 +536,7 @@
       <span class="cd-sep">:</span>
       <div class="cd-block"><span class="cd-val" id="cd-s">--</span><span class="cd-lbl">Секунд</span></div>
     </div>
-    <p class="cd-caption" id="cd-caption">CEO &amp; CBDO-д Танилцуулах Хугацаа &mdash; 2026 оны 6-р сарын 30</p>
+    <p class="cd-caption" id="cd-caption">Удирдлагуудад Танилцуулах Хугацаа &mdash; 2026 оны 6-р сарын 30</p>
   </div>
 </section>
 
@@ -554,10 +554,6 @@
     <div class="stat-box reveal d2">
       <span class="stat-num" data-to="1">0</span>
       <span class="stat-lbl">Сар Үлдсэн</span>
-    </div>
-    <div class="stat-box reveal d3">
-      <span class="stat-num" data-to="2">0</span>
-      <span class="stat-lbl">Гарын Авлага</span>
     </div>
   </div>
 </div>
@@ -619,18 +615,21 @@
     <div class="proj-grid">
 
       <div class="card proj-card reveal">
-        <div class="status-pill s-done"><span class="sdot"></span> Бараг Дуусгасан</div>
+        <div class="status-pill s-done"><span class="sdot"></span> Дууссан</div>
         <div class="proj-ico" style="background:rgba(34,197,94,.1);">📋</div>
         <div class="proj-name">Jira Хянах Систем</div>
         <div class="proj-desc">Jira дахь ажлуудыг бодит цаг хугацаанд хянах, удирдах AppSheet-д суурилсан дотоод апп. Өгөгдлийн синк болон баримт бичгийн удирдлагын тулд Google Sheets болон Google Drive-тай интеграцчилсан.</div>
         <div class="prog-wrap">
-          <div class="prog-head"><span class="prog-lbl">Гүйцэтгэл</span><span class="prog-pct">85%</span></div>
-          <div class="prog-track"><div class="prog-fill pg-gold" data-w="85"></div></div>
+          <div class="prog-head"><span class="prog-lbl">Гүйцэтгэл</span><span class="prog-pct">100%</span></div>
+          <div class="prog-track"><div class="prog-fill pg-gold" data-w="100"></div></div>
         </div>
         <div class="tags">
           <span class="tag">AppSheet</span><span class="tag">Google Sheets</span>
           <span class="tag">Google Drive</span><span class="tag">Jira</span>
         </div>
+        <a href="https://www.appsheet.com/start/4981b74b-5ddd-43c4-9ba8-b02d4731a642" target="_blank" rel="noopener" class="open-btn" style="margin-top:1rem;">
+          📱 &nbsp;Апп Нээх
+        </a>
       </div>
 
       <div class="card proj-card reveal d2">
@@ -710,54 +709,36 @@
         <div class="status-pill s-pend"><span class="sdot"></span> Веб &amp; Backend · CASPO</div>
         <div class="proj-ico" style="background:rgba(245,158,11,.1);">🌐</div>
         <div class="proj-name">GrapeCity</div>
-        <div class="proj-desc">Гадаад вендор компани. Polaris системийн backend болон вэб хэсгийг хариуцна. <strong style="color:#FBBF24;">CASPO</strong> нь GrapeCity-ийн манай талд нээсэн Jira төсөл. Доорх тоонууд нь CASPO тайлангийн одоогийн snapshot бөгөөд төрөл/компонентийн задаргаа бүрэн цэвэрлэгдээгүй байна.</div>
+        <div class="proj-desc">Гадаад вендор компани. Polaris системийн backend болон вэб хэсгийг хариуцна. <strong style="color:#FBBF24;">CASPO</strong> нь GrapeCity-ийн манай талд нээсэн Jira төсөл. Энэ вэб тайланд CAS-901-ээс буюу 2026 оны 4-р сарын 23-наас хойш систем админаас үүсгэсэн ажлуудыг тусгав.</div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.75rem 0 1rem;font-size:12px;">
           <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.18);border-radius:8px;padding:.6rem .8rem;">
-            <div style="color:#FBBF24;font-weight:700;font-size:1rem;">67</div>
-            <div style="color:var(--txt2);">Нийт</div>
+            <div style="color:#FBBF24;font-weight:700;font-size:1rem;">20</div>
+            <div style="color:var(--txt2);">GrapeCity Jira</div>
           </div>
           <div style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.18);border-radius:8px;padding:.6rem .8rem;">
-            <div style="color:var(--blue-lt);font-weight:700;font-size:1rem;">29</div>
-            <div style="color:var(--txt2);">Open</div>
+            <div style="color:var(--blue-lt);font-weight:700;font-size:1rem;">9</div>
+            <div style="color:var(--txt2);">4-р сар</div>
           </div>
           <div style="background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.18);border-radius:8px;padding:.6rem .8rem;">
-            <div style="color:#4ADE80;font-weight:700;font-size:1rem;">35</div>
-            <div style="color:var(--txt2);">Closed</div>
+            <div style="color:#4ADE80;font-weight:700;font-size:1rem;">11</div>
+            <div style="color:var(--txt2);">5-р сар</div>
           </div>
           <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.18);border-radius:8px;padding:.6rem .8rem;">
-            <div style="color:#FBBF24;font-weight:700;font-size:1rem;">19</div>
-            <div style="color:var(--txt2);">In Progress</div>
+            <div style="color:#FBBF24;font-weight:700;font-size:1rem;">CAS-901</div>
+            <div style="color:var(--txt2);">Эхлэл</div>
           </div>
           <div style="background:rgba(230,51,41,.06);border:1px solid rgba(230,51,41,.18);border-radius:8px;padding:.6rem .8rem;">
-            <div style="color:#FF5A52;font-weight:700;font-size:1rem;">5</div>
-            <div style="color:var(--txt2);">Засахгүй</div>
+            <div style="color:#FF5A52;font-weight:700;font-size:1rem;">4/23</div>
+            <div style="color:var(--txt2);">Огноо</div>
           </div>
           <div style="background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:8px;padding:.6rem .8rem;">
-            <div style="color:var(--txt0);font-weight:700;font-size:1rem;">63</div>
-            <div style="color:var(--txt2);">Ангилсан</div>
+            <div style="color:var(--txt0);font-weight:700;font-size:1rem;">List tab</div>
+            <div style="color:var(--txt2);">Эх сурвалж</div>
           </div>
-        </div>
-        <div style="overflow-x:auto;margin-top:1rem;">
-          <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:420px;">
-            <thead>
-              <tr style="border-bottom:1px solid var(--border2);">
-                <th style="text-align:left;padding:.45rem;color:var(--txt2);">Төрөл</th>
-                <th style="text-align:right;padding:.45rem;color:var(--txt2);">Тоо</th>
-                <th style="text-align:right;padding:.45rem;color:var(--txt2);">Хувь</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td style="padding:.4rem;color:var(--txt1);">🔴 Bug</td><td style="padding:.4rem;text-align:right;color:var(--txt0);">41</td><td style="padding:.4rem;text-align:right;color:var(--txt2);">65.08%</td></tr>
-              <tr><td style="padding:.4rem;color:var(--txt1);">🟢 Improvement</td><td style="padding:.4rem;text-align:right;color:var(--txt0);">14</td><td style="padding:.4rem;text-align:right;color:var(--txt2);">22.22%</td></tr>
-              <tr><td style="padding:.4rem;color:var(--txt1);">✅ Business Consulting</td><td style="padding:.4rem;text-align:right;color:var(--txt0);">5</td><td style="padding:.4rem;text-align:right;color:var(--txt2);">7.94%</td></tr>
-              <tr><td style="padding:.4rem;color:var(--txt1);">✅ Technical Consulting</td><td style="padding:.4rem;text-align:right;color:var(--txt0);">2</td><td style="padding:.4rem;text-align:right;color:var(--txt2);">3.17%</td></tr>
-              <tr><td style="padding:.4rem;color:var(--txt1);">🔴 Complaint</td><td style="padding:.4rem;text-align:right;color:var(--txt0);">1</td><td style="padding:.4rem;text-align:right;color:var(--txt2);">1.59%</td></tr>
-            </tbody>
-          </table>
         </div>
         <div class="tags">
           <span class="tag">Polaris Backend</span><span class="tag">CASPO Төсөл</span>
-          <span class="tag">Bug 41</span><span class="tag">Improvement 14</span>
+          <span class="tag">CAS-901+</span><span class="tag">Live Sheet</span>
         </div>
       </div>
 
@@ -765,12 +746,12 @@
         <div class="status-pill s-res"><span class="sdot"></span> Надаас Үүссэн Ажлууд</div>
         <div class="proj-ico" style="background:rgba(59,130,246,.1);">📱</div>
         <div class="proj-name">AFS Fintech Solutions</div>
-        <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн апп болон IT дэд бүтцийн асуудлыг хариуцдаг дотоод IT тал. Jira дээрээс авсан “Надаас үүссэн ажлууд” snapshot: нийт 13 unique issue, үүнээс Open 1, Closed 8, Approved 4.</div>
+        <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн апп болон IT дэд бүтцийн асуудлыг хариуцдаг дотоод IT тал. Jira дээрээс авсан “Надаас үүссэн ажлууд” snapshot: нийт 13 unique issue, үүнээс Open 1, Closed 8, Approved 4. Хувь хүний нэрийг оруулахгүй, зөвхөн албан тушаалаар харуулсан.</div>
         <div style="overflow-x:auto;margin-top:1rem;">
           <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:500px;">
             <thead>
               <tr style="border-bottom:1px solid var(--border2);">
-                <th style="text-align:left;padding:.45rem;color:var(--txt2);">Assignee</th>
+                <th style="text-align:left;padding:.45rem;color:var(--txt2);">Албан тушаал</th>
                 <th style="text-align:center;padding:.45rem;color:var(--txt2);">Open</th>
                 <th style="text-align:center;padding:.45rem;color:var(--txt2);">Closed</th>
                 <th style="text-align:center;padding:.45rem;color:var(--txt2);">Approved</th>
@@ -778,11 +759,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td style="padding:.4rem;color:var(--txt1);">Бундархи.Б</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">1</td></tr>
-              <tr><td style="padding:.4rem;color:var(--txt1);">Сэрээтэр</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">2</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">2</td></tr>
-              <tr><td style="padding:.4rem;color:var(--txt1);">Мөнхтулга.Э</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">3</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">3</td></tr>
-              <tr><td style="padding:.4rem;color:var(--txt1);">Ууганбаяр.Х</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">2</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt0);font-weight:700;">3</td></tr>
-              <tr><td style="padding:.4rem;color:var(--txt1);">Энхмаа.Э</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">3</td><td style="text-align:center;color:var(--txt0);font-weight:700;">4</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">Дата баг (Ard Credit)</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">1</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">Программист (AFS)</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">2</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">2</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">Мэдээллийн аюулгүй байдлын ахлах мэргэжилтэн (AFS)</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">3</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">3</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">Мэдээллийн технологи хариуцсан захирал (AFS)</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">2</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt0);font-weight:700;">3</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">Систем администратор (AFS)</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">3</td><td style="text-align:center;color:var(--txt0);font-weight:700;">4</td></tr>
             </tbody>
             <tfoot>
               <tr style="border-top:1px solid var(--border2);">
@@ -803,8 +784,8 @@
     </div>
 
     <div class="card reveal" style="margin-top:2rem;padding:2rem;">
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin-bottom:.3rem;">📊 Вендорт Илгээсэн Jira — 4/21 ~ Одоо</div>
-      <div style="font-size:12px;color:var(--txt2);margin-bottom:1.5rem;">2026 оны 4-р сарын 21-ээс одоо хүртэл систем админаас вендор бүрт илгээсэн Jira бүртгэл.</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin-bottom:.3rem;">📊 Вендорт Илгээсэн Jira — CAS-901 / 4-р сарын 23-аас</div>
+      <div style="font-size:12px;color:var(--txt2);margin-bottom:1.5rem;">2026 оны 4-р сарын 23-наас буюу CAS-901-ээс эхлэн систем админаас вендор бүрт илгээсэн Jira бүртгэл.</div>
       <div style="overflow-x:auto;">
         <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:500px;">
           <thead>
@@ -817,19 +798,19 @@
           </thead>
           <tbody>
             <tr style="border-bottom:1px solid var(--border2);">
-              <td style="padding:.75rem 1rem;color:var(--txt1);">2026 оны 4-р сар <span style="font-size:10px;color:var(--txt2);">(4/21-ээс)</span></td>
+              <td style="padding:.75rem 1rem;color:var(--txt1);">2026 оны 4-р сар <span style="font-size:10px;color:var(--txt2);">(4/23-аас)</span></td>
               <td style="text-align:center;padding:.75rem;color:#FBBF24;font-weight:600;">9 <span style="font-size:9px;color:var(--txt2);">*</span></td>
               <td style="text-align:center;padding:.75rem;color:var(--blue-lt);font-weight:600;">2</td>
-              <td style="text-align:center;padding:.75rem;color:var(--txt0);font-weight:700;">11+</td>
+              <td style="text-align:center;padding:.75rem;color:var(--txt0);font-weight:700;">11</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--border2);background:rgba(201,168,76,.03);">
-              <td style="padding:.75rem 1rem;color:var(--txt0);font-weight:600;">2026 оны 5-р сар <span style="font-size:10px;color:var(--gold);margin-left:6px;font-weight:700;">● Одоо</span></td>
+            <tr style="border-bottom:1px solid var(--border2);">
+              <td style="padding:.75rem 1rem;color:var(--txt1);font-weight:600;">2026 оны 5-р сар <span style="font-size:10px;color:#4ADE80;margin-left:6px;font-weight:700;">✓ Дууссан</span></td>
               <td style="text-align:center;padding:.75rem;color:#FBBF24;font-weight:600;">11 <span style="font-size:9px;color:var(--txt2);">*</span></td>
               <td style="text-align:center;padding:.75rem;color:var(--blue-lt);font-weight:600;">3</td>
-              <td style="text-align:center;padding:.75rem;color:var(--txt0);font-weight:700;">14+</td>
+              <td style="text-align:center;padding:.75rem;color:var(--txt0);font-weight:700;">14</td>
             </tr>
-            <tr>
-              <td style="padding:.75rem 1rem;color:var(--txt2);font-style:italic;">2026 оны 6-р сар</td>
+            <tr style="background:rgba(201,168,76,.03);">
+              <td style="padding:.75rem 1rem;color:var(--txt0);font-weight:600;">2026 оны 6-р сар <span style="font-size:10px;color:var(--gold);margin-left:6px;font-weight:700;">● Одоо</span></td>
               <td style="text-align:center;padding:.75rem;color:var(--txt2);">—</td>
               <td style="text-align:center;padding:.75rem;color:var(--txt2);">—</td>
               <td style="text-align:center;padding:.75rem;color:var(--txt2);">—</td>
@@ -838,18 +819,18 @@
           <tfoot>
             <tr style="border-top:1px solid var(--border);background:rgba(201,168,76,.04);">
               <td style="padding:.75rem 1rem;color:var(--txt0);font-weight:700;font-size:12px;">Нийт дүн</td>
-              <td style="text-align:center;padding:.75rem;color:#FBBF24;font-weight:800;">48</td>
+              <td style="text-align:center;padding:.75rem;color:#FBBF24;font-weight:800;">20</td>
               <td style="text-align:center;padding:.75rem;color:var(--blue-lt);font-weight:800;">5</td>
-              <td style="text-align:center;padding:.75rem;color:var(--txt0);font-weight:800;">53</td>
+              <td style="text-align:center;padding:.75rem;color:var(--txt0);font-weight:800;">25</td>
             </tr>
           </tfoot>
         </table>
       </div>
       <div style="font-size:11px;color:var(--txt2);margin-top:1rem;display:flex;align-items:center;gap:.5rem;">
-        <span style="color:var(--txt2);">*</span><span>GrapeCity/CASPO дээр систем админ үүсгэсэн Jira: 4-р сар 9, 5-р сар 11 (нийт 18). Үлдсэн 30 нь бусад хэрэглэгчдийн үүсгэсэн ажил.</span>
+        <span style="color:var(--txt2);">*</span><span>GrapeCity/CASPO дээр систем админ үүсгэсэн Jira-г CAS-901-ээс эхлүүлэн web report-д тусгав. 4-р сар 9, 5-р сар 11 — нийт 20.</span>
       </div>
       <div style="margin-top:1.2rem;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;">
-        <a href="https://docs.google.com/spreadsheets/d/14vQqvt9jiNjNKLMsw9M4sV9ut27Q74ZgjmlcAb5daV4/edit?gid=1696105076#gid=1696105076" target="_blank" rel="noopener" class="open-btn">
+        <a href="https://docs.google.com/spreadsheets/d/14vQqvt9jiNjNKLMsw9M4sV9ut27Q74ZgjmlcAb5daV4/edit?usp=sharing" target="_blank" rel="noopener" class="open-btn">
           📊 &nbsp;Live Jira Report Нээх
         </a>
         <span style="font-size:11px;color:var(--txt2);">Долоо хоног бүр шинэчлэгдэх үндсэн эх сурвалж.</span>
@@ -1017,7 +998,7 @@
         <div class="tl-dot lit"></div>
         <div class="tl-date">2026 оны 4–5-р сар</div>
         <div class="tl-title">GrapeCity / CASPO Jira Урсгалыг Нэгтгэсэн ✓</div>
-        <div class="tl-body">Polaris системийн bug, сайжруулалт, лавлагааг GrapeCity-ийн CASPO төсөл дээр хянаж байна. Одоогийн snapshot: нийт 67, Open 29, Closed 35, Bug 41, Improvement 14.</div>
+        <div class="tl-body">Polaris системийн bug, сайжруулалт, лавлагааг GrapeCity-ийн CASPO төсөл дээр хянаж байна. Web report-д CAS-901 буюу 2026 оны 4-р сарын 23-наас хойш үүсгэсэн ажлуудыг тусгасан: 4-р сар 9, 5-р сар 11, нийт 20.</div>
       </div>
 
       <div class="tl-item reveal d3">
