@@ -412,6 +412,20 @@
     .footer-links a { color:var(--gold); text-decoration:none; }
     .footer-links a:hover { color:var(--gold-lt); }
 
+    /* ── THANK YOU ── */
+    #thanks { background:var(--bg0); padding-top:4rem; padding-bottom:4rem; }
+    .thanks-card { max-width:720px; margin:0 auto; padding:2rem; text-align:center; }
+    .thanks-title { font-family:'Space Grotesk',sans-serif; font-size:1.35rem; font-weight:700; margin-bottom:.6rem; }
+    .thanks-text { color:var(--txt1); font-size:13px; line-height:1.7; max-width:560px; margin:0 auto 1.4rem; }
+    .thanks-quote {
+      display:none; margin:1.5rem auto 0; max-width:560px;
+      padding:1.25rem 1.4rem; border-radius:12px;
+      border:1px solid rgba(201,168,76,.24);
+      background:rgba(201,168,76,.06);
+      color:var(--txt0); font-size:15px; line-height:1.75;
+    }
+    .thanks-quote.show { display:block; animation:fadeUp .45s ease both; }
+
     .sec-p, .team-desc, .proj-desc, .access-p, .tl-body, .footer-dis {
       text-align: justify;
       text-align-last: left;
@@ -1055,6 +1069,20 @@
   </div>
 </section>
 
+<!-- THANK YOU -->
+<section id="thanks">
+  <div class="wrap">
+    <div class="card thanks-card reveal">
+      <div class="thanks-title">Талархлын үг</div>
+      <p class="thanks-text">Тайланг танилцуулсны дараа зөвшөөрч дэмжсэн тохиолдолд дарж уншина уу.</p>
+      <button type="button" class="open-btn" onclick="showThanks()">
+        Талархлын үг харах
+      </button>
+      <div class="thanks-quote" id="thanksQuote" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -1230,6 +1258,21 @@ const SITE_URL = window.location.href.split('#')[0];
 const qrCfg = text => ({ text, width:182, height:182, colorDark:'#020810', colorLight:'#ffffff', correctLevel:QRCode.CorrectLevel.H });
 new QRCode(document.getElementById('qr-app'),  qrCfg(APP_URL));
 new QRCode(document.getElementById('qr-site'), qrCfg(SITE_URL));
+
+// Thank-you note
+const thanksLines = [
+  'Итгэл үзүүлж, чиглэл өгсөн удирдлагууддаа баярлалаа. Энэ боломжийг илүү хариуцлагатай ажлаар хариулах болно.',
+  'Жинхлэх боломж олговол энэ нь төгсгөл биш, илүү хариуцлагатай эхлэл гэж хүлээн авна.',
+  'Энэ хугацаанд сурсан зүйлээ цэгцтэй ажил, тогтвортой үр дүн болгож үргэлжлүүлэх болно. Баярлалаа.'
+];
+function showThanks() {
+  const box = document.getElementById('thanksQuote');
+  const next = thanksLines[Math.floor(Math.random() * thanksLines.length)];
+  box.textContent = next;
+  box.classList.remove('show');
+  void box.offsetWidth;
+  box.classList.add('show');
+}
 
 // Copy link
 function copyLink(btn) {
