@@ -1127,12 +1127,12 @@
       <div style="color:var(--gold);font-size:1.5rem;font-weight:300;">→</div>
       <div style="display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;">
         <div style="text-align:center;padding:.75rem 1.1rem;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.22);border-radius:10px;">
-          <div class="mini-ico" style="margin:0 auto .45rem;width:34px;height:34px;">GC</div>
+          <div class="mini-ico" style="margin:0 auto .45rem;width:34px;height:34px;font-size:18px;letter-spacing:0;">🌐</div>
           <div style="font-size:11px;color:#FBBF24;font-weight:700;">GrapeCity</div>
           <div style="font-size:10px;color:var(--txt2);">Веб &amp; Backend · CASPO</div>
         </div>
         <div style="text-align:center;padding:.75rem 1.1rem;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.22);border-radius:10px;">
-          <div class="mini-ico" style="margin:0 auto .45rem;width:34px;height:34px;">AFS</div>
+          <div class="mini-ico" style="margin:0 auto .45rem;width:34px;height:34px;font-size:18px;letter-spacing:0;">📱</div>
           <div style="font-size:11px;color:var(--blue-lt);font-weight:700;">AFS</div>
           <div style="font-size:10px;color:var(--txt2);">Апп &amp; IT</div>
         </div>
@@ -1501,11 +1501,13 @@
     <div class="thanks-card reveal">
       <div class="sec-eyebrow" style="justify-content:center;">Талархал</div>
       <h2 class="thanks-title">Талархлын үг</h2>
-      <p class="thanks-text">Танилцуулгыг цаг гарган сонсож, чиглэл өгсөнд баярлалаа.</p>
+      <p class="thanks-text">Энэ хугацаанд надад итгэл өгч, чиглүүлж, хамтран ажилласан бүх хүмүүстээ баярлалаа.</p>
       <button type="button" class="thanks-btn" onclick="showThanks()">
         Талархал харах
       </button>
-      <div class="thanks-quote" id="thanksQuote" aria-live="polite"></div>
+      <div class="thanks-quote" id="thanksQuote" aria-live="polite">
+        Анх ажилдаа орж байхдаа мэдэхгүй, асуух зүйл олон байсан ч багийн дэмжлэг, өгсөн зөвлөгөө бүр надад ажлаа илүү сайн ойлгож, өөртөө итгэлтэй болох боломж өгсөн. Цаашдаа сурсан зүйлсээ бодит ажил болгож, илүү хариуцлагатай, илүү цэгцтэй ажиллахыг хичээх болно.
+      </div>
     </div>
   </div>
 </section>
@@ -1780,15 +1782,10 @@ new QRCode(document.getElementById('qr-app'),  qrCfg(APP_URL));
 new QRCode(document.getElementById('qr-site'), qrCfg(SITE_URL));
 
 // Thank-you note
-const thanksLines = [
-  'Цаг гарган сонсож, чиглэл өгсөн удирдлагууддаа баярлалаа. Цаашид ажлаа илүү цэгцтэй, хариуцлагатай үргэлжлүүлнэ.',
-  'Өгсөн чиглэл бүрийг бодит ажил болгож хэрэгжүүлэхийн төлөө анхаарч ажиллана.',
-  'Итгэл үзүүлсэнд баярлалаа. Энэ итгэлийг өдөр тутмын тогтвортой ажлаар хариулах болно.'
-];
+const thanksNote = 'Анх ажилдаа орж байхдаа мэдэхгүй, асуух зүйл олон байсан ч багийн дэмжлэг, өгсөн зөвлөгөө бүр надад ажлаа илүү сайн ойлгож, өөртөө итгэлтэй болох боломж өгсөн. Цаашдаа сурсан зүйлсээ бодит ажил болгож, илүү хариуцлагатай, илүү цэгцтэй ажиллахыг хичээх болно.';
 function showThanks() {
   const box = document.getElementById('thanksQuote');
-  const next = thanksLines[Math.floor(Math.random() * thanksLines.length)];
-  box.textContent = next;
+  box.textContent = thanksNote;
   box.classList.remove('show');
   void box.offsetWidth;
   box.classList.add('show');
