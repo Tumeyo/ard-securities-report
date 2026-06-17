@@ -377,6 +377,59 @@
     }
     .presenting-photo img { width:100%; height:100%; object-fit:cover; object-position:center 22%; transform:scale(1.34); transform-origin:center 22%; display:block; }
 
+    /* ── PARTICIPATION ── */
+    #participation {
+      background:
+        radial-gradient(ellipse 64% 42% at 86% 6%, rgba(201,168,76,.075), transparent 64%),
+        radial-gradient(ellipse 46% 38% at 14% 88%, rgba(68,111,176,.06), transparent 62%),
+        linear-gradient(180deg, rgba(2,7,14,.98), rgba(6,15,28,.96));
+      border-bottom:1px solid var(--border2);
+    }
+    .participation-card {
+      margin-top:2.5rem;
+      display:grid;
+      grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);
+      gap:1.5rem;
+      padding:1.25rem;
+      align-items:stretch;
+    }
+    .participation-media {
+      min-height:320px;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(214,184,90,.14);
+      background:rgba(255,255,255,.035);
+    }
+    .participation-media img {
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+      object-position:center 42%;
+    }
+    .participation-info {
+      padding:1rem .75rem;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .participation-title { font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:700; margin-bottom:.55rem; }
+    .participation-copy { color:var(--txt1); font-size:13px; line-height:1.72; margin-bottom:1.2rem; }
+    .achievement-list { display:flex; flex-direction:column; border-top:1px solid rgba(255,255,255,.08); }
+    .achievement-row {
+      display:grid;
+      grid-template-columns:34px 1fr;
+      gap:.85rem;
+      align-items:start;
+      padding:.85rem 0;
+      border-bottom:1px solid rgba(255,255,255,.07);
+      color:var(--txt1);
+      font-size:13px;
+      line-height:1.45;
+    }
+    .achievement-row strong { color:var(--txt0); font-weight:700; }
+    .achievement-ico { color:var(--gold-lt); font-weight:800; text-align:center; }
+
     /* ── PROJECTS ── */
     #projects {
       background:
@@ -755,6 +808,8 @@
       .stat-box:nth-child(2)::after { display:none; }
       .access-grid { grid-template-columns:1fr; }
       .access-card.wide { grid-column:1; }
+      .participation-card { grid-template-columns:1fr; }
+      .participation-media { min-height:240px; }
       .team-grid, .proj-grid { grid-template-columns:1fr; }
       .hero-btns { flex-direction:column; align-items:center; }
       .jira-chart { grid-template-columns:repeat(2,1fr); }
@@ -920,6 +975,31 @@
         <div class="team-desc">Системийн ажлуудад чиглэл өгч, техникийн ажлыг бизнесийн хэрэгцээтэй нийцүүлэхэд дэмжлэг үзүүлж байна.</div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- PARTICIPATION -->
+<section id="participation">
+  <div class="wrap">
+    <div class="sec-eyebrow">Байгууллагын Оролцоо</div>
+    <h2 class="sec-h2">Спорт &amp; Багийн Идэвх</h2>
+    <p class="sec-p">Үндсэн системийн ажлуудаас гадна байгууллагын спорт, багийн арга хэмжээнд идэвхтэй оролцсон товч тэмдэглэл.</p>
+
+    <div class="card participation-card reveal">
+      <div class="participation-media">
+        <img src="img/ardcup.jpg" alt="ARD Cup 2026 багийн зураг" />
+      </div>
+      <div class="participation-info">
+        <div class="participation-title">Ulaanbaatar Marathon &amp; ARD CUP 2026</div>
+        <p class="participation-copy">2026 онд байгууллагын дотоод спортын арга хэмжээ болон олон нийтийн гүйлтийн арга хэмжээнд оролцсон.</p>
+        <div class="achievement-list">
+          <div class="achievement-row"><span class="achievement-ico">5K</span><span><strong>Ulaanbaatar Marathon 2026</strong> — 5 км зайд оролцсон.</span></div>
+          <div class="achievement-row"><span class="achievement-ico">G</span><span><strong>ARD CUP 2026 · CS2</strong> — алтан медаль.</span></div>
+          <div class="achievement-row"><span class="achievement-ico">S</span><span><strong>ARD CUP 2026 · Биллиард</strong> — мөнгөн медаль.</span></div>
+          <div class="achievement-row"><span class="achievement-ico">★</span><span><strong>ARD CUP 2026 · Дартс</strong> — тусгай байр.</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
