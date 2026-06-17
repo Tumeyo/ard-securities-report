@@ -44,13 +44,12 @@
     body {
       font-family: 'Inter', sans-serif;
       background:
-        linear-gradient(rgba(201,168,76,.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201,168,76,.014) 1px, transparent 1px),
-        radial-gradient(circle at 12% 14%, rgba(201,168,76,.09) 0, transparent 28rem),
-        radial-gradient(circle at 88% 18%, rgba(59,130,246,.07) 0, transparent 26rem),
-        radial-gradient(circle at 52% 78%, rgba(230,51,41,.045) 0, transparent 32rem),
-        linear-gradient(180deg, #020810 0%, #06101D 42%, #020810 100%);
-      background-size: 54px 54px, 54px 54px, auto, auto, auto, auto;
+        radial-gradient(circle at 8% 10%, rgba(201,168,76,.11) 0, transparent 24rem),
+        radial-gradient(circle at 92% 8%, rgba(68,111,176,.11) 0, transparent 30rem),
+        radial-gradient(circle at 50% 88%, rgba(201,168,76,.055) 0, transparent 34rem),
+        linear-gradient(115deg, rgba(255,255,255,.028) 0 1px, transparent 1px 9rem),
+        linear-gradient(180deg, #02060D 0%, #07111F 44%, #030811 100%);
+      background-size: auto, auto, auto, 9rem 9rem, auto;
       background-attachment: fixed;
       color: var(--txt0);
       overflow-x: hidden;
@@ -175,7 +174,7 @@
       height:100%;
       z-index:0;
       pointer-events:none;
-      opacity:.42;
+      opacity:.72;
       mask-image:linear-gradient(to bottom, transparent 0, transparent 86px, rgba(0,0,0,.35) 140px, black 32%, black 78%, transparent 100%);
       -webkit-mask-image:linear-gradient(to bottom, transparent 0, transparent 86px, rgba(0,0,0,.35) 140px, black 32%, black 78%, transparent 100%);
     }
@@ -201,83 +200,27 @@
       font-size: clamp(2.6rem, 6.5vw, 5rem);
       font-weight: 700; line-height: 1.08;
       margin-bottom: 1.6rem;
-      animation: fadeUp .8s .18s both;
+      text-shadow: 0 18px 42px rgba(0,0,0,.68);
     }
-    .hero-h1 .l1 { display:block; color: var(--txt0); }
+    .hero-h1 .l1 { display:block; color: #F7FAFF; }
     .hero-h1 .l2 {
       display: block;
-      background: linear-gradient(130deg, var(--gold-dk) 0%, var(--gold) 40%, var(--gold-lt) 72%, var(--gold) 100%);
+      background: linear-gradient(130deg, #B98D24 0%, var(--gold) 34%, #F6D77D 68%, var(--gold) 100%);
       background-size: 200% auto;
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: fadeUp .8s .18s both, shimmer 4s linear 1s infinite;
+      animation: shimmer 4s linear 1s infinite;
     }
     @keyframes shimmer { to { background-position: 200% center; } }
 
     .hero-sub {
       font-size: clamp(.95rem, 2vw, 1.15rem);
-      color: var(--txt1); max-width: 760px;
-      margin: 0 auto 1.8rem; line-height: 1.75;
-      animation: fadeUp .8s .34s both;
+      color: #D4DEEC; max-width: 760px;
+      margin: 0 auto 2.8rem; line-height: 1.75;
+      text-shadow: 0 10px 28px rgba(0,0,0,.7);
     }
 
-    .hero-kpis {
-      display:grid;
-      grid-template-columns:repeat(4,minmax(140px,1fr));
-      gap:.75rem;
-      max-width:820px;
-      margin:0 auto 2.25rem;
-      animation:fadeUp .8s .44s both;
-    }
-    .hero-kpi {
-      padding:1rem 1rem 1.05rem;
-      border-radius:18px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025)),
-        rgba(7,16,31,.7);
-      border:1px solid rgba(214,184,90,.2);
-      box-shadow:0 18px 44px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.045);
-      backdrop-filter:blur(16px);
-      -webkit-backdrop-filter:blur(16px);
-      text-align:center;
-    }
-    .hero-kpi .kpi-label {
-      display:block;
-      color:var(--txt1);
-      font-size:10px;
-      font-weight:800;
-      letter-spacing:1.1px;
-      text-transform:uppercase;
-      margin-bottom:.55rem;
-      min-height:2.2em;
-    }
-    .hero-kpi strong {
-      display:flex;
-      justify-content:center;
-      align-items:baseline;
-      gap:.35rem;
-      font-family:'Space Grotesk',sans-serif;
-      font-size:clamp(1.8rem,3vw,2.45rem);
-      line-height:1;
-      color:var(--gold-lt);
-      margin-bottom:.35rem;
-    }
-    .hero-kpi strong small {
-      font-family:'Inter',sans-serif;
-      font-size:.7rem;
-      color:var(--txt2);
-      font-weight:800;
-      letter-spacing:.8px;
-      text-transform:uppercase;
-    }
-    .hero-kpi .kpi-note {
-      display:block;
-      color:var(--txt2);
-      font-size:11px;
-      line-height:1.35;
-    }
-
-    .hero-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; animation:fadeUp .8s .55s both; }
+    .hero-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
 
     .btn-red {
       padding: 13px 30px;
@@ -369,9 +312,9 @@
     /* ── TEAM ── */
     #team {
       background:
-        radial-gradient(ellipse 65% 42% at 15% 0%, rgba(201,168,76,.08), transparent 62%),
-        radial-gradient(ellipse 55% 46% at 88% 38%, rgba(59,130,246,.055), transparent 62%),
-        linear-gradient(180deg, rgba(5,13,26,.96), rgba(2,8,16,.98));
+        radial-gradient(ellipse 70% 40% at 16% 0%, rgba(201,168,76,.075), transparent 64%),
+        radial-gradient(ellipse 52% 44% at 88% 20%, rgba(68,111,176,.075), transparent 64%),
+        linear-gradient(180deg, rgba(4,11,21,.94), rgba(2,7,14,.98));
       border-bottom:1px solid var(--border2);
     }
     .team-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:1.5rem; margin-top:3rem; align-items:stretch; }
@@ -408,7 +351,7 @@
     }
     .photo-avatar img {
       width:100%; height:100%; object-fit:cover; object-position:center 24%;
-      display:block; transform:scale(1.48); transform-origin:center 24%;
+      display:block; transform:scale(1.42); transform-origin:center 24%;
     }
     .photo-avatar .ph-init { font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:700; width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
 
@@ -432,15 +375,14 @@
       border: 3px solid rgba(201,168,76,.65);
       box-shadow: 0 0 28px rgba(201,168,76,.3);
     }
-    .presenting-photo img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+    .presenting-photo img { width:100%; height:100%; object-fit:cover; object-position:center 22%; transform:scale(1.34); transform-origin:center 22%; display:block; }
 
     /* ── PROJECTS ── */
     #projects {
       background:
-        radial-gradient(ellipse 70% 44% at 16% 8%, rgba(201,168,76,.11), transparent 62%),
-        radial-gradient(ellipse 48% 42% at 92% 16%, rgba(230,51,41,.06), transparent 62%),
-        radial-gradient(ellipse 60% 52% at 55% 96%, rgba(59,130,246,.05), transparent 65%),
-        linear-gradient(180deg, rgba(2,8,16,.98), rgba(8,18,33,.96) 48%, rgba(2,8,16,.98));
+        radial-gradient(ellipse 72% 44% at 12% 4%, rgba(201,168,76,.095), transparent 62%),
+        radial-gradient(ellipse 56% 48% at 92% 14%, rgba(68,111,176,.075), transparent 64%),
+        linear-gradient(180deg, rgba(2,7,14,.98), rgba(6,15,28,.96) 48%, rgba(2,7,14,.98));
       border-bottom:1px solid var(--border2);
     }
     #projects::before {
@@ -498,9 +440,16 @@
       border:1px solid rgba(214,184,90,.24);
       background:rgba(201,168,76,.09);
       color:var(--gold-lt);
+      font-weight:800;
+    }
+    .proj-ico {
+      font-size:22px;
+      line-height:1;
+      letter-spacing:0;
+    }
+    .mini-ico {
       font-family:'Space Grotesk',sans-serif;
       font-size:13px;
-      font-weight:800;
       letter-spacing:.3px;
     }
     .proj-name { font-family:'Space Grotesk',sans-serif; font-size:1.1rem; font-weight:600; margin-bottom:.5rem; }
@@ -524,8 +473,9 @@
     /* ── ACCESS ── */
     #access {
       background:
-        radial-gradient(ellipse 58% 42% at 82% 4%, rgba(201,168,76,.08), transparent 60%),
-        linear-gradient(180deg, rgba(5,13,26,.98), rgba(2,8,16,.98));
+        radial-gradient(ellipse 60% 42% at 82% 0%, rgba(201,168,76,.07), transparent 62%),
+        radial-gradient(ellipse 46% 38% at 18% 88%, rgba(68,111,176,.055), transparent 64%),
+        linear-gradient(180deg, rgba(4,11,21,.97), rgba(2,7,14,.98));
       border-top:1px solid var(--border2);
       border-bottom:1px solid var(--border2);
     }
@@ -643,55 +593,88 @@
     /* ── TIMELINE ── */
     #timeline {
       background:
-        radial-gradient(ellipse 70% 45% at 20% 0%, rgba(201,168,76,.08), transparent 60%),
-        radial-gradient(ellipse 55% 45% at 85% 30%, rgba(59,130,246,.055), transparent 58%),
-        linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 48%, var(--bg0) 100%);
+        radial-gradient(ellipse 68% 42% at 14% 0%, rgba(201,168,76,.08), transparent 62%),
+        radial-gradient(ellipse 48% 46% at 92% 24%, rgba(68,111,176,.07), transparent 64%),
+        linear-gradient(180deg, rgba(2,7,14,.98) 0%, rgba(6,14,26,.97) 50%, rgba(2,7,14,.98) 100%);
       border-top:1px solid var(--border2);
       border-bottom:1px solid var(--border2);
     }
-    .tl { max-width:920px; margin-top:3rem; position:relative; }
-    .tl::before { content:''; position:absolute; left:190px; top:.4rem; bottom:.4rem; width:2px; background:linear-gradient(to bottom,var(--gold),rgba(112,132,155,.22)); }
-    .tl-item {
-      position:relative; margin-bottom:1rem; padding:1rem 1.1rem;
-      display:grid; grid-template-columns:160px 34px 1fr; gap:1rem; align-items:start;
-      background:rgba(255,255,255,.028);
-      border:1px solid rgba(214,184,90,.12);
-      border-radius:20px;
+    #timeline::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        linear-gradient(90deg, rgba(255,255,255,.026) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size:72px 72px;
+      mask-image:linear-gradient(to bottom, transparent, black 16%, black 84%, transparent);
+      -webkit-mask-image:linear-gradient(to bottom, transparent, black 16%, black 84%, transparent);
+      opacity:.8;
     }
-    .tl-dot { position:relative; z-index:1; width:20px; height:20px; margin:.1rem auto 0; border-radius:50%; border:2px solid rgba(112,132,155,.6); background:#132033; display:flex; align-items:center; justify-content:center; }
-    .tl-dot.lit { background:var(--gold); }
-    .tl-dot.lit::after { content:''; width:6px; height:6px; border-radius:50%; background:#040B15; }
-    .tl-date  { font-size:11px; font-weight:800; color:var(--gold-lt); text-transform:uppercase; letter-spacing:1.5px; padding-top:.15rem; }
+    .tl {
+      max-width:900px;
+      margin-top:3rem;
+      padding-left:0;
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      border-top:1px solid rgba(214,184,90,.18);
+      border-bottom:1px solid rgba(255,255,255,.055);
+    }
+    .tl::before { display:none; }
+    .tl-item {
+      position:relative;
+      margin-bottom:0;
+      padding:1.25rem 0;
+      display:grid;
+      grid-template-columns:180px 18px minmax(0,1fr);
+      gap:1.1rem;
+      align-items:start;
+      background:transparent;
+      border:0;
+      border-bottom:1px solid rgba(255,255,255,.07);
+      border-radius:0;
+      box-shadow:none;
+      overflow:visible;
+    }
+    .tl-item:last-child { border-bottom:0; }
+    .tl-item::before { display:none; }
+    .tl-dot { position:relative; right:auto; top:.32rem; z-index:1; width:9px; height:9px; border-radius:50%; border:1px solid rgba(112,132,155,.75); background:#132033; box-shadow:0 0 0 5px rgba(112,132,155,.075); }
+    .tl-dot.lit { background:var(--gold); border-color:var(--gold); box-shadow:0 0 0 5px rgba(201,168,76,.09), 0 0 16px rgba(201,168,76,.24); }
+    .tl-dot.lit::after { display:none; }
+    .tl-date  { display:block; max-width:none; padding:0; border:0; background:transparent; border-radius:0; font-size:10px; font-weight:800; color:var(--gold-lt); text-transform:uppercase; letter-spacing:1.25px; margin-bottom:0; line-height:1.5; }
     .tl-content { min-width:0; }
-    .tl-title { font-family:'Space Grotesk',sans-serif; font-size:1.05rem; font-weight:600; margin-bottom:.4rem; }
+    .tl-title { font-family:'Space Grotesk',sans-serif; font-size:1.02rem; font-weight:700; margin-bottom:.35rem; }
     .tl-body  { font-size:13px; color:var(--txt1); line-height:1.65; }
 
     /* ── TECH ── */
     #vendors {
       background:
-        radial-gradient(ellipse 58% 42% at 14% 0%, rgba(59,130,246,.07), transparent 62%),
-        radial-gradient(ellipse 48% 40% at 88% 90%, rgba(201,168,76,.07), transparent 62%),
-        linear-gradient(180deg, rgba(3,10,20,.98), rgba(7,16,31,.96));
+        radial-gradient(ellipse 58% 42% at 14% 0%, rgba(68,111,176,.075), transparent 62%),
+        radial-gradient(ellipse 48% 40% at 88% 90%, rgba(201,168,76,.065), transparent 62%),
+        linear-gradient(180deg, rgba(3,9,18,.98), rgba(6,15,28,.96));
       border-bottom:1px solid var(--border2);
     }
 
     #tech {
       background:
-        radial-gradient(ellipse 56% 44% at 20% 0%, rgba(201,168,76,.08), transparent 62%),
-        linear-gradient(180deg, rgba(5,13,26,.98), rgba(2,8,16,.98));
+        radial-gradient(ellipse 56% 44% at 20% 0%, rgba(201,168,76,.07), transparent 62%),
+        radial-gradient(ellipse 48% 38% at 88% 84%, rgba(68,111,176,.052), transparent 64%),
+        linear-gradient(180deg, rgba(4,11,21,.98), rgba(2,7,14,.98));
       border-top:1px solid var(--border2);
     }
     .tech-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(145px,1fr)); gap:1rem; margin-top:3rem; }
     .tech-item { padding:1.5rem 1rem; text-align:center; border-radius:22px; }
-    .tech-ico  { width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto .7rem;border:1px solid rgba(214,184,90,.18);color:var(--gold-lt);font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:12px;background:rgba(201,168,76,.075); }
+    .tech-ico  { width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto .7rem;border:1px solid rgba(214,184,90,.18);color:var(--gold-lt);font-weight:800;font-size:1.45rem;line-height:1;background:rgba(201,168,76,.075); }
     .tech-name { font-size:13px; font-weight:600; display:block; }
     .tech-cat  { font-size:11px; color:var(--txt2); display:block; margin-top:2px; }
 
     /* ── FOOTER ── */
     footer {
       background:
-        radial-gradient(ellipse 48% 44% at 50% 0%, rgba(201,168,76,.07), transparent 70%),
-        var(--bg1);
+        radial-gradient(ellipse 48% 44% at 50% 0%, rgba(201,168,76,.065), transparent 70%),
+        #040B15;
       border-top:1px solid var(--border);
       padding:3.5rem 2rem 2rem;
     }
@@ -710,8 +693,8 @@
     /* ── THANK YOU ── */
     #thanks {
       background:
-        radial-gradient(ellipse 48% 38% at 50% 0%, rgba(201,168,76,.08), transparent 66%),
-        #020810;
+        radial-gradient(ellipse 48% 38% at 50% 0%, rgba(201,168,76,.07), transparent 66%),
+        linear-gradient(180deg, #02070E, #040B15);
       padding-top:4rem; padding-bottom:4rem;
       border-top:1px solid var(--border2);
     }
@@ -774,17 +757,16 @@
       .access-card.wide { grid-column:1; }
       .team-grid, .proj-grid { grid-template-columns:1fr; }
       .hero-btns { flex-direction:column; align-items:center; }
-      .hero-kpis, .jira-chart { grid-template-columns:repeat(2,1fr); }
+      .jira-chart { grid-template-columns:repeat(2,1fr); }
+      .tl { max-width:100%; }
       .tl::before { display:none; }
-      .tl-item { grid-template-columns:28px 1fr; gap:.8rem; }
-      .tl-date { grid-column:2; padding-top:0; }
-      .tl-dot { grid-row:1 / span 2; margin:.1rem auto 0; }
-      .tl-content { grid-column:2; }
+      .tl-item { grid-template-columns:1fr; gap:.45rem; padding:1rem 0; }
+      .tl-dot { display:none; }
     }
     @media (max-width:480px) {
       section{padding:3.5rem 1rem;}
       .countdown{gap:1rem;}
-      .hero-kpis, .jira-chart { grid-template-columns:1fr; }
+      .jira-chart { grid-template-columns:1fr; }
       .hero-h1 { font-size:clamp(2.25rem,12vw,3.4rem); }
     }
 
@@ -853,29 +835,6 @@
       CASPO систем, Jira хяналт, GrapeCity-тэй хамтын ажиллагаа болон дотоод процессын сайжруулалтын ажлуудыг нэгтгэсэн тайлан. Зорилго нь системийн тогтвортой байдал, вендорын хариуцлага болон бизнесийн үр ашгийг сайжруулахад оршино.
     </p>
 
-    <div class="hero-kpis" aria-label="Тайлангийн үндсэн үзүүлэлтүүд">
-      <div class="hero-kpi">
-        <span class="kpi-label">GrapeCity / CASPO</span>
-        <strong>40 <small>Jira</small></strong>
-        <span class="kpi-note">4/23-аас хойш бүртгэсэн</span>
-      </div>
-      <div class="hero-kpi">
-        <span class="kpi-label">Ard Fintech Solutions</span>
-        <strong>13 <small>Issue</small></strong>
-        <span class="kpi-note">Надаас үүссэн ажлууд</span>
-      </div>
-      <div class="hero-kpi">
-        <span class="kpi-label">Нийт хяналтын бүртгэл</span>
-        <strong>45</strong>
-        <span class="kpi-note">Vendor/Internal Jira</span>
-      </div>
-      <div class="hero-kpi">
-        <span class="kpi-label">Үндсэн ажлын чиглэл</span>
-        <strong>4 <small>төрөл</small></strong>
-        <span class="kpi-note">App, Jira, Polaris, Risk</span>
-      </div>
-    </div>
-
     <div class="hero-btns">
       <a href="#projects" class="btn-red">
         Төслүүд Харах
@@ -904,7 +863,7 @@
 <div id="stats">
   <div class="stats-row wrap">
     <div class="stat-box reveal">
-      <span class="stat-num" data-to="5">0</span>
+      <span class="stat-num" data-to="4">0</span>
       <span class="stat-lbl">Идэвхитэй Ажил</span>
     </div>
     <div class="stat-box reveal d1">
@@ -933,7 +892,7 @@
         <span class="presenting-title">CEO · Ард Секюритиз ҮЦК ХХК</span>
       </div>
       <div class="presenting-photo">
-        <img src="img/ceo.png" alt="Х.Билгүүн — CEO" />
+        <img src="img/ceo.jpg" alt="Х.Билгүүн — CEO" />
       </div>
     </div>
 
@@ -976,7 +935,7 @@
 
       <div class="card proj-card reveal">
         <div class="status-pill s-done"><span class="sdot"></span> Дууссан</div>
-        <div class="proj-ico" aria-hidden="true">J</div>
+        <div class="proj-ico" aria-hidden="true">📋</div>
         <div class="proj-name">Jira Хянах Систем</div>
         <div class="proj-desc">Jira дахь ажлуудыг бодит цаг хугацаанд хянах, удирдах AppSheet-д суурилсан дотоод апп. Өгөгдлийн синк болон баримт бичгийн удирдлагын тулд Google Sheets болон Google Drive-тай холбосон.</div>
         <div class="prog-wrap">
@@ -993,28 +952,9 @@
         <span class="access-note" style="margin-top:.8rem;">ARD ажлын Google акаунт шаардлагатай.</span>
       </div>
 
-      <div class="card proj-card reveal d2">
-        <div class="status-pill s-done"><span class="sdot"></span> Албан Бичгээр Илгээгдсэн</div>
-        <div class="proj-ico" aria-hidden="true">A</div>
-        <div class="proj-name">УУБ Comex Кибер Аюулгүй Байдлын Аудит</div>
-        <div class="proj-desc">Аудитын эцсийн тайлан бэлэн болж, CEO-ийн албан бичгийн дугаартайгаар Монголын Хөрөнгийн Бирж (МХБ)-д илгээгдсэн. GrapeCity вендортэй хамтран аюулгүй байдлын дутагдлуудыг арилгасан тул энэ ажил үндсэндээ дууссан.</div>
-        <div class="prog-wrap">
-          <div class="prog-head"><span class="prog-lbl">Аудитын Хариулт</span><span class="prog-pct">100%</span></div>
-          <div class="prog-track"><div class="prog-fill pg-blue" data-w="100"></div></div>
-        </div>
-        <div class="tags">
-          <span class="tag">Кибер Аюулгүй Байдал</span><span class="tag">GrapeCity</span>
-          <span class="tag">УУБ Comex</span><span class="tag">МХБ</span><span class="tag">Аудит</span>
-        </div>
-        <a href="InfoSec-report-detailed.pdf" target="_blank" rel="noopener noreferrer" class="open-btn" style="margin-top:1rem;">
-          InfoSec Тайлан Нээх
-        </a>
-        <span class="access-note" style="margin-top:.8rem;">ARD ажлын Google акаунт шаардлагатай.</span>
-      </div>
-
       <div class="card proj-card reveal d3">
         <div class="status-pill s-res"><span class="sdot"></span> Хийгдэж Байна</div>
-        <div class="proj-ico" aria-hidden="true">P</div>
+        <div class="proj-ico" aria-hidden="true">📗</div>
         <div class="proj-name">Polaris Permission Discovery — Үнэт цаас</div>
         <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн дотоод ажилтнуудад зориулсан Polaris системийн <strong style="color:var(--gold);">Үнэт цаас</strong> цэсний гарын авлагын discovery шат. Permission-уудыг нэг бүрчлэн шалгаж, ямар action ID шаардагдахыг тодорхойлж байна. Бусад цэснүүд нь систем админы ажилд илүү хамаарах тул ажилтнуудад хэрэгтэй Үнэт цаас хэсгийг түрүүлж боловсруулж байна.</div>
         <div class="prog-wrap">
@@ -1033,7 +973,7 @@
 
       <div class="card proj-card plan-card reveal d4">
         <div class="status-pill s-pend"><span class="sdot"></span> Төлөвлөж Байна</div>
-        <div class="proj-ico" aria-hidden="true">M</div>
+        <div class="proj-ico" aria-hidden="true">🖥️</div>
         <div class="proj-name">Millennium Trader Зогсолт — Төлөвлөгөө</div>
         <div class="proj-desc">LSEG/SSC Global Business Services Limited-ээс 2026 оны 3-р сарын 25-нд МХБ-д ирүүлсэн албан мэдэгдлээр <strong style="color:var(--gold);">Millennium Trader</strong> бүтээгдэхүүнийг 2027 оны 3-р сарын 1-нээс зогсоохоор мэдэгдсэн. Энэ хугацаанд зөвхөн production орчны Level 1/Level 2 алдаанд боломжит нөөцөөр засвар үйлчилгээ үзүүлнэ. Change Request, Service Request болон Level 3 fix хийхгүй, мөн LSEG-ээс орлох бүтээгдэхүүн санал болгохгүй гэж мэдэгдсэн тул арилжааны ажлын орчны эрсдэлийг үнэлж, дараагийн шийдлийг төлөвлөх шаардлагатай.</div>
         <div class="prog-wrap">
@@ -1048,7 +988,7 @@
 
       <div class="card proj-card plan-card planning-wide reveal d5">
         <div class="status-pill s-pend"><span class="sdot"></span> Шинэ Ажил Төлөвлөж Байна</div>
-        <div class="proj-ico" aria-hidden="true">+</div>
+        <div class="proj-ico" aria-hidden="true">🗂️</div>
         <div class="proj-name">Нэмэлт Системийн Ажлууд — Жагсаалт</div>
         <div class="proj-desc">Өдөр тутмын ажлаас гарч буй шинэ шаардлага, давтагдсан асуудал, вендортой давтан хянах зүйлсийг нэг ажлын жагсаалт болгож байна. Polaris-ийн дараагийн цэсүүд, Jira тайлангийн долоо хоногийн шинэчлэлт болон ажилтнуудаас ирэх саналуудаас дараагийн хийх ажлыг эрэмбэлнэ.</div>
         <div class="prog-wrap">
@@ -1070,7 +1010,7 @@
   <div class="wrap">
     <div class="sec-eyebrow">Вендор Систем</div>
     <h2 class="sec-h2">Jira Урсгал</h2>
-    <p class="sec-p">Дотоод ажлуудыг байршлаас нь хамааран <strong style="color:#FBBF24;">GrapeCity</strong> (CASPO төсөл — веб/backend) болон <strong style="color:var(--blue-lt);">Ard Fintech Solutions</strong> (апп/IT хэлтэс) рүү дамжуулдаг. CASPO нь тусдаа вендор биш, GrapeCity-ийн манай талд нээсэн Jira төсөл юм.</p>
+    <p class="sec-p">Дотоод ажлуудыг байршлаас нь хамааран <strong style="color:#FBBF24;">GrapeCity</strong> (CASPO төсөл — веб/backend) болон <strong style="color:var(--blue-lt);">AFS</strong> (апп/IT хэлтэс) рүү дамжуулдаг. CASPO нь тусдаа вендор биш, GrapeCity-ийн манай талд нээсэн Jira төсөл юм.</p>
 
     <div style="display:flex;align-items:center;justify-content:center;gap:1.2rem;flex-wrap:wrap;margin:2.5rem 0;padding:1.5rem 2rem;background:rgba(255,255,255,.02);border:1px solid var(--border2);border-radius:14px;">
       <div style="text-align:center;">
@@ -1093,7 +1033,7 @@
         </div>
         <div style="text-align:center;padding:.75rem 1.1rem;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.22);border-radius:10px;">
           <div class="mini-ico" style="margin:0 auto .45rem;width:34px;height:34px;">AFS</div>
-          <div style="font-size:11px;color:var(--blue-lt);font-weight:700;">Ard Fintech Solutions</div>
+          <div style="font-size:11px;color:var(--blue-lt);font-weight:700;">AFS</div>
           <div style="font-size:10px;color:var(--txt2);">Апп &amp; IT</div>
         </div>
       </div>
@@ -1103,7 +1043,7 @@
 
       <div class="card proj-card reveal">
         <div class="status-pill s-pend"><span class="sdot"></span> Веб &amp; Backend · CASPO</div>
-        <div class="proj-ico" aria-hidden="true">GC</div>
+        <div class="proj-ico" aria-hidden="true">🌐</div>
         <div class="proj-name">GrapeCity</div>
         <div class="proj-desc">Гадаад вендор компани. Polaris системийн backend болон вэб хэсгийг хариуцна. <strong style="color:#FBBF24;">CASPO</strong> нь GrapeCity-ийн манай талд нээсэн Jira төсөл. Энэ вэб тайланд CAS-901-ээс буюу 2026 оны 4-р сарын 23-наас хойш систем админаас үүсгэсэн ажлуудыг тусгав.</div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.75rem 0 1rem;font-size:12px;">
@@ -1140,30 +1080,30 @@
 
       <div class="card proj-card reveal d1">
         <div class="status-pill s-res"><span class="sdot"></span> Надаас Үүссэн Ажлууд</div>
-        <div class="proj-ico" aria-hidden="true">AFS</div>
-        <div class="proj-name">Ard Fintech Solutions</div>
+        <div class="proj-ico" aria-hidden="true">📱</div>
+        <div class="proj-name">AFS</div>
         <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн апп болон IT дэд бүтцийн асуудлыг хариуцдаг дотоод IT тал. Jira дээрээс авсан “Надаас үүссэн ажлууд” snapshot: нийт 13 unique issue, үүнээс Open 1, Closed 8, Approved 4. Хувь хүний нэрийг оруулахгүй, зөвхөн албан тушаалаар харуулсан.</div>
         <div class="table-scroll" style="margin-top:1rem;">
-          <table class="data-table" style="font-size:12px;">
+          <table class="data-table" style="font-size:12px;min-width:460px;">
             <thead>
               <tr style="border-bottom:1px solid var(--border2);">
                 <th style="text-align:left;padding:.45rem;color:var(--txt2);">Албан тушаал</th>
                 <th style="text-align:center;padding:.45rem;color:var(--txt2);">Open</th>
                 <th style="text-align:center;padding:.45rem;color:var(--txt2);">Closed</th>
-                <th style="text-align:center;padding:.45rem;color:var(--txt2);">Approved</th>
+                <th style="text-align:center;padding:.45rem;color:var(--txt2);">Appr.</th>
                 <th style="text-align:center;padding:.45rem;color:var(--txt2);">T</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td style="padding:.4rem;color:var(--txt1);">Дата баг (Ard Credit)</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">1</td></tr>
-              <tr><td style="padding:.4rem;color:var(--txt1);">Программист (AFS)</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">2</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">2</td></tr>
-              <tr><td style="padding:.4rem;color:var(--txt1);">Мэдээллийн аюулгүй байдлын ахлах мэргэжилтэн (AFS)</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">3</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">3</td></tr>
-              <tr><td style="padding:.4rem;color:var(--txt1);">Мэдээллийн технологи хариуцсан захирал (AFS)</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">2</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt0);font-weight:700;">3</td></tr>
-              <tr><td style="padding:.4rem;color:var(--txt1);">Систем администратор (AFS)</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">3</td><td style="text-align:center;color:var(--txt0);font-weight:700;">4</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">Data team</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">1</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">Dev (AFS)</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">2</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">2</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">InfoSec (AFS)</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">3</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">3</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">IT Director (AFS)</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">2</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt0);font-weight:700;">3</td></tr>
+              <tr><td style="padding:.4rem;color:var(--txt1);">Sysadmin (AFS)</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">3</td><td style="text-align:center;color:var(--txt0);font-weight:700;">4</td></tr>
             </tbody>
             <tfoot>
               <tr style="border-top:1px solid var(--border2);">
-                <td style="padding:.45rem;color:var(--txt0);font-weight:700;">Total Unique Issues</td>
+                <td style="padding:.45rem;color:var(--txt0);font-weight:700;">Total</td>
                 <td style="text-align:center;color:var(--blue-lt);font-weight:800;">1</td>
                 <td style="text-align:center;color:#4ADE80;font-weight:800;">8</td>
                 <td style="text-align:center;color:#FBBF24;font-weight:800;">4</td>
@@ -1206,7 +1146,7 @@
             <tr>
               <th>Сар</th>
               <th style="text-align:center;color:#FBBF24;">GrapeCity (CASPO)</th>
-              <th style="text-align:center;color:var(--blue-lt);">Ard Fintech Solutions</th>
+              <th style="text-align:center;color:var(--blue-lt);">AFS</th>
               <th style="text-align:center;">Нийт</th>
             </tr>
           </thead>
@@ -1304,7 +1244,7 @@
 
     <!-- PDF Handbook -->
     <div class="card access-card wide reveal" style="margin-top:1.5rem;padding:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
-      <div class="proj-ico" aria-hidden="true" style="margin-bottom:0;">PDF</div>
+      <div class="proj-ico" aria-hidden="true" style="margin-bottom:0;">📖</div>
       <div style="flex:1;min-width:220px;">
         <div class="access-h" style="margin-bottom:.4rem;">Гарын Авлага — AppSheet &amp; Jira Систем</div>
         <p class="access-p" style="margin-bottom:1.2rem;">AppSheet дээр Jira үүсгэх, хянах, дамжуулах бүрэн гарын авлага. Шинэ ажилтнуудад болон системийг ашиглаж эхлэх хүн бүрд зориулсан заавар.</p>
@@ -1316,7 +1256,7 @@
     </div>
 
     <div class="card access-card wide reveal" style="margin-top:1.5rem;padding:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
-      <div class="proj-ico" aria-hidden="true" style="margin-bottom:0;">GS</div>
+      <div class="proj-ico" aria-hidden="true" style="margin-bottom:0;">📊</div>
       <div style="flex:1;min-width:220px;">
         <div class="access-h" style="margin-bottom:.4rem;">Polaris Permission Discovery — Үнэт цаас</div>
         <p class="access-p" style="margin-bottom:1.2rem;">Polaris системийн гарын авлагын discovery файл. Одоогоор Үнэт цаас цэсийг ажилтнуудад зориулан шалгаж, шаардагдах permission болон action ID-уудыг тодорхойлж байна. Live Google Sheet дээр шинэчлэлт шууд орно.</p>
@@ -1355,7 +1295,7 @@
         <div class="access-p">AppSheet дээр бүтээсэн, Google Sheets болон Google Drive-аар дэмжигдсэн Jira хянах систем. Доорх товчийг дарж шууд нээнэ үү.</div>
         <div class="app-preview-card">
           <div class="app-preview-left">
-            <div class="proj-ico" aria-hidden="true" style="margin-bottom:0;">J</div>
+            <div class="proj-ico" aria-hidden="true" style="margin-bottom:0;">📋</div>
             <div class="app-meta">
               <div class="app-meta-name">Jira Хянагч</div>
               <div class="app-meta-sub">Ард Секюритиз ҮЦК ХХК · Дотоод Систем</div>
@@ -1411,7 +1351,7 @@
         <div class="tl-dot lit"></div>
         <div class="tl-content">
         <div class="tl-title">AppSheet Жира Системийг Хөгжүүлж Нэвтрүүлсэн</div>
-        <div class="tl-body">Дотоод ажилчидад зориулсан Jira хянах AppSheet аппыг хөгжүүлж байршуулсан. GrapeCity (CASPO төсөл — веб/backend) болон Ard Fintech Solutions-д (апп/IT) ажил дамжуулах урсгал тогтоосон.</div>
+        <div class="tl-body">Дотоод ажилчидад зориулсан Jira хянах AppSheet аппыг хөгжүүлж байршуулсан. GrapeCity (CASPO төсөл — веб/backend) болон AFS-д (апп/IT) ажил дамжуулах урсгал тогтоосон.</div>
         </div>
       </div>
 
@@ -1445,12 +1385,12 @@
     <p class="sec-p">Ард Секюритиз ҮЦК ХХК-ийн системийн ажлуудад ашиглаж буй систем, хэрэгсэл болон үйлчилгээнүүд.</p>
 
     <div class="tech-grid">
-      <div class="card tech-item reveal">   <span class="tech-ico">AS</span><span class="tech-name">AppSheet</span><span class="tech-cat">Код Шаардахгүй</span></div>
-      <div class="card tech-item reveal d1"> <span class="tech-ico">GS</span><span class="tech-name">Google Sheets</span><span class="tech-cat">Мэдээллийн Сан</span></div>
-      <div class="card tech-item reveal d2"> <span class="tech-ico">GD</span><span class="tech-name">Google Drive</span><span class="tech-cat">Файл Хадгалах</span></div>
-      <div class="card tech-item reveal">   <span class="tech-ico">J</span><span class="tech-name">Jira</span><span class="tech-cat">Асуудал Хянах</span></div>
-      <div class="card tech-item reveal">   <span class="tech-ico">GC</span><span class="tech-name">GrapeCity</span><span class="tech-cat">Веб Хөгжүүлэгч</span></div>
-      <div class="card tech-item reveal d1"> <span class="tech-ico">GH</span><span class="tech-name">GitHub Pages</span><span class="tech-cat">Хостинг</span></div>
+      <div class="card tech-item reveal">   <span class="tech-ico">📱</span><span class="tech-name">AppSheet</span><span class="tech-cat">Код Шаардахгүй</span></div>
+      <div class="card tech-item reveal d1"> <span class="tech-ico">📊</span><span class="tech-name">Google Sheets</span><span class="tech-cat">Мэдээллийн Сан</span></div>
+      <div class="card tech-item reveal d2"> <span class="tech-ico">💾</span><span class="tech-name">Google Drive</span><span class="tech-cat">Файл Хадгалах</span></div>
+      <div class="card tech-item reveal">   <span class="tech-ico">🎫</span><span class="tech-name">Jira</span><span class="tech-cat">Асуудал Хянах</span></div>
+      <div class="card tech-item reveal">   <span class="tech-ico">🌐</span><span class="tech-name">GrapeCity</span><span class="tech-cat">Веб Хөгжүүлэгч</span></div>
+      <div class="card tech-item reveal d1"> <span class="tech-ico">⚙️</span><span class="tech-name">GitHub Pages</span><span class="tech-cat">Хостинг</span></div>
     </div>
   </div>
 </section>
@@ -1480,7 +1420,7 @@
         <div class="footer-tag">Систем админы тайлан · 2026</div>
       </div>
     </div>
-    <p class="footer-dis">Энэхүү тайланг Ард Секюритиз ҮЦК ХХК-ийн дотоод гүйцэтгэх хяналтад зориулан бэлтгэсэн. Агуулга нь нууц бөгөөд зөвшөөрөлтэй ажилтнуудад зориулагдсан болно.</p>
+    <p class="footer-dis">Энэхүү тайланд миний хийж гүйцэтгэсэн ажлууд болон цаашид төлөвлөж буй ажлуудыг удирдлагын багт танилцуулах зорилгоор нэгтгэн тусгав.</p>
     <div class="footer-links">
       <a href="https://github.com/Tumeyo" target="_blank" rel="noopener noreferrer">GitHub · Tumeyo</a>
       <a href="https://github.com/Tumeyo/ard-securities-report" target="_blank" rel="noopener noreferrer">Report Repository</a>
@@ -1590,20 +1530,83 @@ tick(); setInterval(tick,1000);
   hero.insertBefore(cv, hero.firstChild);
   const ctx = cv.getContext('2d');
   let W, H, pts = [];
-  const N = 64, D = 130, SAFE_TOP = 120;
+  const N = 86, D = 165, SAFE_TOP = 118;
   function resize(){ W = cv.width = hero.offsetWidth; H = cv.height = hero.offsetHeight; }
   function init(){
     resize(); pts = [];
     const liveH = Math.max(H - SAFE_TOP, 1);
     for(let i=0;i<N;i++) pts.push({
       x:Math.random()*W, y:SAFE_TOP + Math.random()*liveH,
-      vx:(Math.random()-.5)*.45, vy:(Math.random()-.5)*.45,
-      r:Math.random()*1.4+.4,
+      vx:(Math.random()-.5)*.38, vy:(Math.random()-.5)*.38,
+      r:Math.random()*1.9+.6,
       gold:Math.random()>.42
     });
   }
+
+  function drawMarketLayer(t){
+    const liveTop = SAFE_TOP + 28;
+    const liveH = Math.max(H - liveTop - 42, 120);
+    const base = liveTop + liveH * .58;
+    const amp = Math.min(88, liveH * .2);
+
+    ctx.save();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(201,168,76,.04)';
+    for(let x=0; x<W; x+=84){
+      ctx.beginPath(); ctx.moveTo(x, liveTop - 35); ctx.lineTo(x, H); ctx.stroke();
+    }
+    for(let y=liveTop; y<H; y+=58){
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+
+    ctx.beginPath();
+    for(let x=-30; x<=W+30; x+=18){
+      const y = base
+        + Math.sin(x*.010 + t*.0010) * amp*.48
+        + Math.sin(x*.025 - t*.0014) * amp*.25
+        + Math.cos(x*.006 + t*.0007) * amp*.16;
+      if(x===-30) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.shadowColor = 'rgba(201,168,76,.38)';
+    ctx.shadowBlur = 12;
+    ctx.strokeStyle = 'rgba(201,168,76,.34)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.shadowBlur = 0;
+    ctx.beginPath();
+    for(let x=-20; x<=W+20; x+=24){
+      const y = base + amp*.62
+        + Math.sin(x*.015 - t*.0008) * amp*.28
+        + Math.cos(x*.021 + t*.0011) * amp*.12;
+      if(x===-20) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle = 'rgba(96,165,250,.16)';
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+
+    for(let x=38; x<W; x+=62){
+      const phase = x*.032 + t*.0012;
+      const center = base + Math.sin(phase) * amp*.5;
+      const body = 14 + Math.abs(Math.sin(phase*1.7)) * 24;
+      const wick = body + 16 + Math.abs(Math.cos(phase)) * 18;
+      const up = Math.sin(phase) > -.12;
+      const high = center - wick*.55;
+      const low = center + wick*.55;
+      const open = center + (up ? body*.5 : -body*.5);
+      const close = center + (up ? -body*.5 : body*.5);
+      ctx.strokeStyle = up ? 'rgba(201,168,76,.22)' : 'rgba(230,51,41,.16)';
+      ctx.fillStyle = up ? 'rgba(201,168,76,.16)' : 'rgba(230,51,41,.12)';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(x, high); ctx.lineTo(x, low); ctx.stroke();
+      ctx.fillRect(x-4, Math.min(open, close), 8, Math.max(Math.abs(open-close), 4));
+    }
+    ctx.restore();
+  }
+
   function draw(){
     ctx.clearRect(0,0,W,H);
+    drawMarketLayer(performance.now());
     for(let i=0;i<pts.length;i++){
       for(let j=i+1;j<pts.length;j++){
         const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
@@ -1612,15 +1615,15 @@ tick(); setInterval(tick,1000);
           ctx.beginPath();
           ctx.moveTo(pts[i].x,pts[i].y);
           ctx.lineTo(pts[j].x,pts[j].y);
-          ctx.strokeStyle=`rgba(201,168,76,${(1-d/D)*.11})`;
-          ctx.lineWidth=.6; ctx.stroke();
+          ctx.strokeStyle=`rgba(201,168,76,${(1-d/D)*.17})`;
+          ctx.lineWidth=.75; ctx.stroke();
         }
       }
     }
     for(const p of pts){
       ctx.beginPath();
       ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=p.gold?'rgba(201,168,76,.55)':'rgba(59,130,246,.4)';
+      ctx.fillStyle=p.gold?'rgba(201,168,76,.72)':'rgba(96,165,250,.52)';
       ctx.fill();
       p.x+=p.vx; p.y+=p.vy;
       if(p.x<-4) p.x=W+4; else if(p.x>W+4) p.x=-4;
