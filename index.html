@@ -205,6 +205,7 @@
     .hero-h1 .l1 { display:block; color: #F7FAFF; }
     .hero-h1 .l2 {
       display: block;
+      font-size: clamp(2.1rem, 5vw, 4.3rem);
       background: linear-gradient(130deg, #B98D24 0%, var(--gold) 34%, #F6D77D 68%, var(--gold) 100%);
       background-size: 200% auto;
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -271,23 +272,6 @@
     .cd-lbl { font-size:9.5px; color:var(--txt2); text-transform:uppercase; letter-spacing:2px; margin-top:5px; display:block; }
     .cd-sep { font-size:2.2rem; color:var(--gold-dk); align-self:flex-start; padding-top:6px; opacity:.7; }
     .cd-caption { font-size:10.5px; color:var(--txt2); text-align:center; margin-top:.9rem; letter-spacing:1.2px; text-transform:uppercase; }
-
-    /* ── STATS ── */
-    #stats {
-      position:relative;
-      overflow:hidden;
-      background:
-        radial-gradient(ellipse 54% 120% at 50% 0%, rgba(201,168,76,.09), transparent 68%),
-        linear-gradient(90deg, rgba(2,8,16,.98), rgba(8,18,33,.96), rgba(2,8,16,.98));
-      border-top:1px solid var(--border);
-      border-bottom:1px solid var(--border);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.03), inset 0 -1px 0 rgba(255,255,255,.02);
-    }
-    .stats-row { max-width:1120px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); }
-    .stat-box { text-align:center; padding:2rem 1.5rem; position:relative; }
-    .stat-box:not(:last-child)::after { content:''; position:absolute; right:0; top:22%; bottom:22%; width:1px; background:var(--border); }
-    .stat-num { font-family:'Space Grotesk',sans-serif; font-size:clamp(2rem,3.5vw,2.8rem); font-weight:700; color:var(--gold); line-height:1; display:block; }
-    .stat-lbl { font-size:11px; color:var(--txt2); text-transform:uppercase; letter-spacing:1.2px; margin-top:7px; display:block; }
 
     /* ── SECTION BASE ── */
     section { padding:5.5rem 2rem; position:relative; overflow:hidden; }
@@ -397,28 +381,27 @@
     }
     .participation-card {
       margin-top:2.5rem;
-      display:grid;
-      grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);
-      gap:1.5rem;
+      display:flex;
+      flex-direction:column;
+      gap:1.35rem;
       padding:1.25rem;
-      align-items:stretch;
     }
     .participation-media {
-      min-height:320px;
+      aspect-ratio:16 / 9;
       border-radius:18px;
       overflow:hidden;
       border:1px solid rgba(214,184,90,.14);
-      background:rgba(255,255,255,.035);
+      background:rgba(0,0,0,.24);
     }
     .participation-media img {
       width:100%;
       height:100%;
       display:block;
-      object-fit:cover;
-      object-position:center 42%;
+      object-fit:contain;
+      object-position:center center;
     }
     .participation-info {
-      padding:1rem .75rem;
+      padding:.4rem .35rem 0;
       display:flex;
       flex-direction:column;
       justify-content:center;
@@ -815,12 +798,18 @@
     }
     .thanks-quote.show { display:block; animation:fadeUp .45s ease both; }
 
-    .sec-p, .team-desc, .proj-desc, .access-p, .tl-body, .footer-dis {
+    .sec-p, .team-desc, .proj-desc, .access-p, .tl-body {
       text-align: justify;
       text-align-last: left;
       hyphens: none;
       word-break: normal;
       overflow-wrap: break-word;
+    }
+    .footer-dis {
+      text-align:center;
+      text-align-last:center;
+      margin-left:auto;
+      margin-right:auto;
     }
 
     /* ── BACK TO TOP ── */
@@ -845,12 +834,9 @@
         padding:1rem 2rem; border-bottom:1px solid var(--border); gap:0;
       }
       .nav-links.open li a { padding:12px 0; border-bottom:1px solid var(--border2); border-radius:0; }
-      .stats-row { grid-template-columns:1fr 1fr; }
-      .stat-box:nth-child(2)::after { display:none; }
       .access-grid { grid-template-columns:1fr; }
       .access-card.wide { grid-column:1; }
-      .participation-card { grid-template-columns:1fr; }
-      .participation-media { min-height:240px; }
+      .participation-media { aspect-ratio:16 / 9; }
       .team-grid, .proj-grid { grid-template-columns:1fr; }
       .hero-btns { flex-direction:column; align-items:center; }
       .jira-chart { grid-template-columns:repeat(2,1fr); }
@@ -895,6 +881,7 @@
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#team">Баг</a></li>
+    <li><a href="#participation">Оролцоо</a></li>
     <li><a href="#projects">Төслүүд</a></li>
     <li><a href="#vendors">Вендор</a></li>
     <li><a href="#access">Jira Апп</a></li>
@@ -923,8 +910,8 @@
     </div>
 
     <h1 class="hero-h1">
-      <span class="l1">Жинхлэх</span>
-      <span class="l2">Тайлан</span>
+      <span class="l1">Жинхлэх Тайлан</span>
+      <span class="l2">Ard Securities</span>
     </h1>
 
     <div class="hero-role">Систем Админ</div>
@@ -953,27 +940,9 @@
       <span class="cd-sep">:</span>
       <div class="cd-block"><span class="cd-val" id="cd-s">--</span><span class="cd-lbl">Секунд</span></div>
     </div>
-    <p class="cd-caption" id="cd-caption">Удирдлагуудад Танилцуулах Хугацаа &mdash; 2026 оны 6-р сарын 30</p>
+    <p class="cd-caption" id="cd-caption">Удирдлагуудад Танилцуулах Хугацаа &mdash; 2026 оны 6-р сарын 21</p>
   </div>
 </section>
-
-<!-- STATS -->
-<div id="stats">
-  <div class="stats-row wrap">
-    <div class="stat-box reveal">
-      <span class="stat-num" data-to="4">0</span>
-      <span class="stat-lbl">Идэвхтэй Ажил</span>
-    </div>
-    <div class="stat-box reveal d1">
-      <span class="stat-num" data-to="1">0</span>
-      <span class="stat-lbl">Байршуулсан Апп</span>
-    </div>
-    <div class="stat-box reveal d2">
-      <span class="stat-num" data-to="1">0</span>
-      <span class="stat-lbl">Сар Үлдсэн</span>
-    </div>
-  </div>
-</div>
 
 <!-- TEAM -->
 <section id="team">
@@ -1043,13 +1012,13 @@
           <div class="achievement-row"><span class="achievement-ico">★</span><span><strong>Дартс</strong> — тусгай байр. <span style="color:var(--txt2);">2026/06/07</span></span></div>
         </div>
         <div class="participation-note"><strong>Хөрөнгө оруулалтын баг</strong> нийт багийн дүнгээр 1-р байр эзэлж, ARD CUP 2026 цом авсан.</div>
-        <div class="participation-video-wrap">
-          <video class="participation-video" controls preload="metadata" poster="img/ardcup.jpg">
-            <source src="video/ardcup-2026.mp4" type="video/mp4" />
-            Таны browser video тоглуулах боломжгүй байна.
-          </video>
-          <div class="video-caption">ARD CUP 2026 арга хэмжээний товч видео.</div>
-        </div>
+      </div>
+      <div class="participation-video-wrap">
+        <video class="participation-video" controls preload="metadata" poster="img/ardcup.jpg">
+          <source src="video/ardcup-2026.mp4" type="video/mp4" />
+          Таны browser video тоглуулах боломжгүй байна.
+        </video>
+        <div class="video-caption">ARD CUP 2026 арга хэмжээний товч видео.</div>
       </div>
     </div>
   </div>
@@ -1612,7 +1581,7 @@ document.getElementById('btt').addEventListener('click', () => {
 });
 
 // Countdown — ✏️ танилцуулах огноог өөрчилнө үү
-const TARGET = new Date('2026-06-30T09:00:00');
+const TARGET = new Date('2026-06-21T09:00:00');
 function launchConfetti() {
   const colors = ['#C9A84C','#E5C46A','#E63329','#fff','#8A6A1A'];
   for (let i = 0; i < 120; i++) {
