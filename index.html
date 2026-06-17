@@ -381,13 +381,14 @@
     }
     .participation-card {
       margin-top:2.5rem;
-      display:flex;
-      flex-direction:column;
-      gap:1.35rem;
+      display:grid;
+      grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);
+      gap:1.5rem;
       padding:1.25rem;
+      align-items:stretch;
     }
     .participation-media {
-      aspect-ratio:16 / 9;
+      min-height:320px;
       border-radius:18px;
       overflow:hidden;
       border:1px solid rgba(214,184,90,.14);
@@ -401,7 +402,7 @@
       object-position:center center;
     }
     .participation-info {
-      padding:.4rem .35rem 0;
+      padding:1rem .75rem;
       display:flex;
       flex-direction:column;
       justify-content:center;
@@ -836,7 +837,8 @@
       .nav-links.open li a { padding:12px 0; border-bottom:1px solid var(--border2); border-radius:0; }
       .access-grid { grid-template-columns:1fr; }
       .access-card.wide { grid-column:1; }
-      .participation-media { aspect-ratio:16 / 9; }
+      .participation-card { grid-template-columns:1fr; }
+      .participation-media { min-height:240px; }
       .team-grid, .proj-grid { grid-template-columns:1fr; }
       .hero-btns { flex-direction:column; align-items:center; }
       .jira-chart { grid-template-columns:repeat(2,1fr); }
@@ -1012,13 +1014,13 @@
           <div class="achievement-row"><span class="achievement-ico">★</span><span><strong>Дартс</strong> — тусгай байр. <span style="color:var(--txt2);">2026/06/07</span></span></div>
         </div>
         <div class="participation-note"><strong>Хөрөнгө оруулалтын баг</strong> нийт багийн дүнгээр 1-р байр эзэлж, ARD CUP 2026 цом авсан.</div>
-      </div>
-      <div class="participation-video-wrap">
-        <video class="participation-video" controls preload="metadata" poster="img/ardcup.jpg">
-          <source src="video/ardcup-2026.mp4" type="video/mp4" />
-          Таны browser video тоглуулах боломжгүй байна.
-        </video>
-        <div class="video-caption">ARD CUP 2026 арга хэмжээний товч видео.</div>
+        <div class="participation-video-wrap">
+          <video class="participation-video" controls preload="metadata" poster="img/ardcup.jpg">
+            <source src="video/ardcup-2026.mp4" type="video/mp4" />
+            Таны browser video тоглуулах боломжгүй байна.
+          </video>
+          <div class="video-caption">ARD CUP 2026 арга хэмжээний товч видео.</div>
+        </div>
       </div>
     </div>
   </div>
