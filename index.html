@@ -439,6 +439,37 @@
     }
     .achievement-row strong { color:var(--txt0); font-weight:700; }
     .achievement-ico { color:var(--gold-lt); font-weight:800; text-align:center; }
+    .participation-note {
+      margin:1rem 0 1.1rem;
+      padding:.85rem 1rem;
+      border-radius:14px;
+      border:1px solid rgba(201,168,76,.18);
+      background:rgba(201,168,76,.065);
+      color:var(--txt1);
+      font-size:13px;
+      line-height:1.6;
+    }
+    .participation-note strong { color:var(--gold-lt); }
+    .participation-video-wrap {
+      margin-top:1.1rem;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid rgba(214,184,90,.14);
+      background:rgba(0,0,0,.24);
+    }
+    .participation-video {
+      width:100%;
+      display:block;
+      aspect-ratio:16 / 9;
+      background:#020810;
+    }
+    .video-caption {
+      padding:.65rem .8rem;
+      color:var(--txt2);
+      font-size:11px;
+      line-height:1.45;
+      border-top:1px solid rgba(255,255,255,.07);
+    }
 
     /* ── PROJECTS ── */
     #projects {
@@ -1004,12 +1035,20 @@
       </div>
       <div class="participation-info">
         <div class="participation-title">Ulaanbaatar Marathon &amp; ARD CUP 2026</div>
-        <p class="participation-copy">2026 онд байгууллагын дотоод спортын арга хэмжээ болон олон нийтийн гүйлтийн арга хэмжээнд оролцсон.</p>
+        <p class="participation-copy">2026 онд байгууллагын дотоод спортын арга хэмжээ болон олон нийтийн гүйлтийн арга хэмжээнд оролцсон. ARD CUP 2026 тэмцээн 5-р сарын 23-аас 6-р сарын 7 хүртэл зохион байгуулагдсан.</p>
         <div class="achievement-list">
-          <div class="achievement-row"><span class="achievement-ico">5K</span><span><strong>Ulaanbaatar Marathon 2026</strong> — 5 км зайд оролцсон.</span></div>
-          <div class="achievement-row"><span class="achievement-ico">G</span><span><strong>ARD CUP 2026 · CS2</strong> — алтан медаль.</span></div>
-          <div class="achievement-row"><span class="achievement-ico">S</span><span><strong>ARD CUP 2026 · Биллиард</strong> — мөнгөн медаль.</span></div>
-          <div class="achievement-row"><span class="achievement-ico">★</span><span><strong>ARD CUP 2026 · Дартс</strong> — тусгай байр.</span></div>
+          <div class="achievement-row"><span class="achievement-ico">5К</span><span><strong>Улаанбаатар марафон 2026</strong> — 5 км зайд оролцсон. <span style="color:var(--txt2);">2026/05/23</span></span></div>
+          <div class="achievement-row"><span class="achievement-ico">🥇</span><span><strong>Counter Strike 2</strong> — алтан медаль. <span style="color:var(--txt2);">2026/05/26</span></span></div>
+          <div class="achievement-row"><span class="achievement-ico">🥈</span><span><strong>Биллиард</strong> — мөнгөн медаль. <span style="color:var(--txt2);">2026/05/27</span></span></div>
+          <div class="achievement-row"><span class="achievement-ico">★</span><span><strong>Дартс</strong> — тусгай байр. <span style="color:var(--txt2);">2026/06/07</span></span></div>
+        </div>
+        <div class="participation-note"><strong>Хөрөнгө оруулалтын баг</strong> нийт багийн дүнгээр 1-р байр эзэлж, ARD CUP 2026 цом авсан.</div>
+        <div class="participation-video-wrap">
+          <video class="participation-video" controls preload="metadata" poster="img/ardcup.jpg">
+            <source src="video/ardcup-2026.mp4" type="video/mp4" />
+            Таны browser video тоглуулах боломжгүй байна.
+          </video>
+          <div class="video-caption">ARD CUP 2026 арга хэмжээний товч видео.</div>
         </div>
       </div>
     </div>
