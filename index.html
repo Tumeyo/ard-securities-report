@@ -385,13 +385,7 @@
       grid-template-columns:minmax(320px,.92fr) minmax(360px,1.08fr);
       gap:1.5rem;
       padding:1.25rem;
-      align-items:start;
-    }
-    .participation-media-stack {
-      display:flex;
-      flex-direction:column;
-      gap:1rem;
-      min-width:0;
+      align-items:end;
     }
     .participation-media {
       aspect-ratio:16 / 9;
@@ -441,6 +435,7 @@
     }
     .participation-note strong { color:var(--gold-lt); }
     .participation-video-wrap {
+      grid-column:1 / -1;
       border-radius:16px;
       overflow:hidden;
       border:1px solid rgba(214,184,90,.14);
@@ -1017,17 +1012,15 @@
         </div>
         <div class="participation-note"><strong>Хөрөнгө оруулалтын баг</strong> нийт багийн дүнгээр 1-р байр эзэлж, ARD CUP 2026 цом авсан.</div>
       </div>
-      <div class="participation-media-stack">
-        <div class="participation-video-wrap">
-          <video class="participation-video" controls preload="metadata" poster="img/ardcup.jpg">
-            <source src="video/ardcup-2026.mp4" type="video/mp4" />
-            Таны browser video тоглуулах боломжгүй байна.
-          </video>
-          <div class="video-caption">ARD CUP 2026 арга хэмжээний товч видео.</div>
-        </div>
-        <div class="participation-media">
-          <img src="img/ardcup.jpg" alt="ARD Cup 2026 багийн зураг" />
-        </div>
+      <div class="participation-media">
+        <img src="img/ardcup.jpg" alt="ARD Cup 2026 багийн зураг" />
+      </div>
+      <div class="participation-video-wrap">
+        <video class="participation-video" controls preload="metadata" poster="img/ardcup-video-poster.jpg">
+          <source src="video/ardcup-2026.mp4" type="video/mp4" />
+          Таны browser video тоглуулах боломжгүй байна.
+        </video>
+        <div class="video-caption">ARD CUP 2026 арга хэмжээний товч видео.</div>
       </div>
     </div>
   </div>
