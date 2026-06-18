@@ -281,6 +281,64 @@
     .sec-h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.8rem,3.2vw,2.6rem); font-weight:700; line-height:1.18; margin-bottom:1rem; }
     .sec-p { font-size:1rem; color:var(--txt1); max-width:680px; line-height:1.72; }
 
+    #results {
+      padding-top:4.8rem;
+      padding-bottom:4.8rem;
+      background:
+        radial-gradient(ellipse 60% 42% at 14% 8%, rgba(201,168,76,.07), transparent 62%),
+        linear-gradient(180deg, rgba(4,11,21,.96), rgba(3,9,18,.98));
+      border-top:1px solid rgba(214,184,90,.08);
+      border-bottom:1px solid rgba(214,184,90,.08);
+    }
+    .impact-grid {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:1rem;
+      margin-top:2rem;
+    }
+    .impact-card {
+      padding:1.4rem 1.5rem;
+      min-height:132px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .impact-num {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:clamp(2.4rem,4.5vw,3.7rem);
+      font-weight:700;
+      line-height:1;
+      color:var(--gold);
+      margin-bottom:.65rem;
+      letter-spacing:-.02em;
+    }
+    .impact-label {
+      color:var(--txt0);
+      font-size:14px;
+      font-weight:700;
+      line-height:1.45;
+    }
+    .impact-note {
+      color:var(--txt2);
+      font-size:12px;
+      margin-top:.45rem;
+    }
+    #role {
+      padding-top:4.8rem;
+      padding-bottom:4.8rem;
+    }
+    .role-card {
+      max-width:900px;
+      padding:1.8rem 2rem;
+      margin-top:2rem;
+    }
+    .role-card p {
+      color:var(--txt1);
+      font-size:15px;
+      line-height:1.78;
+      margin:0;
+    }
+
     /* ── CARD ── */
     .card {
       background:var(--glass);
@@ -837,6 +895,7 @@
       .nav-links.open li a { padding:12px 0; border-bottom:1px solid var(--border2); border-radius:0; }
       .access-grid { grid-template-columns:1fr; }
       .access-card.wide { grid-column:1; }
+      .impact-grid { grid-template-columns:1fr; }
       .participation-card { grid-template-columns:1fr; }
       .participation-media { aspect-ratio:16 / 9; }
       .team-grid, .proj-grid { grid-template-columns:1fr; }
@@ -878,18 +937,19 @@
     <div class="nav-mark"><img src="img/logo.png" alt="Ард" class="nav-logo-img" /></div>
     <div class="nav-text">
       <strong>Ард Секюритиз ҮЦК</strong>
-      <small>Жинхлэх тайлан</small>
+      <small>ЖИНХЛЭХ ТАЙЛАН 2026</small>
     </div>
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#team">Баг</a></li>
-    <li><a href="#participation">Оролцоо</a></li>
+    <li><a href="#results">Үр дүн</a></li>
     <li><a href="#projects">Төслүүд</a></li>
-    <li><a href="#vendors">Вендор</a></li>
-    <li><a href="#access">Jira Апп</a></li>
+    <li><a href="#vendors">Jira урсгал</a></li>
+    <li><a href="#access">Бүртгэлийн систем</a></li>
     <li><a href="#timeline">Ажлын явц</a></li>
     <li><a href="#tech">Технологи</a></li>
-    <li><a href="#access" class="nav-btn">Jira Апп Нээх →</a></li>
+    <li><a href="#participation">Оролцоо</a></li>
+    <li><a href="#access" class="nav-btn">Систем нээх →</a></li>
   </ul>
   <div class="hamburger" id="ham" onclick="toggleNav()">
     <span></span><span></span><span></span>
@@ -912,23 +972,23 @@
     </div>
 
     <h1 class="hero-h1">
-      <span class="l1">Жинхлэх Тайлан</span>
-      <span class="l2">Ard Securities</span>
+      <span class="l1">Жинхлэх</span>
+      <span class="l2">тайлан</span>
     </h1>
 
-    <div class="hero-role">Систем Админ</div>
+    <div class="hero-role">Системийн админ</div>
 
     <p class="hero-sub">
-      Ард Секюритиз ҮЦК ХХК-ийн дотоод системийн асуудлуудыг бүртгэн нэгтгэж, ангилан эрэмбэлж, шаардлагатай тохиолдолд GrapeCity/CASPO болон AFS Jira системүүд рүү дамжуулан, вендортой харилцах ажлын явцыг хянасан тайлан.
+      Ард Секюритиз ҮЦК ХХК-ийн дотоод системийн асуудлуудыг бүртгэн нэгтгэж, ангилан эрэмбэлж, шаардлагатай тохиолдолд GrapeCity/CASPO болон AFS Jira системүүд рүү дамжуулан, шийдвэрлэлтийн явцыг хянасан ажлын тайлан.
     </p>
 
     <div class="hero-btns">
       <a href="#projects" class="btn-red">
-        Төслүүд Харах
+        Төслүүд харах
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <a href="#access" class="btn-ghost">
-        Jira Апп Нээх
+        Бүртгэлийн систем нээх
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
       </a>
     </div>
@@ -950,8 +1010,8 @@
 <section id="team">
   <div class="wrap">
     <div class="sec-eyebrow">Тайлан бэлтгэсэн</div>
-    <h2 class="sec-h2">Хийж Гүйцэтгэсэн Ажил</h2>
-    <p class="sec-p">Ард Секюритиз ҮЦК ХХК-д ажиллаж эхэлснээс хойш хэрэгжүүлсэн системийн дэмжлэг, CASPO/Jira хяналт, вендорын уялдаа болон дотоод сайжруулалтын ажлуудын товч тайлан. Зорилго нь системийн тогтвортой ажиллагаа, ажлын ил тод байдал болон бизнесийн үр ашгийг сайжруулах юм.</p>
+    <h2 class="sec-h2">Хийж гүйцэтгэсэн ажлууд</h2>
+    <p class="sec-p">Ард Секюритиз ҮЦК ХХК-д ажиллаж эхэлснээс хойш хэрэгжүүлсэн системийн дэмжлэг, CASPO/Jira хяналт, вендорын уялдаа болон дотоод процесс сайжруулалтын ажлуудыг нэгтгэн танилцуулж байна. Гол зорилго нь асуудлыг бүртгэлтэй, хяналттай, ил тод болгож, шийдвэрлэлтийн явцыг хурдан болгоход оршино.</p>
 
     <!-- Presenting to banner -->
     <div class="presenting-banner reveal">
@@ -974,7 +1034,7 @@
         </div>
         <div class="team-name">Тайлан бэлтгэсэн</div>
         <div class="team-title">Систем админ · Ард Секюритиз ҮЦК ХХК</div>
-        <div class="team-desc">Системийн дэд бүтэц, автоматжуулалт болон дотоод системийн дэмжлэг дээр ажиллаж байна. Одоогоор AppSheet Jira холболт, Polaris гарын авлага, CASPO/Jira хяналт болон вендортой ажил дамжуулах урсгал дээр төвлөрч байна.</div>
+        <div class="team-desc">Системийн дэд бүтэц, дотоод асуудал бүртгэлийн систем, Polaris гарын авлага, CASPO/Jira хяналт болон вендортой ажил дамжуулах урсгал дээр төвлөрч байна.</div>
       </div>
 
       <div class="card team-card reveal d2">
@@ -993,35 +1053,40 @@
   </div>
 </section>
 
-<!-- PARTICIPATION -->
-<section id="participation">
+<!-- RESULTS -->
+<section id="results">
   <div class="wrap">
-    <div class="sec-eyebrow">Байгууллагын Оролцоо</div>
-    <h2 class="sec-h2">Спорт &amp; Багийн Идэвх</h2>
-    <p class="sec-p">Үндсэн системийн ажлуудаас гадна байгууллагын спорт, багийн арга хэмжээнд идэвхтэй оролцсон товч тэмдэглэл.</p>
+    <div class="sec-eyebrow">Үндсэн үзүүлэлт</div>
+    <h2 class="sec-h2">Гол үр дүн</h2>
+    <p class="sec-p">Дотоод системийн асуудлуудыг бүртгэлтэй болгож, шаардлагатай ажлыг GrapeCity/CASPO болон AFS тал руу дамжуулан хянасан үндсэн үзүүлэлтүүд.</p>
 
-    <div class="card participation-card reveal">
-      <div class="participation-info">
-        <div class="participation-title">ARD CUP 2026</div>
-        <p class="participation-copy">2026 онд байгууллагын дотоод спортын арга хэмжээ болон олон нийтийн гүйлтийн арга хэмжээнд оролцсон. ARD CUP 2026 тэмцээн 5-р сарын 23-аас 6-р сарын 7 хүртэл зохион байгуулагдсан.</p>
-        <div class="achievement-list">
-          <div class="achievement-row"><span class="achievement-ico">5К</span><span><strong>Улаанбаатар марафон 2026</strong> — 5 км зайд оролцсон. <span style="color:var(--txt2);">2026/05/23</span></span></div>
-          <div class="achievement-row"><span class="achievement-ico">🥇</span><span><strong>Counter Strike 2</strong> — алтан медаль. <span style="color:var(--txt2);">2026/05/26</span></span></div>
-          <div class="achievement-row"><span class="achievement-ico">🥈</span><span><strong>Биллиард</strong> — мөнгөн медаль. <span style="color:var(--txt2);">2026/05/27</span></span></div>
-          <div class="achievement-row"><span class="achievement-ico">★</span><span><strong>Дартс</strong> — тусгай байр. <span style="color:var(--txt2);">2026/06/07</span></span></div>
-        </div>
-        <div class="participation-note"><strong>Хөрөнгө оруулалтын баг</strong> нийт багийн дүнгээр 1-р байр эзэлж, ARD CUP 2026 цом авсан.</div>
+    <div class="impact-grid">
+      <div class="card impact-card reveal">
+        <div class="impact-num">45</div>
+        <div class="impact-label">Нийт бүртгэлтэй асуудал</div>
+        <div class="impact-note">Vendor/Internal Jira</div>
       </div>
-      <div class="participation-media">
-        <img src="img/ardcup.jpg" alt="ARD Cup 2026 багийн зураг" />
+      <div class="card impact-card reveal d1">
+        <div class="impact-num">40</div>
+        <div class="impact-label">GrapeCity/CASPO руу дамжуулсан</div>
+        <div class="impact-note">CAS-901-ээс хойш</div>
       </div>
-      <div class="participation-video-wrap">
-        <video class="participation-video" controls preload="metadata" poster="img/ardcup-video-poster.jpg">
-          <source src="video/ardcup-2026.mp4" type="video/mp4" />
-          Таны browser video тоглуулах боломжгүй байна.
-        </video>
-        <div class="video-caption">ARD CUP 2026 арга хэмжээний товч видео.</div>
+      <div class="card impact-card reveal d2">
+        <div class="impact-num">13</div>
+        <div class="impact-label">AFS unique issue</div>
+        <div class="impact-note">Надаас үүссэн ажлууд</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROLE -->
+<section id="role">
+  <div class="wrap">
+    <div class="sec-eyebrow">Миний үүрэг</div>
+    <h2 class="sec-h2">Асуудлыг бүртгэлтэй, хяналттай болгох</h2>
+    <div class="card role-card reveal">
+      <p>Миний үндсэн үүрэг нь дотоод системийн асуудлуудыг хүлээн авч бүртгэх, ангилан эрэмбэлэх, боломжтойг дотооддоо шийдвэрлэх, шаардлагатай ажлыг GrapeCity/CASPO болон AFS тал руу дамжуулж, шийдвэрлэлтийн явцыг хянах юм.</p>
     </div>
   </div>
 </section>
@@ -1029,8 +1094,8 @@
 <!-- PROJECTS -->
 <section id="projects">
   <div class="wrap">
-    <div class="sec-eyebrow">Идэвхтэй Ажил</div>
-    <h2 class="sec-h2">Төслүүд &amp; Ажлууд</h2>
+    <div class="sec-eyebrow">Идэвхтэй ажил</div>
+    <h2 class="sec-h2">Төслүүд ба ажлууд</h2>
     <p class="sec-p">Ард Секюритиз ҮЦК ХХК-д дууссан, үргэлжилж буй болон төлөвлөж буй системийн ажлуудын товч мэдээлэл.</p>
 
     <div class="proj-grid">
@@ -1038,8 +1103,8 @@
       <div class="card proj-card reveal">
         <div class="status-pill s-done"><span class="sdot"></span> Дууссан</div>
         <div class="proj-ico" aria-hidden="true">📋</div>
-        <div class="proj-name">Jira Хянах Систем</div>
-        <div class="proj-desc">Jira дахь ажлуудыг бодит цаг хугацаанд хянах, удирдах AppSheet-д суурилсан дотоод апп. Өгөгдлийн синк болон баримт бичгийн удирдлагын тулд Google Sheets болон Google Drive-тай холбосон.</div>
+        <div class="proj-name">Дотоод асуудал бүртгэлийн систем</div>
+        <div class="proj-desc">Дотоод системийн асуудал, хүсэлтийг нэг дор бүртгэж, төлөвийг нь хянах зориулалттай систем. Өгөгдлийн синк болон баримт бичгийн удирдлагын тулд Google Sheets болон Google Drive-тай холбосон.</div>
         <div class="prog-wrap">
           <div class="prog-head"><span class="prog-lbl">Гүйцэтгэл</span><span class="prog-pct">100%</span></div>
           <div class="prog-track"><div class="prog-fill pg-gold" data-w="100"></div></div>
@@ -1049,13 +1114,13 @@
           <span class="tag">Google Drive</span><span class="tag">Jira</span>
         </div>
         <a href="https://www.appsheet.com/start/4981b74b-5ddd-43c4-9ba8-b02d4731a642" target="_blank" rel="noopener noreferrer" class="open-btn" style="margin-top:1rem;">
-          Jira Апп Нээх
+          Бүртгэлийн систем нээх
         </a>
         <span class="access-note" style="margin-top:.8rem;">ARD ажлын Google акаунт шаардлагатай.</span>
       </div>
 
       <div class="card proj-card reveal d3">
-        <div class="status-pill s-res"><span class="sdot"></span> Хийгдэж Байна</div>
+        <div class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</div>
         <div class="proj-ico" aria-hidden="true">📗</div>
         <div class="proj-name">Polaris Permission Discovery — Үнэт цаас</div>
         <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн дотоод ажилтнуудад зориулсан Polaris системийн <strong style="color:var(--gold);">Үнэт цаас</strong> цэсний гарын авлагын discovery шат. Permission-уудыг нэг бүрчлэн шалгаж, ямар action ID шаардагдахыг тодорхойлж байна. Бусад цэснүүд нь систем админы ажилд илүү хамаарах тул ажилтнуудад хэрэгтэй Үнэт цаас хэсгийг түрүүлж боловсруулж байна.</div>
@@ -1073,13 +1138,46 @@
         <span class="access-note" style="margin-top:.8rem;">ARD ажлын Google акаунт шаардлагатай.</span>
       </div>
 
+      <div class="card proj-card reveal d2">
+        <div class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</div>
+        <div class="proj-ico" aria-hidden="true">📄</div>
+        <div class="proj-name">Харилцагчийн баримт бичиг автоматжуулалт</div>
+        <div class="proj-desc">AFS-н санаачилгаар харилцагчдад гараар олгогддог гэрээ, хүсэлт, анкет болон QR-той тодорхойлолтыг автоматжуулах ажил эхэлсэн. Уг ажлын хүрээнд холбогдох компаниудаас ирүүлсэн загвар doc файлууд болон шаардлагатай мэдээллийг нэгтгэн хянаж, системд ашиглахад бэлэн болгох бэлтгэл ажилд оролцож байна.</div>
+        <div class="prog-wrap">
+          <div class="prog-head"><span class="prog-lbl">Гүйцэтгэл</span><span class="prog-pct">25%</span></div>
+          <div class="prog-track"><div class="prog-fill pg-blue" data-w="25"></div></div>
+        </div>
+        <div class="tags">
+          <span class="tag">AFS</span><span class="tag">Jira</span><span class="tag">Polaris</span>
+          <span class="tag">Automation</span><span class="tag">Documentation</span>
+        </div>
+        <a href="#doc-automation" class="open-btn" style="margin-top:1rem;">
+          Дэлгэрэнгүй харах
+        </a>
+      </div>
+
+      <div class="card proj-card plan-card reveal d3">
+        <div class="status-pill s-pend"><span class="sdot"></span> Төлөвлөлтийн шатанд</div>
+        <div class="proj-ico" aria-hidden="true">🧭</div>
+        <div class="proj-name">OGSM — Систем төсөл ба дижитал шилжилт</div>
+        <div class="proj-desc">OGSM үйл ажиллагааны хүрээнд 2026/2027 онд хэрэгжүүлэх системийн сайжруулалт, дижитал шилжилтийн төлөвлөгөө боловсруулах зорилгоор хэлтэс бүрийн өдөр тутам гараар давтагдан хийгддэг ажлуудыг тодорхойлох, автоматжуулах боломжтой санал хүсэлтийг цуглуулах ажилд оролцож байна. Энэхүү ажил одоогоор төлөвлөлтийн шатанд байгаа бөгөөд CBDO болон холбогдох хэлтсүүдтэй хамтран мэдээлэл цуглуулах, spreadsheet дээр ирсэн саналуудыг нэгтгэх, цэгцлэхэд дэмжлэг үзүүлж байна.</div>
+        <div class="prog-wrap">
+          <div class="prog-head"><span class="prog-lbl">Гүйцэтгэл</span><span class="prog-pct">5%</span></div>
+          <div class="prog-track"><div class="prog-fill pg-amber" data-w="5"></div></div>
+        </div>
+        <div class="tags">
+          <span class="tag">OGSM</span><span class="tag">CBDO</span><span class="tag">Planning</span>
+          <span class="tag">Digital Transformation</span><span class="tag">Process Automation</span><span class="tag">Google Sheets</span>
+        </div>
+      </div>
+
       <div class="card proj-card plan-card reveal d4">
-        <div class="status-pill s-pend"><span class="sdot"></span> Төлөвлөж Байна</div>
+        <div class="status-pill s-pend"><span class="sdot"></span> Төлөвлөж байна</div>
         <div class="proj-ico" aria-hidden="true">🖥️</div>
         <div class="proj-name">Millennium Trader Зогсолт — Төлөвлөгөө</div>
         <div class="proj-desc">LSEG/SSC Global Business Services Limited-ээс 2026 оны 3-р сарын 25-нд МХБ-д ирүүлсэн албан мэдэгдлээр <strong style="color:var(--gold);">Millennium Trader</strong> бүтээгдэхүүнийг 2027 оны 3-р сарын 1-нээс зогсоохоор мэдэгдсэн. Энэ хугацаанд зөвхөн production орчны Level 1/Level 2 алдаанд боломжит нөөцөөр засвар үйлчилгээ үзүүлнэ. Change Request, Service Request болон Level 3 fix хийхгүй, мөн LSEG-ээс орлох бүтээгдэхүүн санал болгохгүй гэж мэдэгдсэн тул арилжааны ажлын орчны эрсдэлийг үнэлж, дараагийн шийдлийг төлөвлөх шаардлагатай.</div>
         <div class="prog-wrap">
-          <div class="prog-head"><span class="prog-lbl">Төлөвлөлтийн Ахиц</span><span class="prog-pct">10%</span></div>
+          <div class="prog-head"><span class="prog-lbl">Төлөвлөлтийн ахиц</span><span class="prog-pct">10%</span></div>
           <div class="prog-track"><div class="prog-fill pg-amber" data-w="10"></div></div>
         </div>
         <div class="tags">
@@ -1089,12 +1187,12 @@
       </div>
 
       <div class="card proj-card plan-card planning-wide reveal d5">
-        <div class="status-pill s-pend"><span class="sdot"></span> Шинэ Ажил Төлөвлөж Байна</div>
+        <div class="status-pill s-pend"><span class="sdot"></span> Шинэ ажил төлөвлөж байна</div>
         <div class="proj-ico" aria-hidden="true">🗂️</div>
         <div class="proj-name">Нэмэлт Системийн Ажлууд — Жагсаалт</div>
         <div class="proj-desc">Өдөр тутмын ажлаас гарч буй шинэ шаардлага, давтагдсан асуудал, вендортой давтан хянах зүйлсийг нэг ажлын жагсаалт болгож байна. Polaris-ийн дараагийн цэсүүд, Jira тайлангийн долоо хоногийн шинэчлэлт болон ажилтнуудаас ирэх саналуудаас дараагийн хийх ажлыг эрэмбэлнэ.</div>
         <div class="prog-wrap">
-          <div class="prog-head"><span class="prog-lbl">Төлөвлөлтийн Ахиц</span><span class="prog-pct">5%</span></div>
+          <div class="prog-head"><span class="prog-lbl">Төлөвлөлтийн ахиц</span><span class="prog-pct">5%</span></div>
           <div class="prog-track"><div class="prog-fill pg-amber" data-w="5"></div></div>
         </div>
         <div class="tags">
@@ -1110,15 +1208,15 @@
 <!-- VENDORS -->
 <section id="vendors">
   <div class="wrap">
-    <div class="sec-eyebrow">Вендор Систем</div>
-    <h2 class="sec-h2">Jira Урсгал</h2>
-    <p class="sec-p">Дотоод ажлуудыг байршлаас нь хамааран <strong style="color:#FBBF24;">GrapeCity</strong> (CASPO төсөл — веб/backend) болон <strong style="color:var(--blue-lt);">AFS</strong> (апп/IT хэлтэс) рүү дамжуулдаг. CASPO нь тусдаа вендор биш, GrapeCity-ийн манай талд нээсэн Jira төсөл юм.</p>
+    <div class="sec-eyebrow">Вендор систем</div>
+    <h2 class="sec-h2">Дотоод асуудлын урсгал</h2>
+    <p class="sec-p">Ажилтнуудаас ирсэн системийн асуудлыг эхлээд дотооддоо бүртгэн ангилж, энгийн асуудлыг шууд шийдвэрлэн, шаардлагатай тохиолдолд <strong style="color:#FBBF24;">GrapeCity/CASPO</strong> болон <strong style="color:var(--blue-lt);">AFS</strong> тал руу дамжуулж, явцыг нь хянаж ажилладаг.</p>
 
     <div style="display:flex;align-items:center;justify-content:center;gap:1.2rem;flex-wrap:wrap;margin:2.5rem 0;padding:1.5rem 2rem;background:rgba(255,255,255,.02);border:1px solid var(--border2);border-radius:14px;">
       <div style="text-align:center;">
         <div class="mini-ico" style="margin:0 auto .55rem;">01</div>
         <div style="font-size:12px;color:var(--txt1);font-weight:600;">Ажилтнууд</div>
-        <div style="font-size:10px;color:var(--txt2);">AppSheet-р илгээнэ</div>
+        <div style="font-size:10px;color:var(--txt2);">системээр илгээнэ</div>
       </div>
       <div style="color:var(--gold);font-size:1.5rem;font-weight:300;">→</div>
       <div style="text-align:center;">
@@ -1181,7 +1279,7 @@
       </div>
 
       <div class="card proj-card reveal d1">
-        <div class="status-pill s-res"><span class="sdot"></span> Надаас Үүссэн Ажлууд</div>
+        <div class="status-pill s-res"><span class="sdot"></span> Надаас үүссэн ажлууд</div>
         <div class="proj-ico" aria-hidden="true">📱</div>
         <div class="proj-name">AFS</div>
         <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн апп болон IT дэд бүтцийн асуудлыг хариуцдаг дотоод IT тал. Jira дээрээс авсан “Надаас үүссэн ажлууд” snapshot: нийт 13 unique issue, үүнээс Open 1, Closed 8, Approved 4. Хувь хүний нэрийг оруулахгүй, зөвхөн албан тушаалаар харуулсан.</div>
@@ -1300,14 +1398,14 @@
 <!-- ACCESS -->
 <section id="access">
   <div class="wrap">
-    <div class="sec-eyebrow">Jira Апп</div>
-    <h2 class="sec-h2">Jira Хянагч</h2>
-    <p class="sec-p">QR кодыг уншуулах эсвэл линк дээр дарж AppSheet дээрх Jira хянах системд нэвтэрнэ. Дотоод хэрэглээний холбоос тул ARD ажлын Google акаунт шаардлагатай.</p>
+    <div class="sec-eyebrow">Дотоод систем</div>
+    <h2 class="sec-h2">Дотоод асуудал бүртгэлийн систем</h2>
+    <p class="sec-p">QR кодыг уншуулах эсвэл линк дээр дарж дотоод асуудал бүртгэлийн системд нэвтэрнэ. Дотоод хэрэглээний холбоос тул ARD ажлын Google акаунт шаардлагатай.</p>
 
-    <!-- AppSheet intro -->
+    <!-- Internal request system intro -->
     <div class="card access-card wide reveal" style="margin-top:2.5rem;padding:2rem;">
-      <div class="access-h" style="margin-bottom:.4rem;">Дотоод Асуудал Хүлээн Авах Систем — Хэрхэн Ажилладаг вэ?</div>
-      <p class="access-p" style="margin-bottom:1.6rem;">Системийн алдаа, асуудал гарвал системийн админд шууд хэлэхийн оронд энэ AppSheet аппаар хүсэлт илгээнэ. Хүсэлт бүр бүртгэгдэж, явцыг хянах боломжтой.</p>
+      <div class="access-h" style="margin-bottom:.4rem;">Дотоод хүсэлт бүртгэлийн систем — хэрхэн ажилладаг вэ?</div>
+      <p class="access-p" style="margin-bottom:1.6rem;">Системийн алдаа, асуудал гарвал системийн админд шууд хэлэхийн оронд энэ бүртгэлийн системээр хүсэлт илгээнэ. Хүсэлт бүр бүртгэгдэж, явцыг хянах боломжтой.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem;">
         <div style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.18);border-radius:10px;padding:1.1rem 1.2rem;display:flex;gap:.9rem;align-items:flex-start;">
           <div style="width:32px;height:32px;border-radius:8px;background:#1D4ED8;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;flex-shrink:0;">1</div>
@@ -1348,8 +1446,8 @@
     <div class="card access-card wide reveal" style="margin-top:1.5rem;padding:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
       <div class="proj-ico" aria-hidden="true" style="margin-bottom:0;">📖</div>
       <div style="flex:1;min-width:220px;">
-        <div class="access-h" style="margin-bottom:.4rem;">Гарын Авлага — AppSheet &amp; Jira Систем</div>
-        <p class="access-p" style="margin-bottom:1.2rem;">AppSheet дээр Jira үүсгэх, хянах, дамжуулах бүрэн гарын авлага. Шинэ ажилтнуудад болон системийг ашиглаж эхлэх хүн бүрд зориулсан заавар.</p>
+        <div class="access-h" style="margin-bottom:.4rem;">Дотоод бүртгэлийн системийн гарын авлага</div>
+        <p class="access-p" style="margin-bottom:1.2rem;">Jira үүсгэх, хянах, дамжуулах бүрэн гарын авлага. Шинэ ажилтнуудад болон системийг ашиглаж эхлэх хүн бүрд зориулсан заавар.</p>
         <a href="Гарын Авлага AppSheet Jira (Ard Securities).pdf" target="_blank" rel="noopener noreferrer" class="open-btn">
           Гарын Авлага Нээх
         </a>
@@ -1372,35 +1470,35 @@
     <div class="access-grid" style="margin-top:1.5rem;">
 
       <div class="card access-card reveal">
-        <div class="access-h">Jira Апп Нээхийн Тулд Уншуулна уу</div>
-        <div class="access-p">Утасныхаа камераар энэ кодыг уншуулж Jira хянах системд аливаа төхөөрөмжөөс нэвтэрнэ үү.</div>
+        <div class="access-h">Дотоод систем нээхийн тулд уншуулна уу</div>
+        <div class="access-p">Утасныхаа камераар энэ кодыг уншуулж дотоод асуудал бүртгэлийн системд аливаа төхөөрөмжөөс нэвтэрнэ үү.</div>
         <div class="qr-wrap">
           <div class="qr-box" id="qr-app"></div>
           <p class="qr-note">Утасны камераар уншуулна уу<br><strong>ARD ажлын Google акаунт шаардлагатай.</strong></p>
           <a href="https://www.appsheet.com/start/4981b74b-5ddd-43c4-9ba8-b02d4731a642"
-             target="_blank" rel="noopener noreferrer" class="open-btn red-btn">Jira Апп Нээх →</a>
+             target="_blank" rel="noopener noreferrer" class="open-btn red-btn">Бүртгэлийн систем нээх →</a>
         </div>
       </div>
 
       <div class="card access-card reveal d1">
-        <div class="access-h">Тайланг Хуваалцах</div>
+        <div class="access-h">Тайланг хуваалцах</div>
         <div class="access-p">Тайланг гүйцэтгэх удирдлага болон оролцогч талуудтай хуваалцана уу. QR кодыг уншуулж вэбсайтыг нээнэ үү.</div>
         <div class="qr-wrap">
           <div class="qr-box" id="qr-site"></div>
-          <p class="qr-note">Тайланг нээхийн тулд уншуулна уу<br><strong>ARD Securities Систем Тайлан</strong></p>
+          <p class="qr-note">Тайланг нээхийн тулд уншуулна уу<br><strong>Ард Секюритиз ҮЦК ХХК · Жинхлэх тайлан</strong></p>
           <button onclick="copyLink(this)" class="open-btn">Линк Хуулах</button>
         </div>
       </div>
 
       <div class="card access-card wide reveal">
-        <div class="access-h">Jira Аппыг Урьдчилан Харах</div>
-        <div class="access-p">AppSheet дээр бүтээсэн, Google Sheets болон Google Drive-аар дэмжигдсэн Jira хянах систем. Доорх товчийг дарж шууд нээнэ үү.</div>
+        <div class="access-h">Бүртгэлийн системийг урьдчилан харах</div>
+        <div class="access-p">Google Sheets болон Google Drive-аар дэмжигдсэн дотоод асуудал бүртгэлийн систем. Доорх товчийг дарж шууд нээнэ үү.</div>
         <div class="app-preview-card">
           <div class="app-preview-left">
             <div class="proj-ico" aria-hidden="true" style="margin-bottom:0;">📋</div>
             <div class="app-meta">
-              <div class="app-meta-name">Jira Хянагч</div>
-              <div class="app-meta-sub">Ард Секюритиз ҮЦК ХХК · Дотоод Систем</div>
+              <div class="app-meta-name">Дотоод асуудал бүртгэлийн систем</div>
+              <div class="app-meta-sub">Ард Секюритиз ҮЦК ХХК · дотоод систем</div>
               <div class="app-badges">
                 <span class="app-badge"><span style="color:#4ADE80">●</span> Идэвхтэй</span>
                 <span class="app-badge">AppSheet</span>
@@ -1419,7 +1517,7 @@
           <div class="app-preview-actions">
             <a href="https://www.appsheet.com/start/4981b74b-5ddd-43c4-9ba8-b02d4731a642"
                target="_blank" rel="noopener noreferrer" class="open-btn red-btn" style="font-size:15px;padding:14px 32px;">
-              Jira Апп Нээх &nbsp;↗
+              Бүртгэлийн систем нээх &nbsp;↗
             </a>
             <p style="font-size:11px;color:var(--txt1);margin-top:.75rem;text-align:center;">ARD ажлын Google акаунт шаардлагатай.</p>
           </div>
@@ -1433,8 +1531,8 @@
 <!-- TIMELINE -->
 <section id="timeline">
   <div class="wrap">
-    <div class="sec-eyebrow">Ажлын Төлөвлөгөө</div>
-    <h2 class="sec-h2">Ажлын Явц &amp; Төлөвлөгөө</h2>
+    <div class="sec-eyebrow">Ажлын төлөвлөгөө</div>
+    <h2 class="sec-h2">Ажлын явц ба төлөвлөгөө</h2>
     <p class="sec-p">2026 оны 4-р сарын 21-ээс 6-р сар хүртэлх системийн ажлуудын ахиц болон дараагийн төлөвлөгөө.</p>
 
     <div class="tl">
@@ -1443,8 +1541,8 @@
         <div class="tl-date">2026 оны 4-р сарын 21</div>
         <div class="tl-dot lit"></div>
         <div class="tl-content">
-        <div class="tl-title">Ард Секюритиз ҮЦК ХХК-д Нэгдсэн &amp; Системийн Шинжилгээ</div>
-        <div class="tl-body">Систем админы үүрэгт ажилд орж, Polaris болон бусад дотоод системийн байдлыг шинжилсэн. AppSheet Jira систем, Polaris гарын авлага болон CASPO/Jira хяналтын ажлуудыг CBDO-тэй хамтран тодорхойлсон.</div>
+        <div class="tl-title">Ард Секюритиз ҮЦК ХХК-д нэгдсэн ба системийн шинжилгээ</div>
+        <div class="tl-body">Систем админы үүрэгт ажилд орж, Polaris болон бусад дотоод системийн байдлыг шинжилсэн. Дотоод асуудал бүртгэлийн систем, Polaris гарын авлага болон CASPO/Jira хяналтын ажлуудыг CBDO-тэй хамтран тодорхойлсон.</div>
         </div>
       </div>
 
@@ -1452,8 +1550,17 @@
         <div class="tl-date">2026 оны 4–5-р сар</div>
         <div class="tl-dot lit"></div>
         <div class="tl-content">
-        <div class="tl-title">AppSheet Жира Системийг Хөгжүүлж Нэвтрүүлсэн</div>
-        <div class="tl-body">Дотоод ажилтнуудад зориулсан Jira хянах AppSheet аппыг хөгжүүлж байршуулсан. GrapeCity (CASPO төсөл — веб/backend) болон AFS-д (апп/IT) ажил дамжуулах урсгал тогтоосон.</div>
+        <div class="tl-title">Дотоод асуудал бүртгэлийн системийг хөгжүүлж нэвтрүүлсэн</div>
+        <div class="tl-body">Дотоод ажилтнуудад зориулсан хүсэлт бүртгэлийн системийг хөгжүүлж байршуулсан. GrapeCity (CASPO төсөл — веб/backend) болон AFS-д (апп/IT) ажил дамжуулах урсгал тогтоосон.</div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal d1" id="doc-automation">
+        <div class="tl-date">2026 оны 5-р сарын сүүл</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+        <div class="tl-title">Харилцагчийн баримт бичиг автоматжуулалт</div>
+        <div class="tl-body">AFS-н санаачилгаар гэрээ, хүсэлт, анкет болон QR-той тодорхойлолтыг автоматжуулах ажлын бэлтгэл эхэлсэн. Холбогдох компаниудаас ирүүлсэн загвар doc файлууд болон шаардлагатай мэдээллийг нэгтгэн хянаж, системд ашиглахад бэлэн болгох ажилд дэмжлэг үзүүлж байна. Одоогийн гүйцэтгэл 25%.</div>
         </div>
       </div>
 
@@ -1461,7 +1568,7 @@
         <div class="tl-date">2026 оны 4–5-р сар</div>
         <div class="tl-dot lit"></div>
         <div class="tl-content">
-        <div class="tl-title">GrapeCity / CASPO Jira Урсгалыг Нэгтгэсэн ✓</div>
+        <div class="tl-title">GrapeCity / CASPO Jira урсгалыг нэгтгэсэн ✓</div>
         <div class="tl-body">Polaris системийн bug, сайжруулалт, лавлагааг GrapeCity-ийн CASPO төсөл дээр хянаж байна. Web report-д CAS-901 буюу 2026 оны 4-р сарын 23-наас хойш үүсгэсэн ажлуудыг тусгасан: 4-р сар 9, 5-р сар 18, 6-р сар одоогоор 13, нийт 40.</div>
         </div>
       </div>
@@ -1470,7 +1577,7 @@
         <div class="tl-date">2026 оны 6-р сар</div>
         <div class="tl-dot"></div>
         <div class="tl-content">
-        <div class="tl-title">Удирдлагуудад Танилцуулга — Эцсийн Тайлан</div>
+        <div class="tl-title">Удирдлагуудад танилцуулах — эцсийн тайлан</div>
         <div class="tl-body">Дууссан болон үргэлжилж буй ажлуудыг хамарсан танилцуулга, байршуулсан аппуудын шууд үзүүлэн болон Ард Секюритиз ҮЦК ХХК-ийн системийн дараагийн ажлуудын санал.</div>
         </div>
       </div>
@@ -1482,17 +1589,48 @@
 <!-- TECH -->
 <section id="tech">
   <div class="wrap">
-    <div class="sec-eyebrow">Хэрэгсэл ба Технологи</div>
-    <h2 class="sec-h2">Ашигласан Технологи</h2>
-    <p class="sec-p">Ард Секюритиз ҮЦК ХХК-ийн системийн ажлуудад ашиглаж буй систем, хэрэгсэл болон үйлчилгээнүүд.</p>
+    <div class="sec-eyebrow">Хэрэгсэл ба технологи</div>
+    <h2 class="sec-h2">Ашигласан технологи</h2>
 
     <div class="tech-grid">
-      <div class="card tech-item reveal">   <span class="tech-ico">📱</span><span class="tech-name">AppSheet</span><span class="tech-cat">Код Шаардахгүй</span></div>
-      <div class="card tech-item reveal d1"> <span class="tech-ico">📊</span><span class="tech-name">Google Sheets</span><span class="tech-cat">Мэдээллийн Сан</span></div>
-      <div class="card tech-item reveal d2"> <span class="tech-ico">💾</span><span class="tech-name">Google Drive</span><span class="tech-cat">Файл Хадгалах</span></div>
-      <div class="card tech-item reveal">   <span class="tech-ico">🎫</span><span class="tech-name">Jira</span><span class="tech-cat">Асуудал Хянах</span></div>
+      <div class="card tech-item reveal">   <span class="tech-ico">📱</span><span class="tech-name">AppSheet</span><span class="tech-cat">Код шаарддаггүй</span></div>
+      <div class="card tech-item reveal d1"> <span class="tech-ico">📊</span><span class="tech-name">Google Sheets</span><span class="tech-cat">Мэдээллийн сан</span></div>
+      <div class="card tech-item reveal d2"> <span class="tech-ico">💾</span><span class="tech-name">Google Drive</span><span class="tech-cat">Файл хадгалах</span></div>
+      <div class="card tech-item reveal">   <span class="tech-ico">🎫</span><span class="tech-name">Jira</span><span class="tech-cat">Асуудал хянах</span></div>
       <div class="card tech-item reveal">   <span class="tech-ico">🌐</span><span class="tech-name">GrapeCity</span><span class="tech-cat">Веб Хөгжүүлэгч</span></div>
       <div class="card tech-item reveal d1"> <span class="tech-ico">⚙️</span><span class="tech-name">GitHub Pages</span><span class="tech-cat">Хостинг</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTICIPATION -->
+<section id="participation">
+  <div class="wrap">
+    <div class="sec-eyebrow">Байгууллагын оролцоо</div>
+    <h2 class="sec-h2">Спорт ба багийн идэвх</h2>
+    <p class="sec-p">Үндсэн системийн ажлуудаас гадна байгууллагын спорт, багийн арга хэмжээнд идэвхтэй оролцсон товч тэмдэглэл.</p>
+
+    <div class="card participation-card reveal">
+      <div class="participation-info">
+        <div class="participation-title">ARD CUP 2026</div>
+        <p class="participation-copy">2026 онд байгууллагын дотоод спортын арга хэмжээнд оролцсон. ARD CUP 2026 тэмцээн 5-р сарын 23-аас 6-р сарын 7 хүртэл зохион байгуулагдсан.</p>
+        <div class="achievement-list">
+          <div class="achievement-row"><span class="achievement-ico">🥇</span><span><strong>Counter Strike 2</strong> — алтан медаль. <span style="color:var(--txt2);">2026/05/26</span></span></div>
+          <div class="achievement-row"><span class="achievement-ico">🥈</span><span><strong>Биллиард</strong> — мөнгөн медаль. <span style="color:var(--txt2);">2026/05/27</span></span></div>
+          <div class="achievement-row"><span class="achievement-ico">★</span><span><strong>Дартс</strong> — тусгай байр. <span style="color:var(--txt2);">2026/06/07</span></span></div>
+        </div>
+        <div class="participation-note"><strong>Хөрөнгө оруулалтын баг</strong> нийт багийн дүнгээр 1-р байр эзэлж, ARD CUP 2026 цом авсан.</div>
+      </div>
+      <div class="participation-media">
+        <img src="img/ardcup.jpg" alt="ARD Cup 2026 багийн зураг" />
+      </div>
+      <div class="participation-video-wrap">
+        <video class="participation-video" controls preload="metadata" poster="img/ardcup-video-poster.jpg">
+          <source src="video/ardcup-2026.mp4" type="video/mp4" />
+          Таны хөтөч видео тоглуулах боломжгүй байна.
+        </video>
+        <div class="video-caption">ARD CUP 2026 арга хэмжээний товч видео.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1501,14 +1639,13 @@
 <section id="thanks">
   <div class="wrap">
     <div class="thanks-card reveal">
-      <div class="sec-eyebrow" style="justify-content:center;">Талархал</div>
-      <h2 class="thanks-title">Талархлын үг</h2>
-      <p class="thanks-text">Энэ хугацаанд надад итгэл өгч, чиглүүлж, хамтран ажилласан бүх хүмүүстээ баярлалаа.</p>
+      <h2 class="thanks-title">Баярлалаа</h2>
+      <p class="thanks-text">Өдөр тутмын ажилд чиглэл өгч, хамтран дэмжиж ажиллаж буй багийнхандаа баярлалаа.</p>
       <button type="button" class="thanks-btn" onclick="showThanks()">
-        Талархал харах
+        Унших
       </button>
       <div class="thanks-quote" id="thanksQuote" aria-live="polite">
-        Анх ажилдаа орж байхдаа мэдэхгүй, асуух зүйл олон байсан ч багийн дэмжлэг, өгсөн зөвлөгөө бүр надад ажлаа илүү сайн ойлгож, өөртөө итгэлтэй болох боломж өгсөн. Цаашдаа сурсан зүйлсээ бодит ажил болгож, илүү хариуцлагатай, илүү цэгцтэй ажиллахыг хичээх болно.
+        Багийн дэмжлэг, өгсөн зөвлөгөө бүр ажлаа илүү сайн ойлгож, дотоод системийн ажлуудыг илүү цэгцтэй авч явахад тус болж байна. Цаашид сурсан зүйлсээ өдөр тутмын ажилдаа ашиглаж, багийн хэрэгцээнд илүү хурдан, илүү хариуцлагатай хариу өгөхийг зорьж байна.
       </div>
     </div>
   </div>
@@ -1784,7 +1921,7 @@ new QRCode(document.getElementById('qr-app'),  qrCfg(APP_URL));
 new QRCode(document.getElementById('qr-site'), qrCfg(SITE_URL));
 
 // Thank-you note
-const thanksNote = 'Анх ажилдаа орж байхдаа мэдэхгүй, асуух зүйл олон байсан ч багийн дэмжлэг, өгсөн зөвлөгөө бүр надад ажлаа илүү сайн ойлгож, өөртөө итгэлтэй болох боломж өгсөн. Цаашдаа сурсан зүйлсээ бодит ажил болгож, илүү хариуцлагатай, илүү цэгцтэй ажиллахыг хичээх болно.';
+const thanksNote = 'Багийн дэмжлэг, өгсөн зөвлөгөө бүр ажлаа илүү сайн ойлгож, дотоод системийн ажлуудыг илүү цэгцтэй авч явахад тус болж байна. Цаашид сурсан зүйлсээ өдөр тутмын ажилдаа ашиглаж, багийн хэрэгцээнд илүү хурдан, илүү хариуцлагатай хариу өгөхийг зорьж байна.';
 function showThanks() {
   const box = document.getElementById('thanksQuote');
   box.textContent = thanksNote;
