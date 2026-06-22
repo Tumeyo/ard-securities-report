@@ -260,19 +260,6 @@
     }
     .btn-gold:hover { transform:translateY(-2px); box-shadow:0 8px 28px var(--gold-glow); }
 
-    /* Countdown */
-    .countdown { display:flex; gap:1.8rem; justify-content:center; margin-top:3.5rem; animation:fadeUp .8s .68s both; }
-    .cd-block { text-align:center; }
-    .cd-val {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2rem,4.5vw,3.2rem); font-weight:700;
-      color:var(--gold); line-height:1; display:block;
-      text-shadow: 0 0 30px var(--gold-glow);
-    }
-    .cd-lbl { font-size:9.5px; color:var(--txt2); text-transform:uppercase; letter-spacing:2px; margin-top:5px; display:block; }
-    .cd-sep { font-size:2.2rem; color:var(--gold-dk); align-self:flex-start; padding-top:6px; opacity:.7; }
-    .cd-caption { font-size:10.5px; color:var(--txt2); text-align:center; margin-top:.9rem; letter-spacing:1.2px; text-transform:uppercase; }
-
     /* ── SECTION BASE ── */
     section { padding:5.5rem 2rem; position:relative; overflow:hidden; }
     .wrap { max-width:1120px; margin:0 auto; position:relative; z-index:1; }
@@ -908,7 +895,6 @@
     }
     @media (max-width:480px) {
       section{padding:3.5rem 1rem;}
-      .countdown{gap:1rem;}
       .jira-chart { grid-template-columns:1fr; }
       .hero-h1 { font-size:clamp(2.25rem,12vw,3.4rem); }
     }
@@ -993,16 +979,6 @@
       </a>
     </div>
 
-    <div class="countdown">
-      <div class="cd-block"><span class="cd-val" id="cd-d">--</span><span class="cd-lbl">Өдөр</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-block"><span class="cd-val" id="cd-h">--</span><span class="cd-lbl">Цаг</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-block"><span class="cd-val" id="cd-m">--</span><span class="cd-lbl">Минут</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-block"><span class="cd-val" id="cd-s">--</span><span class="cd-lbl">Секунд</span></div>
-    </div>
-    <p class="cd-caption" id="cd-caption">Удирдлагуудад Танилцуулах Хугацаа &mdash; 2026 оны 6-р сар</p>
   </div>
 </section>
 
@@ -1720,48 +1696,6 @@ document.getElementById('btt').addEventListener('click', () => {
   smoothPageScrollTo(0, 950);
   history.pushState(null, '', '#hero');
 });
-
-// Countdown — ✏️ танилцуулах огноог өөрчилнө үү
-const TARGET = new Date('2026-06-21T09:00:00');
-function launchConfetti() {
-  const colors = ['#C9A84C','#E5C46A','#E63329','#fff','#8A6A1A'];
-  for (let i = 0; i < 120; i++) {
-    const el = document.createElement('div');
-    const size = Math.random() * 8 + 4;
-    el.style.cssText = `
-      position:fixed; z-index:9998; pointer-events:none;
-      width:${size}px; height:${size}px;
-      background:${colors[Math.floor(Math.random()*colors.length)]};
-      border-radius:${Math.random()>.5?'50%':'2px'};
-      left:${Math.random()*100}vw; top:-10px;
-      opacity:1;
-      animation: confettiFall ${Math.random()*2.5+1.5}s ease-in ${Math.random()*1.5}s forwards;
-    `;
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 5000);
-  }
-}
-const confettiStyle = document.createElement('style');
-confettiStyle.textContent = `@keyframes confettiFall { to { transform: translateY(110vh) rotate(${Math.random()*720}deg); opacity:0; } }`;
-document.head.appendChild(confettiStyle);
-
-function tick() {
-  const diff = TARGET - new Date();
-  if (diff <= 0) {
-    ['cd-d','cd-h','cd-m','cd-s'].forEach(id => document.getElementById(id).textContent='00');
-    document.getElementById('cd-caption').textContent = '🎉 ТАНИЛЦУУЛГА ЭХЭЛЛЭЭ!';
-    document.getElementById('cd-caption').style.cssText = 'color:var(--gold);font-size:14px;font-weight:700;letter-spacing:2px;';
-    document.querySelectorAll('.cd-val').forEach(el => { el.style.color='var(--red)'; el.style.textShadow='0 0 30px var(--red-glow)'; });
-    launchConfetti();
-    return;
-  }
-  const pad = n => String(Math.floor(n)).padStart(2,'0');
-  document.getElementById('cd-d').textContent = pad(diff/86400000);
-  document.getElementById('cd-h').textContent = pad((diff%86400000)/3600000);
-  document.getElementById('cd-m').textContent = pad((diff%3600000)/60000);
-  document.getElementById('cd-s').textContent = pad((diff%60000)/1000);
-}
-tick(); setInterval(tick,1000);
 
 // Canvas particle network
 (function(){
