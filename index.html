@@ -392,6 +392,11 @@
       width:100%; height:100%; object-fit:cover; object-position:center 24%;
       display:block; transform:scale(1.42); transform-origin:center 24%;
     }
+    .photo-avatar.cbdo-avatar img {
+      object-position:center 18%;
+      transform:scale(1.12);
+      transform-origin:center 18%;
+    }
     .photo-avatar .ph-init { font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:700; width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
 
     /* Presenting to banner */
@@ -689,6 +694,24 @@
     .bar-value { font-family:'Space Grotesk',sans-serif; color:var(--gold-lt); font-size:1.55rem; font-weight:800; line-height:1; }
     .bar-label { color:var(--txt1); font-size:12px; font-weight:700; }
     .bar-meta { color:var(--txt2); font-size:10.5px; }
+    .caspo-kpi-grid {
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:.65rem;
+      margin:1.5rem 0;
+    }
+    .caspo-kpi {
+      min-height:88px;
+      padding:.9rem;
+      border:1px solid rgba(214,184,90,.14);
+      border-radius:12px;
+      background:rgba(255,255,255,.025);
+    }
+    .caspo-kpi-value { font-family:'Space Grotesk',sans-serif; font-size:1.55rem; font-weight:800; line-height:1; color:var(--gold-lt); margin-bottom:.38rem; }
+    .caspo-kpi-label { color:var(--txt2); font-size:10px; line-height:1.4; }
+    .caspo-breakdown { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.25rem; }
+    .caspo-breakdown h3 { font-family:'Space Grotesk',sans-serif; font-size:.96rem; font-weight:700; margin-bottom:.75rem; }
+    .caspo-breakdown .table-scroll { border-radius:12px; }
 
     /* App preview card */
     .app-preview-card {
@@ -888,6 +911,8 @@
       .team-grid, .proj-grid { grid-template-columns:1fr; }
       .hero-btns { flex-direction:column; align-items:center; }
       .jira-chart { grid-template-columns:repeat(2,1fr); }
+      .caspo-kpi-grid { grid-template-columns:repeat(3,1fr); }
+      .caspo-breakdown { grid-template-columns:1fr; }
       .tl { max-width:100%; }
       .tl::before { display:none; }
       .tl-item { grid-template-columns:1fr; gap:.45rem; padding:1rem 0; }
@@ -896,6 +921,7 @@
     @media (max-width:480px) {
       section{padding:3.5rem 1rem;}
       .jira-chart { grid-template-columns:1fr; }
+      .caspo-kpi-grid { grid-template-columns:repeat(2,1fr); }
       .hero-h1 { font-size:clamp(2.25rem,12vw,3.4rem); }
     }
 
@@ -965,7 +991,7 @@
     <div class="hero-role">Системийн админ</div>
 
     <p class="hero-sub">
-      Ард Секюритиз ҮЦК ХХК-ийн дотоод системийн асуудлуудыг бүртгэн нэгтгэж, ангилан эрэмбэлж, GrapeCity/CASPO болон AFS Jira системүүд рүү дамжуулан, шийдвэрлэлтийн явцыг хянасан ажлын тайлан.
+      Ард Секюритиз ҮЦК ХХК-ийн дотоод системийн асуудлуудыг бүртгэн нэгтгэж, ангилж, шаардлагатайг GrapeCity/CASPO болон AFS Jira руу дамжуулан, шийдвэрлэлтийн явцыг хянасан ажлын тайлан.
     </p>
 
     <div class="hero-btns">
@@ -987,14 +1013,14 @@
   <div class="wrap">
     <div class="sec-eyebrow">Тайлан бэлтгэсэн</div>
     <h2 class="sec-h2">Хийж гүйцэтгэсэн ажлууд</h2>
-    <p class="sec-p">Ард Секюритиз ҮЦК ХХК-д ажиллаж эхэлснээс хойш хэрэгжүүлсэн системийн дэмжлэг, CASPO/Jira хяналт, вендорын уялдаа болон дотоод процесс сайжруулалтын ажлуудыг нэгтгэн танилцуулж байна. Гол зорилго нь асуудлыг бүртгэлтэй, хяналттай, ил тод болгож, шийдвэрлэлтийн явцыг хурдан болгоход оршино.</p>
+    <p class="sec-p">Ард Секюритиз ҮЦК ХХК-д ажиллаж эхэлснээс хойш хийсэн системийн дэмжлэг, CASPO/Jira хяналт, вендортой уялдах ажил болон дотоод процесс сайжруулалтыг нэгтгэн танилцуулж байна. Зорилго нь асуудлыг бүртгэлтэй, хяналттай, ил тод болгож, шийдвэрлэх явцыг хурдан болгох юм.</p>
 
     <!-- Presenting to banner -->
     <div class="presenting-banner reveal">
       <div class="presenting-left">
         <span class="presenting-label">Танилцуулж буй</span>
         <span class="presenting-name">Х.Билгүүн</span>
-        <span class="presenting-title">CEO · Ард Секюритиз </span>
+        <span class="presenting-title">CEO · Ард Секюритиз</span>
       </div>
       <div class="presenting-photo">
         <img src="img/ceo.jpg" alt="Х.Билгүүн — CEO" />
@@ -1010,19 +1036,17 @@
         </div>
         <div class="team-name">Тайлан бэлтгэсэн</div>
         <div class="team-title">Систем админ · Ард Секюритиз</div>
-        <div class="team-desc">Системийн дотоод асуудал бүртгэлийн систем, Polaris гарын авлага, CASPO/Jira хяналт болон вендортой ажил дамжуулах урсгал дээр төвлөрч байна.</div>
+        <div class="team-desc">Дотоод асуудал бүртгэлийн систем, Polaris гарын авлага, CASPO/Jira хяналт болон вендорт ажил дамжуулах урсгал дээр ажиллаж байна.</div>
       </div>
 
       <div class="card team-card reveal d2">
         <div class="role-pill pill-cbdo">● CBDO &amp; Чиглүүлэгч</div>
-        <div class="photo-avatar" style="border-color:rgba(59,130,246,.4);">
-          <div class="ph-init" style="background:linear-gradient(135deg,#0A1D3D,#0A2A5C);width:100%;height:100%;font-size:26px;">
-            <span style="color:var(--blue-lt);">БА</span>
-          </div>
+        <div class="photo-avatar cbdo-avatar" style="border-color:rgba(59,130,246,.4);">
+          <img src="img/CBDO.jpg" alt="Б. Анужин — CBDO" />
         </div>
         <div class="team-name">Б. Анужин</div>
         <div class="team-title">CBDO · Ард Секюритиз</div>
-        <div class="team-desc">Системд хамаарах бүх асуудал болон ажлуудад чиглэл өгч дэмжлэг үзүүлэн ажилласан.</div>
+        <div class="team-desc">Системтэй холбоотой ажлуудад чиглэл өгч, шаардлагатай үед зөвлөгөө болон дэмжлэг үзүүлж ажилласан.</div>
       </div>
 
     </div>
@@ -1034,12 +1058,12 @@
   <div class="wrap">
     <div class="sec-eyebrow">Үндсэн үзүүлэлт</div>
     <h2 class="sec-h2">Гол үр дүн</h2>
-    <p class="sec-p">Дотоод системийн асуудлуудыг бүртгэлтэй болгож, шаардлагатай ажлыг CASPO болон AFS тал руу дамжуулан хянасан үндсэн үзүүлэлтүүд.</p>
+    <p class="sec-p">Дотоод системийн асуудлуудыг бүртгэлтэй болгож, шаардлагатайг CASPO болон AFS тал руу дамжуулан хянасан гол үзүүлэлтүүд.</p>
 
     <div class="impact-grid">
       <div class="card impact-card reveal">
         <div class="impact-num">45</div>
-        <div class="impact-label">Нийт бүртгэлтэй Jira</div>
+        <div class="impact-label">Нийт бүртгэлтэй асуудал</div>
         <div class="impact-note">Ажиллаж эхэлснээс хойш бүртгэсэн</div>
       </div>
       <div class="card impact-card reveal d1">
@@ -1049,8 +1073,8 @@
       </div>
       <div class="card impact-card reveal d2">
         <div class="impact-num">13</div>
-        <div class="impact-label">AFS Jira</div>
-        <div class="impact-note"></div>
+        <div class="impact-label">AFS unique issue</div>
+        <div class="impact-note">Надаас үүссэн ажлууд</div>
       </div>
     </div>
   </div>
@@ -1062,7 +1086,7 @@
     <div class="sec-eyebrow">Миний үүрэг</div>
     <h2 class="sec-h2">Асуудлыг бүртгэлтэй, хяналттай болгох</h2>
     <div class="card role-card reveal">
-      <p>Миний үндсэн үүрэг нь дотоод системийн асуудлуудыг хүлээн авч бүртгэх, ангилан эрэмбэлэх, боломжтойг дотооддоо шийдвэрлэх, шаардлагатай ажлыг GrapeCity/CASPO болон AFS тал руу дамжуулж, шийдвэрлэлтийн явцыг хянах юм.</p>
+      <p>Миний үндсэн ажил бол дотоод системийн асуудлыг хүлээн авч бүртгэх, ангилах, боломжтойг дотооддоо шийдэх, шаардлагатайг GrapeCity/CASPO болон AFS тал руу дамжуулж, шийдвэрлэлтийн явцыг хянах юм.</p>
     </div>
   </div>
 </section>
@@ -1072,7 +1096,7 @@
   <div class="wrap">
     <div class="sec-eyebrow">Идэвхтэй ажил</div>
     <h2 class="sec-h2">Төслүүд ба ажлууд</h2>
-    <p class="sec-p">Ард Секюритиз-д дууссан, үргэлжилж буй болон төлөвлөж буй системийн ажлуудын товч мэдээлэл.</p>
+    <p class="sec-p">Одоогоор дууссан, үргэлжилж байгаа болон төлөвлөж буй системийн ажлуудын товч мэдээлэл.</p>
 
     <div class="proj-grid">
 
@@ -1080,7 +1104,7 @@
         <div class="status-pill s-done"><span class="sdot"></span> Дууссан</div>
         <div class="proj-ico" aria-hidden="true">📋</div>
         <div class="proj-name">Дотоод асуудал бүртгэлийн систем</div>
-        <div class="proj-desc">Дотоод системийн асуудал, хүсэлтийг нэг дор бүртгэж, төлөвийг нь хянах зориулалттай систем. Өгөгдлийн синк болон баримт бичгийн удирдлагын тулд Google Sheets болон Google Drive-тай холбосон.</div>
+        <div class="proj-desc">Дотоод системийн асуудал, хүсэлтийг нэг дор бүртгэж, төлөвийг нь хянах систем. Google Sheets болон Google Drive-тай холбосон тул мэдээлэл, файл нэг урсгалд хадгалагдана.</div>
         <div class="prog-wrap">
           <div class="prog-head"><span class="prog-lbl">Гүйцэтгэл</span><span class="prog-pct">100%</span></div>
           <div class="prog-track"><div class="prog-fill pg-gold" data-w="100"></div></div>
@@ -1099,17 +1123,17 @@
         <div class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</div>
         <div class="proj-ico" aria-hidden="true">📗</div>
         <div class="proj-name">Polaris Permission Discovery — Үнэт цаас</div>
-        <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн дотоод ажилтнуудад зориулсан Polaris системийн <strong style="color:var(--gold);">Үнэт цаас</strong> цэсний гарын авлагын discovery шат. Permission-уудыг нэг бүрчлэн шалгаж, ямар action ID шаардагдахыг тодорхойлж байна. Бусад цэснүүд нь систем админы ажилд илүү хамаарах тул ажилтнуудад хэрэгтэй Үнэт цаас хэсгийг түрүүлж боловсруулж байна.</div>
+        <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн дотоод ажилтнуудад зориулсан Polaris системийн <strong style="color:var(--gold);">Үнэт цаас</strong> цэсний гарын авлагын discovery шат. Permission-уудыг нэг бүрчлэн шалгаж, ямар action ID шаардагдахыг тодорхойлж байна. Бусад цэснүүд нь систем админы ажилд илүү ойр тул ажилтнуудад хэрэгтэй Үнэт цаас хэсгийг түрүүлж хийж байна.</div>
         <div class="prog-wrap">
           <div class="prog-head"><span class="prog-lbl">Permission Discovery</span><span class="prog-pct">20%</span></div>
           <div class="prog-track"><div class="prog-fill pg-gold" data-w="20"></div></div>
         </div>
         <div class="tags">
           <span class="tag">Polaris</span><span class="tag">Үнэт цаас</span>
-          <span class="tag">Permission Discovery</span><span class="tag">Гарын Авлага</span><span class="tag">166+ Цэс</span>
+          <span class="tag">Permission Discovery</span><span class="tag">Гарын авлага</span><span class="tag">166+ цэс</span>
         </div>
         <a href="https://docs.google.com/spreadsheets/d/1oR0nRBo18wVI8WZoLGc5S8FZf9s6xdqwfaAeTf4KxeE/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="open-btn" style="margin-top:1rem;">
-          Live Discovery Sheet Нээх
+          Live discovery sheet нээх
         </a>
         <span class="access-note" style="margin-top:.8rem;">ARD ажлын Google акаунт шаардлагатай.</span>
       </div>
@@ -1118,7 +1142,7 @@
         <div class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</div>
         <div class="proj-ico" aria-hidden="true">📄</div>
         <div class="proj-name">Харилцагчийн баримт бичиг автоматжуулалт</div>
-        <div class="proj-desc">AFS-н санаачилгаар харилцагчдад гараар олгогддог гэрээ, хүсэлт, анкет болон QR-той тодорхойлолтыг автоматжуулах ажил эхэлсэн. Уг ажлын хүрээнд холбогдох компаниудаас ирүүлсэн загвар doc файлууд болон шаардлагатай мэдээллийг нэгтгэн хянаж, системд ашиглахад бэлэн болгох бэлтгэл ажилд оролцож байна.</div>
+        <div class="proj-desc">AFS-н санаачилгаар харилцагчдад гараар олгогддог гэрээ, хүсэлт, анкет болон QR-той тодорхойлолтыг автоматжуулах ажил эхэлсэн. Энэ ажлын хүрээнд холбогдох компаниудаас ирүүлсэн загвар doc файлууд болон шаардлагатай мэдээллийг нэгтгэн хянаж, системд ашиглахад бэлэн болгоход дэмжлэг үзүүлж байна.</div>
         <div class="prog-wrap">
           <div class="prog-head"><span class="prog-lbl">Гүйцэтгэл</span><span class="prog-pct">25%</span></div>
           <div class="prog-track"><div class="prog-fill pg-blue" data-w="25"></div></div>
@@ -1136,7 +1160,7 @@
         <div class="status-pill s-pend"><span class="sdot"></span> Төлөвлөлтийн шатанд</div>
         <div class="proj-ico" aria-hidden="true">🧭</div>
         <div class="proj-name">OGSM — Систем төсөл ба дижитал шилжилт</div>
-        <div class="proj-desc">OGSM үйл ажиллагааны хүрээнд 2026/2027 онд хэрэгжүүлэх системийн сайжруулалт, дижитал шилжилтийн төлөвлөгөө боловсруулах зорилгоор хэлтэс бүрийн өдөр тутам гараар давтагдан хийгддэг ажлуудыг тодорхойлох, автоматжуулах боломжтой санал хүсэлтийг цуглуулах ажилд оролцож байна. Энэхүү ажил одоогоор төлөвлөлтийн шатанд байгаа бөгөөд CBDO болон холбогдох хэлтсүүдтэй хамтран мэдээлэл цуглуулах, spreadsheet дээр ирсэн саналуудыг нэгтгэх, цэгцлэхэд дэмжлэг үзүүлж байна.</div>
+        <div class="proj-desc">OGSM-ийн хүрээнд 2026/2027 онд хэрэгжүүлэх системийн сайжруулалт, дижитал шилжилтийн санал цуглуулах ажилд оролцож байна. Хэлтэс бүрийн өдөр тутам гараар давтагддаг ажлуудыг тодорхойлж, автоматжуулах боломжтой саналуудыг CBDO болон холбогдох хэлтсүүдтэй хамтран Google Sheets дээр нэгтгэж, цэгцэлж байна.</div>
         <div class="prog-wrap">
           <div class="prog-head"><span class="prog-lbl">Гүйцэтгэл</span><span class="prog-pct">5%</span></div>
           <div class="prog-track"><div class="prog-fill pg-amber" data-w="5"></div></div>
@@ -1165,15 +1189,15 @@
       <div class="card proj-card plan-card planning-wide reveal d5">
         <div class="status-pill s-pend"><span class="sdot"></span> Шинэ ажил төлөвлөж байна</div>
         <div class="proj-ico" aria-hidden="true">🗂️</div>
-        <div class="proj-name">Нэмэлт Системийн Ажлууд — Жагсаалт</div>
+        <div class="proj-name">Нэмэлт системийн ажлууд — жагсаалт</div>
         <div class="proj-desc">Өдөр тутмын ажлаас гарч буй шинэ шаардлага, давтагдсан асуудал, вендортой давтан хянах зүйлсийг нэг ажлын жагсаалт болгож байна. Polaris-ийн дараагийн цэсүүд, Jira тайлангийн долоо хоногийн шинэчлэлт болон ажилтнуудаас ирэх саналуудаас дараагийн хийх ажлыг эрэмбэлнэ.</div>
         <div class="prog-wrap">
           <div class="prog-head"><span class="prog-lbl">Төлөвлөлтийн ахиц</span><span class="prog-pct">5%</span></div>
           <div class="prog-track"><div class="prog-fill pg-amber" data-w="5"></div></div>
         </div>
         <div class="tags">
-          <span class="tag">Ажлын Жагсаалт</span><span class="tag">Polaris</span>
-          <span class="tag">Jira</span><span class="tag">Вендор Давтан Хяналт</span><span class="tag">2026</span>
+          <span class="tag">Ажлын жагсаалт</span><span class="tag">Polaris</span>
+          <span class="tag">Jira</span><span class="tag">Вендор давтан хяналт</span><span class="tag">2026</span>
         </div>
       </div>
 
@@ -1205,7 +1229,7 @@
         <div style="text-align:center;padding:.75rem 1.1rem;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.22);border-radius:10px;">
           <div class="mini-ico" style="margin:0 auto .45rem;width:34px;height:34px;font-size:18px;letter-spacing:0;">🌐</div>
           <div style="font-size:11px;color:#FBBF24;font-weight:700;">GrapeCity</div>
-          <div style="font-size:10px;color:var(--txt2);">Веб &amp; Backend · CASPO</div>
+          <div style="font-size:10px;color:var(--txt2);">Вэб &amp; Backend · CASPO</div>
         </div>
         <div style="text-align:center;padding:.75rem 1.1rem;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.22);border-radius:10px;">
           <div class="mini-ico" style="margin:0 auto .45rem;width:34px;height:34px;font-size:18px;letter-spacing:0;">📱</div>
@@ -1218,10 +1242,10 @@
     <div class="proj-grid">
 
       <div class="card proj-card reveal">
-        <div class="status-pill s-pend"><span class="sdot"></span> Веб &amp; Backend · CASPO</div>
+        <div class="status-pill s-pend"><span class="sdot"></span> Вэб &amp; Backend · CASPO</div>
         <div class="proj-ico" aria-hidden="true">🌐</div>
         <div class="proj-name">GrapeCity</div>
-        <div class="proj-desc">Гадаад вендор компани. Polaris системийн backend болон вэб хэсгийг хариуцна. <strong style="color:#FBBF24;">CASPO</strong> нь GrapeCity-ийн манай талд нээсэн Jira төсөл. Энэ вэб тайланд CAS-901-ээс буюу 2026 оны 4-р сарын 23-наас хойш систем админаас үүсгэсэн ажлуудыг тусгав.</div>
+        <div class="proj-desc">Гадаад вендор компани. Polaris системийн backend болон вэб хэсгийг хариуцна. <strong style="color:#FBBF24;">CASPO</strong> нь GrapeCity-ийн манай талд нээсэн Jira төсөл. Энэ тайланд CAS-901-ээс буюу 2026 оны 4-р сарын 23-наас хойш систем админаас үүсгэсэн ажлуудыг тусгав.</div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.75rem 0 1rem;font-size:12px;">
           <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.18);border-radius:8px;padding:.6rem .8rem;">
             <div style="color:#FBBF24;font-weight:700;font-size:1rem;">40</div>
@@ -1258,7 +1282,7 @@
         <div class="status-pill s-res"><span class="sdot"></span> Надаас үүссэн ажлууд</div>
         <div class="proj-ico" aria-hidden="true">📱</div>
         <div class="proj-name">AFS</div>
-        <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн апп болон IT дэд бүтцийн асуудлыг хариуцдаг дотоод IT тал. Jira дээрээс авсан “Надаас үүссэн ажлууд” snapshot: нийт 13 unique issue, үүнээс Open 1, Closed 8, Approved 4. Хувь хүний нэрийг оруулахгүй, зөвхөн албан тушаалаар харуулсан.</div>
+        <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн апп болон IT дэд бүтцийн асуудлыг хариуцдаг дотоод IT тал. Jira дээрх “Надаас үүссэн ажлууд” тайлангаар нийт 13 unique issue байна: Open 1, Closed 8, Approved 4. Хувь хүний нэрийг оруулахгүй, зөвхөн албан тушаалаар харуулсан.</div>
         <div class="table-scroll" style="margin-top:1rem;">
           <table class="data-table" style="font-size:12px;min-width:460px;">
             <thead>
@@ -1296,7 +1320,7 @@
     </div>
 
     <div class="card reveal" style="margin-top:2rem;padding:2rem;">
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:.35rem;">Вендорт Илгээсэн Jira — CAS-901 / 4-р сарын 23-аас</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:.35rem;">Вендорт илгээсэн Jira — CAS-901 / 4-р сарын 23-аас</div>
       <div style="font-size:13px;color:var(--txt1);margin-bottom:1.2rem;max-width:720px;">2026 оны 4-р сарын 23-наас буюу CAS-901-ээс эхлэн систем админаас вендор бүрт илгээсэн Jira бүртгэл.</div>
       <div class="jira-chart" aria-label="Сарын Jira нийт бүртгэлийн харьцуулалт">
         <div class="chart-bar-card">
@@ -1357,15 +1381,66 @@
         </table>
       </div>
       <div style="font-size:11px;color:var(--txt2);margin-top:1rem;display:flex;align-items:center;gap:.5rem;">
-        <span style="color:var(--txt2);">*</span><span>GrapeCity/CASPO дээр систем админ үүсгэсэн Jira-г CAS-901-ээс эхлүүлэн web report-д тусгав. 4-р сар 9, 5-р сар 18, 6-р сар одоогоор 13 — нийт 40.</span>
+        <span style="color:var(--txt2);">*</span><span>GrapeCity/CASPO дээр систем админ үүсгэсэн Jira-г CAS-901-ээс эхлүүлэн тайланд тусгав. 4-р сар 9, 5-р сар 18, 6-р сар одоогоор 13 — нийт 40.</span>
       </div>
       <div style="margin-top:1.2rem;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;">
         <a href="https://docs.google.com/spreadsheets/d/14vQqvt9jiNjNKLMsw9M4sV9ut27Q74ZgjmlcAb5daV4/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="open-btn">
-          Live Jira Report Нээх
+          Jira тайлан нээх
         </a>
         <span class="access-note">ARD ажлын Google акаунт шаардлагатай.</span>
         <span style="font-size:11px;color:var(--txt1);">Долоо хоног бүр шинэчлэгдэх үндсэн эх сурвалж.</span>
       </div>
+    </div>
+
+    <div class="card reveal" style="margin-top:1.5rem;padding:2rem;">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:.35rem;">CASPO Jira нэгдсэн тайлан — 2026 оны 1-р сар–одоо</div>
+      <div style="font-size:13px;color:var(--txt1);max-width:780px;line-height:1.65;">CAS-797-оос эхэлсэн 2026 оны бүх CASPO Jira-ийн тоон үзүүлэлт. Дээрх CAS-901-ээс хойших систем админы бүртгэлээс тусдаа нэгдсэн дүн.</div>
+
+      <div class="caspo-kpi-grid" aria-label="CASPO Jira 2026 оны гол үзүүлэлт">
+        <div class="caspo-kpi"><div class="caspo-kpi-value">79</div><div class="caspo-kpi-label">Нийт Jira</div></div>
+        <div class="caspo-kpi"><div class="caspo-kpi-value" style="color:var(--blue-lt);">11</div><div class="caspo-kpi-label">Нээлттэй</div></div>
+        <div class="caspo-kpi"><div class="caspo-kpi-value" style="color:#4ADE80;">56</div><div class="caspo-kpi-label">Хаагдсан</div></div>
+        <div class="caspo-kpi"><div class="caspo-kpi-value" style="color:#FBBF24;">5</div><div class="caspo-kpi-label">Явагдаж буй</div></div>
+        <div class="caspo-kpi"><div class="caspo-kpi-value" style="color:#FF8D7C;">12</div><div class="caspo-kpi-label">Засахгүй</div></div>
+      </div>
+
+      <div class="caspo-breakdown">
+        <div>
+          <h3>Төрлөөр</h3>
+          <div class="table-scroll">
+            <table class="data-table" style="min-width:360px;">
+              <thead><tr><th>Төрөл</th><th class="num-cell">Тоо</th><th class="num-cell">Хувь</th></tr></thead>
+              <tbody>
+                <tr><td>🔴 Bug (Алдаа)</td><td class="num-cell">48</td><td class="num-cell">60.76%</td></tr>
+                <tr><td>🟢 Improvement (Сайжруулалт)</td><td class="num-cell">21</td><td class="num-cell">26.58%</td></tr>
+                <tr><td>✅ Business Consulting</td><td class="num-cell">7</td><td class="num-cell">8.86%</td></tr>
+                <tr><td>✅ Technical Consulting</td><td class="num-cell">2</td><td class="num-cell">2.53%</td></tr>
+                <tr><td>🔴 Complaint</td><td class="num-cell">1</td><td class="num-cell">1.27%</td></tr>
+              </tbody>
+              <tfoot><tr><td>Нийт</td><td class="num-cell">79</td><td class="num-cell">100%</td></tr></tfoot>
+            </table>
+          </div>
+        </div>
+        <div>
+          <h3>Компонентоор</h3>
+          <div class="table-scroll">
+            <table class="data-table" style="min-width:330px;">
+              <thead><tr><th>Компонент</th><th class="num-cell">Тикет</th><th class="num-cell">Хувь</th></tr></thead>
+              <tbody>
+                <tr><td>ACCOUNT</td><td class="num-cell">18</td><td class="num-cell">22.78%</td></tr>
+                <tr><td>ХУРИМТЛАЛ</td><td class="num-cell">11</td><td class="num-cell">13.92%</td></tr>
+                <tr><td>BOND</td><td class="num-cell">11</td><td class="num-cell">13.92%</td></tr>
+                <tr><td>APP</td><td class="num-cell">9</td><td class="num-cell">11.39%</td></tr>
+                <tr><td>CASPO_WEB</td><td class="num-cell">6</td><td class="num-cell">7.59%</td></tr>
+                <tr><td>BAC</td><td class="num-cell">4</td><td class="num-cell">5.06%</td></tr>
+                <tr><td>Бусад</td><td class="num-cell">20</td><td class="num-cell">25.32%</td></tr>
+              </tbody>
+              <tfoot><tr><td>Нийт</td><td class="num-cell">79</td><td class="num-cell">100%</td></tr></tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--txt2);margin-top:1rem;">Эх сурвалж: БҮРЭН ТИКЕТИЙН ЖАГСААЛТ | CAS-797 → Одоог хүртэл. Шинэчлэлт: 2026.06.22.</div>
     </div>
 
   </div>
@@ -1381,7 +1456,7 @@
     <!-- Internal request system intro -->
     <div class="card access-card wide reveal" style="margin-top:2.5rem;padding:2rem;">
       <div class="access-h" style="margin-bottom:.4rem;">Дотоод хүсэлт бүртгэлийн систем — хэрхэн ажилладаг вэ?</div>
-      <p class="access-p" style="margin-bottom:1.6rem;">Системийн алдаа, асуудал гарвал системийн админд шууд хэлэхийн оронд энэ бүртгэлийн системээр хүсэлт илгээнэ. Хүсэлт бүр бүртгэгдэж, явцыг хянах боломжтой.</p>
+      <p class="access-p" style="margin-bottom:1.6rem;">Системийн алдаа, асуудал гарвал бүртгэлийн системээр хүсэлт илгээж, явцыг нь хянах боломжтой. Ингэснээр хүсэлт бүр бүртгэлтэй үлдэж, хэн дээр ямар шатанд явж байгаа нь тодорхой болно.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem;">
         <div style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.18);border-radius:10px;padding:1.1rem 1.2rem;display:flex;gap:.9rem;align-items:flex-start;">
           <div style="width:32px;height:32px;border-radius:8px;background:#1D4ED8;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;flex-shrink:0;">1</div>
@@ -1423,9 +1498,9 @@
       <div class="proj-ico" aria-hidden="true" style="margin-bottom:0;">📖</div>
       <div style="flex:1;min-width:220px;">
         <div class="access-h" style="margin-bottom:.4rem;">Дотоод бүртгэлийн системийн гарын авлага</div>
-        <p class="access-p" style="margin-bottom:1.2rem;">Jira үүсгэх, хянах, дамжуулах бүрэн гарын авлага. Шинэ ажилтнуудад болон системийг ашиглаж эхлэх хүн бүрд зориулсан заавар.</p>
+        <p class="access-p" style="margin-bottom:1.2rem;">Jira үүсгэх, хянах, дамжуулах заавар. Шинэ ажилтнууд болон системийг ашиглаж эхлэх хүмүүст зориулсан гарын авлага.</p>
         <a href="Гарын Авлага AppSheet Jira (Ard Securities).pdf" target="_blank" rel="noopener noreferrer" class="open-btn">
-          Гарын Авлага Нээх
+          Гарын авлага нээх
         </a>
         <span class="access-note" style="margin-left:.7rem;">ARD ажлын Google акаунт шаардлагатай.</span>
       </div>
@@ -1437,7 +1512,7 @@
         <div class="access-h" style="margin-bottom:.4rem;">Polaris Permission Discovery — Үнэт цаас</div>
         <p class="access-p" style="margin-bottom:1.2rem;">Polaris системийн гарын авлагын discovery файл. Одоогоор Үнэт цаас цэсийг ажилтнуудад зориулан шалгаж, шаардагдах permission болон action ID-уудыг тодорхойлж байна. Live Google Sheet дээр шинэчлэлт шууд орно.</p>
         <a href="https://docs.google.com/spreadsheets/d/1oR0nRBo18wVI8WZoLGc5S8FZf9s6xdqwfaAeTf4KxeE/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="open-btn">
-          Live Sheet Нээх
+          Live sheet нээх
         </a>
         <span class="access-note" style="margin-left:.7rem;">ARD ажлын Google акаунт шаардлагатай.</span>
       </div>
@@ -1447,7 +1522,7 @@
 
       <div class="card access-card reveal">
         <div class="access-h">Дотоод систем нээхийн тулд уншуулна уу</div>
-        <div class="access-p">Утасныхаа камераар энэ кодыг уншуулж дотоод асуудал бүртгэлийн системд аливаа төхөөрөмжөөс нэвтэрнэ үү.</div>
+        <div class="access-p">Утасныхаа камераар QR кодыг уншуулж дотоод асуудал бүртгэлийн системд нэвтэрнэ үү.</div>
         <div class="qr-wrap">
           <div class="qr-box" id="qr-app"></div>
           <p class="qr-note">Утасны камераар уншуулна уу<br><strong>ARD ажлын Google акаунт шаардлагатай.</strong></p>
@@ -1458,7 +1533,7 @@
 
       <div class="card access-card reveal d1">
         <div class="access-h">Тайланг хуваалцах</div>
-        <div class="access-p">Тайланг гүйцэтгэх удирдлага болон оролцогч талуудтай хуваалцана уу. QR кодыг уншуулж вэбсайтыг нээнэ үү.</div>
+        <div class="access-p">Тайланг удирдлагын баг болон холбогдох талуудтай хуваалцахад зориулсан QR код.</div>
         <div class="qr-wrap">
           <div class="qr-box" id="qr-site"></div>
           <p class="qr-note">Тайланг нээхийн тулд уншуулна уу<br><strong>Ард Секюритиз ҮЦК ХХК · Жинхлэх тайлан</strong></p>
@@ -1518,7 +1593,7 @@
         <div class="tl-dot lit"></div>
         <div class="tl-content">
         <div class="tl-title">Ард Секюритиз ҮЦК ХХК-д нэгдсэн ба системийн шинжилгээ</div>
-        <div class="tl-body">Систем админы үүрэгт ажилд орж, Polaris болон бусад дотоод системийн байдлыг шинжилсэн. Дотоод асуудал бүртгэлийн систем, Polaris гарын авлага болон CASPO/Jira хяналтын ажлуудыг CBDO-тэй хамтран тодорхойлсон.</div>
+        <div class="tl-body">Систем админы үүрэгт ажилд орж, Polaris болон бусад дотоод системийн байдлыг шинжилсэн. Дотоод асуудал бүртгэлийн систем, Polaris гарын авлага болон CASPO/Jira хяналтын ажлуудыг CBDO-тэй хамт тодорхойлсон.</div>
         </div>
       </div>
 
@@ -1527,7 +1602,7 @@
         <div class="tl-dot lit"></div>
         <div class="tl-content">
         <div class="tl-title">Дотоод асуудал бүртгэлийн системийг хөгжүүлж нэвтрүүлсэн</div>
-        <div class="tl-body">Дотоод ажилтнуудад зориулсан хүсэлт бүртгэлийн системийг хөгжүүлж байршуулсан. GrapeCity (CASPO төсөл — веб/backend) болон AFS-д (апп/IT) ажил дамжуулах урсгал тогтоосон.</div>
+        <div class="tl-body">Дотоод ажилтнуудад зориулсан хүсэлт бүртгэлийн системийг хөгжүүлж байршуулсан. GrapeCity (CASPO төсөл — вэб/backend) болон AFS-д (апп/IT) ажил дамжуулах урсгал тогтоосон.</div>
         </div>
       </div>
 
@@ -1536,7 +1611,7 @@
         <div class="tl-dot lit"></div>
         <div class="tl-content">
         <div class="tl-title">GrapeCity / CASPO Jira урсгалыг нэгтгэсэн ✓</div>
-        <div class="tl-body">Polaris системийн bug, сайжруулалт, лавлагааг GrapeCity-ийн CASPO төсөл дээр хянаж байна. Web report-д CAS-901 буюу 2026 оны 4-р сарын 23-наас хойш үүсгэсэн ажлуудыг тусгасан: 4-р сар 9, 5-р сар 18, 6-р сар одоогоор 13, нийт 40.</div>
+        <div class="tl-body">Polaris системийн bug, сайжруулалт, лавлагааг GrapeCity-ийн CASPO төсөл дээр хянаж байна. Энэ тайланд CAS-901 буюу 2026 оны 4-р сарын 23-наас хойш үүсгэсэн ажлуудыг тусгасан: 4-р сар 9, 5-р сар 18, 6-р сар одоогоор 13, нийт 40.</div>
         </div>
       </div>
 
@@ -1545,7 +1620,7 @@
         <div class="tl-dot"></div>
         <div class="tl-content">
         <div class="tl-title">Харилцагчийн баримт бичиг автоматжуулалт</div>
-        <div class="tl-body">AFS-н санаачилгаар гэрээ, хүсэлт, анкет болон QR-той тодорхойлолтыг автоматжуулах ажлын бэлтгэл эхэлсэн. Холбогдох компаниудаас ирүүлсэн загвар doc файлууд болон шаардлагатай мэдээллийг нэгтгэн хянаж, системд ашиглахад бэлэн болгох ажилд дэмжлэг үзүүлж байна. Одоогийн гүйцэтгэл 25%.</div>
+        <div class="tl-body">AFS-н санаачилгаар гэрээ, хүсэлт, анкет болон QR-той тодорхойлолтыг автоматжуулах ажлын бэлтгэл эхэлсэн. Холбогдох компаниудаас ирүүлсэн загвар doc файлууд болон шаардлагатай мэдээллийг нэгтгэн хянаж, системд ашиглахад бэлэн болгоход дэмжлэг үзүүлж байна. Одоогийн гүйцэтгэл 25%.</div>
         </div>
       </div>
 
@@ -1554,7 +1629,7 @@
         <div class="tl-dot"></div>
         <div class="tl-content">
         <div class="tl-title">Удирдлагуудад танилцуулах — эцсийн тайлан</div>
-        <div class="tl-body">Дууссан болон үргэлжилж буй ажлуудыг хамарсан танилцуулга, байршуулсан аппуудын шууд үзүүлэн болон Ард Секюритиз ҮЦК ХХК-ийн системийн дараагийн ажлуудын санал.</div>
+        <div class="tl-body">Дууссан болон үргэлжилж буй ажлуудыг хамарсан танилцуулга, байршуулсан системийн товч үзүүлэн болон Ард Секюритиз ҮЦК ХХК-ийн дараагийн системийн ажлуудын санал.</div>
         </div>
       </div>
 
@@ -1573,7 +1648,7 @@
       <div class="card tech-item reveal d1"> <span class="tech-ico">📊</span><span class="tech-name">Google Sheets</span><span class="tech-cat">Мэдээллийн сан</span></div>
       <div class="card tech-item reveal d2"> <span class="tech-ico">💾</span><span class="tech-name">Google Drive</span><span class="tech-cat">Файл хадгалах</span></div>
       <div class="card tech-item reveal">   <span class="tech-ico">🎫</span><span class="tech-name">Jira</span><span class="tech-cat">Асуудал хянах</span></div>
-      <div class="card tech-item reveal">   <span class="tech-ico">🌐</span><span class="tech-name">GrapeCity</span><span class="tech-cat">Веб Хөгжүүлэгч</span></div>
+      <div class="card tech-item reveal">   <span class="tech-ico">🌐</span><span class="tech-name">GrapeCity</span><span class="tech-cat">Вэб хөгжүүлэлт</span></div>
       <div class="card tech-item reveal d1"> <span class="tech-ico">⚙️</span><span class="tech-name">GitHub Pages</span><span class="tech-cat">Хостинг</span></div>
     </div>
   </div>
