@@ -182,17 +182,6 @@
 
     .hero-inner { position:relative; z-index:1; text-align:center; max-width:960px; }
 
-    .hero-chip {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 6px 18px; border-radius: 100px;
-      background: rgba(201,168,76,.1);
-      border: 1px solid rgba(201,168,76,.32);
-      font-size: 11px; font-weight: 700;
-      color: var(--gold-lt); letter-spacing: 1.8px; text-transform: uppercase;
-      margin-bottom: 2.2rem;
-      animation: fadeUp .8s both;
-    }
-    .chip-dot { width:7px; height:7px; border-radius:50%; background:var(--gold); animation:blink 2.2s infinite; }
     @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.4)} }
 
     .hero-h1 {
@@ -268,14 +257,30 @@
     .sec-h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.8rem,3.2vw,2.6rem); font-weight:700; line-height:1.18; margin-bottom:1rem; }
     .sec-p { font-size:1rem; color:var(--txt1); max-width:680px; line-height:1.72; }
 
-    #results {
-      padding-top:4.8rem;
-      padding-bottom:4.8rem;
-      background:
-        radial-gradient(ellipse 60% 42% at 14% 8%, rgba(201,168,76,.07), transparent 62%),
-        linear-gradient(180deg, rgba(4,11,21,.96), rgba(3,9,18,.98));
-      border-top:1px solid rgba(214,184,90,.08);
-      border-bottom:1px solid rgba(214,184,90,.08);
+    .team-summary-layout {
+      display:grid;
+      grid-template-columns:minmax(0,1.4fr) minmax(280px,.8fr);
+      gap:2rem;
+      align-items:start;
+    }
+    .team-summary-main {
+      grid-column:1 / -1;
+    }
+    .team-summary-main .sec-p { max-width:760px; }
+    .team-summary-side {
+      padding:1.35rem;
+      border:1px solid rgba(214,184,90,.18);
+      border-radius:20px;
+      background:linear-gradient(180deg, rgba(255,255,255,.052), rgba(255,255,255,.022));
+      box-shadow:0 18px 50px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.04);
+    }
+    .summary-side-title {
+      font-size:11px;
+      color:var(--gold-lt);
+      font-weight:800;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      margin-bottom:.9rem;
     }
     .impact-grid {
       display:grid;
@@ -310,14 +315,29 @@
       font-size:12px;
       margin-top:.45rem;
     }
-    #role {
-      padding-top:4.8rem;
-      padding-bottom:4.8rem;
+    .mini-impact-grid {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:.75rem;
+      margin:1rem 0 1.1rem;
     }
+    .mini-impact {
+      min-height:auto;
+      padding:1rem 1.05rem;
+      background:rgba(255,255,255,.028);
+    }
+    .mini-impact .impact-num { font-size:2.05rem; margin-bottom:.4rem; }
+    .mini-impact .impact-label { font-size:12.5px; }
+    .mini-impact .impact-note { font-size:10.5px; }
     .role-card {
       max-width:900px;
       padding:1.8rem 2rem;
       margin-top:2rem;
+    }
+    .role-inline-card {
+      max-width:100%;
+      margin-top:1.4rem;
+      padding:1.55rem 1.7rem;
     }
     .role-card p {
       color:var(--txt1);
@@ -325,6 +345,7 @@
       line-height:1.78;
       margin:0;
     }
+    .role-card p + p { margin-top:1rem; }
 
     /* ── CARD ── */
     .card {
@@ -401,20 +422,24 @@
 
     /* Presenting to banner */
     .presenting-banner {
-      display: flex; align-items: center; justify-content: space-between;
+      display:flex;
+      flex-direction:column-reverse;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
       background: var(--glass);
       border: 1px solid rgba(214,184,90,.22);
       border-radius: 22px;
-      padding: 1.25rem 1.75rem;
-      margin: 2rem 0 2.5rem;
-      max-width: 560px;
-      gap: 1.5rem;
+      padding: 1.55rem 2rem;
+      margin: 2.25rem auto 2.75rem;
+      max-width: 500px;
+      gap: 1.1rem;
     }
     .presenting-label { font-size:10px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:2px; display:block; margin-bottom:.35rem; }
-    .presenting-name  { font-family:'Space Grotesk',sans-serif; font-size:1.3rem; font-weight:700; color:var(--txt0); display:block; line-height:1.1; margin-bottom:.25rem; }
+    .presenting-name  { font-family:'Space Grotesk',sans-serif; font-size:1.45rem; font-weight:700; color:var(--txt0); display:block; line-height:1.1; margin-bottom:.25rem; }
     .presenting-title { font-size:12px; color:var(--txt1); display:block; }
     .presenting-photo {
-      width: 110px; height: 110px; flex-shrink: 0;
+      width: 144px; height: 144px; flex-shrink: 0;
       border-radius: 50%; overflow: hidden;
       border: 3px solid rgba(201,168,76,.65);
       box-shadow: 0 0 28px rgba(201,168,76,.3);
@@ -438,18 +463,20 @@
       align-items:end;
     }
     .participation-media {
-      aspect-ratio:16 / 9;
       border-radius:18px;
       overflow:hidden;
       border:1px solid rgba(214,184,90,.14);
-      background:rgba(0,0,0,.24);
+      background:rgba(0,0,0,.18);
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
     }
     .participation-media img {
       width:100%;
-      height:100%;
+      height:auto;
       display:block;
       object-fit:contain;
-      object-position:center center;
+      object-position:center bottom;
     }
     .participation-info {
       padding:1rem .75rem;
@@ -709,9 +736,271 @@
     }
     .caspo-kpi-value { font-family:'Space Grotesk',sans-serif; font-size:1.55rem; font-weight:800; line-height:1; color:var(--gold-lt); margin-bottom:.38rem; }
     .caspo-kpi-label { color:var(--txt2); font-size:10px; line-height:1.4; }
-    .caspo-breakdown { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.25rem; }
+    .caspo-report-card { padding:2rem; margin-top:2rem; }
+    .caspo-report-head {
+      display:flex;
+      justify-content:space-between;
+      gap:1.5rem;
+      align-items:flex-start;
+      margin-bottom:1.35rem;
+    }
+    .caspo-report-title { font-family:'Space Grotesk',sans-serif; font-size:1.15rem; font-weight:700; margin-bottom:.35rem; }
+    .caspo-report-copy { font-size:13px; color:var(--txt1); max-width:760px; line-height:1.65; }
+    .caspo-total-pill {
+      min-width:92px;
+      border:1px solid rgba(214,184,90,.22);
+      border-radius:16px;
+      padding:.75rem 1rem;
+      text-align:center;
+      background:rgba(201,168,76,.07);
+    }
+    .caspo-total-pill strong { display:block; font-family:'Space Grotesk',sans-serif; font-size:1.85rem; line-height:1; color:var(--gold-lt); }
+    .caspo-total-pill span { display:block; margin-top:.28rem; color:var(--txt2); font-size:10px; text-transform:uppercase; letter-spacing:.08em; }
+    .caspo-month-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.75rem; margin:1.15rem 0 1.35rem; }
+    .caspo-month {
+      display:flex;
+      align-items:center;
+      gap:.85rem;
+      padding:.9rem 1rem;
+      border:1px solid rgba(214,184,90,.14);
+      border-radius:14px;
+      background:rgba(255,255,255,.025);
+    }
+    .caspo-month-num { font-family:'Space Grotesk',sans-serif; font-size:1.65rem; font-weight:800; color:var(--gold-lt); line-height:1; min-width:42px; }
+    .caspo-month-label { color:var(--txt0); font-size:12px; font-weight:700; }
+    .caspo-month-note { color:var(--txt2); font-size:10.5px; margin-top:.18rem; }
+    .caspo-breakdown { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
     .caspo-breakdown h3 { font-family:'Space Grotesk',sans-serif; font-size:.96rem; font-weight:700; margin-bottom:.75rem; }
     .caspo-breakdown .table-scroll { border-radius:12px; }
+    .caspo-breakdown.single { grid-template-columns:1fr; margin-top:1rem; }
+    .caspo-pattern {
+      margin-top:1rem;
+      padding:1rem;
+      border:1px solid rgba(214,184,90,.16);
+      border-radius:16px;
+      background:rgba(255,255,255,.024);
+    }
+    .caspo-pattern h3 { font-family:'Space Grotesk',sans-serif; font-size:.96rem; font-weight:700; margin-bottom:.75rem; }
+    .caspo-breakdown.compact { grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:1rem; }
+    .caspo-breakdown.compact .data-table { font-size:11.5px; min-width:300px; }
+    .caspo-source { font-size:11px; color:var(--txt2); margin-top:1rem; }
+    .caspo-story {
+      margin-top:1.25rem;
+      padding:1.25rem;
+      border:1px solid rgba(214,184,90,.16);
+      border-radius:18px;
+      background:
+        radial-gradient(circle at 92% 0%, rgba(201,168,76,.08), transparent 34%),
+        rgba(255,255,255,.024);
+    }
+    .caspo-story h3,
+    .stat-panel h3,
+    .ceo-takeaway h3 {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1rem;
+      font-weight:700;
+      margin-bottom:.65rem;
+    }
+    .caspo-story-p {
+      color:var(--txt1);
+      font-size:13px;
+      line-height:1.7;
+      max-width:920px;
+      margin-bottom:1rem;
+    }
+    .pattern-highlight {
+      display:grid;
+      grid-template-columns:minmax(160px,.7fr) minmax(0,1.3fr);
+      gap:1rem;
+      margin:1rem 0 1.1rem;
+    }
+    .pattern-score {
+      padding:1.1rem;
+      border-radius:16px;
+      border:1px solid rgba(201,168,76,.22);
+      background:rgba(201,168,76,.07);
+    }
+    .pattern-score strong {
+      display:block;
+      font-family:'Space Grotesk',sans-serif;
+      font-size:2.1rem;
+      line-height:1;
+      color:var(--gold-lt);
+      margin-bottom:.35rem;
+    }
+    .pattern-score span { color:var(--txt1); font-size:12px; line-height:1.45; }
+    .pattern-summary {
+      display:grid;
+      gap:.45rem;
+      align-content:center;
+      padding:1rem 1.1rem;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      background:rgba(255,255,255,.025);
+    }
+    .summary-line {
+      display:flex;
+      justify-content:space-between;
+      gap:1rem;
+      color:var(--txt1);
+      font-size:12px;
+      line-height:1.5;
+    }
+    .summary-line strong { color:var(--txt0); }
+    .pattern-grid {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:.9rem;
+    }
+    .pattern-card {
+      padding:1rem;
+      border-radius:16px;
+      border:1px solid rgba(214,184,90,.14);
+      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
+    }
+    .pattern-head {
+      display:flex;
+      justify-content:space-between;
+      gap:.9rem;
+      align-items:flex-start;
+      margin-bottom:.65rem;
+    }
+    .pattern-title {
+      color:var(--txt0);
+      font-weight:750;
+      line-height:1.38;
+      font-size:13px;
+    }
+    .pattern-rank {
+      flex-shrink:0;
+      width:28px;
+      height:28px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:'Space Grotesk',sans-serif;
+      font-size:12px;
+      font-weight:800;
+      color:#040B15;
+      background:var(--gold);
+    }
+    .pattern-meta {
+      display:flex;
+      align-items:center;
+      gap:.55rem;
+      flex-wrap:wrap;
+      margin-bottom:.65rem;
+    }
+    .pattern-num { font-family:'Space Grotesk',sans-serif; font-size:1.35rem; color:var(--gold-lt); font-weight:800; line-height:1; }
+    .pattern-pct { color:var(--txt1); font-size:12px; font-weight:700; }
+    .risk-badge {
+      display:inline-flex;
+      align-items:center;
+      border-radius:999px;
+      padding:.22rem .55rem;
+      font-size:10px;
+      font-weight:800;
+      letter-spacing:.03em;
+      border:1px solid rgba(255,255,255,.14);
+    }
+    .risk-critical { color:#FFB4A8; background:rgba(239,68,68,.14); border-color:rgba(239,68,68,.28); }
+    .risk-very-high { color:#FFD18A; background:rgba(245,158,11,.14); border-color:rgba(245,158,11,.28); }
+    .risk-high { color:#FDE68A; background:rgba(250,204,21,.12); border-color:rgba(250,204,21,.24); }
+    .risk-low { color:#9AF5B5; background:rgba(34,197,94,.12); border-color:rgba(34,197,94,.24); }
+    .pattern-track, .metric-track {
+      height:7px;
+      border-radius:999px;
+      background:rgba(255,255,255,.07);
+      overflow:hidden;
+      margin-bottom:.75rem;
+    }
+    .pattern-fill, .metric-fill {
+      height:100%;
+      border-radius:999px;
+      background:linear-gradient(90deg,var(--gold-lt),var(--gold-dk));
+      box-shadow:0 0 18px rgba(201,168,76,.22);
+    }
+    .fill-critical { background:linear-gradient(90deg,#FF8D7C,#E63329); }
+    .fill-high { background:linear-gradient(90deg,#FDE68A,#F59E0B); }
+    .fill-low { background:linear-gradient(90deg,#86EFAC,#22C55E); }
+    .fill-info { background:linear-gradient(90deg,#93C5FD,#3B82F6); }
+    .pattern-desc { color:var(--txt1); font-size:12px; line-height:1.6; }
+    .ceo-takeaway {
+      margin-top:1.1rem;
+      padding:1.1rem;
+      border-radius:18px;
+      border:1px solid rgba(214,184,90,.16);
+      background:rgba(255,255,255,.025);
+    }
+    .takeaway-grid {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:.8rem;
+      margin-top:.8rem;
+    }
+    .takeaway-card {
+      padding:.9rem;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.025);
+      color:var(--txt1);
+      font-size:12px;
+      line-height:1.6;
+    }
+    .takeaway-card strong { display:block; color:var(--txt0); margin-bottom:.35rem; font-size:12.5px; }
+    .next-step {
+      margin-top:.9rem;
+      padding:.8rem .9rem;
+      border-left:2px solid var(--gold);
+      background:rgba(201,168,76,.06);
+      color:var(--txt1);
+      font-size:12px;
+      line-height:1.65;
+    }
+    .stat-panel-grid {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:1rem;
+      margin-top:1rem;
+    }
+    .stat-panel {
+      padding:1rem;
+      border-radius:16px;
+      border:1px solid rgba(214,184,90,.14);
+      background:rgba(255,255,255,.024);
+    }
+    .metric-list { display:grid; gap:.75rem; }
+    .metric-row {
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:.8rem;
+      align-items:center;
+    }
+    .metric-name { color:var(--txt0); font-size:12px; font-weight:700; line-height:1.35; }
+    .metric-sub { color:var(--txt2); font-size:10.5px; margin-top:.18rem; }
+    .metric-value { text-align:right; font-family:'Space Grotesk',sans-serif; color:var(--gold-lt); font-weight:800; font-size:1rem; }
+    .metric-value span { display:block; color:var(--txt2); font-family:'Inter',sans-serif; font-size:10px; font-weight:600; margin-top:.1rem; }
+    .status-stat-grid {
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:.65rem;
+      margin:1.1rem 0;
+    }
+    .status-stat {
+      padding:.85rem;
+      border-radius:14px;
+      border:1px solid rgba(214,184,90,.13);
+      background:rgba(255,255,255,.025);
+    }
+    .status-stat strong { display:block; font-family:'Space Grotesk',sans-serif; font-size:1.45rem; line-height:1; color:var(--gold-lt); }
+    .status-stat span { display:block; margin-top:.35rem; color:var(--txt2); font-size:10.5px; }
+    .tone-critical td { background:rgba(239,68,68,.16); }
+    .tone-high td { background:rgba(245,158,11,.14); }
+    .tone-mid td { background:rgba(250,204,21,.12); }
+    .tone-low td { background:rgba(74,222,128,.12); }
+    .tone-info td { background:rgba(59,130,246,.09); }
+    .tone-muted td { background:rgba(148,163,184,.08); }
 
     /* App preview card */
     .app-preview-card {
@@ -844,8 +1133,11 @@
       padding-top:4rem; padding-bottom:4rem;
       border-top:1px solid var(--border2);
     }
-    .thanks-card { max-width:720px; margin:0 auto; padding:1rem 2rem; text-align:center; background:transparent; border:none; }
+    .thanks-card { max-width:720px; margin:0 auto; padding:1rem 2rem; text-align:center; background:transparent; border:none; position:relative; }
     .thanks-card:hover { transform:none; box-shadow:none; border-color:transparent; }
+    .thanks-card.celebrate {
+      animation:thanksCardGlow 7.4s ease both;
+    }
     .thanks-title { font-family:'Space Grotesk',sans-serif; font-size:1.35rem; font-weight:700; margin-bottom:.6rem; }
     .thanks-text { color:var(--txt1); font-size:13px; line-height:1.7; max-width:560px; margin:0 auto 1.4rem; }
     .thanks-btn {
@@ -857,17 +1149,170 @@
       transition:all .25s;
     }
     .thanks-btn:hover { color:#040B15; background:var(--gold); }
+    .thanks-card.celebrate .thanks-btn {
+      color:#040B15;
+      background:linear-gradient(135deg, var(--gold), var(--gold-lt));
+      border-color:rgba(246,215,125,.68);
+      box-shadow:0 0 28px rgba(201,168,76,.22);
+    }
     .thanks-quote {
-      display:none; margin:1.5rem auto 0; max-width:560px;
-      padding:1rem 1.25rem;
-      border-left:2px solid var(--gold);
-      background:rgba(255,255,255,.04);
+      display:none; margin:1.5rem auto 0; max-width:600px;
+      padding:1.15rem 1.3rem;
+      border:1px solid rgba(201,168,76,.3);
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
       color:var(--txt0); font-size:15px; line-height:1.75;
       text-align:left;
+      position:relative;
+      overflow:hidden;
+    }
+    .thanks-quote::before {
+      content:'';
+      position:absolute;
+      inset:-40% auto -40% -60%;
+      width:42%;
+      background:linear-gradient(90deg, transparent, rgba(246,215,125,.2), transparent);
+      transform:skewX(-16deg);
+      opacity:0;
+      pointer-events:none;
+    }
+    .thanks-quote::after {
+      content:'';
+      position:absolute;
+      inset:-2px;
+      border-radius:inherit;
+      border:1px solid rgba(246,215,125,.55);
+      opacity:0;
+      pointer-events:none;
     }
     .thanks-quote.show { display:block; animation:fadeUp .45s ease both; }
-
-    .sec-p, .team-desc, .proj-desc, .access-p, .tl-body {
+    .thanks-quote.show.celebrate {
+      animation:fadeUp .45s ease both, thanksQuoteGlow 7.4s ease both;
+    }
+    .thanks-quote.show.celebrate::before { animation:thanksQuoteSweep 1.8s ease .35s both; }
+    .thanks-quote.show.celebrate::after { animation:thanksQuoteRing 1.45s ease .15s 3; }
+    #thanksFx {
+      position:fixed;
+      inset:0;
+      z-index:8998;
+      pointer-events:none;
+      opacity:0;
+      overflow:hidden;
+    }
+    #thanksFx::before,
+    #thanksFx::after {
+      content:'';
+      position:absolute;
+      inset:-12%;
+      opacity:0;
+      will-change:transform, opacity;
+    }
+    #thanksFx::before {
+      background:
+        radial-gradient(circle at 50% 45%, rgba(246,215,125,.48) 0 2px, transparent 3px),
+        radial-gradient(circle at 50% 45%, transparent 0 11%, rgba(246,215,125,.2) 12%, transparent 22%),
+        conic-gradient(from 18deg at 50% 45%, transparent 0 7%, rgba(246,215,125,.22) 8% 10%, transparent 11% 18%, rgba(230,51,41,.16) 19% 21%, transparent 22% 100%);
+      mix-blend-mode:screen;
+    }
+    #thanksFx::after {
+      background:
+        radial-gradient(ellipse 44% 30% at 50% 52%, rgba(201,168,76,.22), transparent 70%),
+        radial-gradient(ellipse 68% 48% at 50% 72%, rgba(230,51,41,.12), transparent 72%);
+      transform:scale(.9);
+    }
+    #thanksFx.show { animation:thanksFxBase 7.4s ease forwards; }
+    #thanksFx.show::before { animation:thanksBurst 2.8s ease forwards; }
+    #thanksFx.show::after { animation:thanksAurora 7.4s ease forwards; }
+    .thanks-confetti {
+      position:absolute;
+      top:-24px;
+      left:var(--x);
+      width:var(--size);
+      height:calc(var(--size) * 1.55);
+      border-radius:3px;
+      background:var(--color);
+      opacity:0;
+      box-shadow:0 0 12px rgba(246,215,125,.16);
+      transform:translate3d(0,-40px,0) rotate(0deg);
+      animation:thanksConfetti var(--dur) cubic-bezier(.16,.78,.2,1) var(--delay) forwards;
+      will-change:transform, opacity;
+    }
+    .thanks-confetti.round {
+      height:var(--size);
+      border-radius:999px;
+    }
+    .thanks-confetti.wide {
+      width:calc(var(--size) * 1.8);
+      height:4px;
+      border-radius:999px;
+    }
+    @keyframes thanksFxBase {
+      0% { opacity:.96; }
+      76% { opacity:.96; }
+      100% { opacity:0; }
+    }
+    @keyframes thanksBurst {
+      0% { opacity:0; transform:scale(.28) rotate(-12deg); }
+      16% { opacity:1; }
+      62% { opacity:.65; }
+      100% { opacity:0; transform:scale(1.9) rotate(10deg); }
+    }
+    @keyframes thanksAurora {
+      0% { opacity:0; transform:scale(.9); }
+      15% { opacity:1; transform:scale(1); }
+      68% { opacity:.65; transform:scale(1.04); }
+      100% { opacity:0; transform:scale(1.08); }
+    }
+    @keyframes thanksQuoteGlow {
+      0% { box-shadow:0 0 0 rgba(201,168,76,0); background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025)); border-color:rgba(201,168,76,.3); }
+      14% { box-shadow:0 0 0 1px rgba(201,168,76,.28), 0 0 46px rgba(201,168,76,.3); background:linear-gradient(180deg, rgba(201,168,76,.11), rgba(255,255,255,.04)); border-color:rgba(246,215,125,.72); }
+      68% { box-shadow:0 0 0 1px rgba(201,168,76,.14), 0 0 28px rgba(201,168,76,.18); }
+      100% { box-shadow:0 0 0 rgba(201,168,76,0); background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025)); border-color:rgba(201,168,76,.3); }
+    }
+    @keyframes thanksCardGlow {
+      0%, 100% { filter:none; }
+      18% { filter:drop-shadow(0 0 24px rgba(201,168,76,.24)); }
+      68% { filter:drop-shadow(0 0 14px rgba(201,168,76,.14)); }
+    }
+    @keyframes thanksQuoteSweep {
+      0% { opacity:0; transform:translateX(0) skewX(-16deg); }
+      18% { opacity:1; }
+      100% { opacity:0; transform:translateX(430%) skewX(-16deg); }
+    }
+    @keyframes thanksQuoteRing {
+      0% { opacity:.9; transform:scale(.985); box-shadow:0 0 0 0 rgba(246,215,125,.28); }
+      100% { opacity:0; transform:scale(1.06); box-shadow:0 0 0 18px rgba(246,215,125,0); }
+    }
+    @keyframes thanksConfetti {
+      0% { opacity:0; transform:translate3d(0,-44px,0) rotate(0deg) scale(.82); }
+      8% { opacity:1; }
+      76% { opacity:1; }
+      100% { opacity:0; transform:translate3d(var(--drift),106vh,0) rotate(var(--rot)) scale(1); }
+    }
+    .hero-sub,
+    .sec-p,
+    .role-card p,
+    .team-desc,
+    .proj-desc,
+    .access-p,
+    .caspo-report-copy,
+    .caspo-story-p,
+    .pattern-score span,
+    .pattern-desc,
+    .takeaway-card,
+    .next-step,
+    .participation-copy,
+    .achievement-row > span:last-child,
+    .participation-note,
+    .video-caption,
+    .access-note,
+    .caspo-source,
+    .summary-line span,
+    .metric-sub,
+    .app-feature span:last-child,
+    .app-meta-sub,
+    .tl-body,
+    .thanks-quote {
       text-align: justify;
       text-align-last: left;
       hyphens: none;
@@ -905,14 +1350,24 @@
       .nav-links.open li a { padding:12px 0; border-bottom:1px solid var(--border2); border-radius:0; }
       .access-grid { grid-template-columns:1fr; }
       .access-card.wide { grid-column:1; }
+      .team-summary-layout { grid-template-columns:1fr; }
+      .mini-impact-grid { grid-template-columns:1fr; }
       .impact-grid { grid-template-columns:1fr; }
       .participation-card { grid-template-columns:1fr; }
-      .participation-media { aspect-ratio:16 / 9; }
+      .participation-media { aspect-ratio:auto; }
       .team-grid, .proj-grid { grid-template-columns:1fr; }
       .hero-btns { flex-direction:column; align-items:center; }
       .jira-chart { grid-template-columns:repeat(2,1fr); }
       .caspo-kpi-grid { grid-template-columns:repeat(3,1fr); }
+      .caspo-report-head { flex-direction:column; }
+      .caspo-month-grid { grid-template-columns:1fr; }
+      .pattern-highlight { grid-template-columns:1fr; }
+      .pattern-grid { grid-template-columns:1fr; }
+      .takeaway-grid { grid-template-columns:1fr; }
+      .stat-panel-grid { grid-template-columns:1fr; }
+      .status-stat-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .caspo-breakdown { grid-template-columns:1fr; }
+      .caspo-breakdown.compact { grid-template-columns:1fr; }
       .tl { max-width:100%; }
       .tl::before { display:none; }
       .tl-item { grid-template-columns:1fr; gap:.45rem; padding:1rem 0; }
@@ -942,6 +1397,7 @@
 <body>
 
 <div id="pbar"></div>
+<div id="thanksFx" aria-hidden="true"></div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -978,13 +1434,8 @@
   <div id="particles"></div>
 
   <div class="hero-inner">
-    <div class="hero-chip">
-      <span class="chip-dot"></span>
-      ЖИНХЛЭХ ТАЙЛАН 2026
-    </div>
-
     <h1 class="hero-h1">
-      <span class="l1">Жинхлэх</span>
+      <span class="l1">Жинхлэх ажлын</span>
       <span class="l2">тайлан</span>
     </h1>
 
@@ -1011,9 +1462,16 @@
 <!-- TEAM -->
 <section id="team">
   <div class="wrap">
-    <div class="sec-eyebrow">Тайлан бэлтгэсэн</div>
-    <h2 class="sec-h2">Хийж гүйцэтгэсэн ажлууд</h2>
-    <p class="sec-p">Ард Секюритиз ҮЦК ХХК-д ажиллаж эхэлснээс хойш хийсэн системийн дэмжлэг, CASPO/Jira хяналт, вендортой уялдах ажил болон дотоод процесс сайжруулалтыг нэгтгэн танилцуулж байна. Зорилго нь асуудлыг бүртгэлтэй, хяналттай, ил тод болгож, шийдвэрлэх явцыг хурдан болгох юм.</p>
+    <div id="results" class="team-summary-layout">
+      <div class="team-summary-main">
+        <div class="sec-eyebrow">Тайлан бэлтгэсэн</div>
+        <h2 class="sec-h2">Хийж гүйцэтгэсэн ажлууд</h2>
+        <div class="card role-card role-inline-card reveal">
+          <p>Ард Секюритиз ҮЦК ХХК-д ажиллаж эхэлснээс хойш дотоод системийн алдаа, хүсэлт, сайжруулалтын ажлуудыг бүртгэлтэй, хяналттай, ил тод болгох чиглэлээр ажиллав. Энэ хугацаанд дотоод хүсэлт бүртгэлийн системийг нэвтрүүлж, GrapeCity/CASPO болон AFS Jira руу дамжуулах ажлын урсгалыг цэгцэлсэн.</p>
+          <p>Мөн ажилтнуудаас ирэх системийн асуудлыг нэг сувгаар бүртгэх, давхардлыг бууруулах, шийдвэрлэлтийн явцыг ил тод болгох суурь процесс бүрдүүлсэн.</p>
+        </div>
+      </div>
+    </div>
 
     <!-- Presenting to banner -->
     <div class="presenting-banner reveal">
@@ -1027,15 +1485,15 @@
       </div>
     </div>
 
-    <div class="team-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));max-width:760px;">
+    <div class="team-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
 
       <div class="card team-card featured reveal d1">
-        <div class="role-pill pill-sys">● Систем админ</div>
+        <div class="role-pill pill-sys">● Тайлан бэлтгэсэн</div>
         <div class="photo-avatar" style="border-color:rgba(34,197,94,.4);">
-          <img src="img/Sysadmin.jpg" alt="Систем админ" />
+          <img src="img/Sysadmin.jpg" alt="Н. Түмэндэлгэр — Тайлан бэлтгэсэн" />
         </div>
-        <div class="team-name">Тайлан бэлтгэсэн</div>
-        <div class="team-title">Систем админ · Ард Секюритиз</div>
+        <div class="team-name">Н. Түмэндэлгэр</div>
+        <div class="team-title">Тайлан бэлтгэсэн</div>
         <div class="team-desc">Дотоод асуудал бүртгэлийн систем, Polaris гарын авлага, CASPO/Jira хяналт болон вендорт ажил дамжуулах урсгал дээр ажиллаж байна.</div>
       </div>
 
@@ -1049,44 +1507,6 @@
         <div class="team-desc">Системтэй холбоотой ажлуудад чиглэл өгч, шаардлагатай үед зөвлөгөө болон дэмжлэг үзүүлж ажилласан.</div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- RESULTS -->
-<section id="results">
-  <div class="wrap">
-    <div class="sec-eyebrow">Үндсэн үзүүлэлт</div>
-    <h2 class="sec-h2">Гол үр дүн</h2>
-    <p class="sec-p">Дотоод системийн асуудлуудыг бүртгэлтэй болгож, шаардлагатайг CASPO болон AFS тал руу дамжуулан хянасан гол үзүүлэлтүүд.</p>
-
-    <div class="impact-grid">
-      <div class="card impact-card reveal">
-        <div class="impact-num">45</div>
-        <div class="impact-label">Нийт бүртгэлтэй асуудал</div>
-        <div class="impact-note">Ажиллаж эхэлснээс хойш бүртгэсэн</div>
-      </div>
-      <div class="card impact-card reveal d1">
-        <div class="impact-num">40</div>
-        <div class="impact-label">CASPO руу дамжуулсан</div>
-        <div class="impact-note">CAS-901-ээс хойш</div>
-      </div>
-      <div class="card impact-card reveal d2">
-        <div class="impact-num">13</div>
-        <div class="impact-label">AFS unique issue</div>
-        <div class="impact-note">Надаас үүссэн ажлууд</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ROLE -->
-<section id="role">
-  <div class="wrap">
-    <div class="sec-eyebrow">Миний үүрэг</div>
-    <h2 class="sec-h2">Асуудлыг бүртгэлтэй, хяналттай болгох</h2>
-    <div class="card role-card reveal">
-      <p>Миний үндсэн ажил бол дотоод системийн асуудлыг хүлээн авч бүртгэх, ангилах, боломжтойг дотооддоо шийдэх, шаардлагатайг GrapeCity/CASPO болон AFS тал руу дамжуулж, шийдвэрлэлтийн явцыг хянах юм.</p>
     </div>
   </div>
 </section>
@@ -1125,8 +1545,8 @@
         <div class="proj-name">Polaris Permission Discovery — Үнэт цаас</div>
         <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн дотоод ажилтнуудад зориулсан Polaris системийн <strong style="color:var(--gold);">Үнэт цаас</strong> цэсний гарын авлагын discovery шат. Permission-уудыг нэг бүрчлэн шалгаж, ямар action ID шаардагдахыг тодорхойлж байна. Бусад цэснүүд нь систем админы ажилд илүү ойр тул ажилтнуудад хэрэгтэй Үнэт цаас хэсгийг түрүүлж хийж байна.</div>
         <div class="prog-wrap">
-          <div class="prog-head"><span class="prog-lbl">Permission Discovery</span><span class="prog-pct">20%</span></div>
-          <div class="prog-track"><div class="prog-fill pg-gold" data-w="20"></div></div>
+          <div class="prog-head"><span class="prog-lbl">Permission Discovery</span><span class="prog-pct">50%</span></div>
+          <div class="prog-track"><div class="prog-fill pg-gold" data-w="50"></div></div>
         </div>
         <div class="tags">
           <span class="tag">Polaris</span><span class="tag">Үнэт цаас</span>
@@ -1174,15 +1594,15 @@
       <div class="card proj-card plan-card reveal d4">
         <div class="status-pill s-pend"><span class="sdot"></span> Төлөвлөж байна</div>
         <div class="proj-ico" aria-hidden="true">🖥️</div>
-        <div class="proj-name">Millennium Trader Зогсолт — Төлөвлөгөө</div>
-        <div class="proj-desc">LSEG/SSC Global Business Services Limited-ээс 2026 оны 3-р сарын 25-нд МХБ-д ирүүлсэн албан мэдэгдлээр <strong style="color:var(--gold);">Millennium Trader</strong> бүтээгдэхүүнийг 2027 оны 3-р сарын 1-нээс зогсоохоор мэдэгдсэн. Энэ хугацаанд зөвхөн production орчны Level 1/Level 2 алдаанд боломжит нөөцөөр засвар үйлчилгээ үзүүлнэ. Change Request, Service Request болон Level 3 fix хийхгүй, мөн LSEG-ээс орлох бүтээгдэхүүн санал болгохгүй гэж мэдэгдсэн тул арилжааны ажлын орчны эрсдэлийг үнэлж, дараагийн шийдлийг төлөвлөх шаардлагатай.</div>
+        <div class="proj-name">Millennium Trader Workstation — зогсолтын төлөвлөгөө</div>
+        <div class="proj-desc">LSEG/SSC Global Business Services Limited-ээс 2026 оны 3-р сарын 25-нд МХБ-д ирүүлсэн албан мэдэгдэлд <strong style="color:var(--gold);">Millennium Trader</strong> бүтээгдэхүүнийг 2027 оны 3-р сарын 1-нээс зогсоохоор дурдсан. Манай талд энэ нь арилжааны workstation орчинтой шууд холбоотой тул боломжит эрсдэлийг үнэлж, дараагийн шийдлийн хувилбарыг төлөвлөх шаардлагатай. Энэ хугацаанд зөвхөн production орчны Level 1/Level 2 алдаанд боломжит нөөцөөр засвар үйлчилгээ үзүүлнэ.</div>
         <div class="prog-wrap">
           <div class="prog-head"><span class="prog-lbl">Төлөвлөлтийн ахиц</span><span class="prog-pct">10%</span></div>
           <div class="prog-track"><div class="prog-fill pg-amber" data-w="10"></div></div>
         </div>
         <div class="tags">
-          <span class="tag">Millennium Trader</span><span class="tag">LSEG</span>
-          <span class="tag">2027-03-01</span><span class="tag">Арилжааны Систем</span><span class="tag">Эрсдэлийн Төлөвлөгөө</span>
+          <span class="tag">Millennium Trader</span><span class="tag">Trader Workstation</span><span class="tag">LSEG</span>
+          <span class="tag">2027-03-01</span><span class="tag">Арилжааны систем</span><span class="tag">Эрсдэлийн төлөвлөгөө</span>
         </div>
       </div>
 
@@ -1246,30 +1666,22 @@
         <div class="proj-ico" aria-hidden="true">🌐</div>
         <div class="proj-name">GrapeCity</div>
         <div class="proj-desc">Гадаад вендор компани. Polaris системийн backend болон вэб хэсгийг хариуцна. <strong style="color:#FBBF24;">CASPO</strong> нь GrapeCity-ийн манай талд нээсэн Jira төсөл. Энэ тайланд CAS-901-ээс буюу 2026 оны 4-р сарын 23-наас хойш систем админаас үүсгэсэн ажлуудыг тусгав.</div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.75rem 0 1rem;font-size:12px;">
-          <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.18);border-radius:8px;padding:.6rem .8rem;">
-            <div style="color:#FBBF24;font-weight:700;font-size:1rem;">40</div>
-            <div style="color:var(--txt2);">GrapeCity Jira</div>
+        <div class="summary-side-title">Гол үр дүн</div>
+        <div class="mini-impact-grid">
+          <div class="card impact-card mini-impact">
+            <div class="impact-num">45</div>
+            <div class="impact-label">Нийт бүртгэлтэй асуудал</div>
+            <div class="impact-note">Ажиллаж эхэлснээс хойш бүртгэсэн</div>
           </div>
-          <div style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.18);border-radius:8px;padding:.6rem .8rem;">
-            <div style="color:var(--blue-lt);font-weight:700;font-size:1rem;">9</div>
-            <div style="color:var(--txt2);">4-р сар</div>
+          <div class="card impact-card mini-impact">
+            <div class="impact-num">40</div>
+            <div class="impact-label">CASPO руу дамжуулсан</div>
+            <div class="impact-note">CAS-901-ээс хойш</div>
           </div>
-          <div style="background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.18);border-radius:8px;padding:.6rem .8rem;">
-            <div style="color:#4ADE80;font-weight:700;font-size:1rem;">18</div>
-            <div style="color:var(--txt2);">5-р сар</div>
-          </div>
-          <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.18);border-radius:8px;padding:.6rem .8rem;">
-            <div style="color:#FBBF24;font-weight:700;font-size:1rem;">13</div>
-            <div style="color:var(--txt2);">6-р сар</div>
-          </div>
-          <div style="background:rgba(230,51,41,.06);border:1px solid rgba(230,51,41,.18);border-radius:8px;padding:.6rem .8rem;">
-            <div style="color:#FF5A52;font-weight:700;font-size:1rem;">4/23</div>
-            <div style="color:var(--txt2);">Огноо</div>
-          </div>
-          <div style="background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:8px;padding:.6rem .8rem;">
-            <div style="color:var(--txt0);font-weight:700;font-size:1rem;">CAS-901+</div>
-            <div style="color:var(--txt2);">Эх сурвалж</div>
+          <div class="card impact-card mini-impact">
+            <div class="impact-num">13</div>
+            <div class="impact-label">AFS unique issue</div>
+            <div class="impact-note">Дотоод IT бүртгэл</div>
           </div>
         </div>
         <div class="tags">
@@ -1279,10 +1691,10 @@
       </div>
 
       <div class="card proj-card reveal d1">
-        <div class="status-pill s-res"><span class="sdot"></span> Надаас үүссэн ажлууд</div>
+        <div class="status-pill s-res"><span class="sdot"></span> Дотоод IT</div>
         <div class="proj-ico" aria-hidden="true">📱</div>
         <div class="proj-name">AFS</div>
-        <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн апп болон IT дэд бүтцийн асуудлыг хариуцдаг дотоод IT тал. Jira дээрх “Надаас үүссэн ажлууд” тайлангаар нийт 13 unique issue байна: Open 1, Closed 8, Approved 4. Хувь хүний нэрийг оруулахгүй, зөвхөн албан тушаалаар харуулсан.</div>
+        <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн апп болон IT дэд бүтцийн асуудлыг хариуцдаг дотоод IT тал. Одоогоор нийт 13 unique issue бүртгэлтэй: Open 1, Closed 8, Approved 4. Хувь хүний нэрийг оруулахгүй, зөвхөн албан тушаалаар харуулсан.</div>
         <div class="table-scroll" style="margin-top:1rem;">
           <table class="data-table" style="font-size:12px;min-width:460px;">
             <thead>
@@ -1319,128 +1731,156 @@
 
     </div>
 
-    <div class="card reveal" style="margin-top:2rem;padding:2rem;">
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:.35rem;">Вендорт илгээсэн Jira — CAS-901 / 4-р сарын 23-аас</div>
-      <div style="font-size:13px;color:var(--txt1);margin-bottom:1.2rem;max-width:720px;">2026 оны 4-р сарын 23-наас буюу CAS-901-ээс эхлэн систем админаас вендор бүрт илгээсэн Jira бүртгэл.</div>
-      <div class="jira-chart" aria-label="Сарын Jira нийт бүртгэлийн харьцуулалт">
-        <div class="chart-bar-card">
-          <div class="bar-track"><div class="bar-fill" style="height:52%;"></div></div>
-          <div><div class="bar-value">11</div><div class="bar-label">4-р сар</div><div class="bar-meta">4/23-аас</div></div>
+    <div class="card caspo-report-card reveal">
+      <div class="caspo-report-head">
+        <div>
+          <div class="caspo-report-title">Илгээсэн Jira — CAS-901 / 4-р сарын 23-аас</div>
+          <div class="caspo-report-copy">CASPO дээр систем админаас үүсгэсэн Jira бүртгэлийн сарын харьцуулалт. Доорх нэгдсэн хэсэг нь CAS-797-оос эхэлсэн 2026 оны бүх CASPO Jira-ийн тоон тайлан.</div>
         </div>
-        <div class="chart-bar-card">
-          <div class="bar-track"><div class="bar-fill" style="height:100%;"></div></div>
-          <div><div class="bar-value">21</div><div class="bar-label">5-р сар</div><div class="bar-meta">Дууссан</div></div>
-        </div>
-        <div class="chart-bar-card">
-          <div class="bar-track"><div class="bar-fill" style="height:62%;"></div></div>
-          <div><div class="bar-value">13</div><div class="bar-label">6-р сар</div><div class="bar-meta">Одоогоор</div></div>
-        </div>
-        <div class="chart-bar-card bar-total">
-          <div class="bar-track"><div class="bar-fill" style="height:100%;"></div></div>
-          <div><div class="bar-value">45</div><div class="bar-label">Нийт</div><div class="bar-meta">Vendor/Internal</div></div>
+        <div class="caspo-total-pill">
+          <strong>82</strong>
+          <span>нийт CASPO</span>
         </div>
       </div>
-      <div class="table-scroll">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Сар</th>
-              <th style="text-align:center;color:#FBBF24;">GrapeCity (CASPO)</th>
-              <th style="text-align:center;color:var(--blue-lt);">AFS</th>
-              <th style="text-align:center;">Нийт</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>2026 оны 4-р сар <span style="font-size:10px;color:var(--txt2);">(4/23-аас)</span></td>
-              <td class="num-cell" style="color:#FBBF24;">9 <span style="font-size:9px;color:var(--txt2);">*</span></td>
-              <td class="num-cell" style="color:var(--blue-lt);">2</td>
-              <td class="num-cell" style="color:var(--txt0);">11</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">2026 оны 5-р сар <span style="font-size:10px;color:#4ADE80;margin-left:6px;font-weight:700;">✓ Дууссан</span></td>
-              <td class="num-cell" style="color:#FBBF24;">18 <span style="font-size:9px;color:var(--txt2);">*</span></td>
-              <td class="num-cell" style="color:var(--blue-lt);">3</td>
-              <td class="num-cell" style="color:var(--txt0);">21</td>
-            </tr>
-            <tr>
-              <td style="color:var(--txt0);font-weight:600;">2026 оны 6-р сар <span style="font-size:10px;color:var(--gold);margin-left:6px;font-weight:700;">● Одоо</span></td>
-              <td class="num-cell" style="color:#FBBF24;">13 <span style="font-size:9px;color:var(--txt2);">*</span></td>
-              <td class="num-cell" style="color:var(--txt2);">—</td>
-              <td class="num-cell" style="color:var(--txt0);">13</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>Нийт дүн</td>
-              <td class="num-cell" style="color:#FBBF24;">40</td>
-              <td class="num-cell" style="color:var(--blue-lt);">5</td>
-              <td class="num-cell">45</td>
-            </tr>
-          </tfoot>
-        </table>
+
+      <div class="caspo-month-grid" aria-label="CASPO сарын Jira харьцуулалт">
+        <div class="caspo-month">
+          <div class="caspo-month-num">9</div>
+          <div><div class="caspo-month-label">4-р сар</div><div class="caspo-month-note">CAS-901 / 4-р сарын 23-аас</div></div>
+        </div>
+        <div class="caspo-month">
+          <div class="caspo-month-num">18</div>
+          <div><div class="caspo-month-label">5-р сар</div><div class="caspo-month-note">дууссан сар</div></div>
+        </div>
+        <div class="caspo-month">
+          <div class="caspo-month-num">13</div>
+          <div><div class="caspo-month-label">6-р сар</div><div class="caspo-month-note">одоогийн байдлаар</div></div>
+        </div>
       </div>
-      <div style="font-size:11px;color:var(--txt2);margin-top:1rem;display:flex;align-items:center;gap:.5rem;">
-        <span style="color:var(--txt2);">*</span><span>GrapeCity/CASPO дээр систем админ үүсгэсэн Jira-г CAS-901-ээс эхлүүлэн тайланд тусгав. 4-р сар 9, 5-р сар 18, 6-р сар одоогоор 13 — нийт 40.</span>
+
+      <div class="status-stat-grid" aria-label="CASPO Jira төлөв">
+        <div class="status-stat"><strong>82</strong><span>Нийт Jira</span></div>
+        <div class="status-stat"><strong style="color:var(--blue-lt);">16</strong><span>Нээлттэй</span></div>
+        <div class="status-stat"><strong style="color:#4ADE80;">55</strong><span>Хаагдсан</span></div>
+        <div class="status-stat"><strong style="color:#FBBF24;">13</strong><span>In Progress</span></div>
+        <div class="status-stat"><strong style="color:#FF8D7C;">11</strong><span>Засахгүй</span></div>
       </div>
+
+      <div class="caspo-story">
+        <h3>Давтагдаж буй алдааны паттерн</h3>
+        <p class="caspo-story-p">Нийт 82 CASPO/Jira ticket-ийг шинжлэхэд алдаанууд нэг удаагийн жижиг доголдлоос илүүтэйгээр тодорхой хэдэн төрлийн системийн давтамжтай асуудалд төвлөрч байна. Ялангуяа дансны төлөв, бизнес дүрмийн шалгалт, төлбөр тооцоо, дотоод бичилт, хэрэглэгчид харагдах мэдээлэл, систем хоорондын синк зэрэг хэсгүүдэд давтамж өндөр байна.</p>
+        <div class="pattern-highlight">
+          <div class="pattern-score">
+            <strong>65.85%</strong>
+            <span>хамгийн өндөр 3 ангиллын нийт эзлэх хувь.</span>
+          </div>
+          <div class="pattern-summary">
+            <div class="summary-line"><span>1. Баталгаажуулалт, дансны төлөв, бизнес дүрэм</span><strong>25.61%</strong></div>
+            <div class="summary-line"><span>2. Төлбөр тооцоо, мөнгөн гүйлгээ, дотоод бичилт</span><strong>21.95%</strong></div>
+            <div class="summary-line"><span>3. UI/дэлгэц, тайлан/хуулга, хэрэглэгчийн мэдээлэл</span><strong>18.29%</strong></div>
+          </div>
+        </div>
+
+        <div class="pattern-grid">
+          <div class="pattern-card">
+            <div class="pattern-head"><div class="pattern-title">Баталгаажуулалт, дансны төлөв ба бизнес дүрмийн алдаа</div><div class="pattern-rank">1</div></div>
+            <div class="pattern-meta"><span class="pattern-num">21</span><span class="pattern-pct">25.61%</span><span class="risk-badge risk-high">Өндөр</span></div>
+            <div class="pattern-track"><div class="pattern-fill fill-high" style="width:100%;"></div></div>
+            <div class="pattern-desc">Данс, гэрээ, IBAN эсвэл төлөв буруу үед системийн зөвшөөрөх/татгалзах шалгалт хангалтгүй байна.</div>
+          </div>
+          <div class="pattern-card">
+            <div class="pattern-head"><div class="pattern-title">Төлбөр тооцоо, мөнгөн гүйлгээ ба дотоод бичилтийн алдаа</div><div class="pattern-rank">2</div></div>
+            <div class="pattern-meta"><span class="pattern-num">18</span><span class="pattern-pct">21.95%</span><span class="risk-badge risk-critical">Критикал</span></div>
+            <div class="pattern-track"><div class="pattern-fill fill-critical" style="width:86%;"></div></div>
+            <div class="pattern-desc">Мөнгө орох/гарах, хураамж, дотоод бичилт, төлбөр тооцооны данстай холбоотой давтамж.</div>
+          </div>
+          <div class="pattern-card">
+            <div class="pattern-head"><div class="pattern-title">UI/дэлгэц, тайлан/хуулга ба хэрэглэгчид харагдах мэдээллийн алдаа</div><div class="pattern-rank">3</div></div>
+            <div class="pattern-meta"><span class="pattern-num">15</span><span class="pattern-pct">18.29%</span><span class="risk-badge risk-high">Өндөр</span></div>
+            <div class="pattern-track"><div class="pattern-fill fill-high" style="width:71%;"></div></div>
+            <div class="pattern-desc">Апп/веб дээр мэдээлэл буруу харагдах, хуулга татагдахгүй, төлөв ойлгомжгүй байх асуудлууд.</div>
+          </div>
+          <div class="pattern-card">
+            <div class="pattern-head"><div class="pattern-title">Интеграц, мэдээлэл дамжуулалт ба систем хоорондын синк алдаа</div><div class="pattern-rank">4</div></div>
+            <div class="pattern-meta"><span class="pattern-num">13</span><span class="pattern-pct">15.85%</span><span class="risk-badge risk-very-high">Маш өндөр</span></div>
+            <div class="pattern-track"><div class="pattern-fill fill-critical" style="width:62%;"></div></div>
+            <div class="pattern-desc">App, Web, Backend, Core system, MIT, Polaris, ҮЦТХТ, MSE/UBX хооронд мэдээлэл зөрөх эрсдэл.</div>
+          </div>
+          <div class="pattern-card">
+            <div class="pattern-head"><div class="pattern-title">Тооцоолол, үнэлгээ, шимтгэл, татварын алдаа</div><div class="pattern-rank">5</div></div>
+            <div class="pattern-meta"><span class="pattern-num">12</span><span class="pattern-pct">14.63%</span><span class="risk-badge risk-very-high">Маш өндөр</span></div>
+            <div class="pattern-track"><div class="pattern-fill fill-critical" style="width:57%;"></div></div>
+            <div class="pattern-desc">Нийт дүн, шимтгэл, татвар, хүү, клиринг, өгөөж, үнэлгээ буруу тооцогдох асуудал.</div>
+          </div>
+          <div class="pattern-card">
+            <div class="pattern-head"><div class="pattern-title">Бизнес/техникийн зөвлөгөө ба ерөнхий сайжруулалтын хүсэлт</div><div class="pattern-rank">6</div></div>
+            <div class="pattern-meta"><span class="pattern-num">3</span><span class="pattern-pct">3.66%</span><span class="risk-badge risk-low">Бага</span></div>
+            <div class="pattern-track"><div class="pattern-fill fill-low" style="width:14%;"></div></div>
+            <div class="pattern-desc">Шууд алдаа биш, бүтээгдэхүүн сайжруулах, техникийн тодруулга авах, вендортой зөвшилцөх ажлууд.</div>
+          </div>
+        </div>
+
+        <div class="ceo-takeaway">
+          <h3>CEO түвшний тайлбар</h3>
+          <div class="takeaway-grid">
+            <div class="takeaway-card"><strong>1. Санхүүгийн тулгалт</strong>Төлбөр тооцоо болон дотоод бичилтийн алдаа нь мөнгөн хөрөнгийн хөдөлгөөн, reconciliation, харилцагчийн итгэлцэлд шууд нөлөөлөх эрсдэлтэй.</div>
+            <div class="takeaway-card"><strong>2. Дансны төлөв ба процесс</strong>Бизнес дүрмийн шалгалт хангалтгүй үед буруу хүсэлт, давхар үйлдэл, гацсан процесс үүсэх магадлалтай.</div>
+            <div class="takeaway-card"><strong>3. Хэрэглэгчид харагдах мэдээлэл</strong>Бодит мөнгөн алдаа биш байсан ч тайлан/хуулга, дэлгэцийн алдаа нь ойлголт, итгэл, үйлчилгээний ачаалалд нөлөөлнө.</div>
+          </div>
+          <div class="next-step">Дараагийн шатанд зөвхөн ticket бүрийг хаахаас гадна давтагдаж буй root cause-уудыг багцлан шийдвэрлэх хэрэгтэй. Ялангуяа төлбөр тооцоо, дансны төлөв, систем хоорондын синк, тооцооллын logic дээр regression test болон reconciliation control-ийг сайжруулах нь зүйтэй.</div>
+        </div>
+      </div>
+
+      <div class="stat-panel-grid">
+        <div class="stat-panel">
+          <h3>Төрлөөр</h3>
+          <div class="metric-list">
+            <div class="metric-row"><div><div class="metric-name">Bug (Алдаа)</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:60.98%;"></div></div></div><div class="metric-value">50<span>60.98%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Improvement</div><div class="metric-track"><div class="metric-fill fill-low" style="width:26.83%;"></div></div></div><div class="metric-value">22<span>26.83%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Business Consulting</div><div class="metric-track"><div class="metric-fill fill-info" style="width:8.54%;"></div></div></div><div class="metric-value">7<span>8.54%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Technical Consulting</div><div class="metric-track"><div class="metric-fill fill-info" style="width:2.44%;"></div></div></div><div class="metric-value">2<span>2.44%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Complaint</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:1.22%;"></div></div></div><div class="metric-value">1<span>1.22%</span></div></div>
+          </div>
+        </div>
+        <div class="stat-panel">
+          <h3>Компонентоор</h3>
+          <div class="metric-list">
+            <div class="metric-row"><div><div class="metric-name">ACCOUNT</div><div class="metric-track"><div class="metric-fill fill-info" style="width:21.95%;"></div></div></div><div class="metric-value">18<span>21.95%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">ХУРИМТЛАЛ</div><div class="metric-track"><div class="metric-fill" style="width:14.63%;"></div></div></div><div class="metric-value">12<span>14.63%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">BOND</div><div class="metric-track"><div class="metric-fill" style="width:13.41%;"></div></div></div><div class="metric-value">11<span>13.41%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">APP</div><div class="metric-track"><div class="metric-fill" style="width:10.98%;"></div></div></div><div class="metric-value">9<span>10.98%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">CASPO_WEB</div><div class="metric-track"><div class="metric-fill" style="width:7.32%;"></div></div></div><div class="metric-value">6<span>7.32%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">BAC</div><div class="metric-track"><div class="metric-fill" style="width:4.88%;"></div></div></div><div class="metric-value">4<span>4.88%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Бусад</div><div class="metric-track"><div class="metric-fill" style="width:26.83%;"></div></div></div><div class="metric-value">22<span>26.83%</span></div></div>
+          </div>
+        </div>
+        <div class="stat-panel">
+          <h3>Эрэмбэ</h3>
+          <div class="metric-list">
+            <div class="metric-row"><div><div class="metric-name">Маш өндөр</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:32.93%;"></div></div></div><div class="metric-value">27<span>32.93%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Өндөр</div><div class="metric-track"><div class="metric-fill fill-high" style="width:50%;"></div></div></div><div class="metric-value">41<span>50.00%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Дунд</div><div class="metric-track"><div class="metric-fill" style="width:14.63%;"></div></div></div><div class="metric-value">12<span>14.63%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Бага</div><div class="metric-track"><div class="metric-fill fill-low" style="width:2.44%;"></div></div></div><div class="metric-value">2<span>2.44%</span></div></div>
+          </div>
+        </div>
+        <div class="stat-panel">
+          <h3>Эрэмбэ ба төлөв</h3>
+          <div class="metric-list">
+            <div class="metric-row"><div><div class="metric-name">Маш өндөр</div><div class="metric-sub">Нээлттэй 0 · Хаагдсан 20</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:100%;"></div></div></div><div class="metric-value">20<span>closed</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Өндөр</div><div class="metric-sub">Нээлттэй 6 · Хаагдсан 27</div><div class="metric-track"><div class="metric-fill fill-high" style="width:82%;"></div></div></div><div class="metric-value">33<span>total</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Дунд</div><div class="metric-sub">Нээлттэй 6 · Хаагдсан 4</div><div class="metric-track"><div class="metric-fill" style="width:40%;"></div></div></div><div class="metric-value">10<span>total</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Бага</div><div class="metric-sub">Нээлттэй 1 · Хаагдсан 1</div><div class="metric-track"><div class="metric-fill fill-low" style="width:50%;"></div></div></div><div class="metric-value">2<span>total</span></div></div>
+          </div>
+        </div>
+      </div>
+
       <div style="margin-top:1.2rem;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;">
         <a href="https://docs.google.com/spreadsheets/d/14vQqvt9jiNjNKLMsw9M4sV9ut27Q74ZgjmlcAb5daV4/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="open-btn">
           Jira тайлан нээх
         </a>
         <span class="access-note">ARD ажлын Google акаунт шаардлагатай.</span>
-        <span style="font-size:11px;color:var(--txt1);">Долоо хоног бүр шинэчлэгдэх үндсэн эх сурвалж.</span>
+        <span class="caspo-source">Эх сурвалж: CASPO_Report 6-25, CAS-797 → Одоог хүртэл.</span>
       </div>
-    </div>
-
-    <div class="card reveal" style="margin-top:1.5rem;padding:2rem;">
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:.35rem;">CASPO Jira нэгдсэн тайлан — 2026 оны 1-р сар–одоо</div>
-      <div style="font-size:13px;color:var(--txt1);max-width:780px;line-height:1.65;">CAS-797-оос эхэлсэн 2026 оны бүх CASPO Jira-ийн тоон үзүүлэлт. Дээрх CAS-901-ээс хойших систем админы бүртгэлээс тусдаа нэгдсэн дүн.</div>
-
-      <div class="caspo-kpi-grid" aria-label="CASPO Jira 2026 оны гол үзүүлэлт">
-        <div class="caspo-kpi"><div class="caspo-kpi-value">79</div><div class="caspo-kpi-label">Нийт Jira</div></div>
-        <div class="caspo-kpi"><div class="caspo-kpi-value" style="color:var(--blue-lt);">11</div><div class="caspo-kpi-label">Нээлттэй</div></div>
-        <div class="caspo-kpi"><div class="caspo-kpi-value" style="color:#4ADE80;">56</div><div class="caspo-kpi-label">Хаагдсан</div></div>
-        <div class="caspo-kpi"><div class="caspo-kpi-value" style="color:#FBBF24;">5</div><div class="caspo-kpi-label">Явагдаж буй</div></div>
-        <div class="caspo-kpi"><div class="caspo-kpi-value" style="color:#FF8D7C;">12</div><div class="caspo-kpi-label">Засахгүй</div></div>
-      </div>
-
-      <div class="caspo-breakdown">
-        <div>
-          <h3>Төрлөөр</h3>
-          <div class="table-scroll">
-            <table class="data-table" style="min-width:360px;">
-              <thead><tr><th>Төрөл</th><th class="num-cell">Тоо</th><th class="num-cell">Хувь</th></tr></thead>
-              <tbody>
-                <tr><td>🔴 Bug (Алдаа)</td><td class="num-cell">48</td><td class="num-cell">60.76%</td></tr>
-                <tr><td>🟢 Improvement (Сайжруулалт)</td><td class="num-cell">21</td><td class="num-cell">26.58%</td></tr>
-                <tr><td>✅ Business Consulting</td><td class="num-cell">7</td><td class="num-cell">8.86%</td></tr>
-                <tr><td>✅ Technical Consulting</td><td class="num-cell">2</td><td class="num-cell">2.53%</td></tr>
-                <tr><td>🔴 Complaint</td><td class="num-cell">1</td><td class="num-cell">1.27%</td></tr>
-              </tbody>
-              <tfoot><tr><td>Нийт</td><td class="num-cell">79</td><td class="num-cell">100%</td></tr></tfoot>
-            </table>
-          </div>
-        </div>
-        <div>
-          <h3>Компонентоор</h3>
-          <div class="table-scroll">
-            <table class="data-table" style="min-width:330px;">
-              <thead><tr><th>Компонент</th><th class="num-cell">Тикет</th><th class="num-cell">Хувь</th></tr></thead>
-              <tbody>
-                <tr><td>ACCOUNT</td><td class="num-cell">18</td><td class="num-cell">22.78%</td></tr>
-                <tr><td>ХУРИМТЛАЛ</td><td class="num-cell">11</td><td class="num-cell">13.92%</td></tr>
-                <tr><td>BOND</td><td class="num-cell">11</td><td class="num-cell">13.92%</td></tr>
-                <tr><td>APP</td><td class="num-cell">9</td><td class="num-cell">11.39%</td></tr>
-                <tr><td>CASPO_WEB</td><td class="num-cell">6</td><td class="num-cell">7.59%</td></tr>
-                <tr><td>BAC</td><td class="num-cell">4</td><td class="num-cell">5.06%</td></tr>
-                <tr><td>Бусад</td><td class="num-cell">20</td><td class="num-cell">25.32%</td></tr>
-              </tbody>
-              <tfoot><tr><td>Нийт</td><td class="num-cell">79</td><td class="num-cell">100%</td></tr></tfoot>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div style="font-size:11px;color:var(--txt2);margin-top:1rem;">Эх сурвалж: БҮРЭН ТИКЕТИЙН ЖАГСААЛТ | CAS-797 → Одоог хүртэл. Шинэчлэлт: 2026.06.22.</div>
     </div>
 
   </div>
@@ -1543,7 +1983,7 @@
 
       <div class="card access-card wide reveal">
         <div class="access-h">Бүртгэлийн системийг урьдчилан харах</div>
-        <div class="access-p">Google Sheets болон Google Drive-аар дэмжигдсэн дотоод асуудал бүртгэлийн систем. Доорх товчийг дарж шууд нээнэ үү.</div>
+        <div class="access-p">Google Sheets болон Google Drive-аар дэмжигдсэн дотоод асуудал бүртгэлийн системийн товч бүтэц. Нээх бол дээрх QR хэсгийн товчийг ашиглана.</div>
         <div class="app-preview-card">
           <div class="app-preview-left">
             <div class="proj-ico" aria-hidden="true" style="margin-bottom:0;">📋</div>
@@ -1564,13 +2004,6 @@
             <div class="app-feature"><span class="app-feat-ico">•</span><span>Утас, таблет, компьютерт нийцтэй</span></div>
             <div class="app-feature"><span class="app-feat-ico">•</span><span>Нэг асуудал дахин дахин үүсэхгүй</span></div>
             <div class="app-feature"><span class="app-feat-ico">•</span><span>Гар ажиллагаа багасч, систем автоматжина</span></div>
-          </div>
-          <div class="app-preview-actions">
-            <a href="https://www.appsheet.com/start/4981b74b-5ddd-43c4-9ba8-b02d4731a642"
-               target="_blank" rel="noopener noreferrer" class="open-btn red-btn" style="font-size:15px;padding:14px 32px;">
-              Бүртгэлийн систем нээх &nbsp;↗
-            </a>
-            <p style="font-size:11px;color:var(--txt1);margin-top:.75rem;text-align:center;">ARD ажлын Google акаунт шаардлагатай.</p>
           </div>
         </div>
       </div>
@@ -1931,12 +2364,51 @@ new QRCode(document.getElementById('qr-site'), qrCfg(SITE_URL));
 
 // Thank-you note
 const thanksNote = 'Багийн дэмжлэг, өгсөн зөвлөгөө бүр ажлаа илүү сайн ойлгож, дотоод системийн ажлуудыг илүү цэгцтэй авч явахад тус болж байна. Цаашид сурсан зүйлсээ өдөр тутмын ажилдаа ашиглаж, багийн хэрэгцээнд илүү хурдан, илүү хариуцлагатай хариу өгөхийг зорьж байна.';
+let thanksTimer;
+let confettiTimer;
+function spawnThanksConfetti(fx) {
+  fx.replaceChildren();
+  const colors = ['#F6D77D', '#C9A84C', '#E63329', '#FFFFFF', '#60A5FA'];
+  const count = 72;
+  for (let i = 0; i < count; i++) {
+    const piece = document.createElement('i');
+    piece.className = 'thanks-confetti';
+    if (i % 5 === 0) piece.classList.add('round');
+    if (i % 7 === 0) piece.classList.add('wide');
+    piece.style.setProperty('--x', `${Math.random() * 100}vw`);
+    piece.style.setProperty('--drift', `${(Math.random() - 0.5) * 260}px`);
+    piece.style.setProperty('--delay', `${Math.random() * 0.75}s`);
+    piece.style.setProperty('--dur', `${5.6 + Math.random() * 1.8}s`);
+    piece.style.setProperty('--rot', `${(Math.random() * 900 - 450).toFixed(0)}deg`);
+    piece.style.setProperty('--size', `${(6 + Math.random() * 8).toFixed(1)}px`);
+    piece.style.setProperty('--color', colors[i % colors.length]);
+    fx.appendChild(piece);
+  }
+}
 function showThanks() {
   const box = document.getElementById('thanksQuote');
+  const card = document.querySelector('.thanks-card');
+  const fx = document.getElementById('thanksFx');
   box.textContent = thanksNote;
-  box.classList.remove('show');
+  clearTimeout(thanksTimer);
+  clearTimeout(confettiTimer);
+  box.classList.remove('show', 'celebrate');
+  card.classList.remove('celebrate');
+  fx.classList.remove('show');
+  fx.replaceChildren();
   void box.offsetWidth;
-  box.classList.add('show');
+  box.classList.add('show', 'celebrate');
+  card.classList.add('celebrate');
+  spawnThanksConfetti(fx);
+  fx.classList.add('show');
+  thanksTimer = setTimeout(() => {
+    fx.classList.remove('show');
+    card.classList.remove('celebrate');
+    box.classList.remove('celebrate');
+  }, 7600);
+  confettiTimer = setTimeout(() => {
+    fx.replaceChildren();
+  }, 8200);
 }
 
 // Copy link
