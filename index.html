@@ -765,7 +765,7 @@
     }
     .caspo-total-pill strong { display:block; font-family:'Space Grotesk',sans-serif; font-size:1.85rem; line-height:1; color:var(--gold-lt); }
     .caspo-total-pill span { display:block; margin-top:.28rem; color:var(--txt2); font-size:10px; text-transform:uppercase; letter-spacing:.08em; }
-    .caspo-month-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.75rem; margin:1.15rem 0 1.35rem; }
+    .caspo-month-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(135px,1fr)); gap:.75rem; margin:1.15rem 0 1.35rem; }
     .caspo-month {
       display:flex;
       align-items:center;
@@ -778,6 +778,62 @@
     .caspo-month-num { font-family:'Space Grotesk',sans-serif; font-size:1.65rem; font-weight:800; color:var(--gold-lt); line-height:1; min-width:42px; }
     .caspo-month-label { color:var(--txt0); font-size:12px; font-weight:700; }
     .caspo-month-note { color:var(--txt2); font-size:10.5px; margin-top:.18rem; }
+    .monthly-chart-card {
+      margin:1.1rem 0 1.35rem;
+      padding:1.15rem 1.2rem 1rem;
+      border:1px solid rgba(214,184,90,.15);
+      border-radius:18px;
+      background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.018));
+      overflow:hidden;
+    }
+    .monthly-chart-head {
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:1rem;
+      margin-bottom:1rem;
+    }
+    .monthly-chart-title { color:var(--txt0); font-size:13px; font-weight:750; }
+    .monthly-chart-sub { color:var(--txt2); font-size:10.5px; margin-top:.2rem; }
+    .monthly-chart-total { color:var(--gold-lt); font-family:'Space Grotesk',sans-serif; font-size:1.45rem; font-weight:800; line-height:1; }
+    .monthly-chart-total span { display:block; color:var(--txt2); font-family:'Inter',sans-serif; font-size:9px; font-weight:600; margin-top:.25rem; text-align:right; }
+    .monthly-chart-scroll { overflow-x:auto; padding-bottom:.15rem; }
+    .monthly-chart {
+      min-width:620px;
+      height:190px;
+      display:grid;
+      grid-template-columns:repeat(7,minmax(58px,1fr));
+      gap:.7rem;
+      align-items:end;
+      padding:0 .25rem;
+      border-bottom:1px solid rgba(214,184,90,.16);
+      background:repeating-linear-gradient(to top, transparent 0 44px, rgba(255,255,255,.035) 45px 46px);
+    }
+    .month-column { height:100%; display:grid; grid-template-rows:22px 1fr 25px; align-items:end; text-align:center; }
+    .month-count { color:var(--txt0); font-family:'Space Grotesk',sans-serif; font-size:.92rem; font-weight:800; align-self:start; }
+    .month-bar {
+      width:min(46px,72%);
+      height:var(--bar-h);
+      min-height:12px;
+      margin:0 auto;
+      border-radius:8px 8px 2px 2px;
+      background:linear-gradient(180deg,var(--gold-lt),var(--gold-dk));
+      box-shadow:0 0 18px rgba(201,168,76,.16);
+    }
+    .month-column.peak .month-bar { background:linear-gradient(180deg,#FF8D7C,var(--red)); box-shadow:0 0 22px rgba(230,51,41,.2); }
+    .month-column.current .month-bar { background:linear-gradient(180deg,#93C5FD,#3B82F6); }
+    .month-label { color:var(--txt1); font-size:10.5px; font-weight:700; align-self:center; }
+    .monthly-chart-foot {
+      display:flex;
+      justify-content:space-between;
+      gap:1rem;
+      flex-wrap:wrap;
+      padding-top:.8rem;
+      color:var(--txt2);
+      font-size:10.5px;
+      line-height:1.5;
+    }
+    .monthly-chart-foot strong { color:var(--gold-lt); }
     .caspo-breakdown { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
     .caspo-breakdown h3 { font-family:'Space Grotesk',sans-serif; font-size:.96rem; font-weight:700; margin-bottom:.75rem; }
     .caspo-breakdown .table-scroll { border-radius:12px; }
@@ -1004,6 +1060,26 @@
     }
     .status-stat strong { display:block; font-family:'Space Grotesk',sans-serif; font-size:1.45rem; line-height:1; color:var(--gold-lt); }
     .status-stat span { display:block; margin-top:.35rem; color:var(--txt2); font-size:10.5px; }
+    .it-support-summary {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:.7rem;
+      margin:1rem 0;
+    }
+    .it-support-stat {
+      padding:.8rem .9rem;
+      border:1px solid rgba(59,130,246,.18);
+      border-radius:14px;
+      background:rgba(59,130,246,.055);
+    }
+    .it-support-stat strong {
+      display:block;
+      color:var(--blue-lt);
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.25rem;
+      line-height:1;
+    }
+    .it-support-stat span { display:block; margin-top:.3rem; color:var(--txt1); font-size:10.5px; line-height:1.35; }
     .tone-critical td { background:rgba(239,68,68,.16); }
     .tone-high td { background:rgba(245,158,11,.14); }
     .tone-mid td { background:rgba(250,204,21,.12); }
@@ -1504,7 +1580,7 @@
       .jira-chart { grid-template-columns:repeat(2,1fr); }
       .caspo-kpi-grid { grid-template-columns:repeat(3,1fr); }
       .caspo-report-head { flex-direction:column; }
-      .caspo-month-grid { grid-template-columns:1fr; }
+      .caspo-month-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .pattern-highlight { grid-template-columns:1fr; }
       .pattern-grid { grid-template-columns:1fr; }
       .takeaway-grid { grid-template-columns:1fr; }
@@ -1564,6 +1640,13 @@
       #hero { padding:80px 1rem 48px; }
       .jira-chart { grid-template-columns:1fr; }
       .caspo-kpi-grid { grid-template-columns:repeat(2,1fr); }
+      .caspo-month-grid { grid-template-columns:1fr; }
+      .monthly-chart-card { padding:1rem .8rem .85rem; }
+      .monthly-chart { min-width:0; height:170px; grid-template-columns:repeat(7,minmax(28px,1fr)); gap:.3rem; padding:0; }
+      .month-bar { width:64%; }
+      .month-count { font-size:.8rem; }
+      .month-label { font-size:9px; }
+      .monthly-chart-foot { flex-direction:column; gap:.35rem; }
       .hero-h1 { font-size:clamp(2rem,12vw,3.35rem); }
       .hero-sub {
         font-size:.94rem;
@@ -1636,7 +1719,7 @@
     <div class="hero-role">Системийн админ</div>
 
     <p class="hero-sub">
-      Ард Секюритиз ҮЦК ХХК-ийн дотоод системийн асуудлуудыг бүртгэн нэгтгэж, ангилж, шаардлагатайг GrapeCity/CASPO болон AFS Jira руу дамжуулан, шийдвэрлэлтийн явцыг хянасан ажлын тайлан.
+      Ард Секюритиз ҮЦК ХХК-ийн системийн алдаа, API холболт, шинэчлэлт, гүйлгээ болон арилжааны захиалгын ажиллагааг хянаж, асуудлыг бүртгэн ангилан, шаардлагатайг GrapeCity/CASPO болон AFS талтай хамтран шийдвэрлэсэн ажлын тайлан.
     </p>
 
     <div class="hero-btns">
@@ -1661,8 +1744,8 @@
         <div class="sec-eyebrow">Тайлан бэлтгэсэн</div>
         <h2 class="sec-h2">Хийж гүйцэтгэсэн ажлууд</h2>
         <div class="card role-card role-inline-card reveal">
-          <p>Ард Секюритиз ҮЦК ХХК-д ажиллаж эхэлснээс хойш дотоод системийн алдаа, хүсэлт, сайжруулалтын ажлуудыг бүртгэлтэй, хяналттай, ил тод болгох чиглэлээр ажиллав. Энэ хугацаанд дотоод хүсэлт бүртгэлийн системийг нэвтрүүлж, GrapeCity/CASPO болон AFS Jira руу дамжуулах ажлын урсгалыг цэгцэлсэн.</p>
-          <p>Мөн ажилтнуудаас ирэх системийн асуудлыг нэг сувгаар бүртгэх, давхардлыг бууруулах, шийдвэрлэлтийн явцыг ил тод болгох суурь процесс бүрдүүлсэн.</p>
+          <p>Дотоод системийн алдаа, API холболт, системийн шинэчлэлт, гүйлгээ болон арилжааны захиалгын явцыг тогтмол хянаж ажилладаг. Шинэчлэлт орсны дараа системийн ажиллагааг тестэлж, гүйлгээ болон захиалга зөв дамжиж байгаа эсэхийг шалгана.</p>
+          <p>Асуудал илэрвэл бүртгэж, нөлөөллийг нь тодорхойлон, боломжтойг дотооддоо шийдэж, шаардлагатай ажлыг GrapeCity/CASPO эсвэл AFS Jira руу дамжуулна. Дараа нь шийдвэрлэлтийн явцыг хянаж, засвар орсны дараа дахин тестэлж баталгаажуулдаг.</p>
         </div>
       </div>
     </div>
@@ -1688,7 +1771,7 @@
         </div>
         <div class="team-name">Н. Түмэндэлгэр</div>
         <div class="team-title">Тайлан бэлтгэсэн</div>
-        <div class="team-desc">Дотоод асуудал бүртгэлийн систем, Polaris гарын авлага, CASPO/Jira хяналт болон вендорт ажил дамжуулах урсгал дээр ажиллаж байна.</div>
+        <div class="team-desc">Системийн алдаа, API холболт, шинэчлэлт, гүйлгээ болон арилжааны захиалгыг хянаж, шаардлагатай ажлыг CASPO болон AFS талтай хамтран шийдвэрлэж байна.</div>
       </div>
 
       <div class="card team-card reveal d2">
@@ -1736,11 +1819,11 @@
       <div class="card proj-card reveal d3">
         <div class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</div>
         <div class="proj-ico" aria-hidden="true">📗</div>
-        <div class="proj-name">Polaris Permission Discovery — Үнэт цаас</div>
-        <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн дотоод ажилтнуудад зориулсан Polaris системийн <strong style="color:var(--gold);">Үнэт цаас</strong> цэсний гарын авлагын discovery шат. Permission-уудыг нэг бүрчлэн шалгаж, ямар action ID шаардагдахыг тодорхойлж байна. Бусад цэснүүд нь систем админы ажилд илүү ойр тул ажилтнуудад хэрэгтэй Үнэт цаас хэсгийг түрүүлж хийж байна.</div>
+        <div class="proj-name">Polaris эрхийн шинжилгээ ба гарын авлага — Үнэт цаас</div>
+        <div class="proj-desc">Polaris системийн <strong style="color:var(--gold);">Үнэт цаас</strong> цэсний permission, action ID болон алдааны мессежүүдийг нэг бүрчлэн шалгаж байна. Энэ мэдээллээр систем админ болон систем ашигладаг ажилтнуудад зориулсан хоёр түвшний эрхийн матриц гаргаж, role бүрт зөв эрх оноох, хуучин хэрэглэгчдийн илүүдэл эрхийг цэвэрлэх, дараа нь ажилтны гарын авлагыг дуусгах суурь бэлтгэж байна.</div>
         <div class="prog-wrap">
-          <div class="prog-head"><span class="prog-lbl">Permission Discovery</span><span class="prog-pct">50%</span></div>
-          <div class="prog-track"><div class="prog-fill pg-gold" data-w="50"></div></div>
+          <div class="prog-head"><span class="prog-lbl">Эрхийн шинжилгээ</span><span class="prog-pct">65%</span></div>
+          <div class="prog-track"><div class="prog-fill pg-gold" data-w="65"></div></div>
         </div>
         <div class="tags">
           <span class="tag">Polaris</span><span class="tag">Үнэт цаас</span>
@@ -1770,21 +1853,6 @@
         </a>
       </div>
 
-      <div class="card proj-card plan-card reveal d3">
-        <div class="status-pill s-pend"><span class="sdot"></span> Төлөвлөлтийн шатанд</div>
-        <div class="proj-ico" aria-hidden="true">🧭</div>
-        <div class="proj-name">OGSM — Систем төсөл ба дижитал шилжилт</div>
-        <div class="proj-desc">OGSM-ийн хүрээнд 2026/2027 онд хэрэгжүүлэх системийн сайжруулалт, дижитал шилжилтийн санал цуглуулах ажилд оролцож байна. Хэлтэс бүрийн өдөр тутам гараар давтагддаг ажлуудыг тодорхойлж, автоматжуулах боломжтой саналуудыг CBDO болон холбогдох хэлтсүүдтэй хамтран Google Sheets дээр нэгтгэж, цэгцэлж байна.</div>
-        <div class="prog-wrap">
-          <div class="prog-head"><span class="prog-lbl">Гүйцэтгэл</span><span class="prog-pct">5%</span></div>
-          <div class="prog-track"><div class="prog-fill pg-amber" data-w="5"></div></div>
-        </div>
-        <div class="tags">
-          <span class="tag">OGSM</span><span class="tag">CBDO</span><span class="tag">Planning</span>
-          <span class="tag">Digital Transformation</span><span class="tag">Process Automation</span><span class="tag">Google Sheets</span>
-        </div>
-      </div>
-
       <div class="card proj-card plan-card reveal d4">
         <div class="status-pill s-pend"><span class="sdot"></span> Төлөвлөж байна</div>
         <div class="proj-ico" aria-hidden="true">🖥️</div>
@@ -1797,21 +1865,6 @@
         <div class="tags">
           <span class="tag">Millennium Trader</span><span class="tag">Trader Workstation</span><span class="tag">LSEG</span>
           <span class="tag">2027-03-01</span><span class="tag">Арилжааны систем</span><span class="tag">Эрсдэлийн төлөвлөгөө</span>
-        </div>
-      </div>
-
-      <div class="card proj-card plan-card planning-wide reveal d5">
-        <div class="status-pill s-pend"><span class="sdot"></span> Шинэ ажил төлөвлөж байна</div>
-        <div class="proj-ico" aria-hidden="true">🗂️</div>
-        <div class="proj-name">Нэмэлт системийн ажлууд — жагсаалт</div>
-        <div class="proj-desc">Өдөр тутмын ажлаас гарч буй шинэ шаардлага, давтагдсан асуудал, вендортой давтан хянах зүйлсийг нэг ажлын жагсаалт болгож байна. Polaris-ийн дараагийн цэсүүд, Jira тайлангийн долоо хоногийн шинэчлэлт болон ажилтнуудаас ирэх саналуудаас дараагийн хийх ажлыг эрэмбэлнэ.</div>
-        <div class="prog-wrap">
-          <div class="prog-head"><span class="prog-lbl">Төлөвлөлтийн ахиц</span><span class="prog-pct">5%</span></div>
-          <div class="prog-track"><div class="prog-fill pg-amber" data-w="5"></div></div>
-        </div>
-        <div class="tags">
-          <span class="tag">Ажлын жагсаалт</span><span class="tag">Polaris</span>
-          <span class="tag">Jira</span><span class="tag">Вендор давтан хяналт</span><span class="tag">2026</span>
         </div>
       </div>
 
@@ -1859,23 +1912,23 @@
         <div class="status-pill s-pend"><span class="sdot"></span> Вэб &amp; Backend · CASPO</div>
         <div class="proj-ico" aria-hidden="true">🌐</div>
         <div class="proj-name">GrapeCity</div>
-        <div class="proj-desc">Гадаад вендор компани. Polaris системийн backend болон вэб хэсгийг хариуцна. <strong style="color:#FBBF24;">CASPO</strong> нь GrapeCity-ийн манай талд нээсэн Jira төсөл. Энэ тайланд CAS-901-ээс буюу 2026 оны 4-р сарын 23-наас хойш систем админаас үүсгэсэн ажлуудыг тусгав.</div>
+        <div class="proj-desc">Гадаад вендор компани. Polaris системийн backend болон вэб хэсгийг хариуцна. <strong style="color:#FBBF24;">CASPO</strong> нь GrapeCity-ийн манай талд нээсэн Jira төсөл. 2026 оны тайланд CAS-797-оос эхэлсэн 96 Jira, үүнээс CAS-901-ээс хойших 69 ажлыг нэгтгэн хянаж байна.</div>
         <div class="summary-side-title">Гол үр дүн</div>
         <div class="mini-impact-grid">
           <div class="card impact-card mini-impact">
-            <div class="impact-num">45</div>
-            <div class="impact-label">Нийт бүртгэлтэй асуудал</div>
-            <div class="impact-note">Ажиллаж эхэлснээс хойш бүртгэсэн</div>
+            <div class="impact-num">96</div>
+            <div class="impact-label">2026 оны CASPO Jira</div>
+            <div class="impact-note">CAS-797-оос одоо хүртэл</div>
           </div>
           <div class="card impact-card mini-impact">
-            <div class="impact-num">40</div>
-            <div class="impact-label">CASPO руу дамжуулсан</div>
-            <div class="impact-note">CAS-901-ээс хойш</div>
+            <div class="impact-num">69</div>
+            <div class="impact-label">CAS-901-ээс хойших Jira</div>
+            <div class="impact-note">4-р сарын 23-наас хойш</div>
           </div>
           <div class="card impact-card mini-impact">
-            <div class="impact-num">13</div>
-            <div class="impact-label">AFS unique issue</div>
-            <div class="impact-note">Дотоод IT бүртгэл</div>
+            <div class="impact-num">17</div>
+            <div class="impact-label">AFS Jira</div>
+            <div class="impact-note">Үүсгэсэн болон оролцсон</div>
           </div>
         </div>
         <div class="tags">
@@ -1888,38 +1941,17 @@
         <div class="status-pill s-res"><span class="sdot"></span> Дотоод IT</div>
         <div class="proj-ico" aria-hidden="true">📱</div>
         <div class="proj-name">AFS</div>
-        <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн апп болон IT дэд бүтцийн асуудлыг хариуцдаг дотоод IT тал. Одоогоор нийт 13 unique issue бүртгэлтэй: Open 1, Closed 8, Approved 4. Хувь хүний нэрийг оруулахгүй, зөвхөн албан тушаалаар харуулсан.</div>
-        <div class="table-scroll" style="margin-top:1rem;">
-          <table class="data-table" style="font-size:12px;min-width:460px;">
-            <thead>
-              <tr style="border-bottom:1px solid var(--border2);">
-                <th style="text-align:left;padding:.45rem;color:var(--txt2);">Албан тушаал</th>
-                <th style="text-align:center;padding:.45rem;color:var(--txt2);">Open</th>
-                <th style="text-align:center;padding:.45rem;color:var(--txt2);">Closed</th>
-                <th style="text-align:center;padding:.45rem;color:var(--txt2);">Appr.</th>
-                <th style="text-align:center;padding:.45rem;color:var(--txt2);">T</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td style="padding:.4rem;color:var(--txt1);">Data team</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">1</td></tr>
-              <tr><td style="padding:.4rem;color:var(--txt1);">Dev (AFS)</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">2</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">2</td></tr>
-              <tr><td style="padding:.4rem;color:var(--txt1);">InfoSec (AFS)</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">3</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);font-weight:700;">3</td></tr>
-              <tr><td style="padding:.4rem;color:var(--txt1);">IT Director (AFS)</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">2</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt0);font-weight:700;">3</td></tr>
-              <tr><td style="padding:.4rem;color:var(--txt1);">Sysadmin (AFS)</td><td style="text-align:center;color:var(--txt0);">1</td><td style="text-align:center;color:var(--txt2);">0</td><td style="text-align:center;color:var(--txt0);">3</td><td style="text-align:center;color:var(--txt0);font-weight:700;">4</td></tr>
-            </tbody>
-            <tfoot>
-              <tr style="border-top:1px solid var(--border2);">
-                <td style="padding:.45rem;color:var(--txt0);font-weight:700;">Total</td>
-                <td style="text-align:center;color:var(--blue-lt);font-weight:800;">1</td>
-                <td style="text-align:center;color:#4ADE80;font-weight:800;">8</td>
-                <td style="text-align:center;color:#FBBF24;font-weight:800;">4</td>
-                <td style="text-align:center;color:var(--txt0);font-weight:800;">13</td>
-              </tr>
-            </tfoot>
-          </table>
+        <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн апп болон IT дэд бүтцийн асуудлыг хариуцдаг AFS тал. Миний үүсгэсэн эсвэл шийдвэрлэхэд нь оролцсон 17 AFS Jira ажлыг төрлөөр нь нэгтгэн харуулав.</div>
+        <div class="it-support-summary" aria-label="AFS Jira төрлөөр">
+          <div class="it-support-stat"><strong>5</strong><span>Сайжруулалт</span></div>
+          <div class="it-support-stat"><strong>4</strong><span>Өөрчлөлтийн хүсэлт</span></div>
+          <div class="it-support-stat"><strong>3</strong><span>Шинэ боломж</span></div>
+          <div class="it-support-stat"><strong>3</strong><span>Алдаа</span></div>
+          <div class="it-support-stat"><strong>2</strong><span>Дэд ажил</span></div>
+          <div class="it-support-stat"><strong>17</strong><span>Нийт AFS Jira</span></div>
         </div>
         <div class="tags">
-          <span class="tag">AFS</span><span class="tag">13 Unique Issues</span><span class="tag">Open 1</span><span class="tag">Closed 8</span>
+          <span class="tag">AFS</span><span class="tag">IT Support</span><span class="tag">17 Jira</span><span class="tag">ITS төсөл</span>
         </div>
       </div>
 
@@ -1928,142 +1960,86 @@
     <div class="card caspo-report-card reveal">
       <div class="caspo-report-head">
         <div>
-          <div class="caspo-report-title">Илгээсэн Jira — CAS-901 / 4-р сарын 23-аас</div>
-          <div class="caspo-report-copy">CASPO дээр систем админаас үүсгэсэн Jira бүртгэлийн сарын харьцуулалт. Доорх нэгдсэн хэсэг нь CAS-797-оос эхэлсэн 2026 оны бүх CASPO Jira-ийн тоон тайлан.</div>
+          <div class="caspo-report-title">CASPO Jira тайлан — CAS-797-оос одоо хүртэл</div>
+          <div class="caspo-report-copy">2026 оны CASPO Jira бүртгэлийг сар, төлөв, төрөл, компонент болон эрэмбээр нэгтгэв. CAS-901-ээс хойших ажлуудыг миний ажиллаж эхэлснээс хойших урсгал болгон тусад нь хянаж байна.</div>
         </div>
         <div class="caspo-total-pill">
-          <strong>82</strong>
+          <strong>96</strong>
           <span>нийт CASPO</span>
         </div>
       </div>
 
-      <div class="caspo-month-grid" aria-label="CASPO сарын Jira харьцуулалт">
-        <div class="caspo-month">
-          <div class="caspo-month-num">9</div>
-          <div><div class="caspo-month-label">4-р сар</div><div class="caspo-month-note">CAS-901 / 4-р сарын 23-аас</div></div>
+      <div class="monthly-chart-card" aria-label="CASPO Jira сарын харьцуулалт">
+        <div class="monthly-chart-head">
+          <div>
+            <div class="monthly-chart-title">Сарын Jira хөдөлгөөн</div>
+            <div class="monthly-chart-sub">2026 оны 1-р сараас 7-р сарын 3 хүртэл</div>
+          </div>
         </div>
-        <div class="caspo-month">
-          <div class="caspo-month-num">18</div>
-          <div><div class="caspo-month-label">5-р сар</div><div class="caspo-month-note">дууссан сар</div></div>
+        <div class="monthly-chart-scroll">
+          <div class="monthly-chart">
+            <div class="month-column"><div class="month-count">8</div><div class="month-bar" style="--bar-h:23%;"></div><div class="month-label">1-р сар</div></div>
+            <div class="month-column"><div class="month-count">7</div><div class="month-bar" style="--bar-h:20%;"></div><div class="month-label">2-р сар</div></div>
+            <div class="month-column"><div class="month-count">11</div><div class="month-bar" style="--bar-h:31%;"></div><div class="month-label">3-р сар</div></div>
+            <div class="month-column"><div class="month-count">10</div><div class="month-bar" style="--bar-h:29%;"></div><div class="month-label">4-р сар</div></div>
+            <div class="month-column"><div class="month-count">18</div><div class="month-bar" style="--bar-h:51%;"></div><div class="month-label">5-р сар</div></div>
+            <div class="month-column peak"><div class="month-count">35</div><div class="month-bar" style="--bar-h:100%;"></div><div class="month-label">6-р сар</div></div>
+            <div class="month-column current"><div class="month-count">7</div><div class="month-bar" style="--bar-h:20%;"></div><div class="month-label">7-р сар</div></div>
+          </div>
         </div>
-        <div class="caspo-month">
-          <div class="caspo-month-num">13</div>
-          <div><div class="caspo-month-label">6-р сар</div><div class="caspo-month-note">одоогийн байдлаар</div></div>
+        <div class="monthly-chart-foot">
+          <span><strong>CAS-901-ээс хойш:</strong> 4-р сар 9 · 5-р сар 18 · 6-р сар 35 · 7-р сар 7</span>
+          <span><strong>Нийт 69</strong> Jira · 7-р сарын 3-ны байдлаар</span>
         </div>
       </div>
 
       <div class="status-stat-grid" aria-label="CASPO Jira төлөв">
-        <div class="status-stat"><strong>82</strong><span>Нийт Jira</span></div>
-        <div class="status-stat"><strong style="color:var(--blue-lt);">16</strong><span>Нээлттэй</span></div>
-        <div class="status-stat"><strong style="color:#4ADE80;">55</strong><span>Хаагдсан</span></div>
-        <div class="status-stat"><strong style="color:#FBBF24;">13</strong><span>In Progress</span></div>
-        <div class="status-stat"><strong style="color:#FF8D7C;">11</strong><span>Засахгүй</span></div>
-      </div>
-
-      <div class="caspo-story">
-        <h3>Давтагдаж буй алдааны паттерн</h3>
-        <p class="caspo-story-p">Нийт 82 CASPO/Jira ticket-ийг шинжлэхэд алдаанууд нэг удаагийн жижиг доголдлоос илүүтэйгээр тодорхой хэдэн төрлийн системийн давтамжтай асуудалд төвлөрч байна. Ялангуяа дансны төлөв, бизнес дүрмийн шалгалт, төлбөр тооцоо, дотоод бичилт, хэрэглэгчид харагдах мэдээлэл, систем хоорондын синк зэрэг хэсгүүдэд давтамж өндөр байна.</p>
-        <div class="pattern-highlight">
-          <div class="pattern-score">
-            <strong>65.85%</strong>
-            <span>хамгийн өндөр 3 ангиллын нийт эзлэх хувь.</span>
-          </div>
-          <div class="pattern-summary">
-            <div class="summary-line"><span>1. Баталгаажуулалт, дансны төлөв, бизнес дүрэм</span><strong>25.61%</strong></div>
-            <div class="summary-line"><span>2. Төлбөр тооцоо, мөнгөн гүйлгээ, дотоод бичилт</span><strong>21.95%</strong></div>
-            <div class="summary-line"><span>3. UI/дэлгэц, тайлан/хуулга, хэрэглэгчийн мэдээлэл</span><strong>18.29%</strong></div>
-          </div>
-        </div>
-
-        <div class="pattern-grid">
-          <div class="pattern-card">
-            <div class="pattern-head"><div class="pattern-title">Баталгаажуулалт, дансны төлөв ба бизнес дүрмийн алдаа</div><div class="pattern-rank">1</div></div>
-            <div class="pattern-meta"><span class="pattern-num">21</span><span class="pattern-pct">25.61%</span><span class="risk-badge risk-high">Өндөр</span></div>
-            <div class="pattern-track"><div class="pattern-fill fill-high" style="width:100%;"></div></div>
-            <div class="pattern-desc">Данс, гэрээ, IBAN эсвэл төлөв буруу үед системийн зөвшөөрөх/татгалзах шалгалт хангалтгүй байна.</div>
-          </div>
-          <div class="pattern-card">
-            <div class="pattern-head"><div class="pattern-title">Төлбөр тооцоо, мөнгөн гүйлгээ ба дотоод бичилтийн алдаа</div><div class="pattern-rank">2</div></div>
-            <div class="pattern-meta"><span class="pattern-num">18</span><span class="pattern-pct">21.95%</span><span class="risk-badge risk-critical">Критикал</span></div>
-            <div class="pattern-track"><div class="pattern-fill fill-critical" style="width:86%;"></div></div>
-            <div class="pattern-desc">Мөнгө орох/гарах, хураамж, дотоод бичилт, төлбөр тооцооны данстай холбоотой давтамж.</div>
-          </div>
-          <div class="pattern-card">
-            <div class="pattern-head"><div class="pattern-title">UI/дэлгэц, тайлан/хуулга ба хэрэглэгчид харагдах мэдээллийн алдаа</div><div class="pattern-rank">3</div></div>
-            <div class="pattern-meta"><span class="pattern-num">15</span><span class="pattern-pct">18.29%</span><span class="risk-badge risk-high">Өндөр</span></div>
-            <div class="pattern-track"><div class="pattern-fill fill-high" style="width:71%;"></div></div>
-            <div class="pattern-desc">Апп/веб дээр мэдээлэл буруу харагдах, хуулга татагдахгүй, төлөв ойлгомжгүй байх асуудлууд.</div>
-          </div>
-          <div class="pattern-card">
-            <div class="pattern-head"><div class="pattern-title">Интеграц, мэдээлэл дамжуулалт ба систем хоорондын синк алдаа</div><div class="pattern-rank">4</div></div>
-            <div class="pattern-meta"><span class="pattern-num">13</span><span class="pattern-pct">15.85%</span><span class="risk-badge risk-very-high">Маш өндөр</span></div>
-            <div class="pattern-track"><div class="pattern-fill fill-critical" style="width:62%;"></div></div>
-            <div class="pattern-desc">App, Web, Backend, Core system, MIT, Polaris, ҮЦТХТ, MSE/UBX хооронд мэдээлэл зөрөх эрсдэл.</div>
-          </div>
-          <div class="pattern-card">
-            <div class="pattern-head"><div class="pattern-title">Тооцоолол, үнэлгээ, шимтгэл, татварын алдаа</div><div class="pattern-rank">5</div></div>
-            <div class="pattern-meta"><span class="pattern-num">12</span><span class="pattern-pct">14.63%</span><span class="risk-badge risk-very-high">Маш өндөр</span></div>
-            <div class="pattern-track"><div class="pattern-fill fill-critical" style="width:57%;"></div></div>
-            <div class="pattern-desc">Нийт дүн, шимтгэл, татвар, хүү, клиринг, өгөөж, үнэлгээ буруу тооцогдох асуудал.</div>
-          </div>
-          <div class="pattern-card">
-            <div class="pattern-head"><div class="pattern-title">Бизнес/техникийн зөвлөгөө ба ерөнхий сайжруулалтын хүсэлт</div><div class="pattern-rank">6</div></div>
-            <div class="pattern-meta"><span class="pattern-num">3</span><span class="pattern-pct">3.66%</span><span class="risk-badge risk-low">Бага</span></div>
-            <div class="pattern-track"><div class="pattern-fill fill-low" style="width:14%;"></div></div>
-            <div class="pattern-desc">Шууд алдаа биш, бүтээгдэхүүн сайжруулах, техникийн тодруулга авах, вендортой зөвшилцөх ажлууд.</div>
-          </div>
-        </div>
-
-        <div class="ceo-takeaway">
-          <h3>CEO түвшний тайлбар</h3>
-          <div class="takeaway-grid">
-            <div class="takeaway-card"><strong>1. Санхүүгийн тулгалт</strong>Төлбөр тооцоо болон дотоод бичилтийн алдаа нь мөнгөн хөрөнгийн хөдөлгөөн, reconciliation, харилцагчийн итгэлцэлд шууд нөлөөлөх эрсдэлтэй.</div>
-            <div class="takeaway-card"><strong>2. Дансны төлөв ба процесс</strong>Бизнес дүрмийн шалгалт хангалтгүй үед буруу хүсэлт, давхар үйлдэл, гацсан процесс үүсэх магадлалтай.</div>
-            <div class="takeaway-card"><strong>3. Хэрэглэгчид харагдах мэдээлэл</strong>Бодит мөнгөн алдаа биш байсан ч тайлан/хуулга, дэлгэцийн алдаа нь ойлголт, итгэл, үйлчилгээний ачаалалд нөлөөлнө.</div>
-          </div>
-          <div class="next-step">Дараагийн шатанд зөвхөн ticket бүрийг хаахаас гадна давтагдаж буй root cause-уудыг багцлан шийдвэрлэх хэрэгтэй. Ялангуяа төлбөр тооцоо, дансны төлөв, систем хоорондын синк, тооцооллын logic дээр regression test болон reconciliation control-ийг сайжруулах нь зүйтэй.</div>
-        </div>
+        <div class="status-stat"><strong>96</strong><span>Нийт Jira</span></div>
+        <div class="status-stat"><strong style="color:var(--blue-lt);">11</strong><span>Нээлттэй</span></div>
+        <div class="status-stat"><strong style="color:#4ADE80;">72</strong><span>Засагдсан</span></div>
+        <div class="status-stat"><strong style="color:#FBBF24;">8</strong><span>In Progress · нээлттэйд багтсан</span></div>
+        <div class="status-stat"><strong style="color:#FF8D7C;">13</strong><span>Засахгүй</span></div>
       </div>
 
       <div class="stat-panel-grid">
         <div class="stat-panel">
           <h3>Төрлөөр</h3>
           <div class="metric-list">
-            <div class="metric-row"><div><div class="metric-name">Bug (Алдаа)</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:60.98%;"></div></div></div><div class="metric-value">50<span>60.98%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Improvement</div><div class="metric-track"><div class="metric-fill fill-low" style="width:26.83%;"></div></div></div><div class="metric-value">22<span>26.83%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Business Consulting</div><div class="metric-track"><div class="metric-fill fill-info" style="width:8.54%;"></div></div></div><div class="metric-value">7<span>8.54%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Technical Consulting</div><div class="metric-track"><div class="metric-fill fill-info" style="width:2.44%;"></div></div></div><div class="metric-value">2<span>2.44%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Complaint</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:1.22%;"></div></div></div><div class="metric-value">1<span>1.22%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Bug (Алдаа)</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:61.46%;"></div></div></div><div class="metric-value">59<span>61.46%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Improvement</div><div class="metric-track"><div class="metric-fill fill-low" style="width:25%;"></div></div></div><div class="metric-value">24<span>25.00%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Business Consulting</div><div class="metric-track"><div class="metric-fill fill-info" style="width:10.42%;"></div></div></div><div class="metric-value">10<span>10.42%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Technical Consulting</div><div class="metric-track"><div class="metric-fill fill-info" style="width:2.08%;"></div></div></div><div class="metric-value">2<span>2.08%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Complaint</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:1.04%;"></div></div></div><div class="metric-value">1<span>1.04%</span></div></div>
           </div>
         </div>
         <div class="stat-panel">
           <h3>Компонентоор</h3>
           <div class="metric-list">
-            <div class="metric-row"><div><div class="metric-name">ACCOUNT</div><div class="metric-track"><div class="metric-fill fill-info" style="width:21.95%;"></div></div></div><div class="metric-value">18<span>21.95%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">ХУРИМТЛАЛ</div><div class="metric-track"><div class="metric-fill" style="width:14.63%;"></div></div></div><div class="metric-value">12<span>14.63%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">BOND</div><div class="metric-track"><div class="metric-fill" style="width:13.41%;"></div></div></div><div class="metric-value">11<span>13.41%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">APP</div><div class="metric-track"><div class="metric-fill" style="width:10.98%;"></div></div></div><div class="metric-value">9<span>10.98%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">CASPO_WEB</div><div class="metric-track"><div class="metric-fill" style="width:7.32%;"></div></div></div><div class="metric-value">6<span>7.32%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">BAC</div><div class="metric-track"><div class="metric-fill" style="width:4.88%;"></div></div></div><div class="metric-value">4<span>4.88%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Бусад</div><div class="metric-track"><div class="metric-fill" style="width:26.83%;"></div></div></div><div class="metric-value">22<span>26.83%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">ACCOUNT</div><div class="metric-track"><div class="metric-fill fill-info" style="width:22.92%;"></div></div></div><div class="metric-value">22<span>22.92%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">ХУРИМТЛАЛ</div><div class="metric-track"><div class="metric-fill" style="width:13.54%;"></div></div></div><div class="metric-value">13<span>13.54%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">BOND</div><div class="metric-track"><div class="metric-fill" style="width:13.54%;"></div></div></div><div class="metric-value">13<span>13.54%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">APP</div><div class="metric-track"><div class="metric-fill" style="width:9.38%;"></div></div></div><div class="metric-value">9<span>9.38%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">CASPO_WEB</div><div class="metric-track"><div class="metric-fill" style="width:6.25%;"></div></div></div><div class="metric-value">6<span>6.25%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">BAC</div><div class="metric-track"><div class="metric-fill" style="width:4.17%;"></div></div></div><div class="metric-value">4<span>4.17%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Бусад</div><div class="metric-track"><div class="metric-fill" style="width:30.21%;"></div></div></div><div class="metric-value">29<span>30.21%</span></div></div>
           </div>
         </div>
         <div class="stat-panel">
           <h3>Эрэмбэ</h3>
           <div class="metric-list">
-            <div class="metric-row"><div><div class="metric-name">Маш өндөр</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:32.93%;"></div></div></div><div class="metric-value">27<span>32.93%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Өндөр</div><div class="metric-track"><div class="metric-fill fill-high" style="width:50%;"></div></div></div><div class="metric-value">41<span>50.00%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Дунд</div><div class="metric-track"><div class="metric-fill" style="width:14.63%;"></div></div></div><div class="metric-value">12<span>14.63%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Бага</div><div class="metric-track"><div class="metric-fill fill-low" style="width:2.44%;"></div></div></div><div class="metric-value">2<span>2.44%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Маш өндөр</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:33.33%;"></div></div></div><div class="metric-value">32<span>33.33%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Өндөр</div><div class="metric-track"><div class="metric-fill fill-high" style="width:51.04%;"></div></div></div><div class="metric-value">49<span>51.04%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Дунд</div><div class="metric-track"><div class="metric-fill" style="width:12.5%;"></div></div></div><div class="metric-value">12<span>12.50%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Бага</div><div class="metric-track"><div class="metric-fill fill-low" style="width:3.13%;"></div></div></div><div class="metric-value">3<span>3.13%</span></div></div>
           </div>
         </div>
         <div class="stat-panel">
           <h3>Эрэмбэ ба төлөв</h3>
           <div class="metric-list">
-            <div class="metric-row"><div><div class="metric-name">Маш өндөр</div><div class="metric-sub">Нээлттэй 0 · Хаагдсан 20</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:100%;"></div></div></div><div class="metric-value">20<span>closed</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Өндөр</div><div class="metric-sub">Нээлттэй 6 · Хаагдсан 27</div><div class="metric-track"><div class="metric-fill fill-high" style="width:82%;"></div></div></div><div class="metric-value">33<span>total</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Дунд</div><div class="metric-sub">Нээлттэй 6 · Хаагдсан 4</div><div class="metric-track"><div class="metric-fill" style="width:40%;"></div></div></div><div class="metric-value">10<span>total</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Бага</div><div class="metric-sub">Нээлттэй 1 · Хаагдсан 1</div><div class="metric-track"><div class="metric-fill fill-low" style="width:50%;"></div></div></div><div class="metric-value">2<span>total</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Маш өндөр</div><div class="metric-sub">Нээлттэй 0 · Хаагдсан 32</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:100%;"></div></div></div><div class="metric-value">32<span>нийт</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Өндөр</div><div class="metric-sub">Нээлттэй 9 · Хаагдсан 40</div><div class="metric-track"><div class="metric-fill fill-high" style="width:81.63%;"></div></div></div><div class="metric-value">49<span>нийт</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Дунд</div><div class="metric-sub">Нээлттэй 2 · Хаагдсан 10</div><div class="metric-track"><div class="metric-fill" style="width:83.33%;"></div></div></div><div class="metric-value">12<span>нийт</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Бага</div><div class="metric-sub">Нээлттэй 0 · Хаагдсан 3</div><div class="metric-track"><div class="metric-fill fill-low" style="width:100%;"></div></div></div><div class="metric-value">3<span>нийт</span></div></div>
           </div>
         </div>
       </div>
@@ -2073,7 +2049,7 @@
           Jira тайлан нээх
         </a>
         <span class="access-note">ARD ажлын Google акаунт шаардлагатай.</span>
-        <span class="caspo-source">Эх сурвалж: CASPO_Report 6-25, CAS-797 → Одоог хүртэл.</span>
+        <span class="caspo-source">Эх сурвалж: CASPO_Report (June Full), CAS-797 → 2026 оны 7-р сарын 3.</span>
       </div>
     </div>
 
@@ -2143,8 +2119,8 @@
     <div class="card access-card wide reveal" style="margin-top:1.5rem;padding:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
       <div class="proj-ico" aria-hidden="true" style="margin-bottom:0;">📊</div>
       <div style="flex:1;min-width:220px;">
-        <div class="access-h" style="margin-bottom:.4rem;">Polaris Permission Discovery — Үнэт цаас</div>
-        <p class="access-p" style="margin-bottom:1.2rem;">Polaris системийн гарын авлагын discovery файл. Одоогоор Үнэт цаас цэсийг ажилтнуудад зориулан шалгаж, шаардагдах permission болон action ID-уудыг тодорхойлж байна. Live Google Sheet дээр шинэчлэлт шууд орно.</p>
+        <div class="access-h" style="margin-bottom:.4rem;">Polaris эрхийн шинжилгээ — Үнэт цаас</div>
+        <p class="access-p" style="margin-bottom:1.2rem;">Үнэт цаас цэсний permission, action ID болон алдааны мессежийн discovery файл. Уг мэдээллийг ажилтны гарын авлага, албан тушаалд суурилсан эрхийн матриц болон хуучин хэрэглэгчдийн илүүдэл эрхийг цэвэрлэх ажилд ашиглана. Live Google Sheet дээр шинэчлэлт шууд орно.</p>
         <a href="https://docs.google.com/spreadsheets/d/1oR0nRBo18wVI8WZoLGc5S8FZf9s6xdqwfaAeTf4KxeE/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="open-btn">
           Live sheet нээх
         </a>
@@ -2211,7 +2187,7 @@
   <div class="wrap">
     <div class="sec-eyebrow">Ажлын төлөвлөгөө</div>
     <h2 class="sec-h2">Ажлын явц ба төлөвлөгөө</h2>
-    <p class="sec-p">2026 оны 4-р сарын 21-ээс 6-р сар хүртэлх системийн ажлуудын ахиц болон дараагийн төлөвлөгөө.</p>
+    <p class="sec-p">2026 оны 4-р сарын 21-ээс 7-р сар хүртэлх системийн ажлуудын ахиц болон дараагийн төлөвлөгөө.</p>
 
     <div class="tl">
 
@@ -2234,11 +2210,11 @@
       </div>
 
       <div class="tl-item reveal d2">
-        <div class="tl-date">2026 оны 4–5-р сар</div>
+        <div class="tl-date">2026 оны 4–7-р сар</div>
         <div class="tl-dot lit"></div>
         <div class="tl-content">
         <div class="tl-title">GrapeCity / CASPO Jira урсгалыг нэгтгэсэн ✓</div>
-        <div class="tl-body">Polaris системийн bug, сайжруулалт, лавлагааг GrapeCity-ийн CASPO төсөл дээр хянаж байна. Энэ тайланд CAS-901 буюу 2026 оны 4-р сарын 23-наас хойш үүсгэсэн ажлуудыг тусгасан: 4-р сар 9, 5-р сар 18, 6-р сар одоогоор 13, нийт 40.</div>
+        <div class="tl-body">Polaris системийн алдаа, сайжруулалт, лавлагааг GrapeCity-ийн CASPO төсөл дээр хянаж байна. CAS-901 буюу 2026 оны 4-р сарын 23-наас хойш 4-р сард 9, 5-р сард 18, 6-р сард 35, 7-р сарын 3-ны байдлаар 7 Jira бүртгэгдсэн. Нийт 69 ажлын явцыг нэгтгэн хянаж байна.</div>
         </div>
       </div>
 
@@ -2251,8 +2227,17 @@
         </div>
       </div>
 
+      <div class="tl-item reveal d2">
+        <div class="tl-date">2026 оны 6–7-р сар</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+        <div class="tl-title">Polaris системийн эрхийн матриц (RBAC)</div>
+        <div class="tl-body">Permission ID болон алдааны мессежүүдийг боломжит хэмжээнд бүртгэж, албан тушаалд суурилсан эрхийн матрицын суурийг гаргаж байна. Матрицыг систем админ болон систем ашигладаг ажилтны хоёр хувилбараар боловсруулна. Дараагийн алхам нь эрхийг role бүрт оноох, хуучин хэрэглэгчдийн илүүдэл эрхийг цэвэрлэх, зөвхөн өөрт оноосон эрхээр ажиллах хариуцлагыг баримтжуулах, дараа нь ажилтны гарын авлагыг дуусгах юм.</div>
+        </div>
+      </div>
+
       <div class="tl-item reveal d1">
-        <div class="tl-date">2026 оны 6-р сар</div>
+        <div class="tl-date">2026 оны 7-р сар</div>
         <div class="tl-dot"></div>
         <div class="tl-content">
         <div class="tl-title">Удирдлагуудад танилцуулах — эцсийн тайлан</div>
