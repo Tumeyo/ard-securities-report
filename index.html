@@ -15,40 +15,46 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg0:        #020810;
-      --bg1:        #050D1A;
-      --bg2:        #081422;
-      --card:       rgba(6, 14, 28, 0.88);
-      --gold:       #C9A84C;
-      --gold-lt:    #E5C46A;
-      --gold-dk:    #8A6A1A;
-      --gold-glow:  rgba(201,168,76,.26);
-      --red:        #E63329;
-      --red-lt:     #FF5A52;
-      --red-glow:   rgba(230,51,41,.22);
-      --blue:       #3B82F6;
-      --blue-lt:    #60A5FA;
-      --green:      #22C55E;
-      --amber:      #F59E0B;
-      --txt0:       #EEF2F8;
-      --txt1:       #B7C6DA;
-      --txt2:       #70849B;
-      --border:     rgba(214,184,90,.18);
-      --border2:    rgba(255,255,255,.055);
-      --glass:      linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+      --bg0:        #0E0F11;
+      --bg1:        #15171A;
+      --bg2:        #1C1F23;
+      --card:       rgba(24, 26, 29, 0.9);
+      --gold:       #B8BCC1;
+      --gold-lt:    #F1F2F3;
+      --gold-dk:    #747980;
+      --gold-glow:  rgba(218,221,225,.18);
+      --red:        #D4D7DA;
+      --red-lt:     #F7F7F5;
+      --red-glow:   rgba(218,221,225,.16);
+      --blue:       #9299A1;
+      --blue-lt:    #CDD1D5;
+      --green:      #AEB3B8;
+      --amber:      #989DA3;
+      --txt0:       #F1F0ED;
+      --txt1:       #C1C4C8;
+      --txt2:       #858B92;
+      --positive:   #22C55E;
+      --negative:   #EF4444;
+      --info:       #3B82F6;
+      --warning:    #F59E0B;
+      --border:     rgba(225,227,230,.16);
+      --border2:    rgba(255,255,255,.075);
+      --glass:      linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.022));
+      --ease:       cubic-bezier(.22,1,.36,1);
       --r:          22px;
     }
 
-    html { scroll-behavior: auto; max-width:100%; overflow-x:hidden; }
+    html { scroll-behavior: auto; max-width:100%; overflow-x:hidden; scrollbar-width:none; }
+    html::-webkit-scrollbar, body::-webkit-scrollbar { display:none; width:0; height:0; }
 
     body {
       font-family: 'Inter', sans-serif;
       background:
-        radial-gradient(circle at 8% 10%, rgba(201,168,76,.11) 0, transparent 24rem),
-        radial-gradient(circle at 92% 8%, rgba(68,111,176,.11) 0, transparent 30rem),
-        radial-gradient(circle at 50% 88%, rgba(201,168,76,.055) 0, transparent 34rem),
-        linear-gradient(115deg, rgba(255,255,255,.028) 0 1px, transparent 1px 9rem),
-        linear-gradient(180deg, #02060D 0%, #07111F 44%, #030811 100%);
+        radial-gradient(circle at 8% 10%, rgba(255,255,255,.065) 0, transparent 24rem),
+        radial-gradient(circle at 92% 8%, rgba(169,175,183,.06) 0, transparent 30rem),
+        radial-gradient(circle at 50% 88%, rgba(255,255,255,.035) 0, transparent 34rem),
+        linear-gradient(115deg, rgba(255,255,255,.022) 0 1px, transparent 1px 9rem),
+        linear-gradient(180deg, #0D0E10 0%, #16181B 44%, #101113 100%);
       background-size: auto, auto, auto, 9rem 9rem, auto;
       background-attachment: fixed;
       color: var(--txt0);
@@ -60,18 +66,14 @@
     a:focus-visible, button:focus-visible {
       outline: 2px solid var(--gold-lt);
       outline-offset: 4px;
-      box-shadow: 0 0 0 5px rgba(201,168,76,.16);
+      box-shadow: 0 0 0 5px rgba(220,223,226,.12);
     }
-
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--bg0); }
-    ::-webkit-scrollbar-thumb { background: var(--gold-dk); border-radius: 3px; }
 
     /* ── PROGRESS BAR ── */
     #pbar {
       position: fixed; top: 0; left: 0;
       height: 3px; width: 0%;
-      background: linear-gradient(90deg, var(--red), var(--gold), var(--gold-lt));
+      background: linear-gradient(90deg, #6E7379, #D7D9DC, #F5F5F3);
       z-index: 9999;
       box-shadow: 0 0 14px var(--gold-glow);
       transition: width .1s linear;
@@ -84,43 +86,65 @@
       height: 68px;
       padding: 0 2rem;
       display: flex; align-items: center; justify-content: space-between;
-      background: rgba(2,8,16,.86);
+      background: rgba(15,16,18,.86);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border);
       transition: box-shadow .3s;
     }
-    .nav-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
-    .nav-mark {
-      width: 36px; height: 36px; border-radius: 10px;
-      background: rgba(201,168,76,.1);
-      border: 1px solid rgba(201,168,76,.3);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; overflow: hidden; padding: 4px;
+    #nav.is-scrolled { background:rgba(16,17,19,.94); border-bottom-color:rgba(255,255,255,.11); }
+    .nav-brand { display:flex; align-items:center; gap:14px; text-decoration:none; flex-shrink:0; color:var(--txt0); }
+    .brand-mark {
+      width:88px;
+      height:40px;
+      display:block;
+      flex:0 0 auto;
+      object-fit:contain;
+      object-position:center;
+      filter:drop-shadow(0 3px 10px rgba(255,255,255,.08));
     }
-    .nav-logo-img {
-      width: 100%; height: 100%; object-fit: contain;
+    .brand-word { color:#D9DBDE; font-size:10px; font-weight:500; letter-spacing:.34em; }
+    .nav-links { display:flex; align-items:center; gap:.2rem; list-style:none; position:relative; }
+    .nav-active-pill {
+      position:absolute;
+      z-index:0;
+      top:50%;
+      left:0;
+      width:var(--nav-pill-w,0px);
+      height:34px;
+      border:1px solid rgba(96,165,250,.16);
+      border-radius:11px;
+      background:linear-gradient(180deg,rgba(59,130,246,.14),rgba(59,130,246,.07));
+      box-shadow:inset 0 1px rgba(255,255,255,.04),0 8px 22px rgba(0,0,0,.16);
+      opacity:0;
+      transform:translate3d(var(--nav-pill-x,0px),-50%,0);
+      transition:transform .52s var(--ease),width .52s var(--ease),opacity .25s ease;
+      pointer-events:none;
     }
-    .nav-text strong {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 15px; font-weight: 700; color: var(--txt0);
-      display: block; line-height: 1;
-    }
-    .nav-text small {
-      font-size: 9.5px; font-weight: 600; color: var(--gold);
-      letter-spacing: 1.8px; text-transform: uppercase;
-    }
-    .nav-links { display: flex; align-items: center; gap: .2rem; list-style: none; }
+    .nav-links.has-active .nav-active-pill { opacity:1; }
     .nav-links a {
       color: var(--txt1); text-decoration: none;
       font-size: 13px; font-weight: 500;
       padding: 7px 13px; border-radius: 10px;
-      letter-spacing: .2px; transition: all .2s;
+      position:relative; z-index:1; letter-spacing:.2px; transition:color .3s var(--ease), background .3s var(--ease);
     }
     .nav-links a:hover { color: var(--txt0); background: var(--border2); }
+    .nav-links a::after {
+      content:'';
+      position:absolute;
+      left:13px;
+      right:13px;
+      bottom:2px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,#F1F2F3,transparent);
+      transform:scaleX(0);
+      transition:transform .45s var(--ease);
+    }
+    .nav-links a.active { color:#fff; background:transparent; }
+    .nav-links a.active::after { transform:scaleX(1); }
     .nav-links .nav-btn {
-      background: linear-gradient(135deg, var(--red), #B5201A) !important;
-      color: #fff !important; font-weight: 700 !important;
+      background: linear-gradient(135deg,#F3F4F4,#858A90) !important;
+      color:#111214 !important; font-weight:700 !important;
     }
     .nav-links .nav-btn:hover {
       transform: translateY(-1px);
@@ -142,31 +166,41 @@
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
       padding: 100px 2rem 60px;
+      --hero-x:0px;
+      --hero-y:0px;
+      --hero-x-rev:0px;
+      --hero-y-rev:0px;
+      --hero-x-soft:0px;
+      --hero-y-soft:0px;
     }
     .hero-mesh {
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 90% 70% at 50% -5%, rgba(201,168,76,.13) 0%, transparent 58%),
-        radial-gradient(ellipse 50% 70% at 0%  95%, rgba(230,51,41,.07)  0%, transparent 50%),
-        radial-gradient(ellipse 55% 70% at 100% 60%, rgba(201,168,76,.07) 0%, transparent 50%);
+        radial-gradient(ellipse 90% 70% at 50% -5%, rgba(255,255,255,.075) 0%, transparent 58%),
+        radial-gradient(ellipse 50% 70% at 0% 95%, rgba(143,149,156,.045) 0%, transparent 50%),
+        radial-gradient(ellipse 55% 70% at 100% 60%, rgba(255,255,255,.04) 0%, transparent 50%);
+      transform:translate3d(var(--hero-x),var(--hero-y),0) scale(1.03);
+      transition:transform .7s var(--ease);
     }
     .hero-grid-bg {
       position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(201,168,76,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201,168,76,.03) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.026) 1px, transparent 1px);
       background-size: 54px 54px;
       mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black, transparent);
       -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black, transparent);
+      transform:translate3d(var(--hero-x-rev),var(--hero-y-rev),0) scale(1.04);
+      transition:transform .8s var(--ease);
     }
     .orb {
       position: absolute; border-radius: 50%;
       filter: blur(90px); pointer-events: none;
       animation: drift ease-in-out infinite alternate;
     }
-    .orb1 { width:600px; height:600px; top:-20%; left:-12%; background:rgba(201,168,76,.09); animation-duration:22s; }
-    .orb2 { width:420px; height:420px; bottom:-12%; right:-8%; background:rgba(230,51,41,.06); animation-duration:28s; animation-delay:-12s; }
-    .orb3 { width:340px; height:340px; top:38%; left:58%; background:rgba(59,130,246,.06); animation-duration:18s; animation-delay:-7s; }
+    .orb1 { width:600px; height:600px; top:-20%; left:-12%; background:rgba(255,255,255,.055); animation-duration:22s; }
+    .orb2 { width:420px; height:420px; bottom:-12%; right:-8%; background:rgba(150,155,161,.045); animation-duration:28s; animation-delay:-12s; }
+    .orb3 { width:340px; height:340px; top:38%; left:58%; background:rgba(205,209,213,.035); animation-duration:18s; animation-delay:-7s; }
     @keyframes drift {
       0%   { transform:translate(0,0) scale(1); }
       33%  { transform:translate(40px,-30px) scale(1.06); }
@@ -182,6 +216,8 @@
       z-index:0;
       pointer-events:none;
       opacity:.72;
+      transform:translate3d(var(--hero-x-soft),var(--hero-y-soft),0) scale(1.015);
+      transition:transform .55s var(--ease);
       mask-image:linear-gradient(to bottom, transparent 0, transparent 86px, rgba(0,0,0,.35) 140px, black 32%, black 78%, transparent 100%);
       -webkit-mask-image:linear-gradient(to bottom, transparent 0, transparent 86px, rgba(0,0,0,.35) 140px, black 32%, black 78%, transparent 100%);
     }
@@ -222,8 +258,8 @@
 
     .hero-sub {
       font-size: clamp(.95rem, 2vw, 1.15rem);
-      color: #D4DEEC; max-width: 760px;
-      margin: 0 auto 2.8rem; line-height: 1.75;
+      color:#D4DEEC; max-width:760px;
+      margin:0 auto 2.8rem; line-height:1.75;
       text-shadow: 0 10px 28px rgba(0,0,0,.7);
     }
 
@@ -258,6 +294,36 @@
 
     /* ── SECTION BASE ── */
     section { padding:5.5rem 2rem; position:relative; overflow:hidden; }
+    .section-transition {
+      position:absolute;
+      left:50%;
+      bottom:0;
+      width:min(1120px,calc(100% - 4rem));
+      height:1px;
+      transform:translateX(-50%);
+      background:linear-gradient(90deg,transparent,rgba(148,163,184,.12) 15%,rgba(226,232,240,.34) 50%,rgba(148,163,184,.12) 85%,transparent);
+      pointer-events:none;
+      z-index:5;
+    }
+    .section-transition::after {
+      content:'';
+      position:absolute;
+      top:-2px;
+      left:0;
+      width:72px;
+      height:5px;
+      border-radius:999px;
+      opacity:0;
+      background:linear-gradient(90deg,transparent,#60A5FA,#34D399,transparent);
+      box-shadow:0 0 18px rgba(96,165,250,.35);
+    }
+    section.section-in .section-transition::after { animation:sectionSignal 1.35s var(--ease) both; }
+    @keyframes sectionSignal {
+      0% { left:0; opacity:0; transform:scaleX(.35); }
+      16% { opacity:1; }
+      82% { opacity:.85; }
+      100% { left:calc(100% - 72px); opacity:0; transform:scaleX(1); }
+    }
     .wrap { max-width:1120px; margin:0 auto; position:relative; z-index:1; }
     .sec-eyebrow { font-size:11px; font-weight:800; color:var(--gold-lt); text-transform:uppercase; letter-spacing:2.8px; display:flex; align-items:center; gap:10px; margin-bottom:.8rem; }
     .sec-eyebrow::before { content:''; width:22px; height:2px; background:var(--gold); flex-shrink:0; }
@@ -363,7 +429,7 @@
       box-shadow:
         0 20px 56px rgba(0,0,0,.3),
         inset 0 1px 0 rgba(255,255,255,.045);
-      transition:transform .3s, box-shadow .3s, border-color .3s;
+      transition:transform .42s var(--ease), box-shadow .42s var(--ease), border-color .42s var(--ease), background .42s var(--ease);
     }
     .card:has(a.open-btn):hover,
     .card:has(button):hover,
@@ -375,6 +441,7 @@
         inset 0 1px 0 rgba(255,255,255,.05);
       border-color:rgba(201,168,76,.34);
     }
+    .interactive-card { cursor:pointer; }
 
     /* ── TEAM ── */
     #team {
@@ -667,6 +734,142 @@
       border:1px solid rgba(214,184,90,.16);
       background:rgba(201,168,76,.055);
     }
+    .request-guide { margin-top:2.5rem; padding:2rem; }
+    .request-guide-head { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; margin-bottom:1.65rem; }
+    .request-guide-copy { max-width:720px; }
+    .request-guide-badge {
+      flex-shrink:0;
+      padding:.45rem .75rem;
+      border:1px solid rgba(214,184,90,.2);
+      border-radius:999px;
+      color:var(--gold-lt);
+      background:rgba(201,168,76,.07);
+      font-size:10px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .request-flow {
+      position:relative;
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:.75rem;
+      margin-bottom:1.6rem;
+      padding:.45rem 0 .2rem;
+    }
+    .request-flow::before {
+      content:'';
+      position:absolute;
+      z-index:0;
+      top:23px;
+      left:8%;
+      right:8%;
+      height:2px;
+      background:linear-gradient(90deg,#60A5FA 0 32%,#CBD5E1 42% 58%,#F59E0B 68% 78%,#34D399 100%);
+      opacity:.48;
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform 1.25s var(--ease);
+    }
+    .request-flow.in::before { transform:scaleX(1); }
+    .request-step {
+      position:relative;
+      z-index:1;
+      min-width:0;
+      min-height:168px;
+      padding:1rem;
+      border:1px solid rgba(226,232,240,.11);
+      border-radius:14px;
+      background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+      opacity:0;
+      transform:translateY(12px);
+      transition:opacity .65s var(--ease),transform .65s var(--ease),border-color .35s var(--ease),background .35s var(--ease);
+    }
+    .request-flow.in .request-step { opacity:1; transform:translateY(0); }
+    .request-flow.in .request-step:nth-child(2) { transition-delay:.1s; }
+    .request-flow.in .request-step:nth-child(3) { transition-delay:.2s; }
+    .request-flow.in .request-step:nth-child(4) { transition-delay:.3s; }
+    .request-step:hover { transform:translateY(-3px); border-color:rgba(96,165,250,.34); background:linear-gradient(180deg,rgba(59,130,246,.07),rgba(255,255,255,.02)); }
+    .request-step:not(:last-child)::after {
+      display:none;
+    }
+    .request-step-top { display:flex; align-items:center; margin-bottom:1rem; }
+    .request-step-num {
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      z-index:1;
+      color:#050B13;
+      background:linear-gradient(135deg,var(--gold-lt),var(--gold-dk));
+      box-shadow:0 0 0 5px rgba(255,255,255,.045),0 0 16px rgba(148,163,184,.13);
+      font-family:'Space Grotesk',sans-serif;
+      font-size:11px;
+      font-weight:800;
+    }
+    .request-step:nth-child(1) .request-step-num { color:#DBEAFE; background:#1D4ED8; }
+    .request-step:nth-child(2) .request-step-num { color:#111827; background:linear-gradient(135deg,#F8FAFC,#94A3B8); }
+    .request-step:nth-child(3) .request-step-num { color:#1C1204; background:#F59E0B; }
+    .request-step:nth-child(4) .request-step-num { color:#052E16; background:#34D399; }
+    .request-step-title { color:var(--txt0); font-size:13px; font-weight:750; line-height:1.4; margin-bottom:.5rem; }
+    .request-step-text { color:var(--txt1); font-size:11.5px; line-height:1.65; }
+    .request-status-line {
+      position:relative;
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      align-items:start;
+      gap:0;
+      padding:.4rem 0 .2rem;
+      color:var(--txt2);
+      font-size:10.5px;
+      margin-bottom:1.1rem;
+    }
+    .request-status-line::before {
+      content:'';
+      position:absolute;
+      top:7px;
+      left:12.5%;
+      right:12.5%;
+      height:1px;
+      background:linear-gradient(90deg,#60A5FA,#CBD5E1,#F59E0B,#34D399);
+      opacity:.42;
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform 1.2s .2s var(--ease);
+    }
+    .request-guide.in .request-status-line::before { transform:scaleX(1); }
+    .request-status-line .request-status {
+      position:relative;
+      z-index:1;
+      padding:1.15rem .35rem .25rem;
+      color:var(--txt1);
+      text-align:center;
+      background:transparent;
+      border:0;
+    }
+    .request-status::before {
+      content:'';
+      position:absolute;
+      top:2px;
+      left:50%;
+      width:11px;
+      height:11px;
+      border-radius:50%;
+      transform:translateX(-50%);
+      background:#94A3B8;
+      border:2px solid #1B1E22;
+      box-shadow:0 0 0 3px rgba(148,163,184,.12);
+    }
+    .request-status:nth-of-type(1)::before { background:#60A5FA; box-shadow:0 0 0 3px rgba(96,165,250,.12); }
+    .request-status:nth-of-type(3)::before { background:#CBD5E1; }
+    .request-status:nth-of-type(5)::before { background:#F59E0B; box-shadow:0 0 0 3px rgba(245,158,11,.12); }
+    .request-status:nth-of-type(7)::before { background:#34D399; box-shadow:0 0 0 3px rgba(52,211,153,.12); }
+    .request-status-arrow { display:none; }
+    .request-urgent { background:rgba(230,51,41,.055); border:1px solid rgba(230,51,41,.18); border-radius:14px; padding:.9rem 1rem; font-size:12px; color:var(--txt1); display:flex; gap:.8rem; align-items:flex-start; }
+    .request-urgent-mark { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#fff; background:rgba(230,51,41,.18); border:1px solid rgba(230,51,41,.3); font-weight:800; }
 
     .table-scroll { overflow-x:auto; border-radius:18px; border:1px solid rgba(214,184,90,.12); }
     .data-table { width:100%; border-collapse:collapse; font-size:13px; min-width:560px; }
@@ -1030,22 +1233,46 @@
       margin-top:1rem;
     }
     .stat-panel {
-      padding:1rem;
+      min-width:0;
+      padding:1.3rem 1.5rem 1.4rem;
       border-radius:16px;
       border:1px solid rgba(214,184,90,.14);
       background:rgba(255,255,255,.024);
+      overflow:hidden;
+      cursor:pointer;
+      outline:none;
+      transition:transform .5s var(--ease),border-color .5s var(--ease),box-shadow .5s var(--ease),background .5s var(--ease);
     }
-    .metric-list { display:grid; gap:.75rem; }
+    .stat-panel:hover,
+    .stat-panel:focus-visible,
+    .stat-panel.is-active {
+      transform:translateY(-3px);
+      border-color:rgba(96,165,250,.48);
+      background:linear-gradient(180deg,rgba(59,130,246,.065),rgba(255,255,255,.022));
+      box-shadow:0 24px 60px rgba(0,0,0,.34),0 0 30px rgba(59,130,246,.12);
+    }
+    .metric-list { display:grid; gap:.75rem; min-width:0; }
     .metric-row {
-      display:grid;
-      grid-template-columns:minmax(0,1fr) auto;
-      gap:.8rem;
-      align-items:center;
+      display:block;
+      position:relative;
+      min-width:0;
     }
-    .metric-name { color:var(--txt0); font-size:12px; font-weight:700; line-height:1.35; }
+    .metric-row > div:first-child { min-width:0; width:100%; }
+    .metric-name { color:var(--txt0); font-size:12px; font-weight:700; line-height:1.35; padding-right:68px; }
     .metric-sub { color:var(--txt2); font-size:10.5px; margin-top:.18rem; }
-    .metric-value { text-align:right; font-family:'Space Grotesk',sans-serif; color:var(--gold-lt); font-weight:800; font-size:1rem; }
+    .metric-value { position:absolute; top:0; right:0; min-width:58px; text-align:right; white-space:nowrap; font-family:'Space Grotesk',sans-serif; color:var(--gold-lt); font-weight:800; font-size:1rem; }
     .metric-value span { display:block; color:var(--txt2); font-family:'Inter',sans-serif; font-size:10px; font-weight:600; margin-top:.1rem; }
+    .stat-panel .metric-track { margin-top:.25rem; margin-bottom:1rem; }
+    .stat-panel .metric-value span { margin-top:.55rem; }
+    .stat-panel .metric-fill { transform:scaleX(0); transform-origin:left; transition:transform 1.15s var(--ease); }
+    .stat-panel.metrics-reset .metric-fill { transform:scaleX(0) !important; transition:none !important; }
+    .stat-panel.metrics-in .metric-fill { transform:scaleX(1); }
+    .stat-panel .metric-row:nth-child(2) .metric-fill { transition-delay:.06s; }
+    .stat-panel .metric-row:nth-child(3) .metric-fill { transition-delay:.12s; }
+    .stat-panel .metric-row:nth-child(4) .metric-fill { transition-delay:.18s; }
+    .stat-panel .metric-row:nth-child(5) .metric-fill { transition-delay:.24s; }
+    .stat-panel .metric-row:nth-child(6) .metric-fill { transition-delay:.3s; }
+    .stat-panel .metric-row:nth-child(7) .metric-fill { transition-delay:.36s; }
     .status-stat-grid {
       display:grid;
       grid-template-columns:repeat(5,minmax(0,1fr));
@@ -1199,11 +1426,9 @@
       padding:3.5rem 2rem 2rem;
     }
     .footer-inner { max-width:1120px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:1.5rem; text-align:center; }
-    .footer-brand { display:flex; align-items:center; gap:12px; }
-    .footer-mark { width:44px; height:44px; border-radius:10px; background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.3); display:flex; align-items:center; justify-content:center; overflow:hidden; padding:6px; }
-    .footer-mark img { width:100%; height:100%; object-fit:contain; filter:invert(1); }
-    .footer-co  { font-family:'Space Grotesk',sans-serif; font-size:1.1rem; font-weight:700; }
-    .footer-tag { font-size:10.5px; color:var(--txt2); text-transform:uppercase; letter-spacing:1.8px; }
+    .footer-brand { display:flex; align-items:center; justify-content:center; }
+    .footer-logo-box { width:280px; height:60px; overflow:hidden; position:relative; }
+    .footer-logo-box img { position:absolute; width:280px; max-width:none; height:auto; left:0; top:-14px; }
     .footer-dis { font-size:12px; color:var(--txt2); max-width:500px; line-height:1.7; }
     .footer-copy { font-size:11px; color:var(--txt2); border-top:1px solid var(--border2); padding-top:1.5rem; width:100%; }
     .footer-links { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; font-size:12px; }
@@ -1294,15 +1519,15 @@
     }
     #thanksFx::before {
       background:
-        radial-gradient(circle at 50% 45%, rgba(246,215,125,.48) 0 2px, transparent 3px),
-        radial-gradient(circle at 50% 45%, transparent 0 11%, rgba(246,215,125,.2) 12%, transparent 22%),
-        conic-gradient(from 18deg at 50% 45%, transparent 0 7%, rgba(246,215,125,.22) 8% 10%, transparent 11% 18%, rgba(230,51,41,.16) 19% 21%, transparent 22% 100%);
+        radial-gradient(circle at 50% 45%, rgba(241,242,243,.48) 0 2px, transparent 3px),
+        radial-gradient(circle at 50% 45%, transparent 0 11%, rgba(211,214,217,.2) 12%, transparent 22%),
+        conic-gradient(from 18deg at 50% 45%, transparent 0 7%, rgba(238,239,240,.22) 8% 10%, transparent 11% 18%, rgba(137,143,150,.16) 19% 21%, transparent 22% 100%);
       mix-blend-mode:screen;
     }
     #thanksFx::after {
       background:
-        radial-gradient(ellipse 44% 30% at 50% 52%, rgba(201,168,76,.22), transparent 70%),
-        radial-gradient(ellipse 68% 48% at 50% 72%, rgba(230,51,41,.12), transparent 72%);
+        radial-gradient(ellipse 44% 30% at 50% 52%, rgba(226,228,230,.22), transparent 70%),
+        radial-gradient(ellipse 68% 48% at 50% 72%, rgba(132,138,145,.12), transparent 72%);
       transform:scale(.9);
     }
     #thanksFx.show { animation:thanksFxBase 7.4s ease forwards; }
@@ -1317,7 +1542,7 @@
       border-radius:3px;
       background:var(--color);
       opacity:0;
-      box-shadow:0 0 12px rgba(246,215,125,.16);
+      box-shadow:0 0 12px rgba(236,237,238,.16);
       transform:translate3d(0,-40px,0) rotate(0deg);
       animation:thanksConfetti var(--dur) cubic-bezier(.16,.78,.2,1) var(--delay) forwards;
       will-change:transform, opacity;
@@ -1349,15 +1574,15 @@
       100% { opacity:0; transform:scale(1.08); }
     }
     @keyframes thanksQuoteGlow {
-      0% { box-shadow:0 0 0 rgba(201,168,76,0); background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025)); border-color:rgba(201,168,76,.3); }
-      14% { box-shadow:0 0 0 1px rgba(201,168,76,.28), 0 0 46px rgba(201,168,76,.3); background:linear-gradient(180deg, rgba(201,168,76,.11), rgba(255,255,255,.04)); border-color:rgba(246,215,125,.72); }
-      68% { box-shadow:0 0 0 1px rgba(201,168,76,.14), 0 0 28px rgba(201,168,76,.18); }
-      100% { box-shadow:0 0 0 rgba(201,168,76,0); background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025)); border-color:rgba(201,168,76,.3); }
+      0% { box-shadow:0 0 0 rgba(220,223,226,0); background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025)); border-color:rgba(220,223,226,.3); }
+      14% { box-shadow:0 0 0 1px rgba(220,223,226,.28), 0 0 46px rgba(220,223,226,.26); background:linear-gradient(180deg, rgba(220,223,226,.1), rgba(255,255,255,.04)); border-color:rgba(245,246,246,.72); }
+      68% { box-shadow:0 0 0 1px rgba(220,223,226,.14), 0 0 28px rgba(220,223,226,.16); }
+      100% { box-shadow:0 0 0 rgba(220,223,226,0); background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025)); border-color:rgba(220,223,226,.3); }
     }
     @keyframes thanksCardGlow {
       0%, 100% { filter:none; }
-      18% { filter:drop-shadow(0 0 24px rgba(201,168,76,.24)); }
-      68% { filter:drop-shadow(0 0 14px rgba(201,168,76,.14)); }
+      18% { filter:drop-shadow(0 0 24px rgba(220,223,226,.22)); }
+      68% { filter:drop-shadow(0 0 14px rgba(220,223,226,.12)); }
     }
     @keyframes thanksQuoteSweep {
       0% { opacity:0; transform:translateX(0) skewX(-16deg); }
@@ -1418,9 +1643,172 @@
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
-    .reveal { opacity:0; transform:translateY(28px); transition:opacity .7s ease,transform .7s ease; }
-    .reveal.in { opacity:1; transform:translateY(0); }
+    .reveal { opacity:0; transform:translateY(30px) scale(.992); filter:blur(6px); transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease); transition-delay:var(--reveal-delay,0s); will-change:opacity,transform,filter; }
+    .reveal.in { opacity:1; transform:translateY(0) scale(1); filter:blur(0); }
     .d1{transition-delay:.08s} .d2{transition-delay:.14s} .d3{transition-delay:.2s} .d4{transition-delay:.18s} .d5{transition-delay:.22s}
+
+    /* ── SILVER / GRAPHITE THEME ── */
+    .hero-h1 .l2 { background-image:linear-gradient(115deg,#777B7F 0%,#F7F7F4 34%,#9B9FA3 66%,#E1E1DE 100%); }
+    .hero-sub { color:#D0D2D5; }
+    .btn-red, .btn-gold, .open-btn, #btt {
+      color:#121315;
+      background:linear-gradient(135deg,#F4F4F2,#858A90);
+      box-shadow:0 10px 30px rgba(0,0,0,.2), inset 0 1px rgba(255,255,255,.45);
+    }
+    .btn-red:hover, .btn-gold:hover, .open-btn:hover, #btt:hover { box-shadow:0 10px 30px rgba(220,223,226,.14); }
+    .btn-ghost:hover { border-color:#D9DBDE; color:#F4F4F2; background:rgba(255,255,255,.06); }
+    .open-btn.red-btn { color:#121315; background:linear-gradient(135deg,#F4F4F2,#858A90); }
+    .sec-eyebrow, .prog-pct, .tl-date, .achievement-ico, .footer-links a, .thanks-btn { color:var(--gold-lt); }
+    .sec-eyebrow::before { background:linear-gradient(90deg,#73787E,#ECEDEC); }
+    .card,
+    .stat-panel,
+    .team-summary-side,
+    .role-card,
+    .team-card,
+    .participation-card,
+    .proj-card,
+    .access-card,
+    .caspo-report-card,
+    .caspo-story,
+    .caspo-pattern,
+    .pattern-card,
+    .ceo-takeaway,
+    .takeaway-card,
+    .status-stat,
+    .it-support-summary,
+    .app-preview-card,
+    .tech-item,
+    .monthly-chart-card {
+      border-color:rgba(225,227,230,.14);
+      background:linear-gradient(180deg,rgba(255,255,255,.052),rgba(255,255,255,.018));
+      box-shadow:0 18px 50px rgba(0,0,0,.2);
+    }
+    #team, #projects, #vendors, #access, #timeline, #tech, #participation, #thanks {
+      background:
+        radial-gradient(ellipse 58% 36% at 12% 0%,rgba(255,255,255,.045),transparent 68%),
+        radial-gradient(ellipse 44% 34% at 90% 88%,rgba(151,157,164,.035),transparent 70%),
+        linear-gradient(180deg,rgba(14,15,17,.98),rgba(21,23,26,.98));
+      border-color:rgba(255,255,255,.07);
+    }
+    .team-card::before { background:linear-gradient(90deg,transparent,#767B81,#F0F1F2,#767B81,transparent); }
+    .pill-ceo {
+      color:#E5E7E9;
+      background:rgba(255,255,255,.055);
+      border-color:rgba(255,255,255,.16);
+    }
+    .pill-cbdo, .s-res {
+      color:#BFDBFE;
+      background:rgba(59,130,246,.11);
+      border-color:rgba(96,165,250,.28);
+    }
+    .pill-sys, .s-done {
+      color:#86EFAC;
+      background:rgba(34,197,94,.1);
+      border-color:rgba(34,197,94,.26);
+    }
+    .s-pend {
+      color:#FCD34D;
+      background:rgba(245,158,11,.1);
+      border-color:rgba(245,158,11,.25);
+    }
+    .proj-ico, .mini-ico, .tech-ico { color:#ECEDEB; background:rgba(255,255,255,.065); border-color:rgba(255,255,255,.15); }
+    .pg-gold { background:linear-gradient(90deg,#16A34A,#4ADE80); box-shadow:0 0 16px rgba(34,197,94,.16); }
+    .pg-blue { background:linear-gradient(90deg,#2563EB,#60A5FA); box-shadow:0 0 16px rgba(59,130,246,.16); }
+    .pg-amber { background:linear-gradient(90deg,#D97706,#FBBF24); box-shadow:0 0 16px rgba(245,158,11,.16); }
+    .month-bar {
+      background:linear-gradient(180deg,#94A3B8,#475569);
+      box-shadow:0 0 18px rgba(148,163,184,.13);
+    }
+    .month-column:nth-child(2n) .month-bar { background:linear-gradient(180deg,#60A5FA,#2563EB); }
+    .month-column:nth-child(3n) .month-bar { background:linear-gradient(180deg,#34D399,#059669); }
+    .month-column.peak .month-bar { background:linear-gradient(180deg,#FB7185,#DC2626); box-shadow:0 0 24px rgba(239,68,68,.24); }
+    .month-column.current .month-bar { background:linear-gradient(180deg,#FBBF24,#D97706); box-shadow:0 0 22px rgba(245,158,11,.2); }
+    .status-stat strong, .it-support-stat strong, .metric-value, .impact-num, .caspo-total-pill strong { color:#E7E9EB !important; }
+    .it-support-stat { border-color:rgba(255,255,255,.13); background:rgba(255,255,255,.035); }
+    .request-step-num { color:#111214; background:linear-gradient(135deg,#F4F4F2,#858A90); box-shadow:0 0 0 5px rgba(255,255,255,.045); }
+    .request-step:not(:last-child)::after { background:linear-gradient(90deg,rgba(235,236,237,.58),rgba(255,255,255,.09)); }
+    .request-guide-badge, .request-status { color:#E5E7E9; background:rgba(255,255,255,.045); border-color:rgba(255,255,255,.13); }
+    .request-urgent { background:rgba(255,255,255,.025); border-color:rgba(255,255,255,.12); }
+    .request-urgent-mark { color:#ECEEED; background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.16); }
+    .tone-critical td { background:rgba(239,68,68,.13); }
+    .tone-high td { background:rgba(249,115,22,.11); }
+    .tone-mid td { background:rgba(250,204,21,.09); }
+    .tone-low td { background:rgba(34,197,94,.09); }
+    .tone-info td { background:rgba(59,130,246,.09); }
+    .tone-muted td { background:rgba(148,163,184,.07); }
+    .pattern-rank, .caspo-total-pill, .pattern-score, .participation-note {
+      color:#ECEDEB;
+      background:rgba(255,255,255,.055);
+      border-color:rgba(255,255,255,.15);
+    }
+    .team-card.featured, .proj-card.plan-card { border-color:rgba(225,227,230,.18); }
+    .proj-card::before, .proj-card.plan-card::before {
+      background:radial-gradient(circle at 20% 0%,rgba(255,255,255,.07),transparent 36%);
+    }
+    .presenting-banner {
+      border-color:rgba(225,227,230,.18);
+      background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
+      box-shadow:0 20px 54px rgba(0,0,0,.24),inset 0 1px rgba(255,255,255,.05);
+    }
+    .presenting-label { color:#D9DBDE; }
+    .presenting-photo {
+      border-color:rgba(236,238,240,.78);
+      box-shadow:0 0 0 6px rgba(255,255,255,.035),0 0 30px rgba(218,221,225,.16);
+    }
+    .card:has(a.open-btn):hover,
+    .card:has(button):hover,
+    .interactive-card:hover,
+    .card:focus-within {
+      border-color:rgba(96,165,250,.5);
+      background:linear-gradient(180deg,rgba(59,130,246,.085),rgba(255,255,255,.022));
+      box-shadow:0 28px 72px rgba(0,0,0,.45),0 0 34px rgba(59,130,246,.15),inset 0 1px rgba(255,255,255,.06);
+    }
+    .nav-links a.active {
+      color:#F8FAFC;
+      background:transparent;
+    }
+    .nav-links a.active::after { background:linear-gradient(90deg,transparent,#60A5FA,transparent); }
+    footer { background:#101113; border-color:rgba(255,255,255,.08); }
+    .footer-brand { gap:14px; }
+    .footer-logo-box, .footer-logo-box img { display:none; }
+
+    /* ── MOTION SCROLLBAR ── */
+    .motion-scrollbar {
+      position:fixed;
+      z-index:950;
+      top:88px;
+      right:8px;
+      width:3px;
+      height:calc(100vh - 112px);
+      pointer-events:none;
+      opacity:.78;
+    }
+    .motion-scrollbar__track { position:absolute; inset:0; width:1px; margin:auto; background:rgba(255,255,255,.1); }
+    .motion-scrollbar__fill {
+      position:absolute;
+      inset:0 0 auto;
+      width:1px;
+      height:100%;
+      margin:auto;
+      background:linear-gradient(180deg,#777C82,#F2F3F3);
+      box-shadow:0 0 7px rgba(226,228,231,.4);
+      transform:scaleY(var(--scroll-progress,0));
+      transform-origin:top;
+      transition:transform .18s var(--ease);
+    }
+    .motion-scrollbar__glow {
+      position:absolute;
+      top:calc(var(--scroll-progress,0) * 100%);
+      left:50%;
+      width:4px;
+      height:28px;
+      background:linear-gradient(to bottom,transparent,#F4F4F2,transparent);
+      box-shadow:0 0 8px rgba(238,239,240,.75),0 0 18px rgba(200,204,208,.32);
+      transform:translate(-50%,-50%);
+      transition:top .18s var(--ease);
+    }
+
+    @keyframes menuItemReveal { from{opacity:0;transform:translateY(12px);filter:blur(6px)} to{opacity:1;transform:translateY(0);filter:blur(0)} }
 
     /* ── RESPONSIVE ── */
     @media (max-width:1100px) {
@@ -1428,7 +1816,9 @@
         height:64px;
         padding:0 clamp(.8rem,3vw,1.25rem);
       }
-      .nav-brand { min-width:0; gap:9px; }
+      .nav-brand { min-width:0; }
+      .brand-mark { width:82px; height:37px; }
+      .brand-word { font-size:9px; }
       .nav-mark { width:34px; height:34px; border-radius:9px; }
       .nav-text { min-width:0; }
       .nav-text strong {
@@ -1445,6 +1835,7 @@
         line-height:1.35;
       }
       .nav-links { display:none; }
+      .nav-active-pill { display:none !important; }
       .hamburger {
         display:flex;
         width:42px;
@@ -1465,7 +1856,7 @@
         right:.85rem;
         max-height:calc(100svh - 88px);
         overflow:auto;
-        background:rgba(2,8,16,.98);
+        background:rgba(17,18,20,.98);
         backdrop-filter:blur(20px);
         -webkit-backdrop-filter:blur(20px);
         padding:.75rem;
@@ -1474,7 +1865,15 @@
         gap:.2rem;
         box-shadow:0 22px 60px rgba(0,0,0,.55);
       }
-      .nav-links.open li { width:100%; }
+      .nav-links.open li:not(.nav-active-pill) { width:100%; opacity:0; animation:menuItemReveal .52s var(--ease) forwards; }
+      .nav-links.open li:nth-child(2) { animation-delay:.05s; }
+      .nav-links.open li:nth-child(3) { animation-delay:.1s; }
+      .nav-links.open li:nth-child(4) { animation-delay:.15s; }
+      .nav-links.open li:nth-child(5) { animation-delay:.2s; }
+      .nav-links.open li:nth-child(6) { animation-delay:.25s; }
+      .nav-links.open li:nth-child(7) { animation-delay:.3s; }
+      .nav-links.open li:nth-child(8) { animation-delay:.35s; }
+      .nav-links.open li:nth-child(9) { animation-delay:.4s; }
       .nav-links.open li a {
         display:flex;
         align-items:center;
@@ -1485,11 +1884,14 @@
         border-radius:12px;
       }
       .nav-links.open li:last-child a { border-bottom:0; }
+      .nav-links.open a.active { background:rgba(59,130,246,.12); }
       .nav-links.open .nav-btn { justify-content:center; margin-top:.35rem; }
     }
 
     @media (max-width:768px) {
       #nav { height:60px; padding:0 .85rem; }
+      .brand-mark { width:76px; height:34px; }
+      .brand-word { font-size:8px; letter-spacing:.3em; }
       .nav-mark { width:32px; height:32px; }
       .nav-text strong { max-width:150px; font-size:13.5px; }
       .nav-text small { font-size:8px; letter-spacing:1.1px; }
@@ -1538,6 +1940,13 @@
         max-width:100%;
         justify-content:flex-start;
       }
+      .request-guide-head { flex-direction:column; margin-bottom:1.6rem; }
+      .request-flow { grid-template-columns:1fr; gap:1.2rem; }
+      .request-flow::before { display:none; }
+      .request-step { min-height:112px; padding:1rem 1rem 1rem 4rem; }
+      .request-step-top { position:absolute; left:1rem; top:1rem; margin:0; }
+      .request-step:not(:last-child)::after { display:block; left:35px; right:auto; top:54px; bottom:-22px; width:1px; height:auto; background:linear-gradient(180deg,rgba(148,163,184,.5),rgba(255,255,255,.08)); }
+      .request-status-line { justify-content:flex-start; }
       .hero-sub,
       .sec-p,
       .role-card p,
@@ -1629,14 +2038,20 @@
       }
     }
     @media (max-width:480px) {
-      #nav { height:58px; }
-      .nav-brand { gap:8px; }
+      #nav { height:58px; padding:0 .7rem; }
+      .nav-brand { gap:9px; }
+      .brand-mark { width:72px; height:32px; }
+      .brand-word { font-size:7.5px; letter-spacing:.28em; }
+      .motion-scrollbar { right:3px; top:70px; height:calc(100vh - 84px); }
       .nav-mark { width:31px; height:31px; }
       .nav-text strong { max-width:128px; font-size:12.5px; }
       .nav-text small { font-size:7.5px; letter-spacing:1px; }
       .hamburger { width:40px; height:40px; }
-      .nav-links.open { top:66px; }
+      .nav-links.open { top:64px; left:.5rem; right:.5rem; max-height:calc(100svh - 76px); border-radius:15px; }
       section{padding:3.5rem 1rem;}
+      .wrap { width:100%; }
+      .section-transition { width:calc(100% - 2rem); }
+      .card,.stat-panel,.request-guide { max-width:100%; box-sizing:border-box; }
       #hero { padding:80px 1rem 48px; }
       .jira-chart { grid-template-columns:1fr; }
       .caspo-kpi-grid { grid-template-columns:repeat(2,1fr); }
@@ -1647,6 +2062,24 @@
       .month-count { font-size:.8rem; }
       .month-label { font-size:9px; }
       .monthly-chart-foot { flex-direction:column; gap:.35rem; }
+      .caspo-report-card { padding:1.2rem; }
+      .status-stat-grid { gap:.5rem; }
+      .status-stat { padding:.75rem; }
+      .stat-panel { padding:1.1rem 1rem 1.2rem; }
+      .metric-name { padding-right:58px; }
+      .metric-value { min-width:50px; }
+      .request-guide { padding:1.25rem !important; }
+      .request-status-line { grid-template-columns:repeat(2,minmax(0,1fr)); gap:.5rem; }
+      .request-status-line::before { display:none; }
+      .request-status-line .request-status {
+        min-height:38px;
+        padding:.65rem .6rem .65rem 1.75rem;
+        border:1px solid rgba(255,255,255,.09);
+        border-radius:10px;
+        background:rgba(255,255,255,.025);
+        text-align:left;
+      }
+      .request-status::before { left:.85rem; top:50%; transform:translate(-50%,-50%); }
       .hero-h1 { font-size:clamp(2rem,12vw,3.35rem); }
       .hero-sub {
         font-size:.94rem;
@@ -1669,25 +2102,31 @@
     @keyframes ptCover  { from{transform:translateX(-100%)} to{transform:translateX(0)} }
     .pt-revealing { animation: ptReveal .52s cubic-bezier(0.23,1,0.32,1) forwards; }
     .pt-covering  { animation: ptCover  .42s cubic-bezier(0.77,0,.175,1)  forwards; pointer-events:all; }
+    @media (prefers-reduced-motion:reduce) {
+      .orb,.sdot,.thanks-confetti { animation:none !important; }
+      .hero-mesh,.hero-grid-bg,#hero-canvas { transition:none !important; }
+    }
   </style>
 </head>
 <body>
 
 <div id="pbar"></div>
+<div class="motion-scrollbar" aria-hidden="true">
+  <span class="motion-scrollbar__track"></span>
+  <span class="motion-scrollbar__fill"></span>
+  <span class="motion-scrollbar__glow"></span>
+</div>
 <div id="thanksFx" aria-hidden="true"></div>
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#hero" class="nav-brand">
-    <div class="nav-mark"><img src="img/logo.png" alt="Ард" class="nav-logo-img" /></div>
-    <div class="nav-text">
-      <strong>Ард Секюритиз ҮЦК</strong>
-      <small>ЖИНХЛЭХ ТАЙЛАН 2026</small>
-    </div>
+  <a href="#hero" class="nav-brand" aria-label="Ard Securities">
+    <img class="brand-mark" src="img/ard-mark-white.png" alt="Ard" />
+    <span class="brand-word">SECURITIES</span>
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#team">Баг</a></li>
-    <li><a href="#results">Үр дүн</a></li>
+    <li class="nav-active-pill" aria-hidden="true"></li>
+    <li><a href="#team">Танилцуулга</a></li>
     <li><a href="#projects">Төслүүд</a></li>
     <li><a href="#vendors">Jira урсгал</a></li>
     <li><a href="#access">Бүртгэлийн систем</a></li>
@@ -1719,7 +2158,7 @@
     <div class="hero-role">Системийн админ</div>
 
     <p class="hero-sub">
-      Ард Секюритиз ҮЦК ХХК-ийн системийн алдаа, API холболт, шинэчлэлт, гүйлгээ болон арилжааны захиалгын ажиллагааг хянаж, асуудлыг бүртгэн ангилан, шаардлагатайг GrapeCity/CASPO болон AFS талтай хамтран шийдвэрлэсэн ажлын тайлан.
+      Ард Секюритиз ҮЦК ХХК-ийн дотоод систем, вэб арилжаа болон Ard App-ийн Хөрөнгө оруулалт цэсний ажиллагааг хянаж, шинэчлэлтийг тестлэн, илэрсэн асуудлыг GrapeCity/CASPO болон AFS талтай хамтран шийдвэрлэсэн ажлын тайлан.
     </p>
 
     <div class="hero-btns">
@@ -1744,8 +2183,8 @@
         <div class="sec-eyebrow">Тайлан бэлтгэсэн</div>
         <h2 class="sec-h2">Хийж гүйцэтгэсэн ажлууд</h2>
         <div class="card role-card role-inline-card reveal">
-          <p>Дотоод системийн алдаа, API холболт, системийн шинэчлэлт, гүйлгээ болон арилжааны захиалгын явцыг тогтмол хянаж ажилладаг. Шинэчлэлт орсны дараа системийн ажиллагааг тестэлж, гүйлгээ болон захиалга зөв дамжиж байгаа эсэхийг шалгана.</p>
-          <p>Асуудал илэрвэл бүртгэж, нөлөөллийг нь тодорхойлон, боломжтойг дотооддоо шийдэж, шаардлагатай ажлыг GrapeCity/CASPO эсвэл AFS Jira руу дамжуулна. Дараа нь шийдвэрлэлтийн явцыг хянаж, засвар орсны дараа дахин тестэлж баталгаажуулдаг.</p>
+          <p>Дотоод систем, API холболт, гүйлгээ болон арилжааны захиалга хэвийн ажиллаж байгаа эсэхийг тогтмол хянадаг. Мөн ажилтнуудаас ирсэн алдаа, гомдол, сайжруулах санал болон ажиллахгүй байгаа үйлдлүүдийг хүлээн авч, нөлөөлөл болон дарааллыг нь тодорхойлон бүртгэдэг.</p>
+          <p>Одоогоор вэб арилжааны сайжруулалт болон Ard App-ийн <strong>Хөрөнгө оруулалт</strong> цэсэнд шинэчлэлт бүрийн дараа тест хийж байна. Хөгжүүлэгчдийн pre-production орчинд оруулсан өөрчлөлтийг гүйлгээ, захиалга болон үндсэн үйлдлүүдээр шалгаж, зөв ажиллаж байгааг баталгаажуулсны дараа production орчинд гаргах зөвшөөрөл өгнө. Асуудал илэрвэл CASPO эсвэл AFS талтай хамтран засварыг хянаж, дахин тестэлдэг.</p>
         </div>
       </div>
     </div>
@@ -1766,17 +2205,17 @@
 
       <div class="card team-card featured reveal d1">
         <div class="role-pill pill-sys">● Тайлан бэлтгэсэн</div>
-        <div class="photo-avatar" style="border-color:rgba(34,197,94,.4);">
+        <div class="photo-avatar" style="border-color:rgba(225,227,230,.35);">
           <img src="img/Sysadmin.jpg" alt="Н. Түмэндэлгэр — Тайлан бэлтгэсэн" />
         </div>
         <div class="team-name">Н. Түмэндэлгэр</div>
         <div class="team-title">Тайлан бэлтгэсэн</div>
-        <div class="team-desc">Системийн алдаа, API холболт, шинэчлэлт, гүйлгээ болон арилжааны захиалгыг хянаж, шаардлагатай ажлыг CASPO болон AFS талтай хамтран шийдвэрлэж байна.</div>
+        <div class="team-desc">Дотоод систем, вэб арилжаа, Ard App, API холболт, гүйлгээ болон захиалгыг хянаж, pre-production шинэчлэлтийг тестлэн, шаардлагатай засварыг CASPO болон AFS талтай хамтран шийдвэрлэж байна.</div>
       </div>
 
       <div class="card team-card reveal d2">
         <div class="role-pill pill-cbdo">● CBDO &amp; Чиглүүлэгч</div>
-        <div class="photo-avatar cbdo-avatar" style="border-color:rgba(59,130,246,.4);">
+        <div class="photo-avatar cbdo-avatar" style="border-color:rgba(225,227,230,.35);">
           <img src="img/CBDO.jpg" alt="Б. Анужин — CBDO" />
         </div>
         <div class="team-name">Б. Анужин</div>
@@ -1853,7 +2292,7 @@
         </a>
       </div>
 
-      <div class="card proj-card plan-card reveal d4">
+      <div class="card proj-card plan-card interactive-card reveal d4" tabindex="0">
         <div class="status-pill s-pend"><span class="sdot"></span> Төлөвлөж байна</div>
         <div class="proj-ico" aria-hidden="true">🖥️</div>
         <div class="proj-name">Millennium Trader Workstation — зогсолтын төлөвлөгөө</div>
@@ -1877,7 +2316,7 @@
   <div class="wrap">
     <div class="sec-eyebrow">Вендор систем</div>
     <h2 class="sec-h2">Дотоод асуудлын урсгал</h2>
-    <p class="sec-p">Ажилтнуудаас ирсэн системийн асуудлыг эхлээд дотооддоо бүртгэн ангилж, энгийн асуудлыг шууд шийдвэрлэн, шаардлагатай тохиолдолд <strong style="color:#FBBF24;">GrapeCity/CASPO</strong> болон <strong style="color:var(--blue-lt);">AFS</strong> тал руу дамжуулж, явцыг нь хянаж ажилладаг.</p>
+    <p class="sec-p">Ажилтнуудаас ирсэн системийн асуудлыг эхлээд дотооддоо бүртгэн ангилж, энгийн асуудлыг шууд шийдвэрлэн, шаардлагатай тохиолдолд <strong style="color:var(--txt0);">GrapeCity/CASPO</strong> болон <strong style="color:var(--txt0);">AFS</strong> тал руу дамжуулж, явцыг нь хянаж ажилладаг.</p>
 
     <div style="display:flex;align-items:center;justify-content:center;gap:1.2rem;flex-wrap:wrap;margin:2.5rem 0;padding:1.5rem 2rem;background:rgba(255,255,255,.02);border:1px solid var(--border2);border-radius:14px;">
       <div style="text-align:center;">
@@ -1893,14 +2332,14 @@
       </div>
       <div style="color:var(--gold);font-size:1.5rem;font-weight:300;">→</div>
       <div style="display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;">
-        <div style="text-align:center;padding:.75rem 1.1rem;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.22);border-radius:10px;">
+        <div style="text-align:center;padding:.75rem 1.1rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.13);border-radius:10px;">
           <div class="mini-ico" style="margin:0 auto .45rem;width:34px;height:34px;font-size:18px;letter-spacing:0;">🌐</div>
-          <div style="font-size:11px;color:#FBBF24;font-weight:700;">GrapeCity</div>
+          <div style="font-size:11px;color:var(--txt0);font-weight:700;">GrapeCity</div>
           <div style="font-size:10px;color:var(--txt2);">Вэб &amp; Backend · CASPO</div>
         </div>
-        <div style="text-align:center;padding:.75rem 1.1rem;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.22);border-radius:10px;">
+        <div style="text-align:center;padding:.75rem 1.1rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.13);border-radius:10px;">
           <div class="mini-ico" style="margin:0 auto .45rem;width:34px;height:34px;font-size:18px;letter-spacing:0;">📱</div>
-          <div style="font-size:11px;color:var(--blue-lt);font-weight:700;">AFS</div>
+          <div style="font-size:11px;color:var(--txt0);font-weight:700;">AFS</div>
           <div style="font-size:10px;color:var(--txt2);">Апп &amp; IT</div>
         </div>
       </div>
@@ -1912,7 +2351,7 @@
         <div class="status-pill s-pend"><span class="sdot"></span> Вэб &amp; Backend · CASPO</div>
         <div class="proj-ico" aria-hidden="true">🌐</div>
         <div class="proj-name">GrapeCity</div>
-        <div class="proj-desc">Гадаад вендор компани. Polaris системийн backend болон вэб хэсгийг хариуцна. <strong style="color:#FBBF24;">CASPO</strong> нь GrapeCity-ийн манай талд нээсэн Jira төсөл. 2026 оны тайланд CAS-797-оос эхэлсэн 96 Jira, үүнээс CAS-901-ээс хойших 69 ажлыг нэгтгэн хянаж байна.</div>
+        <div class="proj-desc">Гадаад вендор компани. Polaris системийн backend болон вэб хэсгийг хариуцна. <strong style="color:var(--txt0);">CASPO</strong> нь GrapeCity-ийн манай талд нээсэн Jira төсөл. Энэ хэсэгт 2026 оны эхнээс бүртгэгдсэн бүх 96 Jira-г нэгтгэн харуулсан.</div>
         <div class="summary-side-title">Гол үр дүн</div>
         <div class="mini-impact-grid">
           <div class="card impact-card mini-impact">
@@ -1921,9 +2360,9 @@
             <div class="impact-note">CAS-797-оос одоо хүртэл</div>
           </div>
           <div class="card impact-card mini-impact">
-            <div class="impact-num">69</div>
-            <div class="impact-label">CAS-901-ээс хойших Jira</div>
-            <div class="impact-note">4-р сарын 23-наас хойш</div>
+            <div class="impact-num">72</div>
+            <div class="impact-label">Засагдсан Jira</div>
+            <div class="impact-note">Нийт бүртгэлийн 75%</div>
           </div>
           <div class="card impact-card mini-impact">
             <div class="impact-num">17</div>
@@ -1933,7 +2372,7 @@
         </div>
         <div class="tags">
           <span class="tag">Polaris Backend</span><span class="tag">CASPO Төсөл</span>
-          <span class="tag">CAS-901+</span><span class="tag">Live Sheet</span>
+          <span class="tag">2026 Jira</span><span class="tag">Live Sheet</span>
         </div>
       </div>
 
@@ -1961,7 +2400,7 @@
       <div class="caspo-report-head">
         <div>
           <div class="caspo-report-title">CASPO Jira тайлан — CAS-797-оос одоо хүртэл</div>
-          <div class="caspo-report-copy">2026 оны CASPO Jira бүртгэлийг сар, төлөв, төрөл, компонент болон эрэмбээр нэгтгэв. CAS-901-ээс хойших ажлуудыг миний ажиллаж эхэлснээс хойших урсгал болгон тусад нь хянаж байна.</div>
+          <div class="caspo-report-copy">2026 оны эхнээс бүртгэгдсэн CASPO Jira-г сар, төлөв, төрөл, компонент болон эрэмбээр нэгтгэв.</div>
         </div>
         <div class="caspo-total-pill">
           <strong>96</strong>
@@ -1988,8 +2427,8 @@
           </div>
         </div>
         <div class="monthly-chart-foot">
-          <span><strong>CAS-901-ээс хойш:</strong> 4-р сар 9 · 5-р сар 18 · 6-р сар 35 · 7-р сар 7</span>
-          <span><strong>Нийт 69</strong> Jira · 7-р сарын 3-ны байдлаар</span>
+          <span><strong>Хамгийн өндөр ачаалал:</strong> 6-р сар · 35 Jira</span>
+          <span><strong>Нийт 96</strong> Jira · 7-р сарын 3-ны байдлаар</span>
         </div>
       </div>
 
@@ -2036,10 +2475,10 @@
         <div class="stat-panel">
           <h3>Эрэмбэ ба төлөв</h3>
           <div class="metric-list">
-            <div class="metric-row"><div><div class="metric-name">Маш өндөр</div><div class="metric-sub">Нээлттэй 0 · Хаагдсан 32</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:100%;"></div></div></div><div class="metric-value">32<span>нийт</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Өндөр</div><div class="metric-sub">Нээлттэй 9 · Хаагдсан 40</div><div class="metric-track"><div class="metric-fill fill-high" style="width:81.63%;"></div></div></div><div class="metric-value">49<span>нийт</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Дунд</div><div class="metric-sub">Нээлттэй 2 · Хаагдсан 10</div><div class="metric-track"><div class="metric-fill" style="width:83.33%;"></div></div></div><div class="metric-value">12<span>нийт</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Бага</div><div class="metric-sub">Нээлттэй 0 · Хаагдсан 3</div><div class="metric-track"><div class="metric-fill fill-low" style="width:100%;"></div></div></div><div class="metric-value">3<span>нийт</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Маш өндөр</div><div class="metric-sub">Нээлттэй 0 · Хаагдсан 32</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:100%;"></div></div></div><div class="metric-value">32</div></div>
+            <div class="metric-row"><div><div class="metric-name">Өндөр</div><div class="metric-sub">Нээлттэй 9 · Хаагдсан 40</div><div class="metric-track"><div class="metric-fill fill-high" style="width:81.63%;"></div></div></div><div class="metric-value">49</div></div>
+            <div class="metric-row"><div><div class="metric-name">Дунд</div><div class="metric-sub">Нээлттэй 2 · Хаагдсан 10</div><div class="metric-track"><div class="metric-fill" style="width:83.33%;"></div></div></div><div class="metric-value">12</div></div>
+            <div class="metric-row"><div><div class="metric-name">Бага</div><div class="metric-sub">Нээлттэй 0 · Хаагдсан 3</div><div class="metric-track"><div class="metric-fill fill-low" style="width:100%;"></div></div></div><div class="metric-value">3</div></div>
           </div>
         </div>
       </div>
@@ -2064,42 +2503,48 @@
     <p class="sec-p">QR кодыг уншуулах эсвэл линк дээр дарж дотоод асуудал бүртгэлийн системд нэвтэрнэ. Дотоод хэрэглээний холбоос тул ARD ажлын Google акаунт шаардлагатай.</p>
 
     <!-- Internal request system intro -->
-    <div class="card access-card wide reveal" style="margin-top:2.5rem;padding:2rem;">
-      <div class="access-h" style="margin-bottom:.4rem;">Дотоод хүсэлт бүртгэлийн систем — хэрхэн ажилладаг вэ?</div>
-      <p class="access-p" style="margin-bottom:1.6rem;">Системийн алдаа, асуудал гарвал бүртгэлийн системээр хүсэлт илгээж, явцыг нь хянах боломжтой. Ингэснээр хүсэлт бүр бүртгэлтэй үлдэж, хэн дээр ямар шатанд явж байгаа нь тодорхой болно.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem;">
-        <div style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.18);border-radius:10px;padding:1.1rem 1.2rem;display:flex;gap:.9rem;align-items:flex-start;">
-          <div style="width:32px;height:32px;border-radius:8px;background:#1D4ED8;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;flex-shrink:0;">1</div>
-          <div>
-            <div style="font-size:13.5px;font-weight:700;margin-bottom:.3rem;">Асуудлаа бичиж илгээнэ</div>
-            <div style="font-size:12px;color:var(--txt1);line-height:1.6;">Гарчиг, тайлбар, зураг (screenshot) хавсаргаад "Save" дарна. (@ardsecurities.com мэйлээр нэвтэрнэ.)</div>
-          </div>
+    <div class="card access-card wide request-guide reveal">
+      <div class="request-guide-head">
+        <div class="request-guide-copy">
+          <div class="access-h" style="margin-bottom:.45rem;">Дотоод хүсэлт бүртгэлийн систем</div>
+          <p class="access-p" style="margin:0;">Системийн асуудлыг нэг дор бүртгэж, шалгалт, шийдвэрлэлт болон хэрэглэгчид буцаах хариуг дарааллаар нь хянадаг.</p>
         </div>
-        <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.18);border-radius:10px;padding:1.1rem 1.2rem;display:flex;gap:.9rem;align-items:flex-start;">
-          <div style="width:32px;height:32px;border-radius:8px;background:#B45309;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;flex-shrink:0;">2</div>
-          <div>
-            <div style="font-size:13.5px;font-weight:700;margin-bottom:.3rem;">Системийн админ шалгана</div>
-            <div style="font-size:12px;color:var(--txt1);line-height:1.6;">Энгийн асуудал бол админ өөрөө шийднэ. Backend алдаа бол GrapeCity-д дамжуулна.</div>
-          </div>
+        <span class="request-guide-badge">4 алхам</span>
+      </div>
+
+      <div class="request-flow">
+        <div class="request-step">
+          <div class="request-step-top"><span class="request-step-num">01</span></div>
+          <div class="request-step-title">Асуудлаа бүртгэнэ</div>
+          <div class="request-step-text">Гарчиг, тайлбар, screenshot болон шаардлагатай файлаа хавсарган илгээнэ.</div>
         </div>
-        <div style="background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.18);border-radius:10px;padding:1.1rem 1.2rem;display:flex;gap:.9rem;align-items:flex-start;">
-          <div style="width:32px;height:32px;border-radius:8px;background:#16A34A;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;flex-shrink:0;">3</div>
-          <div>
-            <div style="font-size:13.5px;font-weight:700;margin-bottom:.3rem;">Явцыг аппаас хянана</div>
-            <div style="font-size:12px;color:var(--txt1);line-height:1.6;">"Миний Хүсэлт" цэснээс төлвийг хянана: Шинэ → Хянаж буй → Шийдэгдсэн.</div>
-          </div>
+        <div class="request-step">
+          <div class="request-step-top"><span class="request-step-num">02</span></div>
+          <div class="request-step-title">Шалгаж, ангилна</div>
+          <div class="request-step-text">Систем админ нөлөөлөл, яаралтай байдал болон шийдвэрлэх талыг тодорхойлно.</div>
         </div>
-        <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.18);border-radius:10px;padding:1.1rem 1.2rem;display:flex;gap:.9rem;align-items:flex-start;">
-          <div style="width:32px;height:32px;border-radius:8px;background:var(--gold-dk);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;flex-shrink:0;">4</div>
-          <div>
-            <div style="font-size:13.5px;font-weight:700;margin-bottom:.3rem;">Сэтгэгдлээр харилцана</div>
-            <div style="font-size:12px;color:var(--txt1);line-height:1.6;">Асуудал дотор "+ Add" дарж сэтгэгдэл бичнэ. Нэр, огноо автоматаар бүртгэгдэнэ.</div>
-          </div>
+        <div class="request-step">
+          <div class="request-step-top"><span class="request-step-num">03</span></div>
+          <div class="request-step-title">Шийдвэрлэлтэд дамжуулна</div>
+          <div class="request-step-text">Дотооддоо шийдэх эсвэл CASPO/AFS талд Jira үүсгэн явцыг хянана.</div>
+        </div>
+        <div class="request-step">
+          <div class="request-step-top"><span class="request-step-num">04</span></div>
+          <div class="request-step-title">Хариу өгч хаана</div>
+          <div class="request-step-text">Засварыг дахин тестэлж, сэтгэгдлээр мэдээлэн хүсэлтийг шийдвэрлэнэ.</div>
         </div>
       </div>
-      <div style="background:rgba(230,51,41,.06);border:1px solid rgba(230,51,41,.18);border-radius:14px;padding:.85rem 1.1rem;font-size:12.5px;color:var(--txt1);display:flex;gap:.7rem;align-items:flex-start;">
-        <span class="mini-ico" style="width:28px;height:28px;margin:0;flex-shrink:0;color:#fff;background:rgba(230,51,41,.18);border-color:rgba(230,51,41,.28);">!</span>
-        <span><strong style="color:var(--txt0);">Яаралтай үед:</strong> Системийн ажиллагаа бүрэн зогссон эсвэл харилцагчийн мөнгөн гүйлгээнд нөлөөтэй асуудал гарсан үед дотоод шуурхай сувгаар холбогдоно уу. Энгийн асуудлуудыг заавал системээр илгээгээрэй.</span>
+
+      <div class="request-status-line" aria-label="Хүсэлтийн төлөв">
+        <span class="request-status">Шинэ</span><span class="request-status-arrow">→</span>
+        <span class="request-status">Хянаж буй</span><span class="request-status-arrow">→</span>
+        <span class="request-status">Дамжуулсан</span><span class="request-status-arrow">→</span>
+        <span class="request-status">Шийдэгдсэн</span>
+      </div>
+
+      <div class="request-urgent">
+        <span class="request-urgent-mark">!</span>
+        <span><strong style="color:var(--txt0);">Яаралтай үед:</strong> Систем бүрэн зогссон эсвэл харилцагчийн мөнгөн гүйлгээ, арилжаанд шууд нөлөөлсөн асуудлыг дотоод шуурхай сувгаар мэдэгдэнэ. Бусад асуудлыг бүртгэлийн системээр илгээнэ.</span>
       </div>
     </div>
 
@@ -2161,7 +2606,7 @@
               <div class="app-meta-name">Дотоод асуудал бүртгэлийн систем</div>
               <div class="app-meta-sub">Ард Секюритиз ҮЦК ХХК · дотоод систем</div>
               <div class="app-badges">
-                <span class="app-badge"><span style="color:#4ADE80">●</span> Идэвхтэй</span>
+                <span class="app-badge"><span style="color:#D9DCDF">●</span> Идэвхтэй</span>
                 <span class="app-badge">AppSheet</span>
                 <span class="app-badge">Google Sheets</span>
                 <span class="app-badge">Google Drive</span>
@@ -2210,11 +2655,11 @@
       </div>
 
       <div class="tl-item reveal d2">
-        <div class="tl-date">2026 оны 4–7-р сар</div>
+        <div class="tl-date">2026 оны 1–7-р сар</div>
         <div class="tl-dot lit"></div>
         <div class="tl-content">
         <div class="tl-title">GrapeCity / CASPO Jira урсгалыг нэгтгэсэн ✓</div>
-        <div class="tl-body">Polaris системийн алдаа, сайжруулалт, лавлагааг GrapeCity-ийн CASPO төсөл дээр хянаж байна. CAS-901 буюу 2026 оны 4-р сарын 23-наас хойш 4-р сард 9, 5-р сард 18, 6-р сард 35, 7-р сарын 3-ны байдлаар 7 Jira бүртгэгдсэн. Нийт 69 ажлын явцыг нэгтгэн хянаж байна.</div>
+        <div class="tl-body">Polaris системийн алдаа, сайжруулалт, лавлагааг GrapeCity-ийн CASPO төсөл дээр хянаж байна. 2026 оны 1-р сараас 7-р сарын 3 хүртэл нийт 96 Jira бүртгэгдсэн бөгөөд сарын хөдөлгөөн, төлөв, төрөл, компонент болон эрэмбийг нэгтгэн тайлагнаж байна.</div>
         </div>
       </div>
 
@@ -2318,11 +2763,8 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="footer-mark"><img src="img/logo.png" alt="Ард" style="filter:none;" /></div>
-      <div>
-        <div class="footer-co">Ард Секюритиз ҮЦК ХХК</div>
-        <div class="footer-tag">Систем админы тайлан · 2026</div>
-      </div>
+      <img class="brand-mark" src="img/ard-mark-white.png" alt="Ard" />
+      <span class="brand-word">SECURITIES</span>
     </div>
     <p class="footer-dis">Энэхүү тайланд миний хийж гүйцэтгэсэн ажлууд болон цаашид төлөвлөж буй ажлуудыг удирдлагын багт танилцуулах зорилгоор нэгтгэн тусгав.</p>
     <div class="footer-links">
@@ -2345,9 +2787,16 @@ function toggleNav() {
   const open = links.classList.toggle('open');
   ham.classList.toggle('open', open);
   ham.setAttribute('aria-expanded', String(open));
+  ham.setAttribute('aria-label', open ? 'Цэс хаах' : 'Цэс нээх');
 }
 
-function smoothPageScrollTo(targetY, duration = 900) {
+let scrollAnimationFrame = null;
+function smoothPageScrollTo(targetY, duration = 900, forceMotion = false) {
+  if (!forceMotion && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    window.scrollTo(0,targetY);
+    return;
+  }
+  if (scrollAnimationFrame) cancelAnimationFrame(scrollAnimationFrame);
   const startY = window.scrollY;
   const distance = targetY - startY;
   const startTime = performance.now();
@@ -2355,9 +2804,10 @@ function smoothPageScrollTo(targetY, duration = 900) {
   function frame(now) {
     const p = Math.min((now - startTime) / duration, 1);
     window.scrollTo(0, startY + distance * ease(p));
-    if (p < 1) requestAnimationFrame(frame);
+    if (p < 1) scrollAnimationFrame = requestAnimationFrame(frame);
+    else scrollAnimationFrame = null;
   }
-  requestAnimationFrame(frame);
+  scrollAnimationFrame = requestAnimationFrame(frame);
 }
 
 function scrollToSection(hash) {
@@ -2366,7 +2816,7 @@ function scrollToSection(hash) {
   if (!target) return;
   const navOffset = hash === '#hero' ? 0 : 78;
   const targetY = Math.max(0, target.getBoundingClientRect().top + window.scrollY - navOffset);
-  smoothPageScrollTo(targetY);
+  smoothPageScrollTo(targetY, 900, true);
   history.pushState(null, '', hash);
 }
 
@@ -2380,15 +2830,57 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-window.addEventListener('scroll', () => {
-  const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+const navSectionLinks = [...document.querySelectorAll('.nav-links a[href^="#"]:not(.nav-btn)')];
+const navTargets = navSectionLinks
+  .map(link => ({ link, target: document.querySelector(link.getAttribute('href')) }))
+  .filter(item => item.target);
+let scrollUiFrame = null;
+
+function updateScrollUi() {
+  const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+  const progress = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
+  const pct = progress * 100;
+  const nav = document.getElementById('nav');
+  const marker = window.scrollY + nav.offsetHeight + Math.min(window.innerHeight * .28, 220);
+  let activeLink = null;
+
+  navTargets.forEach(item => {
+    if (item.target.offsetTop <= marker) activeLink = item.link;
+  });
+  if (window.scrollY < window.innerHeight * .42) activeLink = null;
+
+  navSectionLinks.forEach(link => {
+    const active = link === activeLink;
+    link.classList.toggle('active', active);
+    if (active) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  });
+
+  const navLinksEl = document.getElementById('navLinks');
+  navLinksEl.classList.toggle('has-active',Boolean(activeLink));
+  if (activeLink) {
+    const linkRect = activeLink.getBoundingClientRect();
+    const listRect = navLinksEl.getBoundingClientRect();
+    navLinksEl.style.setProperty('--nav-pill-x',`${linkRect.left-listRect.left}px`);
+    navLinksEl.style.setProperty('--nav-pill-w',`${linkRect.width}px`);
+  }
+
+  document.documentElement.style.setProperty('--scroll-progress', progress.toFixed(4));
   document.getElementById('pbar').style.width = pct + '%';
-  document.getElementById('nav').style.boxShadow = window.scrollY > 60 ? '0 4px 30px rgba(0,0,0,.6)' : 'none';
+  nav.classList.toggle('is-scrolled', window.scrollY > 40);
+  nav.style.boxShadow = window.scrollY > 60 ? '0 12px 40px rgba(0,0,0,.34)' : 'none';
   document.getElementById('btt').classList.toggle('show', window.scrollY > 400);
-});
+  scrollUiFrame = null;
+}
+
+window.addEventListener('scroll', () => {
+  if (scrollUiFrame === null) scrollUiFrame = requestAnimationFrame(updateScrollUi);
+}, { passive:true });
+window.addEventListener('resize', updateScrollUi, { passive:true });
+updateScrollUi();
 
 document.getElementById('btt').addEventListener('click', () => {
-  smoothPageScrollTo(0, 950);
+  smoothPageScrollTo(0, 1100, true);
   history.pushState(null, '', '#hero');
 });
 
@@ -2400,7 +2892,8 @@ document.getElementById('btt').addEventListener('click', () => {
   hero.insertBefore(cv, hero.firstChild);
   const ctx = cv.getContext('2d');
   let W, H, pts = [];
-  const N = 86, D = 165, SAFE_TOP = 118;
+  const N = window.innerWidth < 768 ? 48 : 86, D = 165, SAFE_TOP = 118;
+  let animating = true, animationFrameId = null;
   function resize(){ W = cv.width = hero.offsetWidth; H = cv.height = hero.offsetHeight; }
   function init(){
     resize(); pts = [];
@@ -2418,10 +2911,14 @@ document.getElementById('btt').addEventListener('click', () => {
     const liveH = Math.max(H - liveTop - 42, 120);
     const base = liveTop + liveH * .58;
     const amp = Math.min(88, liveH * .2);
+    const priceAt = x => base
+      + Math.sin(x*.010 + t*.0010) * amp*.48
+      + Math.sin(x*.025 - t*.0014) * amp*.25
+      + Math.cos(x*.006 + t*.0007) * amp*.16;
 
     ctx.save();
     ctx.lineWidth = 1;
-    ctx.strokeStyle = 'rgba(201,168,76,.04)';
+    ctx.strokeStyle = 'rgba(225,227,230,.035)';
     for(let x=0; x<W; x+=84){
       ctx.beginPath(); ctx.moveTo(x, liveTop - 35); ctx.lineTo(x, H); ctx.stroke();
     }
@@ -2429,19 +2926,36 @@ document.getElementById('btt').addEventListener('click', () => {
       ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
     }
 
+    // Subtle bid/ask depth gives the scene an order-book feel.
+    for(let i=0;i<7;i++){
+      const y = liveTop + 24 + i*24;
+      const bidW = 48 + (Math.sin(t*.0012+i*1.7)+1)*42;
+      const askW = 48 + (Math.cos(t*.001+i*1.4)+1)*42;
+      ctx.fillStyle = `rgba(34,197,94,${.018+i*.004})`;
+      ctx.fillRect(0,y,bidW,3);
+      ctx.fillStyle = `rgba(239,68,68,${.018+i*.004})`;
+      ctx.fillRect(W-askW,y,askW,3);
+    }
+
     ctx.beginPath();
     for(let x=-30; x<=W+30; x+=18){
-      const y = base
-        + Math.sin(x*.010 + t*.0010) * amp*.48
-        + Math.sin(x*.025 - t*.0014) * amp*.25
-        + Math.cos(x*.006 + t*.0007) * amp*.16;
+      const y = priceAt(x);
       if(x===-30) ctx.moveTo(x,y); else ctx.lineTo(x,y);
     }
-    ctx.shadowColor = 'rgba(201,168,76,.38)';
+    ctx.shadowColor = 'rgba(225,227,230,.28)';
     ctx.shadowBlur = 12;
-    ctx.strokeStyle = 'rgba(201,168,76,.34)';
+    ctx.strokeStyle = 'rgba(225,227,230,.25)';
     ctx.lineWidth = 2;
     ctx.stroke();
+
+    const pulseX = (t*.075) % (W + 80) - 40;
+    const pulseY = priceAt(pulseX);
+    ctx.beginPath();
+    ctx.arc(pulseX,pulseY,3.2,0,Math.PI*2);
+    ctx.fillStyle='rgba(125,211,252,.9)';
+    ctx.shadowColor='rgba(96,165,250,.8)';
+    ctx.shadowBlur=16;
+    ctx.fill();
 
     ctx.shadowBlur = 0;
     ctx.beginPath();
@@ -2465,18 +2979,32 @@ document.getElementById('btt').addEventListener('click', () => {
       const low = center + wick*.55;
       const open = center + (up ? body*.5 : -body*.5);
       const close = center + (up ? -body*.5 : body*.5);
-      ctx.strokeStyle = up ? 'rgba(201,168,76,.22)' : 'rgba(230,51,41,.16)';
-      ctx.fillStyle = up ? 'rgba(201,168,76,.16)' : 'rgba(230,51,41,.12)';
+      ctx.strokeStyle = up ? 'rgba(34,197,94,.72)' : 'rgba(239,68,68,.72)';
+      ctx.fillStyle = up ? 'rgba(34,197,94,.42)' : 'rgba(239,68,68,.42)';
+      ctx.shadowColor = up ? 'rgba(34,197,94,.28)' : 'rgba(239,68,68,.28)';
+      ctx.shadowBlur = 6;
       ctx.lineWidth = 1;
       ctx.beginPath(); ctx.moveTo(x, high); ctx.lineTo(x, low); ctx.stroke();
       ctx.fillRect(x-4, Math.min(open, close), 8, Math.max(Math.abs(open-close), 4));
+    }
+    ctx.shadowBlur = 0;
+
+    // Animated volume histogram adds market activity without competing with the report text.
+    const volumeBase = Math.min(H-44,liveTop+liveH*.94);
+    for(let x=22;x<W;x+=18){
+      const wave = Math.abs(Math.sin(x*.071+t*.0017));
+      const volume = 5 + wave*24;
+      const positive = Math.sin(x*.043+t*.0011) > 0;
+      ctx.fillStyle = positive ? 'rgba(34,197,94,.16)' : 'rgba(239,68,68,.14)';
+      ctx.fillRect(x,volumeBase-volume,7,volume);
     }
     ctx.restore();
   }
 
   function draw(){
     ctx.clearRect(0,0,W,H);
-    drawMarketLayer(performance.now());
+    const now=performance.now();
+    drawMarketLayer(now);
     for(let i=0;i<pts.length;i++){
       for(let j=i+1;j<pts.length;j++){
         const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
@@ -2485,7 +3013,7 @@ document.getElementById('btt').addEventListener('click', () => {
           ctx.beginPath();
           ctx.moveTo(pts[i].x,pts[i].y);
           ctx.lineTo(pts[j].x,pts[j].y);
-          ctx.strokeStyle=`rgba(201,168,76,${(1-d/D)*.17})`;
+          ctx.strokeStyle=`rgba(225,227,230,${(1-d/D)*.14})`;
           ctx.lineWidth=.75; ctx.stroke();
         }
       }
@@ -2493,15 +3021,50 @@ document.getElementById('btt').addEventListener('click', () => {
     for(const p of pts){
       ctx.beginPath();
       ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=p.gold?'rgba(201,168,76,.72)':'rgba(96,165,250,.52)';
+      ctx.fillStyle=p.gold?'rgba(235,236,237,.68)':'rgba(145,151,158,.48)';
       ctx.fill();
       p.x+=p.vx; p.y+=p.vy;
       if(p.x<-4) p.x=W+4; else if(p.x>W+4) p.x=-4;
       if(p.y<SAFE_TOP-4) p.y=H+4; else if(p.y>H+4) p.y=SAFE_TOP;
     }
-    requestAnimationFrame(draw);
+    animationFrameId = requestAnimationFrame(draw);
   }
   window.addEventListener('resize',()=>{resize();});
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    hero.addEventListener('pointermove',e=>{
+      const rect=hero.getBoundingClientRect();
+      const nx=(e.clientX-rect.left)/rect.width-.5;
+      const ny=(e.clientY-rect.top)/rect.height-.5;
+      hero.style.setProperty('--hero-x',`${nx*16}px`);
+      hero.style.setProperty('--hero-y',`${ny*12}px`);
+      hero.style.setProperty('--hero-x-rev',`${nx*-11}px`);
+      hero.style.setProperty('--hero-y-rev',`${ny*-8}px`);
+      hero.style.setProperty('--hero-x-soft',`${nx*6}px`);
+      hero.style.setProperty('--hero-y-soft',`${ny*5}px`);
+    },{passive:true});
+    hero.addEventListener('pointerleave',()=>{
+      ['--hero-x','--hero-y','--hero-x-rev','--hero-y-rev','--hero-x-soft','--hero-y-soft'].forEach(name=>hero.style.setProperty(name,'0px'));
+    },{passive:true});
+  }
+  const heroVisibility = new IntersectionObserver(([entry])=>{
+    if(entry.isIntersecting && !animating){
+      animating=true;
+      draw();
+    } else if(!entry.isIntersecting && animating){
+      animating=false;
+      cancelAnimationFrame(animationFrameId);
+    }
+  },{threshold:.01});
+  heroVisibility.observe(hero);
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden){
+      animating=false;
+      cancelAnimationFrame(animationFrameId);
+    } else if(hero.getBoundingClientRect().bottom>0 && hero.getBoundingClientRect().top<innerHeight && !animating){
+      animating=true;
+      draw();
+    }
+  });
   init(); draw();
 })();
 
@@ -2521,9 +3084,42 @@ document.getElementById('btt').addEventListener('click', () => {
   });
 })();
 
-// Reveal
-const revObs = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); }); },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+// Reveal report headings and data blocks as they enter the viewport.
+const autoRevealSelectors = [
+  'section .sec-eyebrow',
+  'section .sec-h2',
+  'section .sec-p',
+  '.status-stat-grid',
+  '.stat-panel',
+  '.monthly-chart-card',
+  '.caspo-story',
+  '.pattern-highlight',
+  '.pattern-grid',
+  '.ceo-takeaway',
+  '.request-flow'
+].join(',');
+document.querySelectorAll(autoRevealSelectors).forEach((el,index) => {
+  if (!el.classList.contains('reveal')) el.classList.add('reveal');
+  el.style.setProperty('--reveal-delay',`${(index % 3) * .07}s`);
+});
+
+const revObs = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>entry.target.classList.toggle('in',entry.isIntersecting));
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+// Section divider signal and entry state.
+const reportSections = [...document.querySelectorAll('body > section:not(#hero)')];
+reportSections.forEach(section => {
+  const divider = document.createElement('span');
+  divider.className = 'section-transition';
+  divider.setAttribute('aria-hidden','true');
+  section.appendChild(divider);
+});
+const sectionEntryObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => entry.target.classList.toggle('section-in',entry.isIntersecting));
+},{threshold:.12,rootMargin:'-8% 0px -18% 0px'});
+reportSections.forEach(section => sectionEntryObs.observe(section));
 
 // Counters
 const cntObs = new IntersectionObserver(entries=>{
@@ -2535,6 +3131,102 @@ const cntObs = new IntersectionObserver(entries=>{
   });
 },{threshold:.5});
 document.querySelectorAll('[data-to]').forEach(el=>cntObs.observe(el));
+
+// Jira statistic counters and bars animate when their own panel enters view.
+const statGroups = [
+  document.querySelector('.status-stat-grid'),
+  ...document.querySelectorAll('.stat-panel')
+].filter(Boolean);
+
+function leadingNumberNode(el) {
+  return [...el.childNodes].find(node => node.nodeType === Node.TEXT_NODE && /\d/.test(node.nodeValue));
+}
+
+statGroups.forEach(group => {
+  group.querySelectorAll('.status-stat strong, .metric-value').forEach(el => {
+    const node = leadingNumberNode(el);
+    if (!node) return;
+    el.dataset.countTarget = String(parseInt(node.nodeValue, 10));
+    node.nodeValue = '0';
+  });
+});
+
+function animateStatCount(el, delay = 0) {
+  const target = Number(el.dataset.countTarget);
+  const node = leadingNumberNode(el);
+  if (!node || !Number.isFinite(target)) return;
+  const runId = (el._countRunId || 0) + 1;
+  el._countRunId = runId;
+  setTimeout(() => {
+    if (el._countRunId !== runId) return;
+    const start = performance.now();
+    const duration = 1050;
+    const tick = now => {
+      if (el._countRunId !== runId) return;
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      node.nodeValue = String(Math.round(target * eased));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, delay);
+}
+
+function runStatGroup(group) {
+  group.classList.remove('metrics-in');
+  group.classList.add('metrics-reset');
+  const counters = [...group.querySelectorAll('[data-count-target]')];
+  counters.forEach(el => {
+    el._countRunId = (el._countRunId || 0) + 1;
+    const node = leadingNumberNode(el);
+    if (node) node.nodeValue = '0';
+  });
+  void group.offsetWidth;
+  requestAnimationFrame(() => {
+    group.classList.remove('metrics-reset');
+    group.classList.add('metrics-in');
+    counters.forEach((el,index) => animateStatCount(el,index * 55));
+  });
+}
+
+const statRevealObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.intersectionRatio >= .2 && entry.target.dataset.statsVisible !== 'true') {
+      entry.target.dataset.statsVisible = 'true';
+      runStatGroup(entry.target);
+      return;
+    }
+    if (entry.intersectionRatio === 0) {
+      entry.target.dataset.statsVisible = 'false';
+      entry.target.classList.remove('metrics-in');
+      entry.target.classList.add('metrics-reset');
+      entry.target.querySelectorAll('[data-count-target]').forEach(el => {
+        el._countRunId = (el._countRunId || 0) + 1;
+        const node = leadingNumberNode(el);
+        if (node) node.nodeValue = '0';
+      });
+    }
+  });
+},{threshold:[0,.2],rootMargin:'0px 0px -30px 0px'});
+statGroups.forEach(group => statRevealObs.observe(group));
+
+document.querySelectorAll('.stat-panel').forEach(panel => {
+  const title = panel.querySelector('h3')?.textContent?.trim() || 'Статистик';
+  panel.tabIndex = 0;
+  panel.setAttribute('aria-label',`${title} статистикийн хөдөлгөөнийг дахин тоглуулах`);
+  const activate = () => {
+    panel.classList.add('is-active');
+    runStatGroup(panel);
+    clearTimeout(panel._activeTimer);
+    panel._activeTimer = setTimeout(() => panel.classList.remove('is-active'),1450);
+  };
+  panel.addEventListener('click',activate);
+  panel.addEventListener('keydown',event => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    activate();
+  });
+});
 
 // Progress bars
 const pgObs = new IntersectionObserver(entries=>{
@@ -2555,7 +3247,7 @@ let thanksTimer;
 let confettiTimer;
 function spawnThanksConfetti(fx) {
   fx.replaceChildren();
-  const colors = ['#F6D77D', '#C9A84C', '#E63329', '#FFFFFF', '#60A5FA'];
+  const colors = ['#F4F4F2', '#C9CDD1', '#8C9299', '#FFFFFF', '#646A71'];
   const count = 72;
   for (let i = 0; i < count; i++) {
     const piece = document.createElement('i');
