@@ -1673,7 +1673,6 @@
     .ceo-takeaway,
     .takeaway-card,
     .status-stat,
-    .it-support-summary,
     .app-preview-card,
     .tech-item,
     .monthly-chart-card {
@@ -2090,45 +2089,77 @@
 
     /* ── LOADING REVEAL ── */
     body.splash-active { overflow:hidden; }
+    body.splash-active #nav,
+    body.splash-active > section,
+    body.splash-active > footer,
+    body.splash-active #btt,
+    body.splash-active .motion-scrollbar { opacity:0; transform:translateY(20px); }
+    body.splash-ready #nav,
+    body.splash-ready > section,
+    body.splash-ready > footer,
+    body.splash-ready #btt,
+    body.splash-ready .motion-scrollbar { animation:mainPageIn .58s var(--ease) both; }
     .splash-screen {
       position:fixed; inset:0; z-index:100000; display:grid; place-items:center;
       background:
-        radial-gradient(circle at 50% 45%,rgba(148,163,184,.1),transparent 32%),
-        linear-gradient(145deg,#05070a,#0d1117 58%,#05070a);
-      transition:opacity .46s ease,visibility .46s ease;
+        radial-gradient(circle at 50% 43%,rgba(203,213,225,.13),transparent 28%),
+        radial-gradient(circle at 50% 52%,rgba(71,85,105,.1),transparent 48%),
+        linear-gradient(145deg,#030507,#0c1015 58%,#05070a);
+      transition:opacity .48s ease,transform .48s var(--ease),visibility 0s linear .48s;
+      will-change:opacity,transform;
     }
     .splash-screen::before {
       content:''; position:absolute; inset:0;
-      background:linear-gradient(90deg,transparent,rgba(255,255,255,.04),transparent);
-      transform:translateX(-100%); animation:splashSweep 1.2s .15s var(--ease) forwards;
+      background:
+        linear-gradient(90deg,transparent,rgba(255,255,255,.035),transparent),
+        repeating-linear-gradient(90deg,transparent 0 79px,rgba(255,255,255,.018) 80px);
+      transform:translateX(-100%);
     }
-    .splash-screen.is-leaving { opacity:0; visibility:hidden; pointer-events:none; }
-    .splash-inner { position:relative; text-align:center; padding:2rem; }
-    .splash-brand { display:flex; align-items:center; justify-content:center; gap:1rem; margin-bottom:1.1rem; opacity:0; animation:splashRise .55s .08s var(--ease) forwards; }
-    .splash-brand img { width:110px; height:48px; object-fit:contain; }
-    .splash-brand span { color:#D7DADE; font-size:10px; letter-spacing:.42em; }
-    .splash-title { overflow:hidden; color:#F5F6F7; font-family:'Space Grotesk',sans-serif; font-size:clamp(1.65rem,4vw,3rem); font-weight:700; line-height:1.12; }
-    .splash-title span { display:block; transform:translateY(115%); animation:splashText .62s .32s var(--ease) forwards; }
-    .splash-rule { width:0; height:1px; margin:1.15rem auto 0; background:linear-gradient(90deg,transparent,#D8DADD,transparent); animation:splashRule .62s .62s var(--ease) forwards; }
+    .splash-screen.is-running::before { animation:splashSweep 1.25s .12s var(--ease) forwards; }
+    .splash-screen.is-leaving { opacity:0; transform:translateY(-24px); visibility:hidden; pointer-events:none; }
+    .splash-inner { position:relative; width:min(680px,92vw); text-align:center; padding:2rem; }
+    .splash-brand { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.7rem; margin-bottom:1rem; }
+    .splash-brand img { width:116px; height:50px; object-fit:contain; opacity:0; transform:translateY(12px); filter:drop-shadow(0 0 22px rgba(226,232,240,.16)); }
+    .splash-screen.is-running .splash-brand img { animation:splashRise .58s .06s var(--ease) forwards; }
+    .splash-brand-text { overflow:hidden; color:#E7EAED; font:700 clamp(.72rem,2vw,.9rem) 'Space Grotesk',sans-serif; letter-spacing:.38em; }
+    .splash-brand-text span { display:block; opacity:0; transform:translateY(115%); }
+    .splash-screen.is-running .splash-brand-text span { animation:splashText .58s .24s var(--ease) forwards; }
+    .splash-title { overflow:hidden; color:#F7F8F9; font-family:'Space Grotesk',sans-serif; font-size:clamp(1.7rem,4.4vw,3.15rem); font-weight:700; line-height:1.12; text-shadow:0 0 28px rgba(226,232,240,.09); }
+    .splash-title span { display:block; opacity:0; transform:translateY(105%); }
+    .splash-screen.is-running .splash-title span { animation:splashTitleIn .58s .52s var(--ease) forwards; }
+    .splash-subtitle { margin-top:.65rem; color:#AEB4BB; font-size:11px; letter-spacing:.18em; opacity:0; transform:translateY(8px); }
+    .splash-screen.is-running .splash-subtitle { animation:splashRise .46s .84s var(--ease) forwards; }
+    .splash-rule { width:min(270px,68vw); height:1px; margin:1.15rem auto 0; overflow:hidden; background:rgba(255,255,255,.06); }
+    .splash-rule::after { content:''; display:block; width:100%; height:100%; background:linear-gradient(90deg,transparent,#F3F4F6 45%,#94A3B8 70%,transparent); transform:scaleX(0); transform-origin:left; }
+    .splash-screen.is-running .splash-rule::after { animation:splashRule .7s .9s var(--ease) forwards; }
+    .splash-loading { margin-top:.65rem; color:#717982; font-size:9px; letter-spacing:.12em; opacity:0; }
+    .splash-screen.is-running .splash-loading { animation:splashFade .38s 1.02s ease forwards; }
     @keyframes splashRise { to{opacity:1;transform:translateY(0)} from{opacity:0;transform:translateY(12px)} }
-    @keyframes splashText { to{transform:translateY(0)} }
-    @keyframes splashRule { to{width:min(240px,64vw)} }
+    @keyframes splashText { to{opacity:1;transform:translateY(0)} }
+    @keyframes splashTitleIn { to{opacity:1;transform:translateY(0)} }
+    @keyframes splashRule { to{transform:scaleX(1)} }
+    @keyframes splashFade { to{opacity:1} }
     @keyframes splashSweep { to{transform:translateX(100%)} }
+    @keyframes mainPageIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
 
     /* ── MONTHLY JIRA DRILL-DOWN ── */
     body.modal-open { overflow:hidden; }
     .jira-modal {
       position:fixed; inset:0; z-index:99990; display:grid; place-items:center; padding:1.25rem;
-      background:rgba(1,4,9,.78); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-      opacity:0; visibility:hidden; pointer-events:none; transition:opacity .2s ease,visibility .2s ease;
+      background:
+        radial-gradient(circle at 78% 18%,rgba(59,130,246,.12),transparent 28%),
+        radial-gradient(circle at 18% 82%,rgba(16,185,129,.07),transparent 30%),
+        rgba(1,4,9,.82);
+      backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+      opacity:0; visibility:hidden; pointer-events:none; transition:opacity .28s ease,visibility 0s linear .28s;
     }
-    .jira-modal.open { opacity:1; visibility:visible; pointer-events:auto; }
+    .jira-modal.open { opacity:1; visibility:visible; pointer-events:auto; transition-delay:0s; }
     .jira-modal-panel {
       width:min(1120px,100%); max-height:min(88vh,900px); overflow:auto; overscroll-behavior:contain;
       border:1px solid rgba(255,255,255,.14); border-radius:22px;
       background:linear-gradient(180deg,rgba(25,29,35,.98),rgba(10,14,20,.99));
       box-shadow:0 32px 100px rgba(0,0,0,.66),inset 0 1px 0 rgba(255,255,255,.06);
-      transform:translateY(12px) scale(.97); opacity:0; transition:transform .22s var(--ease),opacity .22s ease;
+      transform:translateY(24px) scale(.95); opacity:0; transition:transform .32s var(--ease),opacity .26s ease;
       scrollbar-width:thin; scrollbar-color:#64748B transparent;
     }
     .jira-modal.open .jira-modal-panel { transform:translateY(0) scale(1); opacity:1; }
@@ -2141,20 +2172,30 @@
     .jira-month-tab { flex:0 0 auto; border:1px solid rgba(255,255,255,.11); border-radius:999px; padding:.55rem .85rem; color:var(--txt1); background:rgba(255,255,255,.035); font:700 11px 'Inter',sans-serif; cursor:pointer; transition:all .2s ease; }
     .jira-month-tab:hover,.jira-month-tab:focus-visible { color:#fff; border-color:rgba(96,165,250,.45); outline:none; }
     .jira-month-tab.active { color:#08111C; border-color:transparent; background:linear-gradient(135deg,#F1F5F9,#7DD3FC); box-shadow:0 6px 24px rgba(56,189,248,.18); }
-    .jira-modal-content { padding:1rem 1.5rem 1.5rem; opacity:1; transform:translateY(0); transition:opacity .16s ease,transform .16s ease; }
-    .jira-modal-content.changing { opacity:0; transform:translateY(7px); }
+    .jira-modal-content { padding:1rem 1.5rem 1.5rem; opacity:1; transform:translateX(0); transition:opacity .2s ease,transform .2s var(--ease); }
+    .jira-modal-content.changing { opacity:0; transform:translateX(14px); }
     .drill-kpis { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.65rem; margin-bottom:1rem; }
-    .drill-kpi { min-width:0; padding:.85rem; border:1px solid rgba(255,255,255,.1); border-radius:14px; background:rgba(255,255,255,.035); }
+    .drill-kpi { min-width:0; padding:.85rem; border:1px solid rgba(255,255,255,.1); border-radius:14px; background:rgba(255,255,255,.035); animation:drillCardIn .38s var(--ease) both; }
     .drill-kpi strong { display:block; color:#F4F6F8; font-family:'Space Grotesk',sans-serif; font-size:1.15rem; line-height:1.18; overflow-wrap:anywhere; }
     .drill-kpi span { display:block; margin-top:.35rem; color:var(--txt2); font-size:9.5px; }
+    .drill-kpi:nth-child(1) { border-color:rgba(226,232,240,.2); }
+    .drill-kpi:nth-child(2) { border-color:rgba(248,113,113,.28); background:rgba(239,68,68,.055); }
+    .drill-kpi:nth-child(2) strong { color:#FDA4AF; }
+    .drill-kpi:nth-child(3) { border-color:rgba(96,165,250,.27); background:rgba(59,130,246,.055); }
+    .drill-kpi:nth-child(3) strong { color:#93C5FD; }
+    .drill-kpi:nth-child(4) { border-color:rgba(251,146,60,.3); background:rgba(249,115,22,.055); }
+    .drill-kpi:nth-child(4) strong { color:#FDBA74; }
+    .drill-kpi:nth-child(5) { border-color:rgba(52,211,153,.26); background:rgba(16,185,129,.05); }
+    .drill-kpi:nth-child(5) strong { color:#6EE7B7; }
     .drill-main { display:grid; grid-template-columns:1.15fr .85fr; gap:1rem; }
-    .drill-panel { min-width:0; padding:1rem; border:1px solid rgba(255,255,255,.09); border-radius:16px; background:rgba(255,255,255,.025); }
+    .drill-panel { min-width:0; padding:1rem; border:1px solid rgba(255,255,255,.09); border-radius:16px; background:rgba(255,255,255,.025); animation:drillCardIn .42s .05s var(--ease) both; }
+    .drill-panel:first-child { border-color:rgba(96,165,250,.18); background:linear-gradient(145deg,rgba(59,130,246,.045),rgba(255,255,255,.018)); }
     .drill-panel h3,.drill-table-title { margin:0 0 .8rem; color:var(--txt0); font-family:'Space Grotesk',sans-serif; font-size:.92rem; }
     .drill-bars { display:grid; gap:.65rem; }
     .drill-bar-head { display:flex; justify-content:space-between; gap:.75rem; color:var(--txt1); font-size:10.5px; }
     .drill-bar-head strong { color:#F3F4F6; }
     .drill-track { height:6px; margin-top:.3rem; overflow:hidden; border-radius:999px; background:rgba(255,255,255,.07); }
-    .drill-fill { height:100%; border-radius:inherit; background:linear-gradient(90deg,#64748B,#CBD5E1); transform-origin:left; animation:drillFill .55s var(--ease) both; }
+    .drill-fill { height:100%; border-radius:inherit; background:var(--drill-color,#64748B); background:linear-gradient(90deg,var(--drill-color,#64748B),color-mix(in srgb,var(--drill-color,#64748B) 54%,#fff)); box-shadow:0 0 14px color-mix(in srgb,var(--drill-color,#64748B) 28%,transparent); transform-origin:left; animation:drillFill .58s var(--ease) both; }
     @keyframes drillFill { from{transform:scaleX(0)} to{transform:scaleX(1)} }
     .drill-summary-grid { display:grid; gap:.8rem; }
     .drill-summary-block + .drill-summary-block { padding-top:.75rem; border-top:1px solid rgba(255,255,255,.07); }
@@ -2162,15 +2203,24 @@
     .drill-chips { display:flex; flex-wrap:wrap; gap:.4rem; }
     .drill-chip { padding:.35rem .55rem; border:1px solid rgba(255,255,255,.1); border-radius:999px; background:rgba(255,255,255,.035); color:var(--txt1); font-size:9.5px; }
     .drill-chip strong { color:#fff; }
+    .drill-chip.tone-red,.drill-table-badge.tone-red { color:#FDA4AF; border-color:rgba(248,113,113,.25); background:rgba(239,68,68,.09); }
+    .drill-chip.tone-green,.drill-table-badge.tone-green { color:#86EFAC; border-color:rgba(74,222,128,.22); background:rgba(34,197,94,.08); }
+    .drill-chip.tone-blue,.drill-table-badge.tone-blue { color:#93C5FD; border-color:rgba(96,165,250,.25); background:rgba(59,130,246,.09); }
+    .drill-chip.tone-amber,.drill-table-badge.tone-amber { color:#FCD34D; border-color:rgba(251,191,36,.24); background:rgba(245,158,11,.08); }
     .drill-insights { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.7rem; margin-top:1rem; }
-    .drill-insight { padding:.9rem; border:1px solid rgba(255,255,255,.09); border-radius:14px; background:rgba(255,255,255,.025); color:var(--txt1); font-size:11px; line-height:1.62; }
+    .drill-insight { padding:.9rem; border:1px solid rgba(255,255,255,.09); border-radius:14px; background:rgba(255,255,255,.025); color:var(--txt1); font-size:11px; line-height:1.62; animation:drillCardIn .42s .1s var(--ease) both; }
+    .drill-insight:nth-child(1) { border-top-color:rgba(96,165,250,.42); }
+    .drill-insight:nth-child(2) { border-top-color:rgba(251,191,36,.42); }
+    .drill-insight:nth-child(3) { border-top-color:rgba(52,211,153,.4); }
     .drill-insight strong { display:block; margin-bottom:.35rem; color:var(--txt0); font-size:11.5px; }
-    .drill-table-wrap { margin-top:1rem; overflow-x:auto; border:1px solid rgba(255,255,255,.09); border-radius:16px; }
+    .drill-table-wrap { margin-top:1rem; overflow-x:auto; border:1px solid rgba(255,255,255,.09); border-radius:16px; animation:drillCardIn .42s .14s var(--ease) both; }
     .drill-table-title { padding:1rem 1rem 0; }
     .drill-table { width:100%; min-width:820px; border-collapse:collapse; font-size:10.5px; }
     .drill-table th,.drill-table td { padding:.7rem .75rem; text-align:left; border-top:1px solid rgba(255,255,255,.065); color:var(--txt1); vertical-align:top; }
     .drill-table th { color:#DDE1E6; font-size:9.5px; text-transform:uppercase; letter-spacing:.05em; background:rgba(255,255,255,.025); }
     .drill-table td:first-child { color:#93C5FD; font-weight:800; white-space:nowrap; }
+    .drill-table-badge { display:inline-flex; padding:.24rem .45rem; border:1px solid rgba(255,255,255,.1); border-radius:999px; white-space:nowrap; font-size:9px; }
+    @keyframes drillCardIn { from{opacity:0;transform:translateY(9px)} to{opacity:1;transform:translateY(0)} }
     @media(max-width:800px){
       .drill-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.drill-main{grid-template-columns:1fr}.drill-insights{grid-template-columns:1fr}
     }
@@ -2193,11 +2243,24 @@
     @media (prefers-reduced-motion:reduce) {
       .orb,.sdot,.thanks-confetti { animation:none !important; }
       .hero-mesh,.hero-grid-bg,#hero-canvas { transition:none !important; }
-      .splash-screen::before,.splash-brand,.splash-title span,.splash-rule,.drill-fill { animation:none !important; }
-      .splash-brand,.splash-title span { opacity:1; transform:none; }
-      .splash-rule { width:min(240px,64vw); }
-      .jira-modal,.jira-modal-panel,.jira-modal-content { transition:none !important; }
+      .splash-screen::before,.splash-brand img,.splash-brand-text span,.splash-title span,.splash-subtitle,.splash-rule::after,.splash-loading,
+      .drill-fill,.drill-kpi,.drill-panel,.drill-insight,.drill-table-wrap { animation:none !important; }
+      .splash-brand img,.splash-brand-text span,.splash-title span,.splash-subtitle,.splash-loading { transform:none !important; }
+      .splash-rule::after { opacity:0; transform:scaleX(1); }
+      .splash-screen.is-running .splash-brand img,
+      .splash-screen.is-running .splash-brand-text span { animation:splashReducedFade .42s .08s ease forwards !important; }
+      .splash-screen.is-running .splash-title span { animation:splashReducedFade .42s .34s ease forwards !important; }
+      .splash-screen.is-running .splash-subtitle,
+      .splash-screen.is-running .splash-rule::after,
+      .splash-screen.is-running .splash-loading { animation:splashReducedFade .38s .58s ease forwards !important; }
+      body.splash-ready #nav,body.splash-ready > section,body.splash-ready > footer,body.splash-ready #btt,body.splash-ready .motion-scrollbar { animation:splashReducedFade .3s ease both !important; transform:none; }
+      .splash-screen { transition:opacity .3s ease,visibility 0s linear .3s; }
+      .jira-modal { transition:opacity .2s ease,visibility 0s linear .2s !important; }
+      .jira-modal.open { transition-delay:0s !important; }
+      .jira-modal-panel { transform:none !important; transition:opacity .2s ease !important; }
+      .jira-modal-content { transform:none !important; transition:opacity .16s ease !important; }
     }
+    @keyframes splashReducedFade { from{opacity:0} to{opacity:1} }
   </style>
 </head>
 <body class="splash-active">
@@ -2206,10 +2269,12 @@
   <div class="splash-inner">
     <div class="splash-brand">
       <img src="img/ard-mark-white.png" alt="" />
-      <span>SECURITIES</span>
+      <div class="splash-brand-text"><span>ARD SECURITIES</span></div>
     </div>
     <div class="splash-title"><span>Жинхлэх ажлын тайлан</span></div>
+    <div class="splash-subtitle">Системийн админ тайлан</div>
     <div class="splash-rule"></div>
+    <div class="splash-loading">Тайлан ачааллаж байна...</div>
   </div>
 </div>
 
@@ -2927,16 +2992,21 @@
   const splash = document.getElementById('splashScreen');
   if (!splash) return;
   let finished = false;
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => splash.classList.add('is-running'));
+  });
   const finishSplash = () => {
     if (finished) return;
     finished = true;
     splash.classList.add('is-leaving');
     document.body.classList.remove('splash-active');
+    document.body.classList.add('splash-ready');
+    setTimeout(() => document.body.classList.remove('splash-ready'), 700);
     setTimeout(() => splash.remove(), 500);
   };
   splash.addEventListener('click', finishSplash, {once:true});
-  window.addEventListener('load', () => setTimeout(finishSplash, 1350), {once:true});
-  setTimeout(finishSplash, 2300);
+  window.addEventListener('load', () => setTimeout(finishSplash, 1650), {once:true});
+  setTimeout(finishSplash, 2200);
 })();
 
 function toggleNav() {
@@ -3353,7 +3423,15 @@ const monthlyDrilldownData = {
     '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'
   })[char]);
   const entriesByValue = object => Object.entries(object).sort((a,b)=>b[1]-a[1]);
-  const chips = object => entriesByValue(object).map(([name,value])=>`<span class="drill-chip">${escapeHtml(name)} <strong>${value}</strong></span>`).join('');
+  const drillPalette = ['#60A5FA','#34D399','#F59E0B','#F87171','#A78BFA','#22D3EE','#F472B6','#94A3B8','#FACC15'];
+  const toneClass = name => {
+    if (/Bug|Complaint|Маш өндөр|Засахгүй/i.test(name)) return 'tone-red';
+    if (/Improvement|Хаагдсан|Шийдвэрлэгдсэн|Бага/i.test(name)) return 'tone-green';
+    if (/Consulting|Явагдаж буй|Дунд/i.test(name)) return 'tone-blue';
+    if (/Өндөр|Мэдээлэл/i.test(name)) return 'tone-amber';
+    return 'tone-blue';
+  };
+  const chips = object => entriesByValue(object).map(([name,value])=>`<span class="drill-chip ${toneClass(name)}">${escapeHtml(name)} <strong>${value}</strong></span>`).join('');
 
   function renderMonth(month, animate = true) {
     const data = monthlyDrilldownData[month];
@@ -3368,12 +3446,15 @@ const monthlyDrilldownData = {
     });
     const draw = () => {
       const maxComponent = Math.max(...Object.values(data.component));
-      const componentBars = entriesByValue(data.component).map(([name,value])=>`
+      const componentBars = entriesByValue(data.component).map(([name,value],index)=>`
         <div class="drill-bar">
           <div class="drill-bar-head"><span>${escapeHtml(name)}</span><strong>${value}</strong></div>
-          <div class="drill-track"><div class="drill-fill" style="width:${(value/maxComponent)*100}%"></div></div>
+          <div class="drill-track"><div class="drill-fill" style="--drill-color:${drillPalette[index % drillPalette.length]};width:${(value/maxComponent)*100}%"></div></div>
         </div>`).join('');
-      const rows = data.topIssues.map(issue=>`<tr>${issue.map(cell=>`<td>${escapeHtml(cell)}</td>`).join('')}</tr>`).join('');
+      const rows = data.topIssues.map(issue=>{
+        const [jira,component,subject,type,priority,status] = issue;
+        return `<tr><td>${escapeHtml(jira)}</td><td>${escapeHtml(component)}</td><td>${escapeHtml(subject)}</td><td><span class="drill-table-badge ${toneClass(type)}">${escapeHtml(type)}</span></td><td><span class="drill-table-badge ${toneClass(priority)}">${escapeHtml(priority)}</span></td><td><span class="drill-table-badge ${toneClass(status)}">${escapeHtml(status)}</span></td></tr>`;
+      }).join('');
       content.innerHTML = `
         <div class="drill-kpis">
           <div class="drill-kpi"><strong>${data.total}</strong><span>Нийт Jira</span></div>
