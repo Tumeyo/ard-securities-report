@@ -433,7 +433,8 @@
     }
     .card:has(a.open-btn):hover,
     .card:has(button):hover,
-    .interactive-card:hover {
+    .proj-card:hover,
+    .proj-card:focus-visible {
       transform:translateY(-6px);
       box-shadow:
         0 26px 72px rgba(0,0,0,.5),
@@ -441,7 +442,7 @@
         inset 0 1px 0 rgba(255,255,255,.05);
       border-color:rgba(201,168,76,.34);
     }
-    .interactive-card { cursor:pointer; }
+    .proj-card:focus-visible { outline:2px solid rgba(148,163,184,.78); outline-offset:4px; }
 
     /* ── TEAM ── */
     #team {
@@ -757,21 +758,6 @@
       margin-bottom:1.6rem;
       padding:.45rem 0 .2rem;
     }
-    .request-flow::before {
-      content:'';
-      position:absolute;
-      z-index:0;
-      top:23px;
-      left:8%;
-      right:8%;
-      height:2px;
-      background:linear-gradient(90deg,#60A5FA 0 32%,#CBD5E1 42% 58%,#F59E0B 68% 78%,#34D399 100%);
-      opacity:.48;
-      transform:scaleX(0);
-      transform-origin:left;
-      transition:transform 1.25s var(--ease);
-    }
-    .request-flow.in::before { transform:scaleX(1); }
     .request-step {
       position:relative;
       z-index:1;
@@ -1012,7 +998,14 @@
       border-bottom:1px solid rgba(214,184,90,.16);
       background:repeating-linear-gradient(to top, transparent 0 44px, rgba(255,255,255,.035) 45px 46px);
     }
-    .month-column { height:100%; display:grid; grid-template-rows:22px 1fr 25px; align-items:end; text-align:center; }
+    .month-column {
+      height:100%; display:grid; grid-template-rows:22px 1fr 25px; align-items:end; text-align:center;
+      border:0; padding:0; color:inherit; font:inherit; background:transparent; cursor:pointer;
+      border-radius:10px; transition:background .25s ease,transform .25s ease,box-shadow .25s ease;
+    }
+    .month-column:hover,
+    .month-column:focus-visible { background:rgba(255,255,255,.045); transform:translateY(-3px); box-shadow:inset 0 0 0 1px rgba(148,163,184,.22); }
+    .month-column:focus-visible { outline:2px solid rgba(96,165,250,.72); outline-offset:2px; }
     .month-count { color:var(--txt0); font-family:'Space Grotesk',sans-serif; font-size:.92rem; font-weight:800; align-self:start; }
     .month-bar {
       width:min(46px,72%);
@@ -1287,6 +1280,11 @@
     }
     .status-stat strong { display:block; font-family:'Space Grotesk',sans-serif; font-size:1.45rem; line-height:1; color:var(--gold-lt); }
     .status-stat span { display:block; margin-top:.35rem; color:var(--txt2); font-size:10.5px; }
+    .status-stat--total strong { color:#F3F4F6; }
+    .status-stat--open strong { color:#FFAAA2; }
+    .status-stat--fixed strong { color:#4ADE80; }
+    .status-stat--progress strong { color:#60A5FA; }
+    .status-stat--wontfix strong { color:#F05252; }
     .it-support-summary {
       display:grid;
       grid-template-columns:repeat(2,minmax(0,1fr));
@@ -1723,7 +1721,7 @@
     .month-column:nth-child(3n) .month-bar { background:linear-gradient(180deg,#34D399,#059669); }
     .month-column.peak .month-bar { background:linear-gradient(180deg,#FB7185,#DC2626); box-shadow:0 0 24px rgba(239,68,68,.24); }
     .month-column.current .month-bar { background:linear-gradient(180deg,#FBBF24,#D97706); box-shadow:0 0 22px rgba(245,158,11,.2); }
-    .status-stat strong, .it-support-stat strong, .metric-value, .impact-num, .caspo-total-pill strong { color:#E7E9EB !important; }
+    .it-support-stat strong, .metric-value, .impact-num, .caspo-total-pill strong { color:#E7E9EB !important; }
     .it-support-stat { border-color:rgba(255,255,255,.13); background:rgba(255,255,255,.035); }
     .request-step-num { color:#111214; background:linear-gradient(135deg,#F4F4F2,#858A90); box-shadow:0 0 0 5px rgba(255,255,255,.045); }
     .request-step:not(:last-child)::after { background:linear-gradient(90deg,rgba(235,236,237,.58),rgba(255,255,255,.09)); }
@@ -1757,7 +1755,8 @@
     }
     .card:has(a.open-btn):hover,
     .card:has(button):hover,
-    .interactive-card:hover,
+    .proj-card:hover,
+    .proj-card:focus-visible,
     .card:focus-within {
       border-color:rgba(96,165,250,.5);
       background:linear-gradient(180deg,rgba(59,130,246,.085),rgba(255,255,255,.022));
@@ -1942,10 +1941,9 @@
       }
       .request-guide-head { flex-direction:column; margin-bottom:1.6rem; }
       .request-flow { grid-template-columns:1fr; gap:1.2rem; }
-      .request-flow::before { display:none; }
       .request-step { min-height:112px; padding:1rem 1rem 1rem 4rem; }
       .request-step-top { position:absolute; left:1rem; top:1rem; margin:0; }
-      .request-step:not(:last-child)::after { display:block; left:35px; right:auto; top:54px; bottom:-22px; width:1px; height:auto; background:linear-gradient(180deg,rgba(148,163,184,.5),rgba(255,255,255,.08)); }
+      .request-step:not(:last-child)::after { display:none; }
       .request-status-line { justify-content:flex-start; }
       .hero-sub,
       .sec-p,
@@ -2090,6 +2088,96 @@
       .btn-red, .btn-ghost, .btn-gold { max-width:290px; }
     }
 
+    /* ── LOADING REVEAL ── */
+    body.splash-active { overflow:hidden; }
+    .splash-screen {
+      position:fixed; inset:0; z-index:100000; display:grid; place-items:center;
+      background:
+        radial-gradient(circle at 50% 45%,rgba(148,163,184,.1),transparent 32%),
+        linear-gradient(145deg,#05070a,#0d1117 58%,#05070a);
+      transition:opacity .46s ease,visibility .46s ease;
+    }
+    .splash-screen::before {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.04),transparent);
+      transform:translateX(-100%); animation:splashSweep 1.2s .15s var(--ease) forwards;
+    }
+    .splash-screen.is-leaving { opacity:0; visibility:hidden; pointer-events:none; }
+    .splash-inner { position:relative; text-align:center; padding:2rem; }
+    .splash-brand { display:flex; align-items:center; justify-content:center; gap:1rem; margin-bottom:1.1rem; opacity:0; animation:splashRise .55s .08s var(--ease) forwards; }
+    .splash-brand img { width:110px; height:48px; object-fit:contain; }
+    .splash-brand span { color:#D7DADE; font-size:10px; letter-spacing:.42em; }
+    .splash-title { overflow:hidden; color:#F5F6F7; font-family:'Space Grotesk',sans-serif; font-size:clamp(1.65rem,4vw,3rem); font-weight:700; line-height:1.12; }
+    .splash-title span { display:block; transform:translateY(115%); animation:splashText .62s .32s var(--ease) forwards; }
+    .splash-rule { width:0; height:1px; margin:1.15rem auto 0; background:linear-gradient(90deg,transparent,#D8DADD,transparent); animation:splashRule .62s .62s var(--ease) forwards; }
+    @keyframes splashRise { to{opacity:1;transform:translateY(0)} from{opacity:0;transform:translateY(12px)} }
+    @keyframes splashText { to{transform:translateY(0)} }
+    @keyframes splashRule { to{width:min(240px,64vw)} }
+    @keyframes splashSweep { to{transform:translateX(100%)} }
+
+    /* ── MONTHLY JIRA DRILL-DOWN ── */
+    body.modal-open { overflow:hidden; }
+    .jira-modal {
+      position:fixed; inset:0; z-index:99990; display:grid; place-items:center; padding:1.25rem;
+      background:rgba(1,4,9,.78); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+      opacity:0; visibility:hidden; pointer-events:none; transition:opacity .2s ease,visibility .2s ease;
+    }
+    .jira-modal.open { opacity:1; visibility:visible; pointer-events:auto; }
+    .jira-modal-panel {
+      width:min(1120px,100%); max-height:min(88vh,900px); overflow:auto; overscroll-behavior:contain;
+      border:1px solid rgba(255,255,255,.14); border-radius:22px;
+      background:linear-gradient(180deg,rgba(25,29,35,.98),rgba(10,14,20,.99));
+      box-shadow:0 32px 100px rgba(0,0,0,.66),inset 0 1px 0 rgba(255,255,255,.06);
+      transform:translateY(12px) scale(.97); opacity:0; transition:transform .22s var(--ease),opacity .22s ease;
+      scrollbar-width:thin; scrollbar-color:#64748B transparent;
+    }
+    .jira-modal.open .jira-modal-panel { transform:translateY(0) scale(1); opacity:1; }
+    .jira-modal-head { position:sticky; top:0; z-index:4; display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; padding:1.35rem 1.5rem 1rem; background:rgba(14,18,24,.94); border-bottom:1px solid rgba(255,255,255,.08); backdrop-filter:blur(14px); }
+    .jira-modal-title { color:var(--txt0); font-family:'Space Grotesk',sans-serif; font-size:clamp(1.25rem,3vw,1.85rem); }
+    .jira-modal-sub { margin-top:.3rem; color:var(--txt2); font-size:11px; }
+    .jira-modal-close { width:38px; height:38px; flex:0 0 auto; border:1px solid rgba(255,255,255,.13); border-radius:50%; color:#EEF0F2; background:rgba(255,255,255,.05); font-size:1.25rem; cursor:pointer; transition:background .2s ease,transform .2s ease; }
+    .jira-modal-close:hover,.jira-modal-close:focus-visible { background:rgba(239,68,68,.18); transform:rotate(5deg); outline:2px solid rgba(248,113,113,.5); }
+    .jira-month-tabs { display:flex; gap:.45rem; overflow-x:auto; padding:1rem 1.5rem .35rem; scrollbar-width:thin; }
+    .jira-month-tab { flex:0 0 auto; border:1px solid rgba(255,255,255,.11); border-radius:999px; padding:.55rem .85rem; color:var(--txt1); background:rgba(255,255,255,.035); font:700 11px 'Inter',sans-serif; cursor:pointer; transition:all .2s ease; }
+    .jira-month-tab:hover,.jira-month-tab:focus-visible { color:#fff; border-color:rgba(96,165,250,.45); outline:none; }
+    .jira-month-tab.active { color:#08111C; border-color:transparent; background:linear-gradient(135deg,#F1F5F9,#7DD3FC); box-shadow:0 6px 24px rgba(56,189,248,.18); }
+    .jira-modal-content { padding:1rem 1.5rem 1.5rem; opacity:1; transform:translateY(0); transition:opacity .16s ease,transform .16s ease; }
+    .jira-modal-content.changing { opacity:0; transform:translateY(7px); }
+    .drill-kpis { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.65rem; margin-bottom:1rem; }
+    .drill-kpi { min-width:0; padding:.85rem; border:1px solid rgba(255,255,255,.1); border-radius:14px; background:rgba(255,255,255,.035); }
+    .drill-kpi strong { display:block; color:#F4F6F8; font-family:'Space Grotesk',sans-serif; font-size:1.15rem; line-height:1.18; overflow-wrap:anywhere; }
+    .drill-kpi span { display:block; margin-top:.35rem; color:var(--txt2); font-size:9.5px; }
+    .drill-main { display:grid; grid-template-columns:1.15fr .85fr; gap:1rem; }
+    .drill-panel { min-width:0; padding:1rem; border:1px solid rgba(255,255,255,.09); border-radius:16px; background:rgba(255,255,255,.025); }
+    .drill-panel h3,.drill-table-title { margin:0 0 .8rem; color:var(--txt0); font-family:'Space Grotesk',sans-serif; font-size:.92rem; }
+    .drill-bars { display:grid; gap:.65rem; }
+    .drill-bar-head { display:flex; justify-content:space-between; gap:.75rem; color:var(--txt1); font-size:10.5px; }
+    .drill-bar-head strong { color:#F3F4F6; }
+    .drill-track { height:6px; margin-top:.3rem; overflow:hidden; border-radius:999px; background:rgba(255,255,255,.07); }
+    .drill-fill { height:100%; border-radius:inherit; background:linear-gradient(90deg,#64748B,#CBD5E1); transform-origin:left; animation:drillFill .55s var(--ease) both; }
+    @keyframes drillFill { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+    .drill-summary-grid { display:grid; gap:.8rem; }
+    .drill-summary-block + .drill-summary-block { padding-top:.75rem; border-top:1px solid rgba(255,255,255,.07); }
+    .drill-summary-title { margin-bottom:.45rem; color:#E5E7EB; font-size:10.5px; font-weight:800; }
+    .drill-chips { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .drill-chip { padding:.35rem .55rem; border:1px solid rgba(255,255,255,.1); border-radius:999px; background:rgba(255,255,255,.035); color:var(--txt1); font-size:9.5px; }
+    .drill-chip strong { color:#fff; }
+    .drill-insights { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.7rem; margin-top:1rem; }
+    .drill-insight { padding:.9rem; border:1px solid rgba(255,255,255,.09); border-radius:14px; background:rgba(255,255,255,.025); color:var(--txt1); font-size:11px; line-height:1.62; }
+    .drill-insight strong { display:block; margin-bottom:.35rem; color:var(--txt0); font-size:11.5px; }
+    .drill-table-wrap { margin-top:1rem; overflow-x:auto; border:1px solid rgba(255,255,255,.09); border-radius:16px; }
+    .drill-table-title { padding:1rem 1rem 0; }
+    .drill-table { width:100%; min-width:820px; border-collapse:collapse; font-size:10.5px; }
+    .drill-table th,.drill-table td { padding:.7rem .75rem; text-align:left; border-top:1px solid rgba(255,255,255,.065); color:var(--txt1); vertical-align:top; }
+    .drill-table th { color:#DDE1E6; font-size:9.5px; text-transform:uppercase; letter-spacing:.05em; background:rgba(255,255,255,.025); }
+    .drill-table td:first-child { color:#93C5FD; font-weight:800; white-space:nowrap; }
+    @media(max-width:800px){
+      .drill-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.drill-main{grid-template-columns:1fr}.drill-insights{grid-template-columns:1fr}
+    }
+    @media(max-width:520px){
+      .jira-modal{padding:.45rem}.jira-modal-panel{max-height:94vh;border-radius:17px}.jira-modal-head{padding:1rem}.jira-month-tabs{padding:.8rem 1rem .25rem}.jira-modal-content{padding:.85rem 1rem 1rem}.drill-kpis{grid-template-columns:1fr 1fr}.drill-kpi strong{font-size:1rem}
+    }
+
     /* ── PAGE TRANSITION ── */
     #page-transition {
       position: fixed; inset: 0; z-index: 99999;
@@ -2105,10 +2193,25 @@
     @media (prefers-reduced-motion:reduce) {
       .orb,.sdot,.thanks-confetti { animation:none !important; }
       .hero-mesh,.hero-grid-bg,#hero-canvas { transition:none !important; }
+      .splash-screen::before,.splash-brand,.splash-title span,.splash-rule,.drill-fill { animation:none !important; }
+      .splash-brand,.splash-title span { opacity:1; transform:none; }
+      .splash-rule { width:min(240px,64vw); }
+      .jira-modal,.jira-modal-panel,.jira-modal-content { transition:none !important; }
     }
   </style>
 </head>
-<body>
+<body class="splash-active">
+
+<div class="splash-screen" id="splashScreen" aria-hidden="true">
+  <div class="splash-inner">
+    <div class="splash-brand">
+      <img src="img/ard-mark-white.png" alt="" />
+      <span>SECURITIES</span>
+    </div>
+    <div class="splash-title"><span>Жинхлэх ажлын тайлан</span></div>
+    <div class="splash-rule"></div>
+  </div>
+</div>
 
 <div id="pbar"></div>
 <div class="motion-scrollbar" aria-hidden="true">
@@ -2292,7 +2395,7 @@
         </a>
       </div>
 
-      <div class="card proj-card plan-card interactive-card reveal d4" tabindex="0">
+      <div class="card proj-card plan-card reveal d4" tabindex="0" aria-label="Millennium Trader Workstation зогсолтын төлөвлөгөө">
         <div class="status-pill s-pend"><span class="sdot"></span> Төлөвлөж байна</div>
         <div class="proj-ico" aria-hidden="true">🖥️</div>
         <div class="proj-name">Millennium Trader Workstation — зогсолтын төлөвлөгөө</div>
@@ -2307,6 +2410,21 @@
         </div>
       </div>
 
+      <div class="card proj-card plan-card reveal d5" tabindex="0" aria-label="OGSM систем төсөл ба дижитал шилжилтийн төлөвлөгөө">
+        <div class="status-pill s-pend"><span class="sdot"></span> Төлөвлөлтийн шатанд</div>
+        <div class="proj-ico" aria-hidden="true">🧭</div>
+        <div class="proj-name">OGSM — Систем төсөл ба дижитал шилжилт</div>
+        <div class="proj-desc">2026/2027 онд хэрэгжүүлэх системийн сайжруулалт, дижитал шилжилтийн саналыг хэлтэс бүрээс цуглуулах ажилд оролцож байна. Өдөр тутам гараар давтагддаг ажлууд болон автоматжуулах боломжтой процессуудыг CBDO, холбогдох хэлтсүүдтэй хамтран нэгтгэж, эрэмбэлэх бэлтгэл хийж байна.</div>
+        <div class="prog-wrap">
+          <div class="prog-head"><span class="prog-lbl">Төлөвлөлтийн ахиц</span><span class="prog-pct">5%</span></div>
+          <div class="prog-track"><div class="prog-fill pg-blue" data-w="5"></div></div>
+        </div>
+        <div class="tags">
+          <span class="tag">OGSM</span><span class="tag">CBDO</span><span class="tag">Planning</span>
+          <span class="tag">Digital Transformation</span><span class="tag">Process Automation</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -2318,7 +2436,7 @@
     <h2 class="sec-h2">Дотоод асуудлын урсгал</h2>
     <p class="sec-p">Ажилтнуудаас ирсэн системийн асуудлыг эхлээд дотооддоо бүртгэн ангилж, энгийн асуудлыг шууд шийдвэрлэн, шаардлагатай тохиолдолд <strong style="color:var(--txt0);">GrapeCity/CASPO</strong> болон <strong style="color:var(--txt0);">AFS</strong> тал руу дамжуулж, явцыг нь хянаж ажилладаг.</p>
 
-    <div style="display:flex;align-items:center;justify-content:center;gap:1.2rem;flex-wrap:wrap;margin:2.5rem 0;padding:1.5rem 2rem;background:rgba(255,255,255,.02);border:1px solid var(--border2);border-radius:14px;">
+    <div class="vendor-flow reveal" style="display:flex;align-items:center;justify-content:center;gap:1.2rem;flex-wrap:wrap;margin:2.5rem 0;padding:1.5rem 2rem;background:rgba(255,255,255,.02);border:1px solid var(--border2);border-radius:14px;">
       <div style="text-align:center;">
         <div class="mini-ico" style="margin:0 auto .55rem;">01</div>
         <div style="font-size:12px;color:var(--txt1);font-weight:600;">Ажилтнууд</div>
@@ -2417,13 +2535,13 @@
         </div>
         <div class="monthly-chart-scroll">
           <div class="monthly-chart">
-            <div class="month-column"><div class="month-count">8</div><div class="month-bar" style="--bar-h:23%;"></div><div class="month-label">1-р сар</div></div>
-            <div class="month-column"><div class="month-count">7</div><div class="month-bar" style="--bar-h:20%;"></div><div class="month-label">2-р сар</div></div>
-            <div class="month-column"><div class="month-count">11</div><div class="month-bar" style="--bar-h:31%;"></div><div class="month-label">3-р сар</div></div>
-            <div class="month-column"><div class="month-count">10</div><div class="month-bar" style="--bar-h:29%;"></div><div class="month-label">4-р сар</div></div>
-            <div class="month-column"><div class="month-count">18</div><div class="month-bar" style="--bar-h:51%;"></div><div class="month-label">5-р сар</div></div>
-            <div class="month-column peak"><div class="month-count">35</div><div class="month-bar" style="--bar-h:100%;"></div><div class="month-label">6-р сар</div></div>
-            <div class="month-column current"><div class="month-count">7</div><div class="month-bar" style="--bar-h:20%;"></div><div class="month-label">7-р сар</div></div>
+            <button type="button" class="month-column" data-month="1" aria-label="1-р сарын 8 Jira дэлгэрэнгүй"><span class="month-count">8</span><span class="month-bar" style="--bar-h:23%;"></span><span class="month-label">1-р сар</span></button>
+            <button type="button" class="month-column" data-month="2" aria-label="2-р сарын 7 Jira дэлгэрэнгүй"><span class="month-count">7</span><span class="month-bar" style="--bar-h:20%;"></span><span class="month-label">2-р сар</span></button>
+            <button type="button" class="month-column" data-month="3" aria-label="3-р сарын 11 Jira дэлгэрэнгүй"><span class="month-count">11</span><span class="month-bar" style="--bar-h:31%;"></span><span class="month-label">3-р сар</span></button>
+            <button type="button" class="month-column" data-month="4" aria-label="4-р сарын 10 Jira дэлгэрэнгүй"><span class="month-count">10</span><span class="month-bar" style="--bar-h:29%;"></span><span class="month-label">4-р сар</span></button>
+            <button type="button" class="month-column" data-month="5" aria-label="5-р сарын 18 Jira дэлгэрэнгүй"><span class="month-count">18</span><span class="month-bar" style="--bar-h:51%;"></span><span class="month-label">5-р сар</span></button>
+            <button type="button" class="month-column peak" data-month="6" aria-label="6-р сарын 35 Jira дэлгэрэнгүй"><span class="month-count">35</span><span class="month-bar" style="--bar-h:100%;"></span><span class="month-label">6-р сар</span></button>
+            <button type="button" class="month-column current" data-month="7" aria-label="7-р сарын 7 Jira дэлгэрэнгүй"><span class="month-count">7</span><span class="month-bar" style="--bar-h:20%;"></span><span class="month-label">7-р сар</span></button>
           </div>
         </div>
         <div class="monthly-chart-foot">
@@ -2433,11 +2551,11 @@
       </div>
 
       <div class="status-stat-grid" aria-label="CASPO Jira төлөв">
-        <div class="status-stat"><strong>96</strong><span>Нийт Jira</span></div>
-        <div class="status-stat"><strong style="color:var(--blue-lt);">11</strong><span>Нээлттэй</span></div>
-        <div class="status-stat"><strong style="color:#4ADE80;">72</strong><span>Засагдсан</span></div>
-        <div class="status-stat"><strong style="color:#FBBF24;">8</strong><span>In Progress · нээлттэйд багтсан</span></div>
-        <div class="status-stat"><strong style="color:#FF8D7C;">13</strong><span>Засахгүй</span></div>
+        <div class="status-stat status-stat--total"><strong>96</strong><span>Нийт Jira</span></div>
+        <div class="status-stat status-stat--open"><strong>11</strong><span>Нээлттэй</span></div>
+        <div class="status-stat status-stat--fixed"><strong>72</strong><span>Засагдсан</span></div>
+        <div class="status-stat status-stat--progress"><strong>8</strong><span>In Progress · нээлттэйд багтсан</span></div>
+        <div class="status-stat status-stat--wontfix"><strong>13</strong><span>Засахгүй</span></div>
       </div>
 
       <div class="stat-panel-grid">
@@ -2685,6 +2803,15 @@
         <div class="tl-date">2026 оны 7-р сар</div>
         <div class="tl-dot"></div>
         <div class="tl-content">
+        <div class="tl-title">OGSM — Систем төсөл ба дижитал шилжилт</div>
+        <div class="tl-body">Хэлтэс бүрийн гараар давтагддаг ажлыг тодорхойлж, автоматжуулах боломжтой саналуудыг цуглуулан нэгтгэж байна. Дараагийн шатанд саналуудыг нөлөөлөл, хэрэгжүүлэх боломж болон дарааллаар нь эрэмбэлнэ.</div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal d1">
+        <div class="tl-date">2026 оны 7-р сар</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
         <div class="tl-title">Удирдлагуудад танилцуулах — эцсийн тайлан</div>
         <div class="tl-body">Дууссан болон үргэлжилж буй ажлуудыг хамарсан танилцуулга, байршуулсан системийн товч үзүүлэн болон Ард Секюритиз ҮЦК ХХК-ийн дараагийн системийн ажлуудын санал.</div>
         </div>
@@ -2777,10 +2904,41 @@
   </div>
 </footer>
 
+<div class="jira-modal" id="jiraMonthModal" aria-hidden="true">
+  <div class="jira-modal-panel" role="dialog" aria-modal="true" aria-labelledby="jiraModalTitle" tabindex="-1">
+    <div class="jira-modal-head">
+      <div>
+        <h2 class="jira-modal-title" id="jiraModalTitle">Сарын Jira дэлгэрэнгүй</h2>
+        <p class="jira-modal-sub">CAS-797-оос одоог хүртэлх бүртгэлийн дата дээр үндэслэв.</p>
+      </div>
+      <button type="button" class="jira-modal-close" aria-label="Цонх хаах">×</button>
+    </div>
+    <div class="jira-month-tabs" role="tablist" aria-label="Сар сонгох"></div>
+    <div class="jira-modal-content" id="jiraModalContent"></div>
+  </div>
+</div>
+
 <button id="btt" type="button" title="Дээш буцах">↑</button>
 <div id="page-transition"></div>
 
 <script>
+// Short branded reveal on every page load/reload.
+(function(){
+  const splash = document.getElementById('splashScreen');
+  if (!splash) return;
+  let finished = false;
+  const finishSplash = () => {
+    if (finished) return;
+    finished = true;
+    splash.classList.add('is-leaving');
+    document.body.classList.remove('splash-active');
+    setTimeout(() => splash.remove(), 500);
+  };
+  splash.addEventListener('click', finishSplash, {once:true});
+  window.addEventListener('load', () => setTimeout(finishSplash, 1350), {once:true});
+  setTimeout(finishSplash, 2300);
+})();
+
 function toggleNav() {
   const links = document.getElementById('navLinks');
   const ham = document.getElementById('ham');
@@ -3066,6 +3224,232 @@ document.getElementById('btt').addEventListener('click', () => {
     }
   });
   init(); draw();
+})();
+
+// Monthly CASPO Jira drill-down.
+const monthlyDrilldownData = {
+  1: {
+    total:8, topType:'Bug', topComponent:'ХУРИМТЛАЛ',
+    type:{Bug:6,Improvement:1,'Technical Consulting':1},
+    component:{'ХУРИМТЛАЛ':4,CASPO_WEB:3,APP:1},
+    priority:{'Өндөр':4,'Дунд':2,'Маш өндөр':2}, status:{'Хаагдсан':7,'Засахгүй':1},
+    insight:'1-р сард нийт 8 Jira бүртгэгдсэнээс Bug төрлийн асуудал давамгайлж, ХУРИМТЛАЛ компонент дээр хамгийн их төвлөрсөн байна.',
+    possibleReason:'Гарчгийн мэдээллээс харахад УХО хуримтлал, дансны төлөв, ногдол ашгийн данс болон захиалгын логиктой холбоотой асуудлууд давтагдсан байх магадлалтай.',
+    recommendation:'Хуримтлал үүсгэх, идэвхгүй хувьцаа, дансны төлөв болон захиалга зогсоох процессыг дараагийн шалгалтын checklist-д тусгах шаардлагатай.',
+    topIssues:[
+      ['CAS-797','CASPO_WEB','Шинэ төлөвтэй дансыг ТТХА руу илгээхэд алдаа заасан','Bug','Өндөр','Хаагдсан'],
+      ['CAS-799','CASPO_WEB','Ард Аппаар үнэт цаасны данс нээхэд ногдол ашгийн дансны нэр татагдахгүй','Bug','Дунд','Хаагдсан'],
+      ['CAS-805','ХУРИМТЛАЛ','УХО хуримтлалын нийт дүн буруу бодогдсон','Bug','Маш өндөр','Засахгүй'],
+      ['CAS-807','ХУРИМТЛАЛ','Үнэт цаасны данс нээгдээгүй үед УХО хуримтлал үүсгэх боломжтой','Improvement','Маш өндөр','Хаагдсан'],
+      ['CAS-808','ХУРИМТЛАЛ','Идэвхгүй болгосон хувьцаа Polaris дээр үлддэг','Bug','Өндөр','Хаагдсан']
+    ]
+  },
+  2: {
+    total:7, topType:'Bug', topComponent:'Тархмал',
+    type:{Bug:4,Improvement:2,'Business Consulting':1},
+    component:{'ХУРИМТЛАЛ':1,STATEMENT_MONEY:1,ACCOUNT:1,APP:1,UBX:1,BAC:1,'ТАЙЛАН':1},
+    priority:{'Өндөр':2,'Маш өндөр':2,'Дунд':2,'Бага':1}, status:{'Хаагдсан':7},
+    insight:'2-р сард нийт 7 Jira бүртгэгдсэн бөгөөд бүгд хаагдсан байна. Асуудлууд нэг компонент дээр төвлөрөөгүй, олон системд тархсан шинжтэй байна.',
+    possibleReason:'Данс, апп, UBX, мөнгөн гүйлгээ болон тайлантай холбоотой жижиг боловч олон төрлийн үйл ажиллагааны асуудал гарсан байх магадлалтай.',
+    recommendation:'Cross-module асуудлыг ангилахдаа үндсэн систем, нөлөөлсөн процесс болон давтагдсан эсэхийг тусад нь бүртгэдэг болгох хэрэгтэй.',
+    topIssues:[
+      ['CAS-818','ХУРИМТЛАЛ','Хуримтлалын жагсаалтын бүртгэлд ЦЦ данс холбогдохгүй алдаа','Bug','Өндөр','Хаагдсан'],
+      ['CAS-825','STATEMENT_MONEY','ТТД-аас зарлага гарахад алдаа заасан боловч мөнгө хасагдсан','Bug','Маш өндөр','Хаагдсан'],
+      ['CAS-829','ACCOUNT','Үнэт цаасны дансны хүсэлт илгээхэд хураамжийн дансаас төлбөр хасагдсан','Bug','Маш өндөр','Хаагдсан'],
+      ['CAS-834','UBX','UBX бирж рүү хэлцлийн мэдээлэл илгээгдэхгүй','Bug','Өндөр','Хаагдсан'],
+      ['CAS-841','ТАЙЛАН','Арилжааны бус тайлан нэмэх','Improvement','Бага','Хаагдсан']
+    ]
+  },
+  3: {
+    total:11, topType:'Bug', topComponent:'BOND',
+    type:{Bug:9,'Business Consulting':2}, component:{BOND:5,'ХУРИМТЛАЛ':4,BAC:2},
+    priority:{'Өндөр':7,'Маш өндөр':4}, status:{'Хаагдсан':8,'Засахгүй':2,'Мэдээлэл':1},
+    insight:'3-р сард нийт 11 Jira бүртгэгдсэнээс Bug төрлийн асуудал хамгийн өндөр хувьтай, BOND компонент дээр асуудал төвлөрсөн байна.',
+    possibleReason:'Нээлттэй бондын шимтгэл, клиринг, төлбөр тооцоо, алдаатай биелэлт болон УХО захиалгын үлдэгдэлтэй холбоотой процессууд дээр зөрүү гарсан байх магадлалтай.',
+    recommendation:'Бондын захиалга, шимтгэл, клиринг, төлбөр тооцоо болон хуримтлалын үлдэгдлийн тооцооллыг release бүрийн regression test-д оруулах хэрэгтэй.',
+    topIssues:[
+      ['CAS-868','BOND','Нээлттэй бондын шимтгэлийг буруу дүнгээр тооцож байна','Bug','Маш өндөр','Хаагдсан'],
+      ['CAS-870','BOND','Алдаатай биелсэн бондын захиалгуудыг засах','Business Consulting','Өндөр','Мэдээлэл'],
+      ['CAS-871','BOND','0 дүнтэй блок үүсэх асуудал','Bug','Өндөр','Хаагдсан'],
+      ['CAS-872','BOND','Арилжааны төлбөр тооцоо, клирингийн дүн дотоод системтэй зөрсөн','Bug','Маш өндөр','Хаагдсан'],
+      ['CAS-883','ХУРИМТЛАЛ','Алдаатай захиалгын дараа үлдэгдэл хүрэлцэхгүй болсон','Bug','Маш өндөр','Хаагдсан']
+    ]
+  },
+  4: {
+    total:10, topType:'Bug', topComponent:'ACCOUNT',
+    type:{Bug:8,Improvement:2}, component:{ACCOUNT:5,APP:2,CASPO_WEB:2,'ХУРИМТЛАЛ':1},
+    priority:{'Маш өндөр':5,'Өндөр':3,'Дунд':2}, status:{'Хаагдсан':7,'Шийдвэрлэгдсэн':1,'Мэдээлэл':1,'Засахгүй':1},
+    insight:'4-р сард нийт 10 Jira бүртгэгдсэнээс ACCOUNT компонент дээр хамгийн олон асуудал төвлөрч, Bug төрөл давамгайлсан байна.',
+    possibleReason:'Ард Аппаас ирсэн үнэт цаасны дансны хүсэлт, MIT/Polaris дансны төлөв, мөнгө хүсэх хүсэлт болон дансны мэдээлэл дамжуулалттай холбоотой асуудал их гарсан байх магадлалтай.',
+    recommendation:'ACCOUNT, APP, CASPO_WEB хоорондын дансны төлөв шинэчлэлт болон хүсэлт дамжуулах урсгалыг end-to-end байдлаар шалгах хэрэгтэй.',
+    topIssues:[
+      ['CAS-903','ACCOUNT','Ард Аппаас ирсэн үнэт цаасны данс нээх хүсэлтийн мэдээлэл зөрсөн','Bug','Маш өндөр','Хаагдсан'],
+      ['CAS-904','ACCOUNT','Үнэт цаасны дансыг ҮЦТХТ рүү илгээхэд дансны төлөв зөрсөн','Bug','Маш өндөр','Хаагдсан'],
+      ['CAS-906','ACCOUNT','Гурвалсан гэрээгүй данс дээр мөнгө хүсэх хүсэлт илгээгдсэн','Bug','Маш өндөр','Хаагдсан'],
+      ['CAS-907','ACCOUNT','Хүсэлт баталгаажсан боловч аппын дансанд мөнгө ороогүй','Bug','Маш өндөр','Хаагдсан'],
+      ['CAS-909','ACCOUNT','Арилжааны төлбөрийн дэлгэц дээр нийт дүн 0 болсон','Bug','Маш өндөр','Засахгүй']
+    ]
+  },
+  5: {
+    total:18, topType:'Improvement', topComponent:'ACCOUNT',
+    type:{Improvement:9,Bug:8,Complaint:1}, component:{ACCOUNT:5,BOND:4,MSE_SECOND:2,APP:2,WEB:2,BAC:1,CASPO_WEB:1,'WEB SERVER':1},
+    priority:{'Өндөр':12,'Маш өндөр':6}, status:{'Хаагдсан':14,'Явагдаж буй':2,'Мэдээлэл':1,'Засахгүй':1},
+    insight:'5-р сард нийт 18 Jira бүртгэгдсэн бөгөөд Improvement төрлийн хүсэлт Bug-ээс арай өндөр байна. ACCOUNT болон BOND компонентууд дээр ачаалал төвлөрсөн байна.',
+    possibleReason:'Данс нээх, ногдол ашиг авах банкны мэдээлэл, бондын хүү төлөлт, хаалттай бондын купон болон веб арилжааны төлбөр тооцоотой холбоотой сайжруулалт, засварууд зэрэгцэн хийгдсэн байх магадлалтай.',
+    recommendation:'Improvement хүсэлтүүдийг release багц болгон ангилж, ACCOUNT, BOND болон веб төлбөрийн урсгал дээр эрэмбэлсэн roadmap гаргах хэрэгтэй.',
+    topIssues:[
+      ['CAS-917','ACCOUNT','Алдаатай биелсэн захиалгын гүйлгээний утгыг өөрчлөх','Improvement','Өндөр','Хаагдсан'],
+      ['CAS-918','ACCOUNT','Ногдол ашиг авах банкны сонголтод MonPay нэмэх','Improvement','Өндөр','Хаагдсан'],
+      ['CAS-943','ACCOUNT','Вебээр нээсэн дансны хураамжийг цэнэглээд цааш илгээгдэхгүй','Bug','Маш өндөр','Хаагдсан'],
+      ['CAS-937','BOND','Хаалттай бондын дансны хуулга буруу бичигдсэн','Improvement','Өндөр','Явагдаж буй'],
+      ['CAS-939','WEB','Вебээр төлбөрийн данс цэнэглэхэд гүйлгээ автоматаар биелэгдэхгүй','Bug','Маш өндөр','Хаагдсан']
+    ]
+  },
+  6: {
+    total:35, topType:'Bug', topComponent:'ACCOUNT',
+    type:{Bug:20,Improvement:9,'Business Consulting':5,'Technical Consulting':1},
+    component:{ACCOUNT:10,WEB:7,UBX:5,MSE_SECOND:4,APP:3,'ХУРИМТЛАЛ':2,BOND:2,MOST:1,ACCOUNT_MCSD:1},
+    priority:{'Өндөр':17,'Маш өндөр':11,'Дунд':6,'Бага':1}, status:{'Хаагдсан':20,'Засахгүй':7,'Шийдвэрлэгдсэн':6,'Явагдаж буй':2},
+    insight:'6-р сар нь нийт 35 Jira-тай хамгийн өндөр ачаалалтай сар байна. Bug төрөл давамгайлж, ACCOUNT, WEB, UBX, MSE_SECOND компонентууд дээр асуудал илүү төвлөрсөн байна.',
+    possibleReason:'Данс, веб арилжаа, UBX хэлцэл, MSE_SECOND захиалга, QPay/ТТД цэнэглэлт болон мэдээлэл дамжуулалтын урсгал зэрэг олон модуль зэрэг идэвхтэй ашиглагдаж, сайжруулалт болон туршилтын ажил давхар явагдсан байх магадлалтай.',
+    recommendation:'6-р сарын асуудлыг root cause байдлаар задалж, ACCOUNT, WEB, UBX, MSE_SECOND компонентуудыг тусдаа багц болгон regression test болон release checklist-д оруулах шаардлагатай.',
+    topIssues:[
+      ['CAS-942','ACCOUNT','Үнэт цаасны дансгүй төлөв','Bug','Маш өндөр','Хаагдсан'],
+      ['CAS-947','UBX','UBX-ийн биелэлт орж ирээгүй','Bug','Маш өндөр','Хаагдсан'],
+      ['CAS-965','BOND','Бондын захиалгад хуримтлагдсан хүү тооцогдохгүй','Bug','Маш өндөр','Хаагдсан'],
+      ['CAS-989','ACCOUNT','500,000₮ QPay цэнэглэлт ТТД-д ороогүй','Bug','Маш өндөр','Засахгүй'],
+      ['CAS-1031','ACCOUNT','ТТД цэнэглэх үйлдлийг Ард Аппаас хийх боломжгүй','Bug','Маш өндөр','Хаагдсан']
+    ]
+  },
+  7: {
+    total:7, topType:'Bug', topComponent:'BOND / UBX',
+    type:{Bug:4,'Business Consulting':2,Improvement:1}, component:{BOND:2,UBX:2,MSE_SECOND:1,WEB:1,'ХУРИМТЛАЛ':1},
+    priority:{'Өндөр':4,'Маш өндөр':2,'Бага':1}, status:{'Явагдаж буй':4,'Засахгүй':1,'Хаагдсан':1,'Шийдвэрлэгдсэн':1},
+    insight:'7-р сарын эхний 3 өдрийн байдлаар нийт 7 Jira бүртгэгдсэн байна. BOND болон UBX компонентууд дээр асуудал илүү төвлөрсөн харагдаж байна.',
+    possibleReason:'Бондын үлдэгдэл, Polaris хүүгийн зөрүү, UBX тайлан, шимтгэл болон ХОҮС арилжааны автомат таталттай холбоотой асуудлууд эхний өдрүүдэд гарсан байх магадлалтай.',
+    recommendation:'7-р сарын дата бүрэн сар биш тул энэ дүгнэлтийг урьдчилсан байдлаар ашиглаж, сарын эцэст дахин шинэчлэх хэрэгтэй.',
+    topIssues:[
+      ['CAS-1037','MSE_SECOND','Захиалгын биелэлт амжилтгүй','Bug','Маш өндөр','Засахгүй'],
+      ['CAS-1040','BOND','ADBB транч-1 бондын үлдэгдлийн зөрүүг шалгуулах','Business Consulting','Өндөр','Явагдаж буй'],
+      ['CAS-1041','BOND','Апп болон Polaris дээр хүү өөр тооцогдсон','Business Consulting','Өндөр','Явагдаж буй'],
+      ['CAS-1046','UBX','Тайлан дутуу татагдсан','Bug','Маш өндөр','Шийдвэрлэгдсэн'],
+      ['CAS-1047','UBX','ЗБ шимтгэл төлөхөд алдаа заасан','Bug','Өндөр','Явагдаж буй']
+    ]
+  }
+};
+
+(function(){
+  const modal = document.getElementById('jiraMonthModal');
+  const panel = modal?.querySelector('.jira-modal-panel');
+  const closeButton = modal?.querySelector('.jira-modal-close');
+  const tabs = modal?.querySelector('.jira-month-tabs');
+  const content = document.getElementById('jiraModalContent');
+  const title = document.getElementById('jiraModalTitle');
+  if (!modal || !panel || !closeButton || !tabs || !content || !title) return;
+
+  let activeMonth = 1;
+  let lastTrigger = null;
+  const escapeHtml = value => String(value).replace(/[&<>'"]/g,char=>({
+    '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'
+  })[char]);
+  const entriesByValue = object => Object.entries(object).sort((a,b)=>b[1]-a[1]);
+  const chips = object => entriesByValue(object).map(([name,value])=>`<span class="drill-chip">${escapeHtml(name)} <strong>${value}</strong></span>`).join('');
+
+  function renderMonth(month, animate = true) {
+    const data = monthlyDrilldownData[month];
+    if (!data) return;
+    activeMonth = month;
+    title.textContent = `2026 оны ${month}-р сарын Jira дэлгэрэнгүй`;
+    tabs.querySelectorAll('.jira-month-tab').forEach(tab=>{
+      const selected = Number(tab.dataset.month) === month;
+      tab.classList.toggle('active',selected);
+      tab.setAttribute('aria-selected',String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+    });
+    const draw = () => {
+      const maxComponent = Math.max(...Object.values(data.component));
+      const componentBars = entriesByValue(data.component).map(([name,value])=>`
+        <div class="drill-bar">
+          <div class="drill-bar-head"><span>${escapeHtml(name)}</span><strong>${value}</strong></div>
+          <div class="drill-track"><div class="drill-fill" style="width:${(value/maxComponent)*100}%"></div></div>
+        </div>`).join('');
+      const rows = data.topIssues.map(issue=>`<tr>${issue.map(cell=>`<td>${escapeHtml(cell)}</td>`).join('')}</tr>`).join('');
+      content.innerHTML = `
+        <div class="drill-kpis">
+          <div class="drill-kpi"><strong>${data.total}</strong><span>Нийт Jira</span></div>
+          <div class="drill-kpi"><strong>${escapeHtml(data.topType)}</strong><span>Давамгай төрөл</span></div>
+          <div class="drill-kpi"><strong>${escapeHtml(data.topComponent)}</strong><span>Давамгай компонент</span></div>
+          <div class="drill-kpi"><strong>${data.priority['Маш өндөр'] || 0}</strong><span>Маш өндөр эрэмбэ</span></div>
+          <div class="drill-kpi"><strong>${data.status['Явагдаж буй'] || 0}</strong><span>Явагдаж буй</span></div>
+        </div>
+        <div class="drill-main">
+          <section class="drill-panel"><h3>Компонентоор</h3><div class="drill-bars">${componentBars}</div></section>
+          <section class="drill-panel drill-summary-grid">
+            <div class="drill-summary-block"><div class="drill-summary-title">Төрлөөр</div><div class="drill-chips">${chips(data.type)}</div></div>
+            <div class="drill-summary-block"><div class="drill-summary-title">Төлөвөөр</div><div class="drill-chips">${chips(data.status)}</div></div>
+            <div class="drill-summary-block"><div class="drill-summary-title">Эрэмбээр</div><div class="drill-chips">${chips(data.priority)}</div></div>
+          </section>
+        </div>
+        <div class="drill-insights">
+          <div class="drill-insight"><strong>Товч дүгнэлт</strong>${escapeHtml(data.insight)}</div>
+          <div class="drill-insight"><strong>Болзошгүй шалтгаан</strong>${escapeHtml(data.possibleReason)}</div>
+          <div class="drill-insight"><strong>Анхаарах хэсэг</strong>${escapeHtml(data.recommendation)}</div>
+        </div>
+        <div class="drill-table-wrap">
+          <h3 class="drill-table-title">Төлөөлөх issue жагсаалт</h3>
+          <table class="drill-table"><thead><tr><th>Jira №</th><th>Компонент</th><th>Гарчиг</th><th>Төрөл</th><th>Эрэмбэ</th><th>Статус</th></tr></thead><tbody>${rows}</tbody></table>
+        </div>`;
+      content.classList.remove('changing');
+    };
+    if (!animate) { draw(); return; }
+    content.classList.add('changing');
+    setTimeout(draw, 145);
+  }
+
+  Object.keys(monthlyDrilldownData).forEach(key=>{
+    const month = Number(key);
+    const tab = document.createElement('button');
+    tab.type = 'button';
+    tab.className = 'jira-month-tab';
+    tab.dataset.month = String(month);
+    tab.setAttribute('role','tab');
+    tab.textContent = `${month}-р сар`;
+    tab.addEventListener('click',()=>renderMonth(month));
+    tabs.appendChild(tab);
+  });
+
+  function openModal(month, trigger) {
+    lastTrigger = trigger;
+    renderMonth(month,false);
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    requestAnimationFrame(()=>panel.focus());
+  }
+  function closeModal() {
+    if (!modal.classList.contains('open')) return;
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    setTimeout(()=>lastTrigger?.focus(),210);
+  }
+
+  document.querySelectorAll('.month-column[data-month]').forEach(trigger=>{
+    trigger.setAttribute('aria-haspopup','dialog');
+    trigger.addEventListener('click',()=>openModal(Number(trigger.dataset.month),trigger));
+  });
+  closeButton.addEventListener('click',closeModal);
+  modal.addEventListener('mousedown',event=>{ if (event.target === modal) closeModal(); });
+  document.addEventListener('keydown',event=>{
+    if (!modal.classList.contains('open')) return;
+    if (event.key === 'Escape') { closeModal(); return; }
+    if (event.key !== 'Tab') return;
+    const focusable = [...modal.querySelectorAll('button:not([disabled]),[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(el=>el.offsetParent !== null);
+    if (!focusable.length) return;
+    const first = focusable[0], last = focusable[focusable.length-1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  });
 })();
 
 // Page transition
