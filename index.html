@@ -698,6 +698,45 @@
     .tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:1rem; }
     .tag  { padding:3px 10px; background:rgba(255,255,255,.04); border:1px solid var(--border2); border-radius:100px; font-size:11px; color:var(--txt1); font-weight:500; }
     .proj-card > .open-btn { margin-top:1rem !important; align-self:flex-start; }
+    .project-board { grid-template-columns:repeat(3,minmax(0,1fr)); align-items:start; }
+    .project-lane-label {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:.75rem;
+      padding:0 .15rem;
+      color:var(--txt2);
+      font-size:10px;
+    }
+    .project-lane-label .status-pill { margin:0; }
+    .lane-label-done { grid-column:1; grid-row:1; }
+    .lane-label-current { grid-column:2; grid-row:1; }
+    .lane-label-planned { grid-column:3; grid-row:1; }
+    .compact-project { min-height:0; padding:1.2rem; cursor:pointer; }
+    .compact-project.status-done { grid-column:1; grid-row:2; }
+    .compact-project.status-current { grid-column:2; grid-row:2; }
+    .compact-project.status-planned { grid-column:3; }
+    .compact-project.status-planned.plan-one { grid-row:2; }
+    .compact-project.status-planned.plan-two { grid-row:3; }
+    .compact-project .status-pill { margin-bottom:1rem; }
+    .compact-project .proj-ico { width:36px; height:36px; margin-bottom:.75rem; font-size:17px; }
+    .compact-project .proj-name { font-size:.95rem; line-height:1.45; }
+    .project-compact-note { color:var(--txt2); font-size:10.5px; line-height:1.5; }
+    .compact-project:not(.expanded) .proj-desc,
+    .compact-project:not(.expanded) .prog-wrap,
+    .compact-project:not(.expanded) .tags,
+    .compact-project:not(.expanded) .open-btn,
+    .compact-project:not(.expanded) .access-note { display:none; }
+    .compact-project::after {
+      content:'Дэлгэрэнгүй';
+      position:relative;
+      z-index:2;
+      display:block;
+      margin-top:1rem;
+      color:var(--txt2);
+      font-size:10px;
+    }
+    .compact-project.expanded::after { content:'Хураах'; }
     @media (min-width:1100px) {
       #projects .proj-grid > .planning-wide { grid-column:auto / span 2; }
     }
@@ -1266,6 +1305,35 @@
     .stat-panel .metric-row:nth-child(5) .metric-fill { transition-delay:.24s; }
     .stat-panel .metric-row:nth-child(6) .metric-fill { transition-delay:.3s; }
     .stat-panel .metric-row:nth-child(7) .metric-fill { transition-delay:.36s; }
+    .metric-stack-track {
+      height:7px;
+      margin-top:.25rem;
+      margin-bottom:1rem;
+      overflow:hidden;
+      border-radius:999px;
+      background:rgba(255,255,255,.07);
+    }
+    .metric-volume {
+      display:flex;
+      height:100%;
+      overflow:hidden;
+      border-radius:999px;
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform 1.15s var(--ease);
+    }
+    .stat-panel.metrics-reset .metric-volume { transform:scaleX(0) !important; transition:none !important; }
+    .stat-panel.metrics-in .metric-volume { transform:scaleX(1); }
+    .stat-panel .metric-row:nth-child(2) .metric-volume { transition-delay:.06s; }
+    .stat-panel .metric-row:nth-child(3) .metric-volume { transition-delay:.12s; }
+    .stat-panel .metric-row:nth-child(4) .metric-volume { transition-delay:.18s; }
+    .metric-segment-open { height:100%; background:linear-gradient(90deg,#FB7185,#EF4444); }
+    .metric-segment-closed { height:100%; background:linear-gradient(90deg,#34D399,#16A34A); }
+    .metric-status-legend { display:flex; gap:1rem; margin:.15rem 0 .9rem; color:var(--txt2); font-size:9.5px; }
+    .metric-status-legend span { display:inline-flex; align-items:center; gap:.35rem; }
+    .metric-status-legend i { width:8px; height:8px; border-radius:50%; display:inline-block; }
+    .metric-status-legend .legend-open i { background:#EF4444; }
+    .metric-status-legend .legend-closed i { background:#22C55E; }
     .status-stat-grid {
       display:grid;
       grid-template-columns:repeat(5,minmax(0,1fr));
@@ -1680,7 +1748,7 @@
       background:linear-gradient(180deg,rgba(255,255,255,.052),rgba(255,255,255,.018));
       box-shadow:0 18px 50px rgba(0,0,0,.2);
     }
-    #team, #projects, #vendors, #access, #timeline, #tech, #participation, #thanks {
+    #team, #projects, #vendors, #access, #timeline, #participation, #report-team, #thanks {
       background:
         radial-gradient(ellipse 58% 36% at 12% 0%,rgba(255,255,255,.045),transparent 68%),
         radial-gradient(ellipse 44% 34% at 90% 88%,rgba(151,157,164,.035),transparent 70%),
@@ -1976,7 +2044,11 @@
       .impact-grid { grid-template-columns:1fr; }
       .participation-card { grid-template-columns:1fr; }
       .participation-media { aspect-ratio:auto; }
-      .team-grid, .proj-grid { grid-template-columns:1fr; }
+      .team-grid, .proj-grid, .project-board { grid-template-columns:1fr; }
+      .project-lane-label,.compact-project.status-done,.compact-project.status-current,.compact-project.status-planned { grid-column:1; grid-row:auto; }
+      #projects .project-board .compact-project.status-planned.plan-one,
+      #projects .project-board .compact-project.status-planned.plan-two { grid-row:auto; }
+      .lane-label-done{order:1}.compact-project.status-done{order:2}.lane-label-current{order:3}.compact-project.status-current{order:4}.lane-label-planned{order:5}.compact-project.status-planned{order:6}
       .hero-btns { flex-direction:column; align-items:center; }
       .btn-red, .btn-ghost, .btn-gold {
         width:100%;
@@ -2163,6 +2235,31 @@
       scrollbar-width:thin; scrollbar-color:#64748B transparent;
     }
     .jira-modal.open .jira-modal-panel { transform:translateY(0) scale(1); opacity:1; }
+    .hero-share-link {
+      flex-basis:100%;
+      border:0;
+      padding:.6rem .25rem;
+      color:var(--txt1);
+      background:transparent;
+      font:650 11px 'Inter',sans-serif;
+      letter-spacing:.02em;
+      cursor:pointer;
+      transition:color .22s ease,transform .22s ease;
+    }
+    .hero-share-link:hover,.hero-share-link:focus-visible { color:#fff; transform:translateY(-1px); outline:none; }
+    .hero-share-link:focus-visible { text-decoration:underline; text-underline-offset:5px; }
+    .share-panel {
+      position:relative;
+      width:min(390px,100%);
+      max-height:none;
+      padding:1.7rem;
+      overflow:visible;
+      text-align:center;
+    }
+    .share-panel .jira-modal-close { position:absolute; top:.8rem; right:.8rem; }
+    .share-title { margin:0; color:var(--txt0); font-family:'Space Grotesk',sans-serif; font-size:1.35rem; }
+    .share-copy { margin:.55rem auto 1.15rem; max-width:30ch; color:var(--txt1); font-size:12px; line-height:1.6; }
+    .share-panel .qr-box { margin:.15rem auto 1rem; }
     .jira-modal-head { position:sticky; top:0; z-index:4; display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; padding:1.35rem 1.5rem 1rem; background:rgba(14,18,24,.94); border-bottom:1px solid rgba(255,255,255,.08); backdrop-filter:blur(14px); }
     .jira-modal-title { color:var(--txt0); font-family:'Space Grotesk',sans-serif; font-size:clamp(1.25rem,3vw,1.85rem); }
     .jira-modal-sub { margin-top:.3rem; color:var(--txt2); font-size:11px; }
@@ -2261,6 +2358,71 @@
       .jira-modal-content { transform:none !important; transition:opacity .16s ease !important; }
     }
     @keyframes splashReducedFade { from{opacity:0} to{opacity:1} }
+
+    /* Official brand lockup */
+    .brand-mark { width:164px; height:40px; object-fit:contain; }
+    .brand-word { display:none; }
+    .splash-brand img { width:min(260px,72vw); height:auto; }
+    .footer-brand .brand-mark { width:220px; height:auto; }
+
+    /* Personal introduction */
+    .profile-intro {
+      display:grid;
+      grid-template-columns:minmax(190px,240px) minmax(0,1fr);
+      gap:2rem;
+      align-items:stretch;
+      margin-bottom:3rem;
+      padding:1.2rem;
+      overflow:hidden;
+    }
+    .profile-photo {
+      min-height:300px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.13);
+      border-radius:16px;
+      background:rgba(255,255,255,.025);
+    }
+    .profile-photo img { width:100%; height:100%; display:block; object-fit:cover; object-position:center 18%; }
+    .profile-content { padding:1rem .75rem 1rem 0; align-self:center; }
+    .profile-name { margin:.4rem 0 .25rem; color:var(--txt0); font:700 clamp(1.7rem,4vw,2.5rem)/1.1 'Space Grotesk',sans-serif; }
+    .profile-role { color:var(--txt1); font-size:13px; }
+    .profile-facts { display:grid; gap:.7rem; margin-top:1.5rem; }
+    .profile-fact {
+      display:grid;
+      grid-template-columns:116px minmax(0,1fr);
+      gap:1rem;
+      padding:.85rem 0;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .profile-fact span { color:var(--txt2); font-size:10px; font-weight:750; letter-spacing:.06em; text-transform:uppercase; }
+    .profile-fact strong { color:var(--txt0); font-size:12.5px; font-weight:600; line-height:1.55; }
+
+    .afs-open-list { display:grid; gap:.55rem; margin:1.2rem 0; }
+    .afs-open-item {
+      display:grid;
+      grid-template-columns:auto minmax(0,1fr);
+      gap:.8rem;
+      align-items:start;
+      padding:.75rem .85rem;
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:12px;
+      background:rgba(255,255,255,.025);
+      color:var(--txt1);
+      text-decoration:none;
+      transition:background .22s ease,border-color .22s ease,transform .22s ease;
+    }
+    .afs-open-item:hover,.afs-open-item:focus-visible { transform:translateY(-2px); border-color:rgba(96,165,250,.28); background:rgba(59,130,246,.07); outline:none; }
+    .afs-open-item b { color:#93C5FD; font:700 11px 'Space Grotesk',sans-serif; }
+    .afs-open-item span { font-size:11.5px; line-height:1.5; }
+
+    @media(max-width:768px) {
+      .brand-mark { width:138px; height:34px; }
+      .footer-brand .brand-mark { width:190px; }
+      .profile-intro { grid-template-columns:1fr; gap:1rem; padding:1rem; }
+      .profile-photo { min-height:0; aspect-ratio:4 / 5; }
+      .profile-content { padding:.5rem .25rem .75rem; }
+      .profile-fact { grid-template-columns:1fr; gap:.35rem; }
+    }
   </style>
 </head>
 <body class="splash-active">
@@ -2268,8 +2430,7 @@
 <div class="splash-screen" id="splashScreen" aria-hidden="true">
   <div class="splash-inner">
     <div class="splash-brand">
-      <img src="img/ard-mark-white.png" alt="" />
-      <div class="splash-brand-text"><span>ARD SECURITIES</span></div>
+      <img src="img/ard-securities-official.png" alt="Ard Securities" />
     </div>
     <div class="splash-title"><span>Жинхлэх ажлын тайлан</span></div>
     <div class="splash-subtitle">Системийн админ тайлан</div>
@@ -2289,8 +2450,7 @@
 <!-- NAV -->
 <nav id="nav">
   <a href="#hero" class="nav-brand" aria-label="Ard Securities">
-    <img class="brand-mark" src="img/ard-mark-white.png" alt="Ard" />
-    <span class="brand-word">SECURITIES</span>
+    <img class="brand-mark" src="img/ard-securities-official.png" alt="Ard Securities" />
   </a>
   <ul class="nav-links" id="navLinks">
     <li class="nav-active-pill" aria-hidden="true"></li>
@@ -2299,7 +2459,6 @@
     <li><a href="#vendors">Jira урсгал</a></li>
     <li><a href="#access">Бүртгэлийн систем</a></li>
     <li><a href="#timeline">Ажлын явц</a></li>
-    <li><a href="#tech">Технологи</a></li>
     <li><a href="#participation">Оролцоо</a></li>
     <li><a href="#access" class="nav-btn">Систем нээх →</a></li>
   </ul>
@@ -2319,15 +2478,9 @@
 
   <div class="hero-inner">
     <h1 class="hero-h1">
-      <span class="l1">Жинхлэх ажлын</span>
-      <span class="l2">тайлан</span>
+      <span class="l1">Тайлангийн</span>
+      <span class="l2">хурал</span>
     </h1>
-
-    <div class="hero-role">Системийн админ</div>
-
-    <p class="hero-sub">
-      Ард Секюритиз ҮЦК ХХК-ийн дотоод систем, вэб арилжаа болон Ard App-ийн Хөрөнгө оруулалт цэсний ажиллагааг хянаж, шинэчлэлтийг тестлэн, илэрсэн асуудлыг GrapeCity/CASPO болон AFS талтай хамтран шийдвэрлэсэн ажлын тайлан.
-    </p>
 
     <div class="hero-btns">
       <a href="#projects" class="btn-red">
@@ -2338,6 +2491,7 @@
         Бүртгэлийн систем нээх
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
       </a>
+      <button type="button" class="hero-share-link" onclick="openShareModal(this)">Тайлан хуваалцах · QR</button>
     </div>
 
   </div>
@@ -2346,52 +2500,33 @@
 <!-- TEAM -->
 <section id="team">
   <div class="wrap">
+    <article class="card profile-intro reveal" aria-labelledby="profileName">
+      <div class="profile-photo">
+        <img src="img/Sysadmin.jpg" alt="Н. Түмэндэлгэр" />
+      </div>
+      <div class="profile-content">
+        <div class="sec-eyebrow">Товч танилцуулга</div>
+        <h2 class="profile-name" id="profileName">Н. Түмэндэлгэр</h2>
+        <div class="profile-role">Системийн админ · Ард Секюритиз ҮЦК ХХК</div>
+        <div class="profile-facts">
+          <div class="profile-fact"><span>Боловсрол</span><strong>Их сургууль · Мэдээллийн технологийн чиглэл</strong></div>
+          <div class="profile-fact"><span>Дадлага</span><strong>Эрдэнэт үйлдвэр ТӨҮГ · Сүлжээний админ</strong></div>
+          <div class="profile-fact"><span>Ажлын туршлага</span><strong>Эрдэнэт Хивс ХХК · Мэдээллийн технологийн инженер · 6 сар</strong></div>
+        </div>
+      </div>
+    </article>
+
     <div id="results" class="team-summary-layout">
       <div class="team-summary-main">
-        <div class="sec-eyebrow">Тайлан бэлтгэсэн</div>
-        <h2 class="sec-h2">Хийж гүйцэтгэсэн ажлууд</h2>
+        <div class="sec-eyebrow">Үүрэг ба оролцоо</div>
+        <h2 class="sec-h2">Системийн ажиллагаа ба хамтын ажил</h2>
         <div class="card role-card role-inline-card reveal">
-          <p>Дотоод систем, API холболт, гүйлгээ болон арилжааны захиалга хэвийн ажиллаж байгаа эсэхийг тогтмол хянадаг. Мөн ажилтнуудаас ирсэн алдаа, гомдол, сайжруулах санал болон ажиллахгүй байгаа үйлдлүүдийг хүлээн авч, нөлөөлөл болон дарааллыг нь тодорхойлон бүртгэдэг.</p>
-          <p>Одоогоор вэб арилжааны сайжруулалт болон Ard App-ийн <strong>Хөрөнгө оруулалт</strong> цэсэнд шинэчлэлт бүрийн дараа тест хийж байна. Хөгжүүлэгчдийн pre-production орчинд оруулсан өөрчлөлтийг гүйлгээ, захиалга болон үндсэн үйлдлүүдээр шалгаж, зөв ажиллаж байгааг баталгаажуулсны дараа production орчинд гаргах зөвшөөрөл өгнө. Асуудал илэрвэл CASPO эсвэл AFS талтай хамтран засварыг хянаж, дахин тестэлдэг.</p>
+          <p>Дотоод систем, API холболт, гүйлгээ болон арилжааны захиалгын хэвийн ажиллагааг тогтмол хянаж ажилласан. Web арилжаа болон Ard App-ийн “Хөрөнгө оруулалт” цэсний шинэчлэлтүүдийг pre-production орчинд тестэлж, зөв ажиллаж байгаа эсэхийг баталгаажуулсны дараа production орчинд гаргах зөвшөөрөл өгдөг.</p>
+          <p>Мөн ажилтнуудаас ирсэн алдаа, гомдол, сайжруулалтын хүсэлтийг бүртгэн, нөлөөлөл болон яаралтай байдлаар нь ангилж CASPO, AFS болон хөгжүүлэгч талтай хамтран шийдвэрлэсэн. Энэ хугацаанд системийн админ нь зөвхөн техникийн алдаа хянах бус, бизнесийн урсгал, хэрэглэгчийн нөлөөлөл болон хөгжүүлэлтийн эрсдэлийг холбож ажилладаг чухал үүрэгтэйг ойлгосон.</p>
         </div>
       </div>
     </div>
 
-    <!-- Presenting to banner -->
-    <div class="presenting-banner reveal">
-      <div class="presenting-left">
-        <span class="presenting-label">Танилцуулж буй</span>
-        <span class="presenting-name">Х. Билгүүн</span>
-        <span class="presenting-title">CEO · Ард Секюритиз</span>
-      </div>
-      <div class="presenting-photo">
-        <img src="img/ceo.jpg" alt="Х.Билгүүн — CEO" />
-      </div>
-    </div>
-
-    <div class="team-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
-
-      <div class="card team-card featured reveal d1">
-        <div class="role-pill pill-sys">● Тайлан бэлтгэсэн</div>
-        <div class="photo-avatar" style="border-color:rgba(225,227,230,.35);">
-          <img src="img/Sysadmin.jpg" alt="Н. Түмэндэлгэр — Тайлан бэлтгэсэн" />
-        </div>
-        <div class="team-name">Н. Түмэндэлгэр</div>
-        <div class="team-title">Тайлан бэлтгэсэн</div>
-        <div class="team-desc">Дотоод систем, вэб арилжаа, Ard App, API холболт, гүйлгээ болон захиалгыг хянаж, pre-production шинэчлэлтийг тестлэн, шаардлагатай засварыг CASPO болон AFS талтай хамтран шийдвэрлэж байна.</div>
-      </div>
-
-      <div class="card team-card reveal d2">
-        <div class="role-pill pill-cbdo">● CBDO &amp; Чиглүүлэгч</div>
-        <div class="photo-avatar cbdo-avatar" style="border-color:rgba(225,227,230,.35);">
-          <img src="img/CBDO.jpg" alt="Б. Анужин — CBDO" />
-        </div>
-        <div class="team-name">Б. Анужин</div>
-        <div class="team-title">CBDO · Ард Секюритиз</div>
-        <div class="team-desc">Системтэй холбоотой ажлуудад чиглэл өгч, шаардлагатай үед зөвлөгөө болон дэмжлэг үзүүлж ажилласан.</div>
-      </div>
-
-    </div>
   </div>
 </section>
 
@@ -2402,12 +2537,17 @@
     <h2 class="sec-h2">Төслүүд ба ажлууд</h2>
     <p class="sec-p">Одоогоор дууссан, үргэлжилж байгаа болон төлөвлөж буй системийн ажлуудын товч мэдээлэл.</p>
 
-    <div class="proj-grid">
+    <div class="proj-grid project-board">
 
-      <div class="card proj-card reveal">
+      <div class="project-lane-label lane-label-done"><span class="status-pill s-done"><span class="sdot"></span> Дууссан</span><span>1 ажил</span></div>
+      <div class="project-lane-label lane-label-current"><span class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</span><span>1 ажил</span></div>
+      <div class="project-lane-label lane-label-planned"><span class="status-pill s-pend"><span class="sdot"></span> Төлөвлөж байна</span><span>2 ажил</span></div>
+
+      <div class="card proj-card compact-project status-done reveal" tabindex="0" role="button" aria-expanded="false">
         <div class="status-pill s-done"><span class="sdot"></span> Дууссан</div>
         <div class="proj-ico" aria-hidden="true">📋</div>
         <div class="proj-name">Дотоод асуудал бүртгэлийн систем</div>
+        <div class="project-compact-note">Нэвтрүүлсэн · 100%</div>
         <div class="proj-desc">Дотоод системийн асуудал, хүсэлтийг нэг дор бүртгэж, төлөвийг нь хянах систем. Google Sheets болон Google Drive-тай холбосон тул мэдээлэл, файл нэг урсгалд хадгалагдана.</div>
         <div class="prog-wrap">
           <div class="prog-head"><span class="prog-lbl">Гүйцэтгэл</span><span class="prog-pct">100%</span></div>
@@ -2423,29 +2563,11 @@
         <span class="access-note" style="margin-top:.8rem;">ARD ажлын Google акаунт шаардлагатай.</span>
       </div>
 
-      <div class="card proj-card reveal d3">
-        <div class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</div>
-        <div class="proj-ico" aria-hidden="true">📗</div>
-        <div class="proj-name">Polaris эрхийн шинжилгээ ба гарын авлага — Үнэт цаас</div>
-        <div class="proj-desc">Polaris системийн <strong style="color:var(--gold);">Үнэт цаас</strong> цэсний permission, action ID болон алдааны мессежүүдийг нэг бүрчлэн шалгаж байна. Энэ мэдээллээр систем админ болон систем ашигладаг ажилтнуудад зориулсан хоёр түвшний эрхийн матриц гаргаж, role бүрт зөв эрх оноох, хуучин хэрэглэгчдийн илүүдэл эрхийг цэвэрлэх, дараа нь ажилтны гарын авлагыг дуусгах суурь бэлтгэж байна.</div>
-        <div class="prog-wrap">
-          <div class="prog-head"><span class="prog-lbl">Эрхийн шинжилгээ</span><span class="prog-pct">65%</span></div>
-          <div class="prog-track"><div class="prog-fill pg-gold" data-w="65"></div></div>
-        </div>
-        <div class="tags">
-          <span class="tag">Polaris</span><span class="tag">Үнэт цаас</span>
-          <span class="tag">Permission Discovery</span><span class="tag">Гарын авлага</span><span class="tag">166+ цэс</span>
-        </div>
-        <a href="https://docs.google.com/spreadsheets/d/1oR0nRBo18wVI8WZoLGc5S8FZf9s6xdqwfaAeTf4KxeE/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="open-btn" style="margin-top:1rem;">
-          Live discovery sheet нээх
-        </a>
-        <span class="access-note" style="margin-top:.8rem;">ARD ажлын Google акаунт шаардлагатай.</span>
-      </div>
-
-      <div class="card proj-card reveal d2">
+      <div class="card proj-card compact-project status-current reveal d2" tabindex="0" role="button" aria-expanded="false">
         <div class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</div>
         <div class="proj-ico" aria-hidden="true">📄</div>
         <div class="proj-name">Харилцагчийн баримт бичиг автоматжуулалт</div>
+        <div class="project-compact-note">AFS · 25% гүйцэтгэл</div>
         <div class="proj-desc">AFS-н санаачилгаар харилцагчдад гараар олгогддог гэрээ, хүсэлт, анкет болон QR-той тодорхойлолтыг автоматжуулах ажил эхэлсэн. Энэ ажлын хүрээнд холбогдох компаниудаас ирүүлсэн загвар doc файлууд болон шаардлагатай мэдээллийг нэгтгэн хянаж, системд ашиглахад бэлэн болгоход дэмжлэг үзүүлж байна.</div>
         <div class="prog-wrap">
           <div class="prog-head"><span class="prog-lbl">Гүйцэтгэл</span><span class="prog-pct">25%</span></div>
@@ -2460,10 +2582,11 @@
         </a>
       </div>
 
-      <div class="card proj-card plan-card reveal d4" tabindex="0" aria-label="Millennium Trader Workstation зогсолтын төлөвлөгөө">
+      <div class="card proj-card plan-card compact-project status-planned plan-one reveal d4" tabindex="0" role="button" aria-expanded="false" aria-label="Millennium Trader Workstation зогсолтын төлөвлөгөө">
         <div class="status-pill s-pend"><span class="sdot"></span> Төлөвлөж байна</div>
         <div class="proj-ico" aria-hidden="true">🖥️</div>
         <div class="proj-name">Millennium Trader Workstation — зогсолтын төлөвлөгөө</div>
+        <div class="project-compact-note">Эрсдэлийн төлөвлөгөө · 10%</div>
         <div class="proj-desc">LSEG/SSC Global Business Services Limited-ээс 2026 оны 3-р сарын 25-нд МХБ-д ирүүлсэн албан мэдэгдэлд <strong style="color:var(--gold);">Millennium Trader</strong> бүтээгдэхүүнийг 2027 оны 3-р сарын 1-нээс зогсоохоор дурдсан. Манай талд энэ нь арилжааны workstation орчинтой шууд холбоотой тул боломжит эрсдэлийг үнэлж, дараагийн шийдлийн хувилбарыг төлөвлөх шаардлагатай. Энэ хугацаанд зөвхөн production орчны Level 1/Level 2 алдаанд боломжит нөөцөөр засвар үйлчилгээ үзүүлнэ.</div>
         <div class="prog-wrap">
           <div class="prog-head"><span class="prog-lbl">Төлөвлөлтийн ахиц</span><span class="prog-pct">10%</span></div>
@@ -2475,10 +2598,11 @@
         </div>
       </div>
 
-      <div class="card proj-card plan-card reveal d5" tabindex="0" aria-label="OGSM систем төсөл ба дижитал шилжилтийн төлөвлөгөө">
+      <div class="card proj-card plan-card compact-project status-planned plan-two reveal d5" tabindex="0" role="button" aria-expanded="false" aria-label="OGSM систем төсөл ба дижитал шилжилтийн төлөвлөгөө">
         <div class="status-pill s-pend"><span class="sdot"></span> Төлөвлөлтийн шатанд</div>
         <div class="proj-ico" aria-hidden="true">🧭</div>
         <div class="proj-name">OGSM — Систем төсөл ба дижитал шилжилт</div>
+        <div class="project-compact-note">Санал нэгтгэх шат · 5%</div>
         <div class="proj-desc">2026/2027 онд хэрэгжүүлэх системийн сайжруулалт, дижитал шилжилтийн саналыг хэлтэс бүрээс цуглуулах ажилд оролцож байна. Өдөр тутам гараар давтагддаг ажлууд болон автоматжуулах боломжтой процессуудыг CBDO, холбогдох хэлтсүүдтэй хамтран нэгтгэж, эрэмбэлэх бэлтгэл хийж байна.</div>
         <div class="prog-wrap">
           <div class="prog-head"><span class="prog-lbl">Төлөвлөлтийн ахиц</span><span class="prog-pct">5%</span></div>
@@ -2530,48 +2654,20 @@
 
     <div class="proj-grid">
 
-      <div class="card proj-card reveal">
-        <div class="status-pill s-pend"><span class="sdot"></span> Вэб &amp; Backend · CASPO</div>
-        <div class="proj-ico" aria-hidden="true">🌐</div>
-        <div class="proj-name">GrapeCity</div>
-        <div class="proj-desc">Гадаад вендор компани. Polaris системийн backend болон вэб хэсгийг хариуцна. <strong style="color:var(--txt0);">CASPO</strong> нь GrapeCity-ийн манай талд нээсэн Jira төсөл. Энэ хэсэгт 2026 оны эхнээс бүртгэгдсэн бүх 96 Jira-г нэгтгэн харуулсан.</div>
-        <div class="summary-side-title">Гол үр дүн</div>
-        <div class="mini-impact-grid">
-          <div class="card impact-card mini-impact">
-            <div class="impact-num">96</div>
-            <div class="impact-label">2026 оны CASPO Jira</div>
-            <div class="impact-note">CAS-797-оос одоо хүртэл</div>
-          </div>
-          <div class="card impact-card mini-impact">
-            <div class="impact-num">72</div>
-            <div class="impact-label">Засагдсан Jira</div>
-            <div class="impact-note">Нийт бүртгэлийн 75%</div>
-          </div>
-          <div class="card impact-card mini-impact">
-            <div class="impact-num">17</div>
-            <div class="impact-label">AFS Jira</div>
-            <div class="impact-note">Үүсгэсэн болон оролцсон</div>
-          </div>
-        </div>
-        <div class="tags">
-          <span class="tag">Polaris Backend</span><span class="tag">CASPO Төсөл</span>
-          <span class="tag">2026 Jira</span><span class="tag">Live Sheet</span>
-        </div>
-      </div>
-
       <div class="card proj-card reveal d1">
-        <div class="status-pill s-res"><span class="sdot"></span> Дотоод IT</div>
+        <div class="status-pill s-res"><span class="sdot"></span> Дотоод IT · AFS</div>
         <div class="proj-ico" aria-hidden="true">📱</div>
-        <div class="proj-name">AFS</div>
-        <div class="proj-desc">Ард Секюритиз ҮЦК ХХК-ийн апп болон IT дэд бүтцийн асуудлыг хариуцдаг AFS тал. Миний үүсгэсэн эсвэл шийдвэрлэхэд нь оролцсон 17 AFS Jira ажлыг төрлөөр нь нэгтгэн харуулав.</div>
-        <div class="it-support-summary" aria-label="AFS Jira төрлөөр">
-          <div class="it-support-stat"><strong>5</strong><span>Сайжруулалт</span></div>
-          <div class="it-support-stat"><strong>4</strong><span>Өөрчлөлтийн хүсэлт</span></div>
-          <div class="it-support-stat"><strong>3</strong><span>Шинэ боломж</span></div>
-          <div class="it-support-stat"><strong>3</strong><span>Алдаа</span></div>
-          <div class="it-support-stat"><strong>2</strong><span>Дэд ажил</span></div>
-          <div class="it-support-stat"><strong>17</strong><span>Нийт AFS Jira</span></div>
+        <div class="proj-name">AFS Jira</div>
+        <div class="proj-desc">Апп болон IT дэд бүтцийн асуудлыг AFS талтай хамтран хянадаг. Нээлттэй Jira-ийн төлөв бодит цагт өөрчлөгддөг тул live filter-ээр шалгана. Доорх жагсаалтад хамгийн сүүлд бүртгэсэн Jira-уудыг дугаар, гарчгаар нь харуулав.</div>
+        <div class="afs-open-list" aria-label="Сүүлийн AFS Jira бүртгэлүүд">
+          <a class="afs-open-item" href="https://jira.ard.mn/browse/ITS-708" target="_blank" rel="noopener noreferrer"><b>ITS-708</b><span>Төхөөрөмжийн аюулгүй байдал</span></a>
+          <a class="afs-open-item" href="https://jira.ard.mn/browse/ITS-662" target="_blank" rel="noopener noreferrer"><b>ITS-662</b><span>VPN эрх нээлгэх</span></a>
+          <a class="afs-open-item" href="https://jira.ard.mn/browse/ITS-612" target="_blank" rel="noopener noreferrer"><b>ITS-612</b><span>Апп дээрх баннер хаалгах</span></a>
+          <a class="afs-open-item" href="https://jira.ard.mn/browse/ITS-607" target="_blank" rel="noopener noreferrer"><b>ITS-607</b><span>Ард апп дээр блоктой хувьцааны үлдэгдэл харуулах</span></a>
+          <a class="afs-open-item" href="https://jira.ard.mn/browse/ITS-595" target="_blank" rel="noopener noreferrer"><b>ITS-595</b><span>Баннер нэмүүлэх тухай</span></a>
+          <a class="afs-open-item" href="https://jira.ard.mn/browse/ITS-591" target="_blank" rel="noopener noreferrer"><b>ITS-591</b><span>Ажилтан Jira-д бүртгүүлэх</span></a>
         </div>
+        <a href="https://jira.ard.mn/issues/?jql=reporter%20%3D%20currentUser()%20AND%20project%20%3D%20ITS%20AND%20status%20%3D%20Open%20ORDER%20BY%20created%20DESC" target="_blank" rel="noopener noreferrer" class="open-btn">Нээлттэй Jira харах</a>
         <div class="tags">
           <span class="tag">AFS</span><span class="tag">IT Support</span><span class="tag">17 Jira</span><span class="tag">ITS төсөл</span>
         </div>
@@ -2657,11 +2753,12 @@
         </div>
         <div class="stat-panel">
           <h3>Эрэмбэ ба төлөв</h3>
+          <div class="metric-status-legend" aria-label="Төлөвийн өнгө"><span class="legend-open"><i></i>Нээлттэй</span><span class="legend-closed"><i></i>Хаагдсан</span></div>
           <div class="metric-list">
-            <div class="metric-row"><div><div class="metric-name">Маш өндөр</div><div class="metric-sub">Нээлттэй 0 · Хаагдсан 32</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:100%;"></div></div></div><div class="metric-value">32</div></div>
-            <div class="metric-row"><div><div class="metric-name">Өндөр</div><div class="metric-sub">Нээлттэй 9 · Хаагдсан 40</div><div class="metric-track"><div class="metric-fill fill-high" style="width:81.63%;"></div></div></div><div class="metric-value">49</div></div>
-            <div class="metric-row"><div><div class="metric-name">Дунд</div><div class="metric-sub">Нээлттэй 2 · Хаагдсан 10</div><div class="metric-track"><div class="metric-fill" style="width:83.33%;"></div></div></div><div class="metric-value">12</div></div>
-            <div class="metric-row"><div><div class="metric-name">Бага</div><div class="metric-sub">Нээлттэй 0 · Хаагдсан 3</div><div class="metric-track"><div class="metric-fill fill-low" style="width:100%;"></div></div></div><div class="metric-value">3</div></div>
+            <div class="metric-row"><div><div class="metric-name">Маш өндөр</div><div class="metric-sub">Нээлттэй 0 · Хаагдсан 32</div><div class="metric-stack-track"><div class="metric-volume" style="width:65.31%;"><span class="metric-segment-closed" style="width:100%;"></span></div></div></div><div class="metric-value">32</div></div>
+            <div class="metric-row"><div><div class="metric-name">Өндөр</div><div class="metric-sub">Нээлттэй 9 · Хаагдсан 40</div><div class="metric-stack-track"><div class="metric-volume" style="width:100%;"><span class="metric-segment-open" style="width:18.37%;"></span><span class="metric-segment-closed" style="width:81.63%;"></span></div></div></div><div class="metric-value">49</div></div>
+            <div class="metric-row"><div><div class="metric-name">Дунд</div><div class="metric-sub">Нээлттэй 2 · Хаагдсан 10</div><div class="metric-stack-track"><div class="metric-volume" style="width:24.49%;"><span class="metric-segment-open" style="width:16.67%;"></span><span class="metric-segment-closed" style="width:83.33%;"></span></div></div></div><div class="metric-value">12</div></div>
+            <div class="metric-row"><div><div class="metric-name">Бага</div><div class="metric-sub">Нээлттэй 0 · Хаагдсан 3</div><div class="metric-stack-track"><div class="metric-volume" style="width:6.12%;"><span class="metric-segment-closed" style="width:100%;"></span></div></div></div><div class="metric-value">3</div></div>
           </div>
         </div>
       </div>
@@ -2683,7 +2780,7 @@
   <div class="wrap">
     <div class="sec-eyebrow">Дотоод систем</div>
     <h2 class="sec-h2">Дотоод асуудал бүртгэлийн систем</h2>
-    <p class="sec-p">QR кодыг уншуулах эсвэл линк дээр дарж дотоод асуудал бүртгэлийн системд нэвтэрнэ. Дотоод хэрэглээний холбоос тул ARD ажлын Google акаунт шаардлагатай.</p>
+    <p class="sec-p">Системийн асуудлыг бүртгэхээс эхлээд шалгах, шийдвэрлэх, хариу өгөх хүртэлх үндсэн урсгал.</p>
 
     <!-- Internal request system intro -->
     <div class="card access-card wide request-guide reveal">
@@ -2731,174 +2828,25 @@
       </div>
     </div>
 
-    <!-- PDF Handbook -->
-    <div class="card access-card wide reveal" style="margin-top:1.5rem;padding:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
-      <div class="proj-ico" aria-hidden="true" style="margin-bottom:0;">📖</div>
-      <div style="flex:1;min-width:220px;">
-        <div class="access-h" style="margin-bottom:.4rem;">Дотоод бүртгэлийн системийн гарын авлага</div>
-        <p class="access-p" style="margin-bottom:1.2rem;">Jira үүсгэх, хянах, дамжуулах заавар. Шинэ ажилтнууд болон системийг ашиглаж эхлэх хүмүүст зориулсан гарын авлага.</p>
-        <a href="Гарын Авлага AppSheet Jira (Ard Securities).pdf" target="_blank" rel="noopener noreferrer" class="open-btn">
-          Гарын авлага нээх
-        </a>
-        <span class="access-note" style="margin-left:.7rem;">ARD ажлын Google акаунт шаардлагатай.</span>
-      </div>
-    </div>
-
-    <div class="card access-card wide reveal" style="margin-top:1.5rem;padding:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
-      <div class="proj-ico" aria-hidden="true" style="margin-bottom:0;">📊</div>
-      <div style="flex:1;min-width:220px;">
-        <div class="access-h" style="margin-bottom:.4rem;">Polaris эрхийн шинжилгээ — Үнэт цаас</div>
-        <p class="access-p" style="margin-bottom:1.2rem;">Үнэт цаас цэсний permission, action ID болон алдааны мессежийн discovery файл. Уг мэдээллийг ажилтны гарын авлага, албан тушаалд суурилсан эрхийн матриц болон хуучин хэрэглэгчдийн илүүдэл эрхийг цэвэрлэх ажилд ашиглана. Live Google Sheet дээр шинэчлэлт шууд орно.</p>
-        <a href="https://docs.google.com/spreadsheets/d/1oR0nRBo18wVI8WZoLGc5S8FZf9s6xdqwfaAeTf4KxeE/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="open-btn">
-          Live sheet нээх
-        </a>
-        <span class="access-note" style="margin-left:.7rem;">ARD ажлын Google акаунт шаардлагатай.</span>
-      </div>
-    </div>
-
-    <div class="access-grid" style="margin-top:1.5rem;">
-
-      <div class="card access-card reveal">
-        <div class="access-h">Дотоод систем нээхийн тулд уншуулна уу</div>
-        <div class="access-p">Утасныхаа камераар QR кодыг уншуулж дотоод асуудал бүртгэлийн системд нэвтэрнэ үү.</div>
-        <div class="qr-wrap">
-          <div class="qr-box" id="qr-app"></div>
-          <p class="qr-note">Утасны камераар уншуулна уу<br><strong>ARD ажлын Google акаунт шаардлагатай.</strong></p>
-          <a href="https://www.appsheet.com/start/4981b74b-5ddd-43c4-9ba8-b02d4731a642"
-             target="_blank" rel="noopener noreferrer" class="open-btn red-btn">Бүртгэлийн систем нээх →</a>
-        </div>
-      </div>
-
-      <div class="card access-card reveal d1">
-        <div class="access-h">Тайланг хуваалцах</div>
-        <div class="access-p">Тайланг удирдлагын баг болон холбогдох талуудтай хуваалцахад зориулсан QR код.</div>
-        <div class="qr-wrap">
-          <div class="qr-box" id="qr-site"></div>
-          <p class="qr-note">Тайланг нээхийн тулд уншуулна уу<br><strong>Ард Секюритиз ҮЦК ХХК · Жинхлэх тайлан</strong></p>
-          <button onclick="copyLink(this)" class="open-btn">Линк Хуулах</button>
-        </div>
-      </div>
-
-      <div class="card access-card wide reveal">
-        <div class="access-h">Бүртгэлийн системийг урьдчилан харах</div>
-        <div class="access-p">Google Sheets болон Google Drive-аар дэмжигдсэн дотоод асуудал бүртгэлийн системийн товч бүтэц. Нээх бол дээрх QR хэсгийн товчийг ашиглана.</div>
-        <div class="app-preview-card">
-          <div class="app-preview-left">
-            <div class="proj-ico" aria-hidden="true" style="margin-bottom:0;">📋</div>
-            <div class="app-meta">
-              <div class="app-meta-name">Дотоод асуудал бүртгэлийн систем</div>
-              <div class="app-meta-sub">Ард Секюритиз ҮЦК ХХК · дотоод систем</div>
-              <div class="app-badges">
-                <span class="app-badge"><span style="color:#D9DCDF">●</span> Идэвхтэй</span>
-                <span class="app-badge">AppSheet</span>
-                <span class="app-badge">Google Sheets</span>
-                <span class="app-badge">Google Drive</span>
-              </div>
-            </div>
-          </div>
-          <div class="app-preview-right">
-            <div class="app-feature"><span class="app-feat-ico">•</span><span>Jira ажлуудыг бодит цагт хянах</span></div>
-            <div class="app-feature"><span class="app-feat-ico">•</span><span>Бүх асуудлууд архивлагдана</span></div>
-            <div class="app-feature"><span class="app-feat-ico">•</span><span>Утас, таблет, компьютерт нийцтэй</span></div>
-            <div class="app-feature"><span class="app-feat-ico">•</span><span>Нэг асуудал дахин дахин үүсэхгүй</span></div>
-            <div class="app-feature"><span class="app-feat-ico">•</span><span>Гар ажиллагаа багасч, систем автоматжина</span></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
   </div>
 </section>
 
 <!-- TIMELINE -->
 <section id="timeline">
   <div class="wrap">
-    <div class="sec-eyebrow">Ажлын төлөвлөгөө</div>
-    <h2 class="sec-h2">Ажлын явц ба төлөвлөгөө</h2>
-    <p class="sec-p">2026 оны 4-р сарын 21-ээс 7-р сар хүртэлх системийн ажлуудын ахиц болон дараагийн төлөвлөгөө.</p>
+    <div class="sec-eyebrow">Одоо хийгдэж буй</div>
+    <h2 class="sec-h2">Ажлын явц</h2>
+    <p class="sec-p">Одоогоор идэвхтэй үргэлжилж буй ажил.</p>
 
     <div class="tl">
-
-      <div class="tl-item reveal">
-        <div class="tl-date">2026 оны 4-р сарын 21</div>
-        <div class="tl-dot lit"></div>
-        <div class="tl-content">
-        <div class="tl-title">Ард Секюритиз ҮЦК ХХК-д нэгдсэн ба системийн шинжилгээ</div>
-        <div class="tl-body">Систем админы үүрэгт ажилд орж, Polaris болон бусад дотоод системийн байдлыг шинжилсэн. Дотоод асуудал бүртгэлийн систем, Polaris гарын авлага болон CASPO/Jira хяналтын ажлуудыг CBDO-тэй хамт тодорхойлсон.</div>
-        </div>
-      </div>
-
-      <div class="tl-item reveal d1">
-        <div class="tl-date">2026 оны 4–5-р сар</div>
-        <div class="tl-dot lit"></div>
-        <div class="tl-content">
-        <div class="tl-title">Дотоод асуудал бүртгэлийн системийг хөгжүүлж нэвтрүүлсэн</div>
-        <div class="tl-body">Дотоод ажилтнуудад зориулсан хүсэлт бүртгэлийн системийг хөгжүүлж байршуулсан. GrapeCity (CASPO төсөл — вэб/backend) болон AFS-д (апп/IT) ажил дамжуулах урсгал тогтоосон.</div>
-        </div>
-      </div>
-
-      <div class="tl-item reveal d2">
-        <div class="tl-date">2026 оны 1–7-р сар</div>
-        <div class="tl-dot lit"></div>
-        <div class="tl-content">
-        <div class="tl-title">GrapeCity / CASPO Jira урсгалыг нэгтгэсэн ✓</div>
-        <div class="tl-body">Polaris системийн алдаа, сайжруулалт, лавлагааг GrapeCity-ийн CASPO төсөл дээр хянаж байна. 2026 оны 1-р сараас 7-р сарын 3 хүртэл нийт 96 Jira бүртгэгдсэн бөгөөд сарын хөдөлгөөн, төлөв, төрөл, компонент болон эрэмбийг нэгтгэн тайлагнаж байна.</div>
-        </div>
-      </div>
-
-      <div class="tl-item reveal d1" id="doc-automation">
-        <div class="tl-date">2026 оны 5-р сарын сүүл</div>
+      <div class="tl-item reveal" id="doc-automation">
+        <div class="tl-date">2026 оны 5-р сарын сүүлээс</div>
         <div class="tl-dot"></div>
         <div class="tl-content">
-        <div class="tl-title">Харилцагчийн баримт бичиг автоматжуулалт</div>
-        <div class="tl-body">AFS-н санаачилгаар гэрээ, хүсэлт, анкет болон QR-той тодорхойлолтыг автоматжуулах ажлын бэлтгэл эхэлсэн. Холбогдох компаниудаас ирүүлсэн загвар doc файлууд болон шаардлагатай мэдээллийг нэгтгэн хянаж, системд ашиглахад бэлэн болгоход дэмжлэг үзүүлж байна. Одоогийн гүйцэтгэл 25%.</div>
+          <div class="tl-title">Харилцагчийн баримт бичиг автоматжуулалт</div>
+          <div class="tl-body">AFS-н санаачилгаар гэрээ, хүсэлт, анкет болон QR-той тодорхойлолтыг автоматжуулах ажлын бэлтгэл эхэлсэн. Холбогдох компаниудаас ирүүлсэн загвар doc файлууд болон шаардлагатай мэдээллийг нэгтгэн хянаж, системд ашиглахад бэлэн болгоход дэмжлэг үзүүлж байна. Одоогийн гүйцэтгэл 25%.</div>
         </div>
       </div>
-
-      <div class="tl-item reveal d2">
-        <div class="tl-date">2026 оны 6–7-р сар</div>
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-        <div class="tl-title">Polaris системийн эрхийн матриц (RBAC)</div>
-        <div class="tl-body">Permission ID болон алдааны мессежүүдийг боломжит хэмжээнд бүртгэж, албан тушаалд суурилсан эрхийн матрицын суурийг гаргаж байна. Матрицыг систем админ болон систем ашигладаг ажилтны хоёр хувилбараар боловсруулна. Дараагийн алхам нь эрхийг role бүрт оноох, хуучин хэрэглэгчдийн илүүдэл эрхийг цэвэрлэх, зөвхөн өөрт оноосон эрхээр ажиллах хариуцлагыг баримтжуулах, дараа нь ажилтны гарын авлагыг дуусгах юм.</div>
-        </div>
-      </div>
-
-      <div class="tl-item reveal d1">
-        <div class="tl-date">2026 оны 7-р сар</div>
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-        <div class="tl-title">OGSM — Систем төсөл ба дижитал шилжилт</div>
-        <div class="tl-body">Хэлтэс бүрийн гараар давтагддаг ажлыг тодорхойлж, автоматжуулах боломжтой саналуудыг цуглуулан нэгтгэж байна. Дараагийн шатанд саналуудыг нөлөөлөл, хэрэгжүүлэх боломж болон дарааллаар нь эрэмбэлнэ.</div>
-        </div>
-      </div>
-
-      <div class="tl-item reveal d1">
-        <div class="tl-date">2026 оны 7-р сар</div>
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-        <div class="tl-title">Удирдлагуудад танилцуулах — эцсийн тайлан</div>
-        <div class="tl-body">Дууссан болон үргэлжилж буй ажлуудыг хамарсан танилцуулга, байршуулсан системийн товч үзүүлэн болон Ард Секюритиз ҮЦК ХХК-ийн дараагийн системийн ажлуудын санал.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- TECH -->
-<section id="tech">
-  <div class="wrap">
-    <div class="sec-eyebrow">Хэрэгсэл ба технологи</div>
-    <h2 class="sec-h2">Ашигласан технологи</h2>
-
-    <div class="tech-grid">
-      <div class="card tech-item reveal">   <span class="tech-ico">📱</span><span class="tech-name">AppSheet</span><span class="tech-cat">Код шаарддаггүй</span></div>
-      <div class="card tech-item reveal d1"> <span class="tech-ico">📊</span><span class="tech-name">Google Sheets</span><span class="tech-cat">Мэдээллийн сан</span></div>
-      <div class="card tech-item reveal d2"> <span class="tech-ico">💾</span><span class="tech-name">Google Drive</span><span class="tech-cat">Файл хадгалах</span></div>
-      <div class="card tech-item reveal">   <span class="tech-ico">🎫</span><span class="tech-name">Jira</span><span class="tech-cat">Асуудал хянах</span></div>
-      <div class="card tech-item reveal">   <span class="tech-ico">🌐</span><span class="tech-name">GrapeCity</span><span class="tech-cat">Вэб хөгжүүлэлт</span></div>
-      <div class="card tech-item reveal d1"> <span class="tech-ico">⚙️</span><span class="tech-name">GitHub Pages</span><span class="tech-cat">Хостинг</span></div>
     </div>
   </div>
 </section>
@@ -2908,7 +2856,6 @@
   <div class="wrap">
     <div class="sec-eyebrow">Байгууллагын оролцоо</div>
     <h2 class="sec-h2">Спорт ба багийн идэвх</h2>
-    <p class="sec-p">Үндсэн системийн ажлуудаас гадна байгууллагын спорт, багийн арга хэмжээнд идэвхтэй оролцсон товч тэмдэглэл.</p>
 
     <div class="card participation-card reveal">
       <div class="participation-info">
@@ -2935,6 +2882,33 @@
   </div>
 </section>
 
+<!-- REPORT TEAM -->
+<section id="report-team">
+  <div class="wrap">
+    <div class="team-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
+      <div class="card team-card featured reveal d1">
+        <div class="role-pill pill-sys">● Системийн админ</div>
+        <div class="photo-avatar" style="border-color:rgba(225,227,230,.35);">
+          <img src="img/Sysadmin.jpg" alt="Н. Түмэндэлгэр — Системийн админ" />
+        </div>
+        <div class="team-name">Н. Түмэндэлгэр</div>
+        <div class="team-title">Системийн админ · Ард Секюритиз</div>
+        <div class="team-desc">Дотоод систем, вэб арилжаа, Ard App, API холболт, гүйлгээ болон захиалгыг хянаж, pre-production шинэчлэлтийг тестлэн, шаардлагатай засварыг CASPO болон AFS талтай хамтран шийдвэрлэж байна.</div>
+      </div>
+
+      <div class="card team-card reveal d2">
+        <div class="role-pill pill-cbdo">● CBDO &amp; Чиглүүлэгч</div>
+        <div class="photo-avatar cbdo-avatar" style="border-color:rgba(225,227,230,.35);">
+          <img src="img/CBDO.jpg" alt="Б. Анужин — CBDO" />
+        </div>
+        <div class="team-name">Б. Анужин</div>
+        <div class="team-title">CBDO · Ард Секюритиз</div>
+        <div class="team-desc">Системтэй холбоотой ажлуудад чиглэл өгч, шаардлагатай үед зөвлөгөө болон дэмжлэг үзүүлж ажилласан.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- THANK YOU -->
 <section id="thanks">
   <div class="wrap">
@@ -2955,8 +2929,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <img class="brand-mark" src="img/ard-mark-white.png" alt="Ard" />
-      <span class="brand-word">SECURITIES</span>
+      <img class="brand-mark" src="img/ard-securities-official.png" alt="Ard Securities" />
     </div>
     <p class="footer-dis">Энэхүү тайланд миний хийж гүйцэтгэсэн ажлууд болон цаашид төлөвлөж буй ажлуудыг удирдлагын багт танилцуулах зорилгоор нэгтгэн тусгав.</p>
     <div class="footer-links">
@@ -2964,7 +2937,7 @@
       <a href="https://github.com/Tumeyo/ard-securities-report" target="_blank" rel="noopener noreferrer">Report Repository</a>
     </div>
     <div class="footer-copy">
-      © 2026 Ард Секюритиз ҮЦК ХХК &nbsp;·&nbsp; ARD Securities LLC
+      © 2026 Ард Секюритиз ҮЦК ХХК &nbsp;·&nbsp; Ard Securities LLC
     </div>
   </div>
 </footer>
@@ -2980,6 +2953,16 @@
     </div>
     <div class="jira-month-tabs" role="tablist" aria-label="Сар сонгох"></div>
     <div class="jira-modal-content" id="jiraModalContent"></div>
+  </div>
+</div>
+
+<div class="jira-modal" id="shareModal" aria-hidden="true">
+  <div class="jira-modal-panel share-panel" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle" tabindex="-1">
+    <button type="button" class="jira-modal-close" aria-label="Цонх хаах" onclick="closeShareModal()">×</button>
+    <h2 class="share-title" id="shareModalTitle">Тайлан хуваалцах</h2>
+    <p class="share-copy">QR кодыг уншуулах эсвэл тайлангийн холбоосыг хуулна уу.</p>
+    <div class="qr-box" id="qr-site"></div>
+    <div><button type="button" onclick="copyLink(this)" class="open-btn">Линк хуулах</button></div>
   </div>
 </div>
 
@@ -3445,11 +3428,10 @@ const monthlyDrilldownData = {
       tab.tabIndex = selected ? 0 : -1;
     });
     const draw = () => {
-      const maxComponent = Math.max(...Object.values(data.component));
       const componentBars = entriesByValue(data.component).map(([name,value],index)=>`
         <div class="drill-bar">
-          <div class="drill-bar-head"><span>${escapeHtml(name)}</span><strong>${value}</strong></div>
-          <div class="drill-track"><div class="drill-fill" style="--drill-color:${drillPalette[index % drillPalette.length]};width:${(value/maxComponent)*100}%"></div></div>
+          <div class="drill-bar-head"><span>${escapeHtml(name)}</span><strong>${value} · ${((value/data.total)*100).toFixed(2)}%</strong></div>
+          <div class="drill-track"><div class="drill-fill" style="--drill-color:${drillPalette[index % drillPalette.length]};width:${(value/data.total)*100}%"></div></div>
         </div>`).join('');
       const rows = data.topIssues.map(issue=>{
         const [jira,component,subject,type,priority,status] = issue;
@@ -3699,12 +3681,54 @@ const pgObs = new IntersectionObserver(entries=>{
 },{threshold:.25});
 document.querySelectorAll('.proj-card').forEach(el=>pgObs.observe(el));
 
+document.querySelectorAll('.compact-project').forEach(card=>{
+  const toggle = () => {
+    const expanded = card.classList.toggle('expanded');
+    card.setAttribute('aria-expanded',String(expanded));
+    if (expanded) card.querySelectorAll('.prog-fill').forEach(bar=>bar.style.width=bar.dataset.w+'%');
+  };
+  card.addEventListener('click',event=>{
+    if (event.target.closest('a,button')) return;
+    toggle();
+  });
+  card.addEventListener('keydown',event=>{
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    toggle();
+  });
+});
+
 // QR codes
-const APP_URL  = 'https://www.appsheet.com/start/4981b74b-5ddd-43c4-9ba8-b02d4731a642';
 const SITE_URL = window.location.href.split('#')[0];
 const qrCfg = text => ({ text, width:182, height:182, colorDark:'#020810', colorLight:'#ffffff', correctLevel:QRCode.CorrectLevel.H });
-new QRCode(document.getElementById('qr-app'),  qrCfg(APP_URL));
-new QRCode(document.getElementById('qr-site'), qrCfg(SITE_URL));
+const shareQr = document.getElementById('qr-site');
+if (shareQr) new QRCode(shareQr, qrCfg(SITE_URL));
+
+let shareModalTrigger = null;
+function openShareModal(trigger) {
+  const modal = document.getElementById('shareModal');
+  const panel = modal?.querySelector('.share-panel');
+  if (!modal || !panel) return;
+  shareModalTrigger = trigger || document.activeElement;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
+  requestAnimationFrame(()=>panel.focus());
+}
+function closeShareModal() {
+  const modal = document.getElementById('shareModal');
+  if (!modal?.classList.contains('open')) return;
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
+  setTimeout(()=>shareModalTrigger?.focus(),210);
+}
+document.getElementById('shareModal')?.addEventListener('mousedown',event=>{
+  if (event.target.id === 'shareModal') closeShareModal();
+});
+document.addEventListener('keydown',event=>{
+  if (event.key === 'Escape' && document.getElementById('shareModal')?.classList.contains('open')) closeShareModal();
+});
 
 // Thank-you note
 const thanksNote = 'Багийн дэмжлэг, өгсөн зөвлөгөө бүр ажлаа илүү сайн ойлгож, дотоод системийн ажлуудыг илүү цэгцтэй авч явахад тус болж байна. Цаашид сурсан зүйлсээ өдөр тутмын ажилдаа ашиглаж, багийн хэрэгцээнд илүү хурдан, илүү хариуцлагатай хариу өгөхийг зорьж байна.';
