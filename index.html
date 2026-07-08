@@ -2847,6 +2847,42 @@
           <div class="tl-body">AFS-н санаачилгаар гэрээ, хүсэлт, анкет болон QR-той тодорхойлолтыг автоматжуулах ажлын бэлтгэл эхэлсэн. Холбогдох компаниудаас ирүүлсэн загвар doc файлууд болон шаардлагатай мэдээллийг нэгтгэн хянаж, системд ашиглахад бэлэн болгоход дэмжлэг үзүүлж байна. Одоогийн гүйцэтгэл 25%.</div>
         </div>
       </div>
+
+      <div class="tl-item reveal" id="permission-matrix">
+        <div class="tl-date">2026 оны 6-р сараас</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-title">Системийн эрхийн матриц</div>
+          <div class="tl-body">Дотоод системүүдийн хэрэглэгчийн эрхийг нэг бүрчлэн бүртгэж, системийн эрхийн матрицыг боловсруулж байна. Polaris болон холбогдох системүүдийн хандах эрхийн түвшинг тодорхойлж, аль ажилтан ямар эрхтэйг нэгдсэн байдлаар харах боломжийг бүрдүүлнэ.</div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" id="permission-roles">
+        <div class="tl-date">2026 оны 6-р сараас</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-title">Системийн эрхийг ажил үүрэгт хуваарилах</div>
+          <div class="tl-body">Эрхийн матрицад үндэслэн алба нэгж, ажил үүрэг бүрд тохирсон хандах эрхийн түвшинг тодорхойлж байна. Ажил үүрэгт шаардлагагүй илүүдэл эрхийг хязгаарлаж, эрх олголтыг стандартчилна.</div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" id="website-refresh">
+        <div class="tl-date">2026 оны 7-р сараас</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-title">Вебсайт шинэчлэл</div>
+          <div class="tl-body">Байгууллагын вебсайтын агуулга, мэдээллийг шинэчилж, дизайн болон хэрэглэгчийн туршлагыг сайжруулах ажил хийгдэж байна.</div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" id="system-improvements">
+        <div class="tl-date">Тогтмол үргэлжилж буй</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-title">Системийн сайжруулалт</div>
+          <div class="tl-body">Систем дээр илэрсэн асуудал болон хэрэглэгчдээс ирсэн саналд үндэслэн сайжруулалтын хүсэлтүүдийг бүртгэж, эрэмбэлэн CASPO болон AFS талтай хамтран шийдвэрлэж байна.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -3428,40 +3464,47 @@ const monthlyDrilldownData = {
       tab.tabIndex = selected ? 0 : -1;
     });
     const draw = () => {
+      const componentBase = Object.values(data.component).reduce((sum,value)=>sum+value,0) || data.total;
       const componentBars = entriesByValue(data.component).map(([name,value],index)=>`
         <div class="drill-bar">
-          <div class="drill-bar-head"><span>${escapeHtml(name)}</span><strong>${value} · ${((value/data.total)*100).toFixed(2)}%</strong></div>
-          <div class="drill-track"><div class="drill-fill" style="--drill-color:${drillPalette[index % drillPalette.length]};width:${(value/data.total)*100}%"></div></div>
+          <div class="drill-bar-head"><span>${escapeHtml(name)}</span><strong>${value} · ${((value/componentBase)*100).toFixed(2)}%</strong></div>
+          <div class="drill-track"><div class="drill-fill" style="--drill-color:${drillPalette[index % drillPalette.length]};width:${(value/componentBase)*100}%"></div></div>
         </div>`).join('');
       const rows = data.topIssues.map(issue=>{
         const [jira,component,subject,type,priority,status] = issue;
         return `<tr><td>${escapeHtml(jira)}</td><td>${escapeHtml(component)}</td><td>${escapeHtml(subject)}</td><td><span class="drill-table-badge ${toneClass(type)}">${escapeHtml(type)}</span></td><td><span class="drill-table-badge ${toneClass(priority)}">${escapeHtml(priority)}</span></td><td><span class="drill-table-badge ${toneClass(status)}">${escapeHtml(status)}</span></td></tr>`;
       }).join('');
+      const insightBlocks = [`<div class="drill-insight"><strong>Товч дүгнэлт</strong>${escapeHtml(data.insight)}</div>`];
+      if (data.pending) {
+        insightBlocks.push('<div class="drill-insight"><strong>Мэдээлэл</strong>Энэ сарын дэлгэрэнгүй задаргаа тайланд хараахан нэгтгэгдээгүй тул зөвхөн нийт тоог харуулав.</div>');
+      } else {
+        insightBlocks.push(`<div class="drill-insight"><strong>Болзошгүй шалтгаан</strong>${escapeHtml(data.possibleReason)}</div>`);
+        insightBlocks.push(`<div class="drill-insight"><strong>Анхаарах хэсэг</strong>${escapeHtml(data.recommendation)}</div>`);
+        if (data.staleBreakdown) insightBlocks.push('<div class="drill-insight"><strong>Тэмдэглэл</strong>Нийт тоо Google Sheets тайлангаас шинэчлэгдсэн бөгөөд доорх задаргаа өмнөх нэгтгэлийн үеийн дүн болно.</div>');
+      }
       content.innerHTML = `
         <div class="drill-kpis">
           <div class="drill-kpi"><strong>${data.total}</strong><span>Нийт Jira</span></div>
           <div class="drill-kpi"><strong>${escapeHtml(data.topType)}</strong><span>Давамгай төрөл</span></div>
           <div class="drill-kpi"><strong>${escapeHtml(data.topComponent)}</strong><span>Давамгай компонент</span></div>
-          <div class="drill-kpi"><strong>${data.priority['Маш өндөр'] || 0}</strong><span>Маш өндөр эрэмбэ</span></div>
-          <div class="drill-kpi"><strong>${data.status['Явагдаж буй'] || 0}</strong><span>Явагдаж буй</span></div>
+          <div class="drill-kpi"><strong>${data.pending ? '—' : (data.priority['Маш өндөр'] || 0)}</strong><span>Маш өндөр эрэмбэ</span></div>
+          <div class="drill-kpi"><strong>${data.pending ? '—' : (data.status['Явагдаж буй'] || 0)}</strong><span>Явагдаж буй</span></div>
         </div>
-        <div class="drill-main">
+        ${data.pending ? '' : `<div class="drill-main">
           <section class="drill-panel"><h3>Компонентоор</h3><div class="drill-bars">${componentBars}</div></section>
           <section class="drill-panel drill-summary-grid">
             <div class="drill-summary-block"><div class="drill-summary-title">Төрлөөр</div><div class="drill-chips">${chips(data.type)}</div></div>
             <div class="drill-summary-block"><div class="drill-summary-title">Төлөвөөр</div><div class="drill-chips">${chips(data.status)}</div></div>
             <div class="drill-summary-block"><div class="drill-summary-title">Эрэмбээр</div><div class="drill-chips">${chips(data.priority)}</div></div>
           </section>
-        </div>
+        </div>`}
         <div class="drill-insights">
-          <div class="drill-insight"><strong>Товч дүгнэлт</strong>${escapeHtml(data.insight)}</div>
-          <div class="drill-insight"><strong>Болзошгүй шалтгаан</strong>${escapeHtml(data.possibleReason)}</div>
-          <div class="drill-insight"><strong>Анхаарах хэсэг</strong>${escapeHtml(data.recommendation)}</div>
+          ${insightBlocks.join('')}
         </div>
-        <div class="drill-table-wrap">
+        ${data.pending ? '' : `<div class="drill-table-wrap">
           <h3 class="drill-table-title">Төлөөлөх issue жагсаалт</h3>
           <table class="drill-table"><thead><tr><th>Jira №</th><th>Компонент</th><th>Гарчиг</th><th>Төрөл</th><th>Эрэмбэ</th><th>Статус</th></tr></thead><tbody>${rows}</tbody></table>
-        </div>`;
+        </div>`}`;
       content.classList.remove('changing');
     };
     if (!animate) { draw(); return; }
@@ -3469,8 +3512,8 @@ const monthlyDrilldownData = {
     setTimeout(draw, 145);
   }
 
-  Object.keys(monthlyDrilldownData).forEach(key=>{
-    const month = Number(key);
+  function addMonthTab(month) {
+    if (tabs.querySelector(`.jira-month-tab[data-month="${month}"]`)) return;
     const tab = document.createElement('button');
     tab.type = 'button';
     tab.className = 'jira-month-tab';
@@ -3479,7 +3522,8 @@ const monthlyDrilldownData = {
     tab.textContent = `${month}-р сар`;
     tab.addEventListener('click',()=>renderMonth(month));
     tabs.appendChild(tab);
-  });
+  }
+  Object.keys(monthlyDrilldownData).map(Number).sort((a,b)=>a-b).forEach(addMonthTab);
 
   function openModal(month, trigger) {
     lastTrigger = trigger;
@@ -3494,13 +3538,38 @@ const monthlyDrilldownData = {
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden','true');
     document.body.classList.remove('modal-open');
-    setTimeout(()=>lastTrigger?.focus(),210);
+    setTimeout(()=>{
+      const target = lastTrigger?.isConnected ? lastTrigger : document.querySelector(`.month-column[data-month="${activeMonth}"]`);
+      target?.focus();
+    },210);
   }
 
   document.querySelectorAll('.month-column[data-month]').forEach(trigger=>{
     trigger.setAttribute('aria-haspopup','dialog');
     trigger.addEventListener('click',()=>openModal(Number(trigger.dataset.month),trigger));
   });
+
+  // Hooks for the live Google Sheets loader: open a month from rebuilt chart
+  // columns, register/refresh stub entries for months added later in the sheet,
+  // and reconcile hand-written month totals with the live counts.
+  window.caspoJira = {
+    openMonth: openModal,
+    ensureMonth(month, data) {
+      const existing = monthlyDrilldownData[month];
+      if (existing && !existing.isStub) return;
+      if (existing && existing.total === data.total) return;
+      monthlyDrilldownData[month] = data;
+      addMonthTab(month);
+      if (modal.classList.contains('open') && activeMonth === month) renderMonth(month, false);
+    },
+    syncMonth(month, count) {
+      const entry = monthlyDrilldownData[month];
+      if (!entry || entry.isStub || entry.total === count) return;
+      entry.total = count;
+      entry.staleBreakdown = true;
+      if (modal.classList.contains('open') && activeMonth === month) renderMonth(month, false);
+    }
+  };
   closeButton.addEventListener('click',closeModal);
   modal.addEventListener('mousedown',event=>{ if (event.target === modal) closeModal(); });
   document.addEventListener('keydown',event=>{
@@ -3702,7 +3771,7 @@ document.querySelectorAll('.compact-project').forEach(card=>{
 const SITE_URL = window.location.href.split('#')[0];
 const qrCfg = text => ({ text, width:182, height:182, colorDark:'#020810', colorLight:'#ffffff', correctLevel:QRCode.CorrectLevel.H });
 const shareQr = document.getElementById('qr-site');
-if (shareQr) new QRCode(shareQr, qrCfg(SITE_URL));
+if (shareQr && typeof QRCode !== 'undefined') new QRCode(shareQr, qrCfg(SITE_URL));
 
 let shareModalTrigger = null;
 function openShareModal(trigger) {
@@ -3787,6 +3856,309 @@ function copyLink(btn) {
     setTimeout(()=>{ btn.textContent=orig; btn.classList.remove('copied'); }, 2200);
   });
 }
+
+// CASPO Jira report — live data from the Google Sheets summary tab (Тайлан).
+// Uses the raw CSV export endpoint: the gviz JSON endpoint types columns by
+// majority and nulls minority-type cells, which destroys this sheet's mixed
+// label/number columns. The sheet must be shared as "Anyone with the link →
+// Viewer"; while it is restricted or unreachable the baked-in snapshot below
+// stays untouched.
+(function(){
+  const SHEET_ID = '14vQqvt9jiNjNKLMsw9M4sV9ut27Q74ZgjmlcAb5daV4';
+  const SUMMARY_GID = '0'; // gid of the Тайлан tab (first tab; see the tab's URL)
+  const REFRESH_MS = 5 * 60 * 1000;
+  const card = document.querySelector('.caspo-report-card');
+  if (!card) return;
+
+  const norm = value => value == null ? '' : String(value).trim();
+  const stripIcons = value => norm(value).replace(/^[^0-9A-Za-zА-Яа-яЁёӨөҮү]+/,'').trim();
+  const toNumber = value => {
+    if (typeof value === 'number') return value;
+    const parsed = parseFloat(norm(value).replace(',','.'));
+    return Number.isFinite(parsed) ? parsed : null;
+  };
+  const pct = (part, total) => total ? (part / total * 100) : 0;
+  const fmtPct = share => `${share.toFixed(2)}%`;
+  const escText = value => String(value).replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'})[ch]);
+  const dayCase = day => ([1,4,9].includes(day % 10) ? 'ний' : 'ны');
+
+  // Quote-aware CSV → grid of trimmed cell strings. Merged cells arrive as the
+  // value in the top-left cell and empty strings elsewhere.
+  function parseCsv(text) {
+    if (typeof text !== 'string' || !text) return null;
+    if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
+    if (text.trimStart().startsWith('<')) return null; // HTML login/error page
+    const grid = [];
+    let row = [], field = '', inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      if (inQuotes) {
+        if (ch === '"') {
+          if (text[i + 1] === '"') { field += '"'; i++; }
+          else inQuotes = false;
+        } else field += ch;
+      } else if (ch === '"') {
+        inQuotes = true;
+      } else if (ch === ',') {
+        row.push(field); field = '';
+      } else if (ch === '\n' || ch === '\r') {
+        if (ch === '\r' && text[i + 1] === '\n') i++;
+        row.push(field); field = '';
+        grid.push(row); row = [];
+      } else field += ch;
+    }
+    if (field !== '' || row.length) { row.push(field); grid.push(row); }
+    return grid.length ? grid : null;
+  }
+
+  async function fetchSummaryCsv() {
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${SUMMARY_GID}&_=${Date.now()}`;
+    const response = await fetch(url, {cache:'no-store'});
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return parseCsv(await response.text());
+  }
+
+  function findCellBy(grid, predicate) {
+    for (let r = 0; r < grid.length; r++) {
+      const row = grid[r];
+      if (!row) continue;
+      for (let c = 0; c < row.length; c++) {
+        if (predicate(norm(row[c]), r, c)) return [r, c];
+      }
+    }
+    return null;
+  }
+  const findCell = (grid, want) => findCellBy(grid, value => value === want);
+
+  function numberBelow(grid, pos, reach = 5) {
+    if (!pos) return null;
+    const [r, c] = pos;
+    for (let i = 1; i <= reach; i++) {
+      const value = grid[r + i]?.[c];
+      if (norm(value) === '') continue;
+      const parsed = toNumber(value);
+      if (parsed != null) return parsed;
+    }
+    return null;
+  }
+
+  // Reads label + count rows under a table header until the "Нийт" total row.
+  function readTable(grid, headerPos, valueOffsets = [1]) {
+    if (!headerPos) return [];
+    const [hr, hc] = headerPos;
+    const rows = [];
+    let blanks = 0;
+    for (let r = hr + 1; r < grid.length; r++) {
+      const name = norm(grid[r]?.[hc]);
+      if (!name) { if (++blanks > 1) break; continue; }
+      blanks = 0;
+      if (/^нийт$/i.test(name)) break;
+      rows.push({ name, values: valueOffsets.map(offset => toNumber(grid[r]?.[hc + offset])) });
+    }
+    return rows;
+  }
+
+  function extract(grid) {
+    const total = numberBelow(grid, findCell(grid, 'НИЙТ'));
+    const open = numberBelow(grid, findCell(grid, 'НЭЭЛТТЭЙ'));
+    const fixed = numberBelow(grid, findCell(grid, 'ЗАСАГДСАН'));
+    const inProgress = numberBelow(grid, findCellBy(grid, value => value.toUpperCase() === 'IN PROGRESS'));
+    const wontFix = numberBelow(grid, findCell(grid, 'ЗАСАХГҮЙ'));
+
+    const monthHeader = findCellBy(grid, (value, r, c) => value === 'Сар' && /jira/i.test(norm(grid[r]?.[c + 1])));
+    const months = readTable(grid, monthHeader)
+      .map(row => ({ month: parseInt(row.name, 10), count: row.values[0] }))
+      .filter(row => Number.isFinite(row.month) && row.count != null && row.count > 0)
+      .sort((a, b) => a.month - b.month);
+
+    const componentHeader = findCellBy(grid, (value, r, c) => value === 'Компонент' && norm(grid[r]?.[c + 1]) === 'Тоо');
+    const components = readTable(grid, componentHeader)
+      .map(row => ({ name: stripIcons(row.name), count: row.values[0] }))
+      .filter(row => row.name && row.count != null);
+
+    const typeHeader = findCellBy(grid, (value, r, c) => value === 'Төрөл' && norm(grid[r]?.[c + 1]) === 'Тоо');
+    const types = readTable(grid, typeHeader)
+      .map(row => ({ name: stripIcons(row.name), count: row.values[0] }))
+      .filter(row => row.name && row.count != null);
+
+    const priorityHeader = findCellBy(grid, (value, r, c) => value === 'Эрэмбэ' && norm(grid[r]?.[c + 1]) === 'Тоо');
+    const priorities = readTable(grid, priorityHeader)
+      .map(row => ({ name: stripIcons(row.name), count: row.values[0] }))
+      .filter(row => row.name && row.count != null);
+
+    const priorityStatusHeader = findCellBy(grid, (value, r, c) =>
+      value === 'Эрэмбэ' && norm(grid[r]?.[c + 1]) === 'Нээлттэй' && norm(grid[r]?.[c + 2]) === 'Хаагдсан');
+    const priorityStatus = readTable(grid, priorityStatusHeader, [1, 2])
+      .map(row => ({ name: stripIcons(row.name), open: row.values[0] || 0, closed: row.values[1] || 0 }))
+      .filter(row => row.name);
+
+    // All-or-nothing: a partially parsed sheet must not mix live and stale
+    // numbers on screen — any missing anchor falls back to the full snapshot.
+    if (!total || open == null || fixed == null || inProgress == null || wontFix == null ||
+        !months.length || !components.length || !types.length || !priorities.length || !priorityStatus.length) return null;
+    return { total, open, fixed, inProgress, wontFix, months, components, types, priorities, priorityStatus };
+  }
+
+  const TYPE_LABELS = { 'Bug': 'Bug (Алдаа)' };
+  const typeFill = name => /bug|complaint/i.test(name) ? ' fill-critical' : /improvement/i.test(name) ? ' fill-low' : ' fill-info';
+  const PRIORITY_FILL = { 'Маш өндөр': ' fill-critical', 'Өндөр': ' fill-high', 'Дунд': '', 'Бага': ' fill-low' };
+
+  function metricRow(name, count, share, fill) {
+    return `<div class="metric-row"><div><div class="metric-name">${escText(name)}</div><div class="metric-track"><div class="metric-fill${fill || ''}" style="width:${share.toFixed(2)}%;"></div></div></div><div class="metric-value">${count}<span>${fmtPct(share)}</span></div></div>`;
+  }
+
+  function statusRow(name, openCount, closedCount, maxTotal) {
+    const rowTotal = openCount + closedCount;
+    const segments =
+      (openCount > 0 ? `<span class="metric-segment-open" style="width:${pct(openCount, rowTotal).toFixed(2)}%;"></span>` : '') +
+      (closedCount > 0 ? `<span class="metric-segment-closed" style="width:${pct(closedCount, rowTotal).toFixed(2)}%;"></span>` : '');
+    return `<div class="metric-row"><div><div class="metric-name">${escText(name)}</div><div class="metric-sub">Нээлттэй ${openCount} · Хаагдсан ${closedCount}</div><div class="metric-stack-track"><div class="metric-volume" style="width:${pct(rowTotal, maxTotal).toFixed(2)}%;">${segments}</div></div></div><div class="metric-value">${rowTotal}</div></div>`;
+  }
+
+  function panelList(title) {
+    const panel = [...card.querySelectorAll('.stat-panel')].find(p => p.querySelector('h3')?.textContent.trim() === title);
+    return panel ? panel.querySelector('.metric-list') : null;
+  }
+
+  // Re-snapshot counter targets so the scroll-in animation replays with live
+  // numbers. Elements that already carry a target keep it (setStat updates
+  // them explicitly) — never re-derive a target from possibly zeroed or
+  // mid-animation display text.
+  function rearmGroup(group) {
+    if (!group) return;
+    group.querySelectorAll('.status-stat strong, .metric-value').forEach(el => {
+      if (el.dataset.countTarget != null) return;
+      const node = leadingNumberNode(el);
+      if (!node) return;
+      el.dataset.countTarget = String(parseInt(node.nodeValue, 10));
+    });
+    if (group.dataset.statsVisible === 'true') {
+      runStatGroup(group);
+    } else {
+      group.querySelectorAll('[data-count-target]').forEach(el => {
+        const node = leadingNumberNode(el);
+        if (node) node.nodeValue = '0';
+      });
+    }
+  }
+
+  function renderChart(months, total) {
+    const chart = card.querySelector('.monthly-chart');
+    if (!chart) return;
+    const max = Math.max(...months.map(m => m.count));
+    const peak = months.find(m => m.count === max);
+    const current = months[months.length - 1];
+    const focusedMonth = document.activeElement?.closest?.('.month-column')?.dataset.month;
+    chart.innerHTML = months.map(m => {
+      const height = Math.max(4, Math.round(pct(m.count, max)));
+      const classes = ['month-column', m === peak ? 'peak' : '', m === current ? 'current' : ''].filter(Boolean).join(' ');
+      return `<button type="button" class="${classes}" data-month="${m.month}" aria-label="${m.month}-р сарын ${m.count} Jira дэлгэрэнгүй" aria-haspopup="dialog"><span class="month-count">${m.count}</span><span class="month-bar" style="--bar-h:${height}%;"></span><span class="month-label">${m.month}-р сар</span></button>`;
+    }).join('');
+    chart.style.gridTemplateColumns = months.length === 7 ? '' : `repeat(${months.length},minmax(42px,1fr))`;
+    chart.querySelectorAll('.month-column').forEach(btn => {
+      btn.addEventListener('click', () => window.caspoJira?.openMonth(Number(btn.dataset.month), btn));
+    });
+    if (focusedMonth) chart.querySelector(`.month-column[data-month="${focusedMonth}"]`)?.focus();
+
+    months.forEach(m => {
+      window.caspoJira?.syncMonth(m.month, m.count);
+      window.caspoJira?.ensureMonth(m.month, {
+        total: m.count, topType: '—', topComponent: '—',
+        type: {}, component: {}, priority: {}, status: {},
+        insight: `${m.month}-р сард одоогоор нийт ${m.count} Jira бүртгэгдсэн байна.`,
+        topIssues: [], isStub: true, pending: true
+      });
+    });
+
+    const now = new Date();
+    const foot = card.querySelector('.monthly-chart-foot');
+    if (foot && peak) {
+      foot.innerHTML = `<span><strong>Хамгийн өндөр ачаалал:</strong> ${peak.month}-р сар · ${peak.count} Jira</span><span><strong>Нийт ${total}</strong> Jira · ${now.getMonth() + 1}-р сарын ${now.getDate()}-${dayCase(now.getDate())} байдлаар</span>`;
+    }
+    const sub = card.querySelector('.monthly-chart-sub');
+    if (sub && current) sub.textContent = `2026 оны 1-р сараас ${current.month}-р сар хүртэл`;
+  }
+
+  function apply(data) {
+    const pill = card.querySelector('.caspo-total-pill strong');
+    if (pill) pill.textContent = String(data.total);
+
+    renderChart(data.months, data.total);
+
+    const statGrid = card.querySelector('.status-stat-grid');
+    if (statGrid) {
+      const setStat = (selector, value) => {
+        const el = statGrid.querySelector(selector);
+        if (el && value != null) {
+          el.textContent = String(value);
+          el.dataset.countTarget = String(value);
+        }
+      };
+      setStat('.status-stat--total strong', data.total);
+      setStat('.status-stat--open strong', data.open);
+      setStat('.status-stat--fixed strong', data.fixed);
+      setStat('.status-stat--progress strong', data.inProgress);
+      setStat('.status-stat--wontfix strong', data.wontFix);
+      rearmGroup(statGrid);
+    }
+
+    const typeList = panelList('Төрлөөр');
+    if (typeList && data.types.length) {
+      typeList.innerHTML = [...data.types].sort((a, b) => b.count - a.count)
+        .map(row => metricRow(TYPE_LABELS[row.name] || row.name, row.count, pct(row.count, data.total), typeFill(row.name))).join('');
+    }
+
+    const componentList = panelList('Компонентоор');
+    if (componentList && data.components.length) {
+      const named = data.components.filter(row => row.name !== 'Бусад').sort((a, b) => b.count - a.count);
+      const other = data.components.filter(row => row.name === 'Бусад');
+      componentList.innerHTML = [...named, ...other]
+        .map((row, index) => metricRow(row.name, row.count, pct(row.count, data.total), index === 0 ? ' fill-info' : '')).join('');
+    }
+
+    const priorityList = panelList('Эрэмбэ');
+    if (priorityList && data.priorities.length) {
+      priorityList.innerHTML = data.priorities
+        .map(row => metricRow(row.name, row.count, pct(row.count, data.total), PRIORITY_FILL[row.name] ?? '')).join('');
+    }
+
+    const priorityStatusList = panelList('Эрэмбэ ба төлөв');
+    if (priorityStatusList && data.priorityStatus.length) {
+      const maxTotal = Math.max(...data.priorityStatus.map(row => row.open + row.closed));
+      priorityStatusList.innerHTML = data.priorityStatus
+        .map(row => statusRow(row.name, row.open, row.closed, maxTotal)).join('');
+    }
+
+    card.querySelectorAll('.stat-panel').forEach(rearmGroup);
+
+    updateSourceStamp();
+  }
+
+  function updateSourceStamp() {
+    const source = card.querySelector('.caspo-source');
+    if (!source) return;
+    const now = new Date();
+    const pad = n => String(n).padStart(2, '0');
+    const stamp = `${now.getFullYear()}.${pad(now.getMonth() + 1)}.${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+    source.innerHTML = `<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#34D399;box-shadow:0 0 8px rgba(52,211,153,.65);margin-right:.4rem;vertical-align:middle;"></span>Эх сурвалж: Google Sheets — шууд холболт · CAS-797 → одоо · Шинэчлэгдсэн ${stamp} · 5 мин тутамд автоматаар шинэчлэгдэнэ.`;
+  }
+
+  let lastKey = '';
+  async function load() {
+    let grid = null;
+    try { grid = await fetchSummaryCsv(); } catch {}
+    if (!grid) return;
+    const data = extract(grid);
+    if (!data) return;
+    const key = JSON.stringify(data);
+    if (key === lastKey) { updateSourceStamp(); return; } // unchanged: refresh the stamp, skip re-render
+    lastKey = key;
+    apply(data);
+  }
+
+  load();
+  setInterval(load, REFRESH_MS);
+})();
 </script>
 </body>
 </html>
