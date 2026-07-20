@@ -6,6 +6,9 @@
   <meta name="description" content="Ажлын тайлан 2026 — систем админ" />
   <title>ARD Securities | Тайлан 2026</title>
 
+  <link rel="icon" type="image/png" sizes="180x180" href="img/favicon.png" />
+  <link rel="apple-touch-icon" href="img/favicon.png" />
+
   <!-- Link preview (Open Graph / Twitter) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="ARD Securities | Тайлан 2026" />
@@ -1362,6 +1365,45 @@
     .status-stat--fixed strong { color:#4ADE80; }
     .status-stat--progress strong { color:#60A5FA; }
     .status-stat--wontfix strong { color:#F05252; }
+    .cas-period {
+      margin:1.35rem 0 .3rem;
+      padding:1.3rem 1.5rem 1.4rem;
+      border-radius:16px;
+      border:1px solid rgba(214,184,90,.14);
+      background:rgba(255,255,255,.024);
+    }
+    .cas-period-eyebrow { color:var(--txt2); font-size:9.5px; font-weight:700; letter-spacing:2.2px; }
+    .cas-period-title { margin-top:.45rem; color:var(--txt0); font-family:'Space Grotesk',sans-serif; font-size:1.02rem; font-weight:700; }
+    .cas-period-copy { margin-top:.5rem; color:var(--txt1); font-size:12px; line-height:1.65; max-width:70ch; }
+    .cas-period-range { margin-top:.45rem; color:var(--txt2); font-size:10.5px; }
+    .cas-period-grid {
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:.65rem;
+      margin-top:1rem;
+    }
+    .cas-period-stat {
+      padding:.85rem;
+      border-radius:14px;
+      border:1px solid rgba(214,184,90,.13);
+      background:rgba(255,255,255,.025);
+    }
+    .cas-period-stat strong { display:block; font-family:'Space Grotesk',sans-serif; font-size:1.45rem; line-height:1; color:var(--gold-lt); }
+    .cas-period-stat span { display:block; margin-top:.35rem; color:var(--txt2); font-size:10.5px; }
+    .cas-mini-track { height:4px; margin-top:.55rem; border-radius:999px; background:rgba(255,255,255,.07); overflow:hidden; }
+    .cas-mini-fill { height:100%; border-radius:999px; }
+    .cas-mini-fill--bug { background:linear-gradient(90deg,#FF8D7C,#E63329); }
+    .cas-mini-fill--improve { background:linear-gradient(90deg,#86EFAC,#22C55E); }
+    .cas-period-note {
+      margin-top:.95rem;
+      padding:.7rem .95rem;
+      border-left:2px solid var(--gold-dk);
+      border-radius:0 10px 10px 0;
+      background:rgba(255,255,255,.02);
+      color:var(--txt1);
+      font-size:11.5px;
+      line-height:1.65;
+    }
     .it-support-summary {
       display:grid;
       grid-template-columns:repeat(2,minmax(0,1fr));
@@ -2069,6 +2111,7 @@
       .takeaway-grid { grid-template-columns:1fr; }
       .stat-panel-grid { grid-template-columns:1fr; }
       .status-stat-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .cas-period-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .caspo-breakdown { grid-template-columns:1fr; }
       .caspo-breakdown.compact { grid-template-columns:1fr; }
       .tl {
@@ -2139,6 +2182,9 @@
       .caspo-report-card { padding:1.2rem; }
       .status-stat-grid { gap:.5rem; }
       .status-stat { padding:.75rem; }
+      .cas-period { padding:1rem 1.05rem 1.1rem; }
+      .cas-period-grid { gap:.5rem; }
+      .cas-period-stat { padding:.75rem; }
       .stat-panel { padding:1.1rem 1rem 1.2rem; }
       .metric-name { padding-right:58px; }
       .metric-value { min-width:50px; }
@@ -2727,7 +2773,7 @@
           <div class="caspo-report-copy">2026 оны эхнээс бүртгэгдсэн CASPO Jira-г сар, төлөв, төрөл, компонент болон эрэмбээр нэгтгэв.</div>
         </div>
         <div class="caspo-total-pill">
-          <strong>96</strong>
+          <strong>97</strong>
           <span>нийт CASPO</span>
         </div>
       </div>
@@ -2736,7 +2782,7 @@
         <div class="monthly-chart-head">
           <div>
             <div class="monthly-chart-title">Сарын Jira хөдөлгөөн</div>
-            <div class="monthly-chart-sub">2026 оны 1-р сараас 7-р сарын 3 хүртэл</div>
+            <div class="monthly-chart-sub">2026 оны 1-р сараас 7-р сарын 6 хүртэл</div>
           </div>
         </div>
         <div class="monthly-chart-scroll">
@@ -2747,32 +2793,46 @@
             <button type="button" class="month-column" data-month="4" aria-label="4-р сарын 10 Jira дэлгэрэнгүй"><span class="month-count">10</span><span class="month-bar" style="--bar-h:29%;"></span><span class="month-label">4-р сар</span></button>
             <button type="button" class="month-column" data-month="5" aria-label="5-р сарын 18 Jira дэлгэрэнгүй"><span class="month-count">18</span><span class="month-bar" style="--bar-h:51%;"></span><span class="month-label">5-р сар</span></button>
             <button type="button" class="month-column peak" data-month="6" aria-label="6-р сарын 35 Jira дэлгэрэнгүй"><span class="month-count">35</span><span class="month-bar" style="--bar-h:100%;"></span><span class="month-label">6-р сар</span></button>
-            <button type="button" class="month-column current" data-month="7" aria-label="7-р сарын 7 Jira дэлгэрэнгүй"><span class="month-count">7</span><span class="month-bar" style="--bar-h:20%;"></span><span class="month-label">7-р сар</span></button>
+            <button type="button" class="month-column current" data-month="7" aria-label="7-р сарын 8 Jira дэлгэрэнгүй"><span class="month-count">8</span><span class="month-bar" style="--bar-h:23%;"></span><span class="month-label">7-р сар</span></button>
           </div>
         </div>
         <div class="monthly-chart-foot">
           <span><strong>Хамгийн өндөр ачаалал:</strong> 6-р сар · 35 Jira</span>
-          <span><strong>Нийт 96</strong> Jira · 7-р сарын 3-ны байдлаар</span>
+          <span><strong>Нийт 97</strong> Jira · 2026 оны 7-р сарын 6-ны байдлаар</span>
         </div>
       </div>
 
       <div class="status-stat-grid" aria-label="CASPO Jira төлөв">
-        <div class="status-stat status-stat--total"><strong>96</strong><span>Нийт Jira</span></div>
+        <div class="status-stat status-stat--total"><strong>97</strong><span>Нийт Jira</span></div>
         <div class="status-stat status-stat--open"><strong>11</strong><span>Нээлттэй</span></div>
-        <div class="status-stat status-stat--fixed"><strong>72</strong><span>Засагдсан</span></div>
-        <div class="status-stat status-stat--progress"><strong>8</strong><span>In Progress · нээлттэйд багтсан</span></div>
+        <div class="status-stat status-stat--fixed"><strong>73</strong><span>Хаагдсан / шийдвэрлэгдсэн</span></div>
+        <div class="status-stat status-stat--progress"><strong>8</strong><span>Явагдаж буй · нээлттэйд багтсан</span></div>
         <div class="status-stat status-stat--wontfix"><strong>13</strong><span>Засахгүй</span></div>
+      </div>
+
+      <div class="cas-period reveal" id="cas-period" aria-label="CAS-901-ээс хойших Jira гүйцэтгэл">
+        <div class="cas-period-eyebrow">МИНИЙ ХАРИУЦСАН ХУГАЦАА</div>
+        <div class="cas-period-title">CAS-901-ээс хойших Jira гүйцэтгэл</div>
+        <p class="cas-period-copy">2026 оны 4 дүгээр сарын 23-наас live системийн алдаа, сайжруулалтын хэрэгцээг тогтмол хянаж, Jira-д бүртгэн, нөлөөлөл болон яаралтай байдлаар нь эрэмбэлж, шийдвэрлэлтийг дагаж ажилласан.</p>
+        <div class="cas-period-range">CAS-901 → CAS-1050 · 2026 оны 7-р сарын 6-ны байдлаар</div>
+        <div class="cas-period-grid">
+          <div class="cas-period-stat"><strong>70</strong><span>Хянан ажилласан Jira</span></div>
+          <div class="cas-period-stat"><strong>72.2%</strong><span>Нийт Jira-д эзлэх хувь</span></div>
+          <div class="cas-period-stat"><strong>41</strong><span>Bug · 58.6%</span><div class="cas-mini-track"><div class="cas-mini-fill cas-mini-fill--bug" style="width:58.6%;"></div></div></div>
+          <div class="cas-period-stat"><strong>20</strong><span>Improvement · 28.6%</span><div class="cas-mini-track"><div class="cas-mini-fill cas-mini-fill--improve" style="width:28.6%;"></div></div></div>
+        </div>
+        <p class="cas-period-note">61 Jira буюу 87.1% нь бодит системийн алдаа болон функционал сайжруулалттай холбоотой. Үүнээс 50 Jira буюу 71.4% нь хаагдсан эсвэл шийдвэрлэгдсэн.</p>
       </div>
 
       <div class="stat-panel-grid">
         <div class="stat-panel">
           <h3>Төрлөөр</h3>
           <div class="metric-list">
-            <div class="metric-row"><div><div class="metric-name">Bug (Алдаа)</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:61.46%;"></div></div></div><div class="metric-value">59<span>61.46%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Improvement</div><div class="metric-track"><div class="metric-fill fill-low" style="width:25%;"></div></div></div><div class="metric-value">24<span>25.00%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Business Consulting</div><div class="metric-track"><div class="metric-fill fill-info" style="width:10.42%;"></div></div></div><div class="metric-value">10<span>10.42%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Technical Consulting</div><div class="metric-track"><div class="metric-fill fill-info" style="width:2.08%;"></div></div></div><div class="metric-value">2<span>2.08%</span></div></div>
-            <div class="metric-row"><div><div class="metric-name">Complaint</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:1.04%;"></div></div></div><div class="metric-value">1<span>1.04%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Bug (Алдаа)</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:61.86%;"></div></div></div><div class="metric-value">60<span>61.86%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Improvement</div><div class="metric-track"><div class="metric-fill fill-low" style="width:24.74%;"></div></div></div><div class="metric-value">24<span>24.74%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Business Consulting</div><div class="metric-track"><div class="metric-fill fill-info" style="width:10.31%;"></div></div></div><div class="metric-value">10<span>10.31%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Technical Consulting</div><div class="metric-track"><div class="metric-fill fill-info" style="width:2.06%;"></div></div></div><div class="metric-value">2<span>2.06%</span></div></div>
+            <div class="metric-row"><div><div class="metric-name">Complaint</div><div class="metric-track"><div class="metric-fill fill-critical" style="width:1.03%;"></div></div></div><div class="metric-value">1<span>1.03%</span></div></div>
           </div>
         </div>
         <div class="stat-panel">
@@ -2813,7 +2873,7 @@
           Jira тайлан нээх
         </a>
         <span class="access-note">ARD ажлын Google акаунт шаардлагатай.</span>
-        <span class="caspo-source">Эх сурвалж: CASPO_Report (June Full), CAS-797 → 2026 оны 7-р сарын 3.</span>
+        <span class="caspo-source">Эх сурвалж: CASPO_Report, CAS-797 → 2026 оны 7-р сарын 6.</span>
       </div>
     </div>
 
@@ -3456,10 +3516,10 @@ const monthlyDrilldownData = {
     ]
   },
   7: {
-    total:7, topType:'Bug', topComponent:'BOND / UBX',
+    total:8, staleBreakdown:true, topType:'Bug', topComponent:'BOND / UBX',
     type:{Bug:4,'Business Consulting':2,Improvement:1}, component:{BOND:2,UBX:2,MSE_SECOND:1,WEB:1,'ХУРИМТЛАЛ':1},
     priority:{'Өндөр':4,'Маш өндөр':2,'Бага':1}, status:{'Явагдаж буй':4,'Засахгүй':1,'Хаагдсан':1,'Шийдвэрлэгдсэн':1},
-    insight:'7-р сарын эхний 3 өдрийн байдлаар нийт 7 Jira бүртгэгдсэн байна. BOND болон UBX компонентууд дээр асуудал илүү төвлөрсөн харагдаж байна.',
+    insight:'7-р сарын 6-ны байдлаар нийт 8 Jira бүртгэгдсэн байна. BOND болон UBX компонентууд дээр асуудал илүү төвлөрсөн харагдаж байна.',
     possibleReason:'Бондын үлдэгдэл, Polaris хүүгийн зөрүү, UBX тайлан, шимтгэл болон ХОҮС арилжааны автомат таталттай холбоотой асуудлууд эхний өдрүүдэд гарсан байх магадлалтай.',
     recommendation:'7-р сарын дата бүрэн сар биш тул энэ дүгнэлтийг урьдчилсан байдлаар ашиглаж, сарын эцэст дахин шинэчлэх хэрэгтэй.',
     topIssues:[
