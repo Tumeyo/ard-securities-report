@@ -3,8 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ард Секюритиз ҮЦК ХХК — систем админы ахиц тайлан 2026" />
+  <meta name="description" content="Ажлын тайлан 2026 — систем админ" />
   <title>ARD Securities | Тайлан 2026</title>
+
+  <!-- Link preview (Open Graph / Twitter) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ARD Securities | Тайлан 2026" />
+  <meta property="og:description" content="Ажлын тайлан 2026 — систем админ" />
+  <meta property="og:url" content="https://tumeyo.github.io/ard-securities-report/" />
+  <meta property="og:image" content="https://tumeyo.github.io/ard-securities-report/img/og-card.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ARD Securities | Тайлан 2026" />
+  <meta name="twitter:description" content="Ажлын тайлан 2026 — систем админ" />
+  <meta name="twitter:image" content="https://tumeyo.github.io/ard-securities-report/img/og-card.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -145,11 +158,12 @@
     .nav-links .nav-btn {
       background: linear-gradient(135deg,#F3F4F4,#858A90) !important;
       color:#111214 !important; font-weight:700 !important;
+      transition:transform .3s var(--ease), box-shadow .3s var(--ease), filter .3s var(--ease);
     }
     .nav-links .nav-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 18px var(--red-glow) !important;
-      background: var(--border2) !important;
+      box-shadow: 0 4px 18px rgba(220,223,226,.18) !important;
+      filter:brightness(1.06);
     }
     .hamburger {
       display: none; flex-direction: column; gap: 5px; cursor: pointer;
@@ -709,15 +723,10 @@
       font-size:10px;
     }
     .project-lane-label .status-pill { margin:0; }
-    .lane-label-done { grid-column:1; grid-row:1; }
-    .lane-label-current { grid-column:2; grid-row:1; }
-    .lane-label-planned { grid-column:3; grid-row:1; }
+    /* Each lane stacks its own cards, so an expanded card only pushes
+       content inside its own column. */
+    .project-lane { display:flex; flex-direction:column; align-items:stretch; gap:1.5rem; min-width:0; }
     .compact-project { min-height:0; padding:1.2rem; cursor:pointer; }
-    .compact-project.status-done { grid-column:1; grid-row:2; }
-    .compact-project.status-current { grid-column:2; grid-row:2; }
-    .compact-project.status-planned { grid-column:3; }
-    .compact-project.status-planned.plan-one { grid-row:2; }
-    .compact-project.status-planned.plan-two { grid-row:3; }
     .compact-project .status-pill { margin-bottom:1rem; }
     .compact-project .proj-ico { width:36px; height:36px; margin-bottom:.75rem; font-size:17px; }
     .compact-project .proj-name { font-size:.95rem; line-height:1.45; }
@@ -2045,10 +2054,6 @@
       .participation-card { grid-template-columns:1fr; }
       .participation-media { aspect-ratio:auto; }
       .team-grid, .proj-grid, .project-board { grid-template-columns:1fr; }
-      .project-lane-label,.compact-project.status-done,.compact-project.status-current,.compact-project.status-planned { grid-column:1; grid-row:auto; }
-      #projects .project-board .compact-project.status-planned.plan-one,
-      #projects .project-board .compact-project.status-planned.plan-two { grid-row:auto; }
-      .lane-label-done{order:1}.compact-project.status-done{order:2}.lane-label-current{order:3}.compact-project.status-current{order:4}.lane-label-planned{order:5}.compact-project.status-planned{order:6}
       .hero-btns { flex-direction:column; align-items:center; }
       .btn-red, .btn-ghost, .btn-gold {
         width:100%;
@@ -2509,7 +2514,7 @@
         <h2 class="profile-name" id="profileName">Н. Түмэндэлгэр</h2>
         <div class="profile-role">Системийн админ · Ард Секюритиз ҮЦК ХХК</div>
         <div class="profile-facts">
-          <div class="profile-fact"><span>Боловсрол</span><strong>Их сургууль · ШУТИС · Мэдээллийн систем</strong></div>
+          <div class="profile-fact"><span>Боловсрол</span><strong>ШУТИС · Мэдээллийн систем</strong></div>
           <div class="profile-fact"><span>Дадлага</span><strong>Эрдэнэт үйлдвэр ТӨҮГ · Сүлжээний админ</strong></div>
           <div class="profile-fact"><span>Ажлын туршлага</span><strong>Эрдэнэт Хивс ХХК · Мэдээллийн технологийн инженер </strong></div>
         </div>
@@ -2521,7 +2526,7 @@
         <div class="sec-eyebrow">Үүрэг ба оролцоо</div>
         <h2 class="sec-h2">Системийн ажиллагаа ба хамтын ажил</h2>
         <div class="card role-card role-inline-card reveal">
-          <p>Дотоод систем, API холболт, гүйлгээ болон арилжааны захиалгын хэвийн ажиллагааг тогтмол хянаж ажилласан. Web арилжаа болон Ard App-ийн “Хөрөнгө оруулалт” цэсний шинэчлэлтүүдийг pre-production орчинд тестэлж, зөв ажиллаж байгаа эсэхийг баталгаажуулсны дараа production орчинд гаргах зөвшөөрөл өгдөг.</p>
+          <p>Дотоод систем, API холболт, гүйлгээ болон арилжааны захиалгын хэвийн ажиллагааг тогтмол хянаж ажилласан. Web арилжаа болон Ard App-ийн шинэчлэлтүүдийг pre-production орчинд бүрэн тестэлж, зөв ажиллаж байгаа эсэхийг баталгаажуулсны дараа production орчинд гаргах зөвшөөрөл өгдөг.</p>
           <p>Мөн ажилтнуудаас ирсэн алдаа, гомдол, сайжруулалтын хүсэлтийг бүртгэн, нөлөөлөл болон яаралтай байдлаар нь ангилж CASPO, AFS болон хөгжүүлэгч талтай хамтран шийдвэрлэсэн. Энэ хугацаанд системийн админ нь зөвхөн техникийн алдаа хянах бус, бизнесийн урсгал, хэрэглэгчийн нөлөөлөл болон хөгжүүлэлтийн эрсдэлийг холбож ажилладаг чухал үүрэгтэйг ойлгосон.</p>
         </div>
       </div>
@@ -2535,13 +2540,12 @@
   <div class="wrap">
     <div class="sec-eyebrow">Идэвхтэй ажил</div>
     <h2 class="sec-h2">Төслүүд ба ажлууд</h2>
-    <p class="sec-p">Одоогоор дууссан, үргэлжилж байгаа болон төлөвлөж буй системийн ажлуудын товч мэдээлэл.</p>
+    <p class="sec-p">Одоогоор дууссан, үргэлжилж байгаа болон төлөвлөж буй гол системийн ажлуудын товч мэдээлэл.</p>
 
     <div class="proj-grid project-board">
 
-      <div class="project-lane-label lane-label-done"><span class="status-pill s-done"><span class="sdot"></span> Дууссан</span><span>1 ажил</span></div>
-      <div class="project-lane-label lane-label-current"><span class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</span><span>1 ажил</span></div>
-      <div class="project-lane-label lane-label-planned"><span class="status-pill s-pend"><span class="sdot"></span> Төлөвлөж байна</span><span>2 ажил</span></div>
+      <div class="project-lane">
+      <div class="project-lane-label lane-label-done"><span class="status-pill s-done"><span class="sdot"></span> Дууссан</span><span>2 ажил</span></div>
 
       <div class="card proj-card compact-project status-done reveal" tabindex="0" role="button" aria-expanded="false">
         <div class="status-pill s-done"><span class="sdot"></span> Дууссан</div>
@@ -2563,6 +2567,26 @@
         <span class="access-note" style="margin-top:.8rem;">ARD ажлын Google акаунт шаардлагатай.</span>
       </div>
 
+      <div class="card proj-card compact-project status-done reveal d2" tabindex="0" role="button" aria-expanded="false">
+        <div class="status-pill s-done"><span class="sdot"></span> Дууссан</div>
+        <div class="proj-ico" aria-hidden="true">🧩</div>
+        <div class="proj-name">Давтамжтай Jira асуудлын ангилал ба засвар</div>
+        <div class="project-compact-note">Root cause ангилал · Тайлан</div>
+        <div class="proj-desc">Хуучин оноос хойш олон давтамжтай гарч байгаа Jira асуудлуудыг ангилж зассан. Давтагдаж буй алдааны паттернуудыг root cause байдлаар нэгтгэн, холбогдох талуудтай хамтран засварлаж, үр дүнг тайланд нэгтгэсэн.</div>
+        <div class="prog-wrap">
+          <div class="prog-head"><span class="prog-lbl">Гүйцэтгэл</span><span class="prog-pct">100%</span></div>
+          <div class="prog-track"><div class="prog-fill pg-gold" data-w="100"></div></div>
+        </div>
+        <div class="tags">
+          <span class="tag">Jira</span><span class="tag">CASPO</span>
+          <span class="tag">Root Cause</span><span class="tag">Тайлан</span>
+        </div>
+      </div>
+      </div>
+
+      <div class="project-lane">
+      <div class="project-lane-label lane-label-current"><span class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</span><span>2 ажил</span></div>
+
       <div class="card proj-card compact-project status-current reveal d2" tabindex="0" role="button" aria-expanded="false">
         <div class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</div>
         <div class="proj-ico" aria-hidden="true">📄</div>
@@ -2581,6 +2605,26 @@
           Дэлгэрэнгүй харах
         </a>
       </div>
+
+      <div class="card proj-card compact-project status-current reveal d3" tabindex="0" role="button" aria-expanded="false">
+        <div class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</div>
+        <div class="proj-ico" aria-hidden="true">📊</div>
+        <div class="proj-name">OTC хаалттай бонд</div>
+        <div class="project-compact-note">Хийгдэж байна · 50%</div>
+        <div class="proj-desc">OTC хаалттай бондтой холбоотой системийн тохиргоо, тооцоо болон дансны бичилтийн ажлыг хянаж байна. Илэрсэн асуудлуудыг CASPO болон холбогдох талуудтай хамтран шалгаж, шаардлагатай засвар, сайжруулалтыг үе шаттай хийж байна.</div>
+        <div class="prog-wrap">
+          <div class="prog-head"><span class="prog-lbl">Гүйцэтгэл</span><span class="prog-pct">50%</span></div>
+          <div class="prog-track"><div class="prog-fill pg-blue" data-w="50"></div></div>
+        </div>
+        <div class="tags">
+          <span class="tag">OTC</span><span class="tag">Хаалттай бонд</span>
+          <span class="tag">CASPO</span><span class="tag">Polaris</span>
+        </div>
+      </div>
+      </div>
+
+      <div class="project-lane">
+      <div class="project-lane-label lane-label-planned"><span class="status-pill s-pend"><span class="sdot"></span> Төлөвлөж байна</span><span>2 ажил</span></div>
 
       <div class="card proj-card plan-card compact-project status-planned plan-one reveal d4" tabindex="0" role="button" aria-expanded="false" aria-label="Millennium Trader Workstation зогсолтын төлөвлөгөө">
         <div class="status-pill s-pend"><span class="sdot"></span> Төлөвлөж байна</div>
@@ -2612,6 +2656,7 @@
           <span class="tag">OGSM</span><span class="tag">CBDO</span><span class="tag">Planning</span>
           <span class="tag">Digital Transformation</span><span class="tag">Process Automation</span>
         </div>
+      </div>
       </div>
 
     </div>
