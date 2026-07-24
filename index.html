@@ -2474,6 +2474,251 @@
       .profile-content { padding:.5rem .25rem .75rem; }
       .profile-fact { grid-template-columns:1fr; gap:.35rem; }
     }
+
+    /* Floating navigation: standalone brand/action above, section dock below */
+    #nav,
+    #nav.is-scrolled {
+      height:82px;
+      padding:16px clamp(1rem,3vw,2.5rem);
+      background:transparent !important;
+      border:0 !important;
+      box-shadow:none !important;
+      backdrop-filter:none;
+      -webkit-backdrop-filter:none;
+      pointer-events:none;
+    }
+    #nav .nav-brand,
+    #nav .nav-top-btn {
+      pointer-events:auto;
+    }
+    #nav .nav-brand {
+      filter:drop-shadow(0 8px 22px rgba(0,0,0,.42));
+    }
+    #nav .nav-top-btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:.7rem 1rem;
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:999px;
+      background:linear-gradient(135deg,#F3F4F4,#858A90);
+      box-shadow:0 10px 28px rgba(0,0,0,.28);
+      color:#111214;
+      font-size:12px;
+      font-weight:800;
+      text-decoration:none;
+      transition:transform .3s var(--ease),box-shadow .3s var(--ease),filter .3s var(--ease);
+    }
+    #nav .nav-top-btn:hover,
+    #nav .nav-top-btn:focus-visible {
+      transform:translateY(-2px);
+      box-shadow:0 14px 34px rgba(0,0,0,.36),0 0 22px rgba(226,232,240,.12);
+      filter:brightness(1.08);
+    }
+    #nav .nav-dock-shell {
+      position:fixed;
+      z-index:1002;
+      left:50%;
+      right:auto;
+      top:auto;
+      bottom:max(18px,env(safe-area-inset-bottom));
+      width:min(560px,calc(100vw - 2rem));
+      max-width:calc(100vw - 2rem);
+      height:auto;
+      max-height:none;
+      display:flex !important;
+      flex-direction:row;
+      align-items:center;
+      justify-content:flex-start;
+      gap:.18rem;
+      margin:0;
+      padding:7px;
+      overflow-x:auto;
+      overflow-y:hidden;
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:22px;
+      background:rgba(20,22,25,.82);
+      box-shadow:0 18px 48px rgba(0,0,0,.46),inset 0 1px rgba(255,255,255,.08);
+      backdrop-filter:blur(22px) saturate(130%);
+      -webkit-backdrop-filter:blur(22px) saturate(130%);
+      transform:translateX(-50%);
+      overflow:hidden;
+      pointer-events:auto;
+    }
+    #nav .nav-links,
+    #nav .nav-links.open {
+      position:relative;
+      inset:auto;
+      z-index:1;
+      width:100%;
+      max-width:none;
+      height:auto;
+      max-height:none;
+      display:flex !important;
+      flex-direction:row;
+      align-items:center;
+      justify-content:flex-start;
+      gap:.18rem;
+      margin:0;
+      padding:7px;
+      overflow-x:auto;
+      overflow-y:hidden;
+      border:0;
+      border-radius:inherit;
+      background:transparent;
+      box-shadow:none;
+      backdrop-filter:none;
+      -webkit-backdrop-filter:none;
+      transform:none;
+      scrollbar-width:none;
+      overscroll-behavior-inline:contain;
+      cursor:grab;
+      user-select:none;
+      touch-action:pan-x;
+      pointer-events:auto;
+    }
+    .nav-dock-edge {
+      position:absolute;
+      z-index:4;
+      top:1px;
+      bottom:1px;
+      width:40px;
+      opacity:0;
+      pointer-events:none;
+      backdrop-filter:blur(2.5px);
+      -webkit-backdrop-filter:blur(2.5px);
+      transition:opacity .24s ease;
+    }
+    .nav-dock-edge--left {
+      left:1px;
+      border-radius:21px 0 0 21px;
+      background:linear-gradient(90deg,rgba(20,22,25,.98),rgba(20,22,25,.46) 50%,transparent);
+      -webkit-mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.72) 48%,transparent 100%);
+      mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.72) 48%,transparent 100%);
+    }
+    .nav-dock-edge--right {
+      right:1px;
+      border-radius:0 21px 21px 0;
+      background:linear-gradient(270deg,rgba(20,22,25,.98),rgba(20,22,25,.46) 50%,transparent);
+      -webkit-mask-image:linear-gradient(270deg,#000 0%,rgba(0,0,0,.72) 48%,transparent 100%);
+      mask-image:linear-gradient(270deg,#000 0%,rgba(0,0,0,.72) 48%,transparent 100%);
+    }
+    .nav-dock-shell.can-scroll-left .nav-dock-edge--left,
+    .nav-dock-shell.can-scroll-right .nav-dock-edge--right { opacity:1; }
+    #nav .nav-links.is-dragging {
+      cursor:grabbing;
+      scroll-behavior:auto;
+    }
+    #nav .nav-links::-webkit-scrollbar { display:none; }
+    #nav .nav-links li:not(.nav-active-pill),
+    #nav .nav-links.open li:not(.nav-active-pill) {
+      width:auto;
+      flex:0 0 auto;
+      opacity:1;
+      animation:none;
+    }
+    #nav .nav-links a,
+    #nav .nav-links.open li a {
+      display:block;
+      width:auto;
+      padding:9px 13px;
+      border:0;
+      border-radius:14px;
+      white-space:nowrap;
+    }
+    #nav .nav-links a:hover { background:rgba(255,255,255,.07); }
+    #nav .nav-active-pill {
+      display:block !important;
+      height:38px;
+      border-color:rgba(148,163,184,.2);
+      border-radius:14px;
+      background:linear-gradient(180deg,rgba(148,163,184,.17),rgba(71,85,105,.1));
+      box-shadow:inset 0 1px rgba(255,255,255,.08),0 8px 24px rgba(0,0,0,.22);
+    }
+    #nav .hamburger { display:none !important; }
+    #btt { bottom:calc(max(18px,env(safe-area-inset-bottom)) + 70px); }
+    footer { padding-bottom:7rem; }
+
+    /* Keep the fixed dock anchored to the viewport during the splash reveal. */
+    body.splash-active #nav,
+    body.splash-ready #nav {
+      opacity:1;
+      transform:none;
+      animation:none;
+    }
+    body.splash-active #nav > .nav-brand,
+    body.splash-active #nav > .nav-top-btn,
+    body.splash-active #nav > .nav-dock-shell {
+      opacity:0;
+      pointer-events:none;
+    }
+    body.splash-ready #nav > .nav-brand,
+    body.splash-ready #nav > .nav-top-btn {
+      animation:floatingControlIn .5s var(--ease) both;
+    }
+    body.splash-ready #nav > .nav-dock-shell {
+      animation:floatingDockIn .5s .08s ease both;
+    }
+    @keyframes floatingControlIn {
+      from { opacity:0; transform:translateY(-8px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+    @keyframes floatingDockIn {
+      from { opacity:0; }
+      to { opacity:1; }
+    }
+
+    @media(max-width:768px) {
+      #nav,
+      #nav.is-scrolled {
+        height:68px;
+        padding:12px .8rem;
+      }
+      #nav .brand-mark { width:132px; height:34px; }
+      #nav .nav-top-btn {
+        min-height:38px;
+        padding:.6rem .82rem;
+        font-size:10.5px;
+      }
+      #nav .nav-dock-shell {
+        bottom:max(9px,env(safe-area-inset-bottom));
+        width:calc(100vw - 1rem);
+        max-width:none;
+        border-radius:18px;
+      }
+      #nav .nav-links,
+      #nav .nav-links.open {
+        padding:6px;
+      }
+      .nav-dock-edge { width:28px; }
+      .nav-dock-edge--left { border-radius:17px 0 0 17px; }
+      .nav-dock-edge--right { border-radius:0 17px 17px 0; }
+      #nav .nav-links a,
+      #nav .nav-links.open li a {
+        padding:8px 11px;
+        font-size:11px;
+      }
+      #nav .nav-active-pill { height:34px; border-radius:12px; }
+      #btt {
+        right:14px;
+        bottom:calc(max(9px,env(safe-area-inset-bottom)) + 66px);
+      }
+      footer { padding-bottom:6.5rem; }
+    }
+
+    @media(max-width:380px) {
+      #nav .brand-mark { width:112px; }
+      #nav .nav-top-btn { padding:.58rem .7rem; font-size:10px; }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      body.splash-ready #nav > .nav-brand,
+      body.splash-ready #nav > .nav-top-btn,
+      body.splash-ready #nav > .nav-dock-shell {
+        animation:floatingDockIn .2s ease both;
+      }
+    }
   </style>
 </head>
 <body class="splash-active">
@@ -2503,16 +2748,20 @@
   <a href="#hero" class="nav-brand" aria-label="Ard Securities">
     <img class="brand-mark" src="img/ard-securities-official.png" alt="Ard Securities" />
   </a>
-  <ul class="nav-links" id="navLinks">
-    <li class="nav-active-pill" aria-hidden="true"></li>
-    <li><a href="#team">Танилцуулга</a></li>
-    <li><a href="#projects">Төслүүд</a></li>
-    <li><a href="#vendors">Jira урсгал</a></li>
-    <li><a href="#access">Бүртгэлийн систем</a></li>
-    <li><a href="#timeline">Ажлын явц</a></li>
-    <li><a href="#participation">Оролцоо</a></li>
-    <li><a href="#access" class="nav-btn">Систем нээх →</a></li>
-  </ul>
+  <div class="nav-dock-shell">
+    <ul class="nav-links" id="navLinks">
+      <li class="nav-active-pill" aria-hidden="true"></li>
+      <li><a href="#team">Танилцуулга</a></li>
+      <li><a href="#projects">Төслүүд</a></li>
+      <li><a href="#vendors">Jira урсгал</a></li>
+      <li><a href="#access">Бүртгэлийн систем</a></li>
+      <li><a href="#timeline">Ажлын явц</a></li>
+      <li><a href="#participation">Оролцоо</a></li>
+    </ul>
+    <span class="nav-dock-edge nav-dock-edge--left" aria-hidden="true"></span>
+    <span class="nav-dock-edge nav-dock-edge--right" aria-hidden="true"></span>
+  </div>
+  <a href="#access" class="nav-btn nav-top-btn">Систем нээх →</a>
   <button class="hamburger" id="ham" type="button" onclick="toggleNav()" aria-label="Цэс нээх" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -3195,10 +3444,75 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 const navSectionLinks = [...document.querySelectorAll('.nav-links a[href^="#"]:not(.nav-btn)')];
+const navDock = document.getElementById('navLinks');
+const navDockShell = navDock.closest('.nav-dock-shell');
+const navDragState = { active:false, pointerId:null, startX:0, startLeft:0, moved:false, suppressClick:false };
+
+function updateNavDockEdges() {
+  const maxScrollLeft = Math.max(navDock.scrollWidth - navDock.clientWidth, 0);
+  navDockShell.classList.toggle('can-scroll-left', navDock.scrollLeft > 2);
+  navDockShell.classList.toggle('can-scroll-right', navDock.scrollLeft < maxScrollLeft - 2);
+}
+
+navDock.addEventListener('scroll', updateNavDockEdges, { passive:true });
+navDock.addEventListener('wheel', event => {
+  if (navDock.scrollWidth <= navDock.clientWidth) return;
+  const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+  if (!delta) return;
+  const previousLeft = navDock.scrollLeft;
+  navDock.scrollLeft += delta;
+  if (navDock.scrollLeft !== previousLeft) event.preventDefault();
+}, { passive:false });
+requestAnimationFrame(updateNavDockEdges);
+
+navDock.addEventListener('pointerdown', event => {
+  if (event.pointerType !== 'mouse' || event.button !== 0 || navDock.scrollWidth <= navDock.clientWidth) return;
+  navDragState.active = true;
+  navDragState.pointerId = event.pointerId;
+  navDragState.startX = event.clientX;
+  navDragState.startLeft = navDock.scrollLeft;
+  navDragState.moved = false;
+});
+
+navDock.addEventListener('pointermove', event => {
+  if (!navDragState.active || event.pointerId !== navDragState.pointerId) return;
+  const distance = event.clientX - navDragState.startX;
+  if (Math.abs(distance) > 4 && !navDragState.moved) {
+    navDragState.moved = true;
+    navDock.classList.add('is-dragging');
+    navDock.setPointerCapture(event.pointerId);
+  }
+  if (!navDragState.moved) return;
+  event.preventDefault();
+  navDock.scrollLeft = navDragState.startLeft - distance;
+});
+
+function finishNavDrag(event) {
+  if (!navDragState.active || event.pointerId !== navDragState.pointerId) return;
+  navDragState.suppressClick = navDragState.moved;
+  if (navDragState.suppressClick) {
+    setTimeout(() => { navDragState.suppressClick = false; }, 0);
+  }
+  navDragState.active = false;
+  navDock.classList.remove('is-dragging');
+  if (navDock.hasPointerCapture(event.pointerId)) navDock.releasePointerCapture(event.pointerId);
+  navDragState.pointerId = null;
+}
+
+navDock.addEventListener('pointerup', finishNavDrag);
+navDock.addEventListener('pointercancel', finishNavDrag);
+navDock.addEventListener('click', event => {
+  if (!navDragState.suppressClick) return;
+  event.preventDefault();
+  event.stopPropagation();
+  navDragState.suppressClick = false;
+}, true);
+
 const navTargets = navSectionLinks
   .map(link => ({ link, target: document.querySelector(link.getAttribute('href')) }))
   .filter(item => item.target);
 let scrollUiFrame = null;
+let previousActiveNavLink = null;
 
 function updateScrollUi() {
   const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
@@ -3223,11 +3537,17 @@ function updateScrollUi() {
   const navLinksEl = document.getElementById('navLinks');
   navLinksEl.classList.toggle('has-active',Boolean(activeLink));
   if (activeLink) {
-    const linkRect = activeLink.getBoundingClientRect();
-    const listRect = navLinksEl.getBoundingClientRect();
-    navLinksEl.style.setProperty('--nav-pill-x',`${linkRect.left-listRect.left}px`);
-    navLinksEl.style.setProperty('--nav-pill-w',`${linkRect.width}px`);
+    navLinksEl.style.setProperty('--nav-pill-x',`${activeLink.offsetLeft}px`);
+    navLinksEl.style.setProperty('--nav-pill-w',`${activeLink.offsetWidth}px`);
+    if (activeLink !== previousActiveNavLink && navLinksEl.scrollWidth > navLinksEl.clientWidth) {
+      const centeredLeft = activeLink.offsetLeft - (navLinksEl.clientWidth - activeLink.offsetWidth) / 2;
+      navLinksEl.scrollTo({
+        left:Math.max(0,centeredLeft),
+        behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+      });
+    }
   }
+  previousActiveNavLink = activeLink;
 
   document.documentElement.style.setProperty('--scroll-progress', progress.toFixed(4));
   document.getElementById('pbar').style.width = pct + '%';
@@ -3240,7 +3560,10 @@ function updateScrollUi() {
 window.addEventListener('scroll', () => {
   if (scrollUiFrame === null) scrollUiFrame = requestAnimationFrame(updateScrollUi);
 }, { passive:true });
-window.addEventListener('resize', updateScrollUi, { passive:true });
+window.addEventListener('resize', () => {
+  updateScrollUi();
+  requestAnimationFrame(updateNavDockEdges);
+}, { passive:true });
 updateScrollUi();
 
 document.getElementById('btt').addEventListener('click', () => {
