@@ -905,6 +905,19 @@
     .request-status:nth-of-type(5)::before { background:#F59E0B; box-shadow:0 0 0 3px rgba(245,158,11,.12); }
     .request-status:nth-of-type(7)::before { background:#34D399; box-shadow:0 0 0 3px rgba(52,211,153,.12); }
     .request-status-arrow { display:none; }
+    .request-guide-actions {
+      display:flex;
+      align-items:center;
+      gap:.9rem;
+      flex-wrap:wrap;
+      margin:0 0 1rem;
+      padding:1rem;
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:14px;
+      background:linear-gradient(90deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+    }
+    .request-system-btn { flex:0 0 auto; }
+    .request-guide-actions .access-note { margin:0; }
     .request-urgent { background:rgba(230,51,41,.055); border:1px solid rgba(230,51,41,.18); border-radius:14px; padding:.9rem 1rem; font-size:12px; color:var(--txt1); display:flex; gap:.8rem; align-items:flex-start; }
     .request-urgent-mark { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#fff; background:rgba(230,51,41,.18); border:1px solid rgba(230,51,41,.3); font-weight:800; }
 
@@ -2294,11 +2307,19 @@
       background:transparent;
       font:650 11px 'Inter',sans-serif;
       letter-spacing:.02em;
+      text-decoration:underline;
+      text-decoration-thickness:1px;
+      text-underline-offset:5px;
+      text-decoration-color:rgba(255,255,255,.42);
       cursor:pointer;
-      transition:color .22s ease,transform .22s ease;
+      transition:color .22s ease,transform .22s ease,text-decoration-color .22s ease;
     }
-    .hero-share-link:hover,.hero-share-link:focus-visible { color:#fff; transform:translateY(-1px); outline:none; }
-    .hero-share-link:focus-visible { text-decoration:underline; text-underline-offset:5px; }
+    .hero-share-link:hover,.hero-share-link:focus-visible {
+      color:#fff;
+      text-decoration-color:#fff;
+      transform:translateY(-1px);
+      outline:none;
+    }
     .share-panel {
       position:relative;
       width:min(390px,100%);
@@ -2310,7 +2331,48 @@
     .share-panel .jira-modal-close { position:absolute; top:.8rem; right:.8rem; }
     .share-title { margin:0; color:var(--txt0); font-family:'Space Grotesk',sans-serif; font-size:1.35rem; }
     .share-copy { margin:.55rem auto 1.15rem; max-width:30ch; color:var(--txt1); font-size:12px; line-height:1.6; }
-    .share-panel .qr-box { margin:.15rem auto 1rem; }
+    .share-item-label {
+      margin:0 0 .8rem;
+      color:#F4F6F8;
+      font:700 12px 'Inter',sans-serif;
+      letter-spacing:.02em;
+    }
+    .share-qr-stage {
+      display:grid;
+      grid-template-columns:38px auto 38px;
+      align-items:center;
+      justify-content:center;
+      gap:.65rem;
+      margin:.15rem auto .8rem;
+    }
+    .share-panel .qr-box {
+      margin:0;
+      transition:opacity .18s ease,transform .24s var(--ease);
+    }
+    .share-panel .qr-box.is-changing { opacity:0; transform:scale(.96); }
+    .share-nav {
+      width:38px;
+      height:38px;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:50%;
+      color:#F4F6F8;
+      background:rgba(255,255,255,.055);
+      font-size:18px;
+      cursor:pointer;
+      transition:background .2s ease,border-color .2s ease,transform .2s ease,opacity .2s ease;
+    }
+    .share-nav:hover,.share-nav:focus-visible {
+      background:rgba(255,255,255,.12);
+      border-color:rgba(255,255,255,.34);
+      transform:translateY(-1px);
+      outline:2px solid rgba(255,255,255,.2);
+      outline-offset:2px;
+    }
+    .share-nav:disabled { opacity:.2; cursor:default; transform:none; }
+    .share-page-indicator { margin:0 0 1rem; color:var(--txt2); font-size:10px; letter-spacing:.08em; }
+    .share-actions { display:flex; justify-content:center; }
     .jira-modal-head { position:sticky; top:0; z-index:4; display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; padding:1.35rem 1.5rem 1rem; background:rgba(14,18,24,.94); border-bottom:1px solid rgba(255,255,255,.08); backdrop-filter:blur(14px); }
     .jira-modal-title { color:var(--txt0); font-family:'Space Grotesk',sans-serif; font-size:clamp(1.25rem,3vw,1.85rem); }
     .jira-modal-sub { margin-top:.3rem; color:var(--txt2); font-size:11px; }
@@ -2487,34 +2549,9 @@
       -webkit-backdrop-filter:none;
       pointer-events:none;
     }
-    #nav .nav-brand,
-    #nav .nav-top-btn {
-      pointer-events:auto;
-    }
+    #nav .nav-brand { pointer-events:auto; }
     #nav .nav-brand {
       filter:drop-shadow(0 8px 22px rgba(0,0,0,.42));
-    }
-    #nav .nav-top-btn {
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:.7rem 1rem;
-      border:1px solid rgba(255,255,255,.2);
-      border-radius:999px;
-      background:linear-gradient(135deg,#F3F4F4,#858A90);
-      box-shadow:0 10px 28px rgba(0,0,0,.28);
-      color:#111214;
-      font-size:12px;
-      font-weight:800;
-      text-decoration:none;
-      transition:transform .3s var(--ease),box-shadow .3s var(--ease),filter .3s var(--ease);
-    }
-    #nav .nav-top-btn:hover,
-    #nav .nav-top-btn:focus-visible {
-      transform:translateY(-2px);
-      box-shadow:0 14px 34px rgba(0,0,0,.36),0 0 22px rgba(226,232,240,.12);
-      filter:brightness(1.08);
     }
     #nav .nav-dock-shell {
       position:fixed;
@@ -2648,13 +2685,11 @@
       animation:none;
     }
     body.splash-active #nav > .nav-brand,
-    body.splash-active #nav > .nav-top-btn,
     body.splash-active #nav > .nav-dock-shell {
       opacity:0;
       pointer-events:none;
     }
-    body.splash-ready #nav > .nav-brand,
-    body.splash-ready #nav > .nav-top-btn {
+    body.splash-ready #nav > .nav-brand {
       animation:floatingControlIn .5s var(--ease) both;
     }
     body.splash-ready #nav > .nav-dock-shell {
@@ -2676,11 +2711,6 @@
         padding:12px .8rem;
       }
       #nav .brand-mark { width:132px; height:34px; }
-      #nav .nav-top-btn {
-        min-height:38px;
-        padding:.6rem .82rem;
-        font-size:10.5px;
-      }
       #nav .nav-dock-shell {
         bottom:max(9px,env(safe-area-inset-bottom));
         width:calc(100vw - 1rem);
@@ -2709,12 +2739,10 @@
 
     @media(max-width:380px) {
       #nav .brand-mark { width:112px; }
-      #nav .nav-top-btn { padding:.58rem .7rem; font-size:10px; }
     }
 
     @media(prefers-reduced-motion:reduce) {
       body.splash-ready #nav > .nav-brand,
-      body.splash-ready #nav > .nav-top-btn,
       body.splash-ready #nav > .nav-dock-shell {
         animation:floatingDockIn .2s ease both;
       }
@@ -2761,7 +2789,6 @@
     <span class="nav-dock-edge nav-dock-edge--left" aria-hidden="true"></span>
     <span class="nav-dock-edge nav-dock-edge--right" aria-hidden="true"></span>
   </div>
-  <a href="#access" class="nav-btn nav-top-btn">Систем нээх →</a>
   <button class="hamburger" id="ham" type="button" onclick="toggleNav()" aria-label="Цэс нээх" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -2791,7 +2818,7 @@
         Бүртгэлийн систем нээх
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
       </a>
-      <button type="button" class="hero-share-link" onclick="openShareModal(this)">Тайлан хуваалцах · QR</button>
+      <button type="button" class="hero-share-link" onclick="openShareModal(this)">Тайлан хуваалцах</button>
     </div>
 
   </div>
@@ -2856,10 +2883,6 @@
           <span class="tag">AppSheet</span><span class="tag">Google Sheets</span>
           <span class="tag">Google Drive</span><span class="tag">Jira</span>
         </div>
-        <a href="https://www.appsheet.com/start/4981b74b-5ddd-43c4-9ba8-b02d4731a642" target="_blank" rel="noopener noreferrer" class="open-btn" style="margin-top:1rem;">
-          Бүртгэлийн систем нээх
-        </a>
-        <span class="access-note" style="margin-top:.8rem;">ARD ажлын Google акаунт шаардлагатай.</span>
       </div>
 
       <div class="card proj-card compact-project status-done reveal d2" tabindex="0" role="button" aria-expanded="false">
@@ -3188,6 +3211,13 @@
         <span class="request-status">Шийдэгдсэн</span>
       </div>
 
+      <div class="request-guide-actions">
+        <a href="https://www.appsheet.com/start/4981b74b-5ddd-43c4-9ba8-b02d4731a642" target="_blank" rel="noopener noreferrer" class="open-btn request-system-btn">
+          Дотоод бүртгэлийн систем нээх <span aria-hidden="true">↗</span>
+        </a>
+        <span class="access-note">ARD ажлын Google акаунт шаардлагатай.</span>
+      </div>
+
       <div class="request-urgent">
         <span class="request-urgent-mark">!</span>
         <span><strong style="color:var(--txt0);">Яаралтай үед:</strong> Систем бүрэн зогссон эсвэл харилцагчийн мөнгөн гүйлгээ, арилжаанд шууд нөлөөлсөн асуудлыг дотоод шуурхай сувгаар мэдэгдэнэ. Бусад асуудлыг бүртгэлийн системээр илгээнэ.</span>
@@ -3362,9 +3392,15 @@
   <div class="jira-modal-panel share-panel" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle" tabindex="-1">
     <button type="button" class="jira-modal-close" aria-label="Цонх хаах" onclick="closeShareModal()">×</button>
     <h2 class="share-title" id="shareModalTitle">Тайлан хуваалцах</h2>
-    <p class="share-copy">QR кодыг уншуулах эсвэл тайлангийн холбоосыг хуулна уу.</p>
-    <div class="qr-box" id="qr-site"></div>
-    <div><button type="button" onclick="copyLink(this)" class="open-btn">Линк хуулах</button></div>
+    <p class="share-copy" id="shareModalCopy">QR кодыг уншуулах эсвэл тайлангийн холбоосыг хуулна уу.</p>
+    <div class="share-item-label" id="shareItemLabel">Тайлангийн вэб</div>
+    <div class="share-qr-stage">
+      <button type="button" class="share-nav" id="sharePrev" aria-label="Өмнөх QR код" onclick="changeShareItem(-1)">‹</button>
+      <div class="qr-box" id="qr-site" aria-live="polite"></div>
+      <button type="button" class="share-nav" id="shareNext" aria-label="Дараагийн QR код" onclick="changeShareItem(1)">›</button>
+    </div>
+    <div class="share-page-indicator" id="sharePageIndicator">1 / 2</div>
+    <div class="share-actions"><button type="button" onclick="copyLink(this)" class="open-btn">Линк хуулах</button></div>
   </div>
 </div>
 
@@ -4211,9 +4247,49 @@ document.querySelectorAll('.compact-project').forEach(card=>{
 
 // QR codes
 const SITE_URL = window.location.href.split('#')[0];
+const INTERNAL_SYSTEM_URL = 'https://www.appsheet.com/start/4981b74b-5ddd-43c4-9ba8-b02d4731a642';
 const qrCfg = text => ({ text, width:182, height:182, colorDark:'#020810', colorLight:'#ffffff', correctLevel:QRCode.CorrectLevel.H });
 const shareQr = document.getElementById('qr-site');
-if (shareQr && typeof QRCode !== 'undefined') new QRCode(shareQr, qrCfg(SITE_URL));
+const shareItems = [
+  {
+    label:'Тайлангийн вэб',
+    copy:'QR кодыг уншуулах эсвэл тайлангийн холбоосыг хуулна уу.',
+    url:SITE_URL
+  },
+  {
+    label:'Дотоод Jira бүртгэлийн систем',
+    copy:'ARD ажлын Google акаунтаар нэвтэрч ашиглана.',
+    url:INTERNAL_SYSTEM_URL
+  }
+];
+let activeShareItem = 0;
+
+function renderShareItem(animate = true) {
+  if (!shareQr || typeof QRCode === 'undefined') return;
+  const item = shareItems[activeShareItem];
+  const draw = () => {
+    shareQr.replaceChildren();
+    new QRCode(shareQr, qrCfg(item.url));
+    document.getElementById('shareItemLabel').textContent = item.label;
+    document.getElementById('shareModalCopy').textContent = item.copy;
+    document.getElementById('sharePageIndicator').textContent = `${activeShareItem + 1} / ${shareItems.length}`;
+    document.getElementById('sharePrev').disabled = activeShareItem === 0;
+    document.getElementById('shareNext').disabled = activeShareItem === shareItems.length - 1;
+    requestAnimationFrame(()=>shareQr.classList.remove('is-changing'));
+  };
+  if (!animate) { draw(); return; }
+  shareQr.classList.add('is-changing');
+  setTimeout(draw,170);
+}
+
+function changeShareItem(direction) {
+  const nextIndex = Math.max(0,Math.min(shareItems.length - 1,activeShareItem + direction));
+  if (nextIndex === activeShareItem) return;
+  activeShareItem = nextIndex;
+  renderShareItem();
+}
+
+renderShareItem(false);
 
 let shareModalTrigger = null;
 function openShareModal(trigger) {
@@ -4221,6 +4297,8 @@ function openShareModal(trigger) {
   const panel = modal?.querySelector('.share-panel');
   if (!modal || !panel) return;
   shareModalTrigger = trigger || document.activeElement;
+  activeShareItem = 0;
+  renderShareItem(false);
   modal.classList.add('open');
   modal.setAttribute('aria-hidden','false');
   document.body.classList.add('modal-open');
@@ -4292,7 +4370,8 @@ function showThanks() {
 
 // Copy link
 function copyLink(btn) {
-  navigator.clipboard.writeText(window.location.href).then(()=>{
+  const activeUrl = shareItems[activeShareItem]?.url || SITE_URL;
+  navigator.clipboard.writeText(activeUrl).then(()=>{
     const orig = btn.textContent;
     btn.textContent='Хуулагдлаа ✓'; btn.classList.add('copied');
     setTimeout(()=>{ btn.textContent=orig; btn.classList.remove('copied'); }, 2200);
