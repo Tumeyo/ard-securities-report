@@ -1907,17 +1907,26 @@
       position:fixed;
       z-index:950;
       top:88px;
-      right:8px;
-      width:3px;
+      right:2px;
+      width:16px;
       height:calc(100vh - 112px);
-      pointer-events:none;
+      pointer-events:auto;
       opacity:.78;
+      cursor:pointer;
+      touch-action:none;
+      user-select:none;
+      transition:opacity .2s ease;
     }
-    .motion-scrollbar__track { position:absolute; inset:0; width:1px; margin:auto; background:rgba(255,255,255,.1); }
+    .motion-scrollbar:hover,
+    .motion-scrollbar:focus-visible,
+    .motion-scrollbar.is-dragging { opacity:1; }
+    .motion-scrollbar:focus-visible { outline:1px solid rgba(226,228,231,.52); outline-offset:1px; border-radius:999px; }
+    .motion-scrollbar.is-dragging { cursor:grabbing; }
+    .motion-scrollbar__track { position:absolute; inset:0; width:2px; margin:auto; background:rgba(255,255,255,.1); border-radius:999px; pointer-events:none; }
     .motion-scrollbar__fill {
       position:absolute;
       inset:0 0 auto;
-      width:1px;
+      width:2px;
       height:100%;
       margin:auto;
       background:linear-gradient(180deg,#777C82,#F2F3F3);
@@ -1925,17 +1934,21 @@
       transform:scaleY(var(--scroll-progress,0));
       transform-origin:top;
       transition:transform .18s var(--ease);
+      border-radius:999px;
+      pointer-events:none;
     }
     .motion-scrollbar__glow {
       position:absolute;
       top:calc(var(--scroll-progress,0) * 100%);
       left:50%;
-      width:4px;
-      height:28px;
-      background:linear-gradient(to bottom,transparent,#F4F4F2,transparent);
+      width:6px;
+      height:32px;
+      border-radius:999px;
+      background:linear-gradient(to bottom,transparent,rgba(244,244,242,.96),transparent);
       box-shadow:0 0 8px rgba(238,239,240,.75),0 0 18px rgba(200,204,208,.32);
       transform:translate(-50%,-50%);
       transition:top .18s var(--ease);
+      pointer-events:none;
     }
 
     @keyframes menuItemReveal { from{opacity:0;transform:translateY(12px);filter:blur(6px)} to{opacity:1;transform:translateY(0);filter:blur(0)} }
@@ -2230,6 +2243,7 @@
     body.splash-active > footer,
     body.splash-active #btt,
     body.splash-active .motion-scrollbar { opacity:0; transform:translateY(20px); }
+    body.splash-active .motion-scrollbar { pointer-events:none; }
     body.splash-ready #nav,
     body.splash-ready > section,
     body.splash-ready > footer,
@@ -2610,9 +2624,11 @@
       transform:none;
       scrollbar-width:none;
       overscroll-behavior-inline:contain;
+      -webkit-overflow-scrolling:touch;
+      scroll-snap-type:x proximity;
       cursor:grab;
       user-select:none;
-      touch-action:pan-x;
+      touch-action:pan-x pinch-zoom;
       pointer-events:auto;
     }
     .nav-dock-edge {
@@ -2654,6 +2670,7 @@
       flex:0 0 auto;
       opacity:1;
       animation:none;
+      scroll-snap-align:center;
     }
     #nav .nav-links a,
     #nav .nav-links.open li a {
@@ -2663,6 +2680,7 @@
       border:0;
       border-radius:14px;
       white-space:nowrap;
+      -webkit-user-drag:none;
     }
     #nav .nav-links a:hover { background:rgba(255,255,255,.07); }
     #nav .nav-active-pill {
@@ -2764,7 +2782,7 @@
 </div>
 
 <div id="pbar"></div>
-<div class="motion-scrollbar" aria-hidden="true">
+<div class="motion-scrollbar" role="scrollbar" tabindex="0" aria-label="Хуудасны босоо гүйлгэгч" aria-orientation="vertical" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
   <span class="motion-scrollbar__track"></span>
   <span class="motion-scrollbar__fill"></span>
   <span class="motion-scrollbar__glow"></span>
@@ -2903,7 +2921,7 @@
       </div>
 
       <div class="project-lane">
-      <div class="project-lane-label lane-label-current"><span class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</span><span>3 ажил</span></div>
+      <div class="project-lane-label lane-label-current"><span class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</span><span>4 ажил</span></div>
 
       <div class="card proj-card compact-project status-current reveal d2" tabindex="0" role="button" aria-expanded="false">
         <div class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</div>
@@ -2944,17 +2962,33 @@
         <div class="status-pill s-res"><span class="sdot"></span> Уулзалтын шатанд</div>
         <div class="proj-ico" aria-hidden="true">🌐</div>
         <div class="proj-name">Ард Секюритиз вебсайт шинэчлэл</div>
-        <div class="project-compact-note">Шаардлага бэлэн · Төслийн эхлэл</div>
-        <div class="proj-desc">Вебсайт шинэчлэх шаардлага болон хамрах хүрээний баримт бичиг бэлэн болсон. Дараагийн алхам нь холбогдох талуудтай уулзалт хийж, ажлын үе шат, хариуцах талууд болон хугацааг тохирон төслийг эхлүүлэх юм.</div>
+        <div class="project-compact-note">Шаардлага бэлэн · Уулзалт хүлээгдэж байна</div>
+        <div class="proj-desc">Вебсайт шинэчлэх шаардлага, хамрах хүрээний баримт бичиг болон төслийн бэлтгэл бэлэн болсон. Одоо холбогдох талуудтай уулзаж, хэрэгжүүлэх үе шат, хариуцах талууд болон хугацааг баталгаажуулах ажил үлдсэн.</div>
         <div class="tags">
           <span class="tag">Website</span><span class="tag">Requirement</span>
           <span class="tag">Kick-off</span><span class="tag">UX/UI</span>
         </div>
       </div>
+
+      <div class="card proj-card compact-project status-current reveal" tabindex="0" role="button" aria-expanded="false" aria-label="Domain сүлжээний нэвтрүүлэлт">
+        <div class="status-pill s-res"><span class="sdot"></span> AFS хэрэгжүүлэлтийг хүлээж байна</div>
+        <div class="proj-ico" aria-hidden="true">🖧</div>
+        <div class="proj-name">Domain сүлжээний нэвтрүүлэлт</div>
+        <div class="project-compact-note">Бэлтгэл бараг дууссан · 90%</div>
+        <div class="proj-desc">AFS тал domain сүлжээний тохиргоо болон нэвтрүүлэх бэлтгэлийг хийж байна. Үндсэн бэлтгэл бараг дууссан бөгөөд одоо ажилтнуудын workstation бүрд тохиргоог хэрэгжүүлэх ажил үлдсэн. AFS талаас хэрэгжүүлэх хуваарь болон гүйцэтгэлийг хүлээж байна.</div>
+        <div class="prog-wrap">
+          <div class="prog-head"><span class="prog-lbl">Гүйцэтгэл</span><span class="prog-pct">90%</span></div>
+          <div class="prog-track"><div class="prog-fill pg-blue" data-w="90"></div></div>
+        </div>
+        <div class="tags">
+          <span class="tag">AFS</span><span class="tag">Domain</span><span class="tag">Workstation</span>
+          <span class="tag">Security</span><span class="tag">Deployment</span>
+        </div>
+      </div>
       </div>
 
       <div class="project-lane">
-      <div class="project-lane-label lane-label-planned"><span class="status-pill s-pend"><span class="sdot"></span> Төлөвлөж байна</span><span>2 ажил</span></div>
+      <div class="project-lane-label lane-label-planned"><span class="status-pill s-pend"><span class="sdot"></span> Төлөвлөж байна</span><span>3 ажил</span></div>
 
       <div class="card proj-card plan-card compact-project status-planned plan-one reveal d4" tabindex="0" role="button" aria-expanded="false" aria-label="Millennium Trader Workstation зогсолтын төлөвлөгөө">
         <div class="status-pill s-pend"><span class="sdot"></span> Төлөвлөж байна</div>
@@ -2985,6 +3019,22 @@
         <div class="tags">
           <span class="tag">OGSM</span><span class="tag">CBDO</span><span class="tag">Planning</span>
           <span class="tag">Digital Transformation</span><span class="tag">Process Automation</span>
+        </div>
+      </div>
+
+      <div class="card proj-card plan-card compact-project status-planned plan-three reveal" tabindex="0" role="button" aria-expanded="false" aria-label="Компанийн дотоод Jira төслийн төлөвлөгөө">
+        <div class="status-pill s-pend"><span class="sdot"></span> Төлөвлөлтийн шатанд</div>
+        <div class="proj-ico" aria-hidden="true">🗂️</div>
+        <div class="proj-name">Компанийн дотоод Jira</div>
+        <div class="project-compact-note">Бүтэц тодорхойлох шат · 5%</div>
+        <div class="proj-desc">Ард Секюритизийн бүх хэлтсээс AFS-д хүргүүлэх системийн асуудал, хөгжүүлэлт болон сайжруулалтын хүсэлтийг Jira дээр хэлтэс, төрөл, эрэмбэ, хариуцах тал болон төлвөөр нь ангилан бүртгэх төслийг төлөвлөж байна. Одоогоор хамрах хүрээ, issue type, workflow, permission болон тайлангийн бүтцийг тодорхойлох шатанд байна.</div>
+        <div class="prog-wrap">
+          <div class="prog-head"><span class="prog-lbl">Төлөвлөлтийн ахиц</span><span class="prog-pct">5%</span></div>
+          <div class="prog-track"><div class="prog-fill pg-blue" data-w="5"></div></div>
+        </div>
+        <div class="tags">
+          <span class="tag">AFS</span><span class="tag">Jira</span><span class="tag">Departments</span>
+          <span class="tag">Workflow</span><span class="tag">Permission</span><span class="tag">Reporting</span>
         </div>
       </div>
       </div>
@@ -3065,7 +3115,7 @@
       <div class="monthly-chart-card" aria-label="CASPO Jira сарын харьцуулалт">
         <div class="monthly-chart-head">
           <div>
-            <div class="monthly-chart-title">Сарын Jira хөдөлгөөн</div>
+            <div class="monthly-chart-title">Сарын Jira граф</div>
             <div class="monthly-chart-sub">2026 оны 1-р сараас 7-р сарын 29 хүртэл</div>
           </div>
         </div>
@@ -3248,17 +3298,8 @@
         <div class="tl-date">2026 оны 6-р сараас</div>
         <div class="tl-dot"></div>
         <div class="tl-content">
-          <div class="tl-title">Системийн эрхийн матриц</div>
-          <div class="tl-body">Дотоод системүүдийн хэрэглэгчийн эрхийг нэг бүрчлэн бүртгэж, системийн эрхийн матрицыг боловсруулж байна. Polaris болон холбогдох системүүдийн хандах эрхийн түвшинг тодорхойлж, аль ажилтан ямар эрхтэйг нэгдсэн байдлаар харах боломжийг бүрдүүлнэ.</div>
-        </div>
-      </div>
-
-      <div class="tl-item reveal" id="permission-roles">
-        <div class="tl-date">2026 оны 6-р сараас</div>
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="tl-title">Системийн эрхийг ажил үүрэгт хуваарилах</div>
-          <div class="tl-body">Эрхийн матрицад үндэслэн алба нэгж, ажил үүрэг бүрд тохирсон хандах эрхийн түвшинг тодорхойлж байна. Ажил үүрэгт шаардлагагүй илүүдэл эрхийг хязгаарлаж, эрх олголтыг стандартчилна.</div>
+          <div class="tl-title">Системийн эрхийн матриц ба ажил үүргийн хуваарилалт</div>
+          <div class="tl-body">Дотоод системүүдийн хэрэглэгчийн эрхийг нэг бүрчлэн бүртгэж, Polaris болон холбогдох системүүдийн эрхийн матрицыг боловсруулж байна. Уг матрицад үндэслэн алба нэгж, ажил үүрэг бүрд шаардлагатай хандах эрхийг тодорхойлж, илүүдэл эрхийг хязгаарлан, эрх олголтыг стандартчилах боломжийг бүрдүүлнэ.</div>
         </div>
       </div>
 
@@ -3267,7 +3308,7 @@
         <div class="tl-dot"></div>
         <div class="tl-content">
           <div class="tl-title">Вебсайт шинэчлэл — шаардлага бэлэн</div>
-          <div class="tl-body">Вебсайт шинэчлэх шаардлага болон хамрах хүрээний баримт бичиг бэлэн болсон. Холбогдох талуудтай уулзалт хийж, ажлын үе шат, хариуцах талууд болон хугацааг тохирсны дараа төслийг эхлүүлнэ.</div>
+          <div class="tl-body">Вебсайт шинэчлэх шаардлага, хамрах хүрээний баримт бичиг болон төслийн бэлтгэл бэлэн болсон. Одоо холбогдох талуудтай уулзаж, хэрэгжүүлэх үе шат, хариуцах талууд болон хугацааг баталгаажуулах ажил үлдсэн.</div>
         </div>
       </div>
 
@@ -3276,7 +3317,7 @@
         <div class="tl-dot"></div>
         <div class="tl-content">
           <div class="tl-title">Системийн сайжруулалт</div>
-          <div class="tl-body">Систем дээр илэрсэн асуудал болон хэрэглэгчдээс ирсэн саналд үндэслэн сайжруулалтын хүсэлтүүдийг бүртгэж, эрэмбэлэн CASPO болон AFS талтай хамтран шийдвэрлэж байна.</div>
+          <div class="tl-body">Систем дээр илэрсэн асуудал болон хэрэглэгчдээс ирсэн саналд үндэслэн сайжруулалтын хүсэлтүүдийг бүртгэж, эрэмбэлэн CASPO болон AFS талтай хамтран шийдвэрлэж байна. Мөн веб арилжаа, Ard App болон холбогдох системийн шинэчлэлтийг production орчинд нэвтрүүлэхээс өмнө pre-production орчинд тестэлж, илэрсэн алдааг бүртгэн засварлуулдаг. Арилжааны захиалга, гүйлгээ болон API холболтын хэвийн ажиллагааг тогтмол хянаж, асуудал гарсан үед холбогдох багуудтай хамтран шийдвэрлэж байна.</div>
         </div>
       </div>
     </div>
@@ -3491,6 +3532,7 @@ function updateNavDockEdges() {
 }
 
 navDock.addEventListener('scroll', updateNavDockEdges, { passive:true });
+navDock.addEventListener('dragstart', event => event.preventDefault());
 navDock.addEventListener('wheel', event => {
   if (navDock.scrollWidth <= navDock.clientWidth) return;
   const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
@@ -3508,6 +3550,7 @@ navDock.addEventListener('pointerdown', event => {
   navDragState.startX = event.clientX;
   navDragState.startLeft = navDock.scrollLeft;
   navDragState.moved = false;
+  navDock.setPointerCapture(event.pointerId);
 });
 
 navDock.addEventListener('pointermove', event => {
@@ -3516,7 +3559,6 @@ navDock.addEventListener('pointermove', event => {
   if (Math.abs(distance) > 4 && !navDragState.moved) {
     navDragState.moved = true;
     navDock.classList.add('is-dragging');
-    navDock.setPointerCapture(event.pointerId);
   }
   if (!navDragState.moved) return;
   event.preventDefault();
@@ -3549,6 +3591,57 @@ const navTargets = navSectionLinks
   .filter(item => item.target);
 let scrollUiFrame = null;
 let previousActiveNavLink = null;
+const motionScrollbar = document.querySelector('.motion-scrollbar');
+const motionScrollbarDrag = { active:false, pointerId:null };
+
+function setPageScrollFromRail(clientY) {
+  const rect = motionScrollbar.getBoundingClientRect();
+  const ratio = Math.min(Math.max((clientY - rect.top) / rect.height, 0), 1);
+  const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
+  window.scrollTo(0, ratio * maxScroll);
+}
+
+motionScrollbar.addEventListener('pointerdown', event => {
+  if (event.pointerType === 'mouse' && event.button !== 0) return;
+  event.preventDefault();
+  motionScrollbarDrag.active = true;
+  motionScrollbarDrag.pointerId = event.pointerId;
+  motionScrollbar.classList.add('is-dragging');
+  motionScrollbar.setPointerCapture(event.pointerId);
+  setPageScrollFromRail(event.clientY);
+});
+
+motionScrollbar.addEventListener('pointermove', event => {
+  if (!motionScrollbarDrag.active || event.pointerId !== motionScrollbarDrag.pointerId) return;
+  event.preventDefault();
+  setPageScrollFromRail(event.clientY);
+});
+
+function finishMotionScrollbarDrag(event) {
+  if (!motionScrollbarDrag.active || event.pointerId !== motionScrollbarDrag.pointerId) return;
+  motionScrollbarDrag.active = false;
+  motionScrollbar.classList.remove('is-dragging');
+  if (motionScrollbar.hasPointerCapture(event.pointerId)) motionScrollbar.releasePointerCapture(event.pointerId);
+  motionScrollbarDrag.pointerId = null;
+}
+
+motionScrollbar.addEventListener('pointerup', finishMotionScrollbarDrag);
+motionScrollbar.addEventListener('pointercancel', finishMotionScrollbarDrag);
+motionScrollbar.addEventListener('keydown', event => {
+  const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
+  const keyboardSteps = {
+    ArrowUp:-80,
+    ArrowDown:80,
+    PageUp:-window.innerHeight * .8,
+    PageDown:window.innerHeight * .8,
+    Home:-maxScroll,
+    End:maxScroll
+  };
+  if (!(event.key in keyboardSteps)) return;
+  event.preventDefault();
+  const target = event.key === 'Home' ? 0 : event.key === 'End' ? maxScroll : window.scrollY + keyboardSteps[event.key];
+  window.scrollTo({ top:Math.min(Math.max(target,0),maxScroll), behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+});
 
 function updateScrollUi() {
   const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
@@ -3586,6 +3679,7 @@ function updateScrollUi() {
   previousActiveNavLink = activeLink;
 
   document.documentElement.style.setProperty('--scroll-progress', progress.toFixed(4));
+  motionScrollbar.setAttribute('aria-valuenow', String(Math.round(pct)));
   document.getElementById('pbar').style.width = pct + '%';
   nav.classList.toggle('is-scrolled', window.scrollY > 40);
   nav.style.boxShadow = window.scrollY > 60 ? '0 12px 40px rgba(0,0,0,.34)' : 'none';
