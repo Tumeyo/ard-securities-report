@@ -864,20 +864,6 @@
       font-size:10.5px;
       margin-bottom:1.1rem;
     }
-    .request-status-line::before {
-      content:'';
-      position:absolute;
-      top:7px;
-      left:12.5%;
-      right:12.5%;
-      height:1px;
-      background:linear-gradient(90deg,#60A5FA,#CBD5E1,#F59E0B,#34D399);
-      opacity:.42;
-      transform:scaleX(0);
-      transform-origin:left;
-      transition:transform 1.2s .2s var(--ease);
-    }
-    .request-guide.in .request-status-line::before { transform:scaleX(1); }
     .request-status-line .request-status {
       position:relative;
       z-index:1;
@@ -2216,7 +2202,6 @@
       .metric-value { min-width:50px; }
       .request-guide { padding:1.25rem !important; }
       .request-status-line { grid-template-columns:repeat(2,minmax(0,1fr)); gap:.5rem; }
-      .request-status-line::before { display:none; }
       .request-status-line .request-status {
         min-height:38px;
         padding:.65rem .6rem .65rem 1.75rem;
@@ -2885,7 +2870,7 @@
     <div class="proj-grid project-board">
 
       <div class="project-lane">
-      <div class="project-lane-label lane-label-current"><span class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</span><span>5 ажил</span></div>
+      <div class="project-lane-label lane-label-current"><span class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</span><span>4 ажил</span></div>
 
       <div class="card proj-card compact-project status-current reveal" tabindex="0" role="button" aria-expanded="false" aria-label="Системийн эрхийн матриц">
         <div class="status-pill s-res"><span class="sdot"></span> Хуваарилалтын шатанд</div>
@@ -2920,22 +2905,6 @@
         <a href="#doc-automation" class="open-btn" style="margin-top:1rem;">
           Дэлгэрэнгүй харах
         </a>
-      </div>
-
-      <div class="card proj-card compact-project status-current reveal d3" tabindex="0" role="button" aria-expanded="false">
-        <div class="status-pill s-res"><span class="sdot"></span> Хийгдэж байна</div>
-        <div class="proj-ico" aria-hidden="true">📊</div>
-        <div class="proj-name">OTC хаалттай бонд</div>
-        <div class="project-compact-note">Хийгдэж байна · 50%</div>
-        <div class="proj-desc">OTC хаалттай бондтой холбоотой системийн тохиргоо, тооцоо болон дансны бичилтийн ажлыг хянаж байна. Илэрсэн асуудлыг CASPO болон холбогдох талуудтай хамтран шалгаж, шаардлагатай засвар, сайжруулалтыг үе шаттайгаар хийж байна.</div>
-        <div class="prog-wrap">
-          <div class="prog-head"><span class="prog-lbl">Гүйцэтгэл</span><span class="prog-pct">50%</span></div>
-          <div class="prog-track"><div class="prog-fill pg-blue" data-w="50"></div></div>
-        </div>
-        <div class="tags">
-          <span class="tag">OTC</span><span class="tag">Хаалттай бонд</span>
-          <span class="tag">CASPO</span><span class="tag">Polaris</span>
-        </div>
       </div>
 
       <div class="card proj-card compact-project status-current reveal d4" tabindex="0" role="button" aria-expanded="false">
@@ -3322,7 +3291,7 @@
         <div class="tl-dot"></div>
         <div class="tl-content">
           <div class="tl-title">Харилцагчийн баримт бичиг автоматжуулалт</div>
-          <div class="tl-body">AFS-ийн санаачилгаар гэрээ, хүсэлт, анкет болон QR код бүхий тодорхойлолтыг автоматжуулах ажил эхэлсэн. Уг ажлын хүрээнд холбогдох компаниудаас ирүүлсэн загвар файлууд болон шаардлагатай мэдээллийг нэгтгэн хянаж, системд ашиглахад бэлтгэх ажилд дэмжлэг үзүүлж байна. Одоогийн гүйцэтгэл 25%.</div>
+          <div class="tl-body">AFS-ийн санаачилгаар гэрээ, хүсэлт, анкет болон QR код бүхий тодорхойлолтыг автоматжуулах ажил эхэлсэн. Уг ажлын хүрээнд холбогдох компаниудаас ирүүлсэн загвар файлууд болон шаардлагатай мэдээллийг нэгтгэн хянаж, системд ашиглахад бэлтгэх ажилд дэмжлэг үзүүлж байна.</div>
         </div>
       </div>
 
@@ -3339,7 +3308,7 @@
         <div class="tl-date">2026 оны 7-р сараас</div>
         <div class="tl-dot"></div>
         <div class="tl-content">
-          <div class="tl-title">Вебсайтын шинэчлэл — шаардлага бэлэн</div>
+          <div class="tl-title">Шаардлага бэлэн</div>
           <div class="tl-body">Вебсайтын шинэчлэлийн шаардлага, хамрах хүрээний баримт бичиг болон төслийн бэлтгэлийг бүрэн боловсруулсан. Одоо холбогдох талуудтай уулзаж, хэрэгжүүлэх үе шат, хариуцах талууд болон хугацааг баталгаажуулах ажил үлдсэн.</div>
         </div>
       </div>
